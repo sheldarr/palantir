@@ -1,2 +1,4 @@
 \select@language {polish}
+\contentsline {section}{Spis rysunk\'ow}{2}
+\contentsline {section}{Spis tablic}{2}
 \contentsline {section}{\numberline {1\relax .\kern .5em }First section}{3}
