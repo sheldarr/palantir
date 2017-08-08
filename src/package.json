@@ -4,5 +4,7 @@
   "main": "index.js",
   "author": "Kewin Polok",
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {
+    "react": "15.6.1"
+  }
 }
