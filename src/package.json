@@ -5,6 +5,7 @@
   "author": "Kewin Polok",
   "license": "MIT",
   "dependencies": {
+    "angular": "1.6.5",
     "react": "15.6.1"
   }
 }
