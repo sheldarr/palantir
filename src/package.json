@@ -1,0 +1,8 @@
+{
+  "name": "palantir",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Kewin Polok",
+  "license": "MIT",
+  "dependencies": {}
+}
