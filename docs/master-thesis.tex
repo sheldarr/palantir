@@ -4,6 +4,8 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 
+\usepackage{listings}
+
 \usepackage{graphicx}
 \graphicspath{ {../figures/} }
 
@@ -51,9 +53,23 @@ Przeglądarka internetowa (ang. \emph{web browser}) to program komputerowy słu�
 	\label{figure1}
 \end{figure}
 
-\subsection{Najważniejsze technologie}
+\subsection{Technologie}
 
-Współczesna przeglądarka cechuje się bardzo dobrą obsługą następujących technologii:
+Współczesne strony internetowe to nierzadko bardzo skompliowane aplikacje, dlatego też przeglądarki internetowe muszą bardzo dobrze obsługiwać wiele technologii, które działając razem pozwalają dostarczyć bardzo wysokiej jakości doświadczenia użytkownika (ang. \emph{User experience}). 
+
+\subsubsection{HTML 5}
+
+Hipertekstowy język znaczników (ang. \emph{HyperText Markup Language}) w wersji 5.0 opublikowany został 28 października 2014. HTML służy do określenia struktury strony internetowej. Oprócz głównego tekstu zawiera tak zwane znaczniki, które zawierają dodatkowe informacje pozwalające przeglądarce internetowej odpowiednio zinterpretować określony fragment strony interetowej. Za pomocą znaczników możemy formować fragmenty strony w takie struktury jak hiperłącza, akapity, listy, nagłówki, czy też formularze. Znaczniki najczęściej występują w parach (jako znacznik otwierając oraz zamykający) definiując zakres działania.
+
+\lstinputlisting[language=HTML, caption=Przykładowa prosta strona internetowa z formularzem]{../src/examples/html.html}
+
+Strona internetowa zaczyna się od \emph{<!DOCTYPE html>}. Jest to specjalny znacznik, który musi być umieszczony jako pierwszy. Informuje on przeglądarkę o tym, że tekst jest w formacie HTML. Kolejnym znacznikiem jest \emph{html} z atrybutem \emph{lang}, jest to główny znacznik, będacy korzeniem całej zagnieżdzonej struktury. Dodatkowo informuje o. Bardzo ważny, wyraźnie odseparowany fragment to znacznik \emph{head} zawierający infomację o systemie kodowania (w tym wypadku jest to  kodowanie UTF-8) oraz tytuł strony. Może on zawierać dodatkowe metadane opisujące stronę internetową. Z punktu widzenia użytkownika najważniejszym fragmentem jest znacznik \emph{body}, który zawiera właściwą treść, czyli w tym wypadku jest to głównie formularz \emph{form}. Dwa najważniejsze atrybuty opisujące formularz to \emph{action} informujący przeglądarkę gdzie wysłać dane wpisane przez użytkownika oraz \emph{method} na podstawie, którego przeglądarka wie jaką metodę protokołu HTTP zastosować. Przykładowy formularz zawiera jedno pole tekstowe \emph{input type="text"} oraz jedno pole do wpisywania haseł \emph{input type="password"}. Hasło wpisane w tego typu pole jest domyślnie ukryte przez przeglądarkę dla celów bezpieczeństwa. Oba pola dodatkowo opisane są etykietami \emph{label}. Ostatnim nieopisanym jeszcze znacznikiem jest \emph{button type="submit"}, który jest po prostu przyciskiem służącym do wysłania formularza. Każda przeglądarka posiada wbudowany zestaw styli, który definiuje wygląd każdego znacznika przewidzianego w dokumentacji HTML 5.
+
+\begin{figure}[ht]
+    \includegraphics[width=\textwidth]{html-chrome.png}
+	\caption{Przykład wyrenderowany w przeglądarce Chrome}
+	\label{figure2}
+\end{figure}
 
 \begin{itemize}
 \item HTML 5 (ang. \emph{Hypertext Transfer Protocol})
@@ -65,7 +81,7 @@ Współczesna przeglądarka cechuje się bardzo dobrą obsługą następujących
 
 \subsection{Ładowanie strony internetowej}
 
-\subsection{Model współbieżności oraz Event loop}
+\subsection{Model współbieżności oraz pętla zdarzeń}
 
 \subsection{Cykl życia zasobu}
 
