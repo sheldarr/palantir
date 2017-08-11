@@ -3,6 +3,7 @@
 \usepackage{polski}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage{hyperref}
 
 \usepackage{listings}
 
@@ -65,7 +66,7 @@ Hipertekstowy język znaczników (ang. \emph{HyperText Markup Language}) w wersj
 Strona internetowa zaczyna się od \emph{<!DOCTYPE html>}. Jest to specjalny znacznik, który musi być umieszczony jako pierwszy. Informuje on przeglądarkę o tym, że tekst jest w formacie HTML. Kolejnym znacznikiem jest \emph{html} z atrybutem \emph{lang}, jest to główny znacznik, będacy korzeniem całej zagnieżdzonej struktury. Dodatkowo informuje o. Bardzo ważny, wyraźnie odseparowany fragment to znacznik \emph{head} zawierający infomację o systemie kodowania (w tym wypadku jest to  kodowanie UTF-8) oraz tytuł strony. Może on zawierać dodatkowe metadane opisujące stronę internetową. Z punktu widzenia użytkownika najważniejszym fragmentem jest znacznik \emph{body}, który zawiera właściwą treść, czyli w tym wypadku jest to głównie formularz \emph{form}. Dwa najważniejsze atrybuty opisujące formularz to \emph{action} informujący przeglądarkę gdzie wysłać dane wpisane przez użytkownika oraz \emph{method} na podstawie, którego przeglądarka wie jaką metodę protokołu HTTP zastosować. Przykładowy formularz zawiera jedno pole tekstowe \emph{input type="text"} oraz jedno pole do wpisywania haseł \emph{input type="password"}. Hasło wpisane w tego typu pole jest domyślnie ukryte przez przeglądarkę dla celów bezpieczeństwa. Oba pola dodatkowo opisane są etykietami \emph{label}. Ostatnim nieopisanym jeszcze znacznikiem jest \emph{button type="submit"}, który jest po prostu przyciskiem służącym do wysłania formularza. Każda przeglądarka posiada wbudowany zestaw styli, który definiuje wygląd każdego znacznika przewidzianego w dokumentacji HTML 5.
 
 \begin{figure}[ht]
-    \includegraphics[width=\linewidth]{html-chrome.png}
+    \includegraphics[width=\textwidth]{html-chrome.png}
 	\caption{Przykład wyrenderowany w przeglądarce Chrome}
 \end{figure}
 
@@ -103,6 +104,13 @@ Selektory mogą poszukiwać elementy na podstawie wielu różnych wartośći, je
 \end{itemize}
 
 Dobrą praktyką jest definiowanie selektorów na podstawie atrubutu \emph{class}, natomiast identyfikator, czyli atrybut \emph{id} powinien służyć do jednoznacznej identyfikacji elementu w strukturze HTML. Zgodnie z dokumentacją wiele znaczników może posiadać taką samą klasę, natomiast identyfikator aby spełniał swoje zadanie musi być unikalny.
+
+Ponieważ standardowy wygląd znaczników z punktu widzenia użytkownika może być interpretowany jako bardzo prosty to współcześnie nieostylowane strony internetowe zdarzają się bardzo rzadko. W celu pokazania jak duża może być różnica pomiędzy standardowym, a specjalnie ostylowanym wyglądem strony internetowej przedstawiony zostanie poprzedni przykład strony z formularzem wzbogacony o bardzo lekką bibliotekę CSS o nazwie Milligram\cite{milligram}, której rozmiar wynosi tylko 2kb.
+
+\begin{figure}[ht]
+    \includegraphics[width=\textwidth]{html-css-chrome.png}
+	\caption{Ostylowany przykład wyrenderowany w przeglądarce Chrome}
+\end{figure}
 
 \begin{itemize}
 \item HTML 5 (ang. \emph{Hypertext Transfer Protocol})
@@ -185,5 +193,11 @@ Dobrą praktyką jest definiowanie selektorów na podstawie atrubutu \emph{class
 \section{Podsumowanie}
 
 \subsection{Dalszy rozwój}
+
+\begin{thebibliography}{11}
+
+\bibitem{milligram}
+  \url{http://milligram.io/}
+\end{thebibliography}
 
 \end{document}
