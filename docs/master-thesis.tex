@@ -14,6 +14,8 @@
 }
 \usepackage{listings}
 
+\usepackage{tikz-qtree}
+
 \usepackage{graphicx}
 \graphicspath{ {../figures/} }
 
@@ -64,7 +66,7 @@ Przeglądarka internetowa (ang. \emph{web browser}) to program komputerowy słu�
 
 Współczesne strony internetowe to nierzadko bardzo skompliowane aplikacje, dlatego też przeglądarki internetowe muszą bardzo dobrze obsługiwać wiele technologii, które działając razem pozwalają dostarczyć bardzo wysokiej jakości doświadczenia użytkownika (ang. \emph{User experience}). 
 
-\subsubsection{HTML 5}
+\subsubsection{HTML 5} \label{html}
 
 Hipertekstowy język znaczników (ang. \emph{HyperText Markup Language}) w wersji 5.0 opublikowany został 28 października 2014. HTML służy do określenia struktury strony internetowej. Oprócz głównego tekstu zawiera tak zwane znaczniki, które zawierają dodatkowe informacje pozwalające przeglądarce internetowej odpowiednio zinterpretować określony fragment strony interetowej. Za pomocą znaczników możemy formować fragmenty strony w takie struktury jak hiperłącza, akapity, listy, nagłówki, czy też formularze. Znaczniki najczęściej występują w parach (jako znacznik otwierając oraz zamykający) definiując zakres działania.
 
@@ -133,7 +135,26 @@ JavaScript może zostać użyty również po stronie serwera dzięki darmowemu �
 
 \subsubsection{DOM}
 
-DOM (ang.\emph{Document Object Model})
+Obiektowy model dokumentu (ang. \emph{Document Object Model}) to zespół klas i interfejsów programistycznych umożliwiających dostęp do elementów strony napisanej w języku HTML. DOM pozwala dokonywać dowolnych modyfikacji poprzez tworzenie, usuwanie i modyfikację tzw. węzłów (ang. \emph{nodes}). Początkowo nie istniał standardowy obiektowy model dokumentu. Twórcy najpopulaniejszych przeglądarek tworzyłi własne niezgodne ze sobą modele. Organizacja W3C \cite{w3c} przygotowała ujednolicony standard obiektowego modelu dokumentu, w którym dokment jest dostępny pod postacią globalnego obiektu \emph{document}, który posiada metody do np. pobierania elementu na podstawie identyfikatora \emph{document.getElementById} lub na podstawie klasy \emph{document.getElementByClassName}. Standard W3C definiuje interfejsy DOM tylko dla języków JavaScript i Java.
+
+Drzewo DOM wygenerowane dla przykładu opisanego w rozdziale \ref{html}:
+
+\Tree[.html 
+[.head 
+  [.meta ]
+  [.title ]
+]
+[.body 
+  [.h2 ]
+  [.form 
+    [.label ]
+    [.input ]
+    [.label ]
+    [.input ]
+    [.button ]
+  ]
+]
+]
 
 \subsubsection{CSSOM}
 
@@ -238,6 +259,8 @@ HTTP (ang.\emph{(Hypertext Transfer Protocol)})
   \url{https://www.npmjs.com/}
 \bibitem{yarn}
   \url{https://yarnpkg.com/}
+\bibitem{w3c}
+  \url{https://www.w3.org/}
 \end{thebibliography}
 
 \end{document}
