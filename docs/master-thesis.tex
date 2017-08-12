@@ -58,7 +58,7 @@
 Przeglądarka internetowa (ang. \emph{web browser}) to program komputerowy służący do pobierania i wyświetlania stron internetowych udostępnianych przez serwery WWW. Komunikacja z serwerem odbywa się najczęściej za pomocą protokołu HTTP (ang. \emph{Hypertext Transfer Protocol})lub odpowiednika w wersji szyfrowanej HTTPS (ang. \emph{Hypertext Transfer Protocol Secure}). Nierzadko przeglądarki internetowe są w stanie obsługiwać inne protokoły takie jak np. FTP (ang. \emph{File Transfer Protocol}) wykorzystywany do serwerów plików, czy też protokoły POP3 (ang. \emph{Post Office Protocol}), IMAP (ang. \emph{Internet Message Access Protocol}) i SMTP (ang. \emph{Simple Mail Transfer Protocol}) wykorzystywane do poczty elektronicznej. 
 
 \begin{figure}[ht]
-    \includegraphics[width=\textwidth]{web-browers-usage-share.png}
+  \includegraphics[width=\textwidth]{web-browers-usage-share.png}
 	\caption{Udział najwaznieższych przeglądarek na rynku w latach 2009-2016}
 \end{figure}
 
@@ -75,7 +75,7 @@ Hipertekstowy język znaczników (ang. \emph{HyperText Markup Language}) w wersj
 Strona internetowa zaczyna się od \emph{<!DOCTYPE html>}. Jest to specjalny znacznik, który musi być umieszczony jako pierwszy. Informuje on przeglądarkę o tym, że tekst jest w formacie HTML. Kolejnym znacznikiem jest \emph{html} z atrybutem \emph{lang}, jest to główny znacznik, będacy korzeniem całej zagnieżdzonej struktury. Dodatkowo informuje o. Bardzo ważny, wyraźnie odseparowany fragment to znacznik \emph{head} zawierający infomację o systemie kodowania (w tym wypadku jest to  kodowanie UTF-8) oraz tytuł strony. Może on zawierać dodatkowe metadane opisujące stronę internetową. Z punktu widzenia użytkownika najważniejszym fragmentem jest znacznik \emph{body}, który zawiera właściwą treść, czyli w tym wypadku jest to głównie formularz \emph{form}. Dwa najważniejsze atrybuty opisujące formularz to \emph{action} informujący przeglądarkę gdzie wysłać dane wpisane przez użytkownika oraz \emph{method} na podstawie, którego przeglądarka wie jaką metodę protokołu HTTP zastosować. Przykładowy formularz zawiera jedno pole tekstowe \emph{input type="text"} oraz jedno pole do wpisywania haseł \emph{input type="password"}. Hasło wpisane w tego typu pole jest domyślnie ukryte przez przeglądarkę dla celów bezpieczeństwa. Oba pola dodatkowo opisane są etykietami \emph{label}. Ostatnim nieopisanym jeszcze znacznikiem jest \emph{button type="submit"}, który jest po prostu przyciskiem służącym do wysłania formularza. Każda przeglądarka posiada wbudowany zestaw styli, który definiuje wygląd każdego znacznika przewidzianego w dokumentacji HTML 5.
 
 \begin{figure}[ht]
-    \includegraphics[width=\textwidth]{html-chrome.png}
+  \includegraphics[width=\textwidth]{html-chrome.png}
 	\caption{Przykład wyrenderowany w przeglądarce Chrome}
 \end{figure}
 
@@ -105,11 +105,11 @@ selektor, selektor2 {
 Selektory mogą poszukiwać elementy na podstawie wielu różnych wartośći, jedne z nich to:
 
 \begin{itemize}
-\item nazwa elementu np. \emph{h1}
-\item atrybut \emph{class} elementu np. \emph{.my-class}
-\item identyfikator elementu, czyli atrybut \emph{id} np. \emph{\#element-id}
-\item połączenie wcześniejszych selektorów operatorem logicznym \emph{OR} np. \emph{h1.my-class}
-\item połączenie wcześniejszych selektorów operatorem logicznym \emph{AND} np. \emph{\#element-id .my-class}
+  \item nazwa elementu np. \emph{h1}
+  \item atrybut \emph{class} elementu np. \emph{.my-class}
+  \item identyfikator elementu, czyli atrybut \emph{id} np. \emph{\#element-id}
+  \item połączenie wcześniejszych selektorów operatorem logicznym \emph{OR} np. \emph{h1.my-class}
+  \item połączenie wcześniejszych selektorów operatorem logicznym \emph{AND} np. \emph{\#element-id .my-class}
 \end{itemize}
 
 Dobrą praktyką jest definiowanie selektorów na podstawie atrubutu \emph{class}, natomiast identyfikator, czyli atrybut \emph{id} powinien służyć do jednoznacznej identyfikacji elementu w strukturze HTML. Zgodnie z dokumentacją wiele znaczników może posiadać taką samą klasę, natomiast identyfikator aby spełniał swoje zadanie musi być unikalny.
@@ -117,7 +117,7 @@ Dobrą praktyką jest definiowanie selektorów na podstawie atrubutu \emph{class
 Ponieważ standardowy wygląd znaczników z punktu widzenia użytkownika może być interpretowany jako bardzo prosty to współcześnie nieostylowane strony internetowe zdarzają się bardzo rzadko. W celu pokazania jak duża może być różnica pomiędzy standardowym, a specjalnie ostylowanym wyglądem strony internetowej przedstawiony zostanie poprzedni przykład strony z formularzem wzbogacony o bardzo lekką bibliotekę CSS o nazwie Milligram\cite{milligram}, której rozmiar wynosi tylko 2kb.
 
 \begin{figure}[ht]
-    \includegraphics[width=\textwidth]{html-css-chrome.png}
+  \includegraphics[width=\textwidth]{html-css-chrome.png}
 	\caption{Ostylowany przykład wyrenderowany w przeglądarce Chrome}
 \end{figure}
 
@@ -139,50 +139,56 @@ Obiektowy model dokumentu (ang. \emph{Document Object Model}) to zespół klas i
 
 Drzewo DOM wygenerowane dla przykładu opisanego w rozdziale \ref{html}:
 
-\Tree[.html 
-[.head 
-  [.meta ]
-  [.title ]
-]
-[.body 
-  [.h2 ]
-  [.form 
-    [.label ]
-    [.input ]
-    [.label ]
-    [.input ]
-    [.button ]
-  ]
-]
-]
+\begin{figure}
+  \centering
+  \begin{tikzpicture}
+    \Tree[.html 
+      [.head 
+        [.meta ]
+        [.title ]
+      ]
+      [.body 
+        [.h2 ]
+        [.form 
+            [.label ]
+            [.input ]
+            [.label ]
+            [.input ]
+            [.button ]
+        ]
+      ]
+    ]
+  \end{tikzpicture}
+  \caption{Drzewo DOM wygenerowane dla przykładu opisanego w rozdziale \ref{html}}
+\end{figure}
 
 \subsubsection{CSSOM}
 
 CSSOM (ang.\emph{Cascading Style Sheets Object Model})
 
-\subsubsection{HTTP}
+\subsubsection{HTTP / HTTPS}
 
 HTTP (ang.\emph{(Hypertext Transfer Protocol)})
 
-\subsection{Ładowanie strony internetowej}
+\subsection{Mechanizm ładowania strony internetowej i jej zasobów}
 
 \subsection{Model współbieżności oraz pętla zdarzeń}
 
-\subsection{Cykl życia zasobu}
+\section{Aplikacja do badań wydajnościowych i czasowych}
 
-\section{Biblioteka do badań}
-
-\subsection{Serwer serwujący aplikacje internetowe}
+\section{Serwer dla aplikacjei internetowych}
 
 \subsubsection{Opis}
 
 \subsubsection{Implementacja}
 
-\subsection{Cechy współczesnej biblioteki programistycznej do tworzenia aplikacji internetowych}
-
 \subsubsection{Komponenty}
 
-\section{Biblioteki programistyczne}
+\section{Biblioteki programistyczne do tworzenia aplikacji internetowyuch}
+
+\subsection{Cechy}
+
+\subsection{Porównanie}
 
 \subsection{Angular 1}
 
@@ -234,8 +240,6 @@ HTTP (ang.\emph{(Hypertext Transfer Protocol)})
 
 \subsubsection{Implementacja}
 
-\subsection{Porównanie bibliotek}
-
 \section{Badania wydajnościowe}
 
 \subsection{Badania wydajności pamięciowej}
@@ -249,18 +253,18 @@ HTTP (ang.\emph{(Hypertext Transfer Protocol)})
 \subsection{Dalszy rozwój}
 
 \begin{thebibliography}{11}
-\bibitem{milligram}
-  \url{http://milligram.io/}
-\bibitem{node.js}
-  \url{http://nodejs.org/}
-\bibitem{v8}
-  \url{https://github.com/v8/v8}
-\bibitem{npm}
-  \url{https://www.npmjs.com/}
-\bibitem{yarn}
-  \url{https://yarnpkg.com/}
-\bibitem{w3c}
-  \url{https://www.w3.org/}
+  \bibitem{milligram}
+    \url{http://milligram.io/}
+  \bibitem{node.js}
+    \url{http://nodejs.org/}
+  \bibitem{v8}
+    \url{https://github.com/v8/v8}
+  \bibitem{npm}
+    \url{https://www.npmjs.com/}
+  \bibitem{yarn}
+    \url{https://yarnpkg.com/}
+  \bibitem{w3c}
+    \url{https://www.w3.org/}
 \end{thebibliography}
 
 \end{document}
