@@ -119,13 +119,29 @@ Ponieważ standardowy wygląd znaczników z punktu widzenia użytkownika może b
 	\caption{Ostylowany przykład wyrenderowany w przeglądarce Chrome}
 \end{figure}
 
-\begin{itemize}
-\item HTML 5 (ang. \emph{Hypertext Transfer Protocol})
-\item CSS 3 (ang. \emph{Cascading Style Sheets})
-\item JavaScript
-\item DOM (ang.\emph{Document Object Model})
-\item CSSOM (ang.\emph{Cascading Style Sheets Object Model})
-\end{itemize}
+\subsubsection{JavaScript}
+
+JavaScript to skryptowy język programowania, stworzony przez firmę Netscape, najczęściej stosowany na stronach internetowych. Pod koniec lat 90. XX wieku organizacja ECMA wydała na podstawie JavaScriptu standard języka skryptowego o nazwie ECMAScript. Najnowsza stabilna wersja ECMAScript nosi nazwę ECMAScript 2016 i została wydana 17 czerwca 2016. Organizacja ECMA zapowiedziała, że stabilna wersja tego standardu od wersji 2015 będzie ogłaszana co rok i to właśnie rok wydania będzie jednoznaczny z numerem wersji. Wcześniej mowa była o edycji standardu ECMAScript i do teraz często można się spotkać z zamiennem stosowaniem nazw ECMAScript 6 i ECMAScript 2015 (skracanych odpowiednio do ES6 i ES2015).
+
+Najczęściej spotykanym zastosowaniem języka JavaScript są strony WWW. Skrypty napisane w tym języku najczęściej służą do zapewnienia interaktywności poprzez odpowiednie reagowanie na zdarzenia generowane przez użytkownika. Skrypty JavaScriptu uruchamiane przez strony internetowe mają znacznie ograniczony dostęp do komputera użytkownika. 
+
+Platformy programistyczne, które zostaną zbadane w ramach pracy magisterskiej napisane są języku JavaScript. Wspomagają one proces pisania aplikacji internetowej dostarczając odpowiednich funkcji i organizująć strukturę strony internetowej zgodnie z wytycznymi konkretnej platformy programistycznej.
+
+W języku HTML za umieszczanie skryptów JS odpowiedzialny jest znacznik \emph{script} z opcjonalnymi parametrami \emph{type=text/javascript} i \emph{language=javascript}.
+
+JavaScript może zostać użyty również po stronie serwera dzięki darmowemu środowisku uruchomieniowemu Node.js\cite{node.js}. Node.js zaprojektowany został do tworzenia wysoce skalowalnych aplikacji internetowych, szczególnie właśnie serwerów napisanych w języku JavaScript. Architektura Node.js składa się z silnika V8 \cite{v8} stworzonego przez Google i opiera się na sterowaniu zdarzeniami wykorzystującymi asynchroniczny system wejścia-wyjścia. Kod źródłowy jest otwarty (ang. \emph{open source}) i każdy może brać udział w jego rozwijaniu. Domyślnym menedżer pakietów dla Node.js jest Npm \cite{npm}, jednak warto zapoznać się z alternatywnym mendedżerem o nazwie Yarn \cite{yarn}, którego głównymi zaletami są szybsze pobieranie zależności oraz bardziej płaska stuktura drzewa pobranych zależności.
+
+\subsubsection{DOM}
+
+DOM (ang.\emph{Document Object Model})
+
+\subsubsection{CSSOM}
+
+CSSOM (ang.\emph{Cascading Style Sheets Object Model})
+
+\subsubsection{HTTP}
+
+HTTP (ang.\emph{(Hypertext Transfer Protocol)})
 
 \subsection{Ładowanie strony internetowej}
 
@@ -134,6 +150,16 @@ Ponieważ standardowy wygląd znaczników z punktu widzenia użytkownika może b
 \subsection{Cykl życia zasobu}
 
 \section{Biblioteka do badań}
+
+\subsection{Serwer serwujący aplikacje internetowe}
+
+\subsubsection{Opis}
+
+\subsubsection{Implementacja}
+
+\subsection{Cechy współczesnej biblioteki programistycznej do tworzenia aplikacji internetowych}
+
+\subsubsection{Komponenty}
 
 \section{Biblioteki programistyczne}
 
@@ -202,9 +228,16 @@ Ponieważ standardowy wygląd znaczników z punktu widzenia użytkownika może b
 \subsection{Dalszy rozwój}
 
 \begin{thebibliography}{11}
-
 \bibitem{milligram}
   \url{http://milligram.io/}
+\bibitem{node.js}
+  \url{http://nodejs.org/}
+\bibitem{v8}
+  \url{https://github.com/v8/v8}
+\bibitem{npm}
+  \url{https://www.npmjs.com/}
+\bibitem{yarn}
+  \url{https://yarnpkg.com/}
 \end{thebibliography}
 
 \end{document}
