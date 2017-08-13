@@ -66,9 +66,9 @@ Przeglądarka internetowa (ang. \emph{web browser}) to program komputerowy słu�
 
 Współczesne strony internetowe to nierzadko bardzo skompliowane aplikacje, dlatego też przeglądarki internetowe muszą bardzo dobrze obsługiwać wiele technologii, które działając razem pozwalają dostarczyć bardzo wysokiej jakości doświadczenia użytkownika (ang. \emph{User experience}). 
 
-\subsubsection{HTML 5} \label{html}
+\subsubsection{HTML 5.1} \label{html}
 
-Hipertekstowy język znaczników (ang. \emph{HyperText Markup Language}) w wersji 5.0 opublikowany został 28 października 2014. HTML służy do określenia struktury strony internetowej. Oprócz głównego tekstu zawiera tak zwane znaczniki, które zawierają dodatkowe informacje pozwalające przeglądarce internetowej odpowiednio zinterpretować określony fragment strony interetowej. Za pomocą znaczników możemy formować fragmenty strony w takie struktury jak hiperłącza, akapity, listy, nagłówki, czy też formularze. Znaczniki najczęściej występują w parach (jako znacznik otwierając oraz zamykający) definiując zakres działania.
+Hipertekstowy język znaczników (ang. \emph{HyperText Markup Language}) to język służący do określenia struktury strony internetowej. Definicję HTML 5.1 stanowi W3C REC-HTML51 \cite{w3c-rec-html51}. Oprócz głównego tekstu HTML zawiera tak zwane znaczniki, które zawierają dodatkowe informacje pozwalające przeglądarce internetowej odpowiednio zinterpretować określony fragment strony interetowej. Za pomocą znaczników możemy formować fragmenty strony w takie struktury jak hiperłącza, akapity, listy, nagłówki, czy też formularze. Znaczniki najczęściej występują w parach (jako znacznik otwierając oraz zamykający) definiując zakres działania.
 
 \lstinputlisting[language=HTML, caption=Przykładowa prosta strona internetowa z formularzem]{../src/examples/html.html}
 
@@ -81,7 +81,25 @@ Strona internetowa zaczyna się od \emph{<!DOCTYPE html>}. Jest to specjalny zna
 
 \subsubsection{CSS 3}
 
-Kaskadowe arkusze stylów (ang. \emph{Cascading Style Sheets}) to język służący do opisu wyświetlania struktury opisanej w języku HTML. Wersja 3 składa się z wielu modułów, które wydane zostały niezależnie od siebie. Za pomocą CSS opisać można wszystkie pojęcia odpowiedzialne za reprezentację elementów HTML, takie jak rodzina czcionek, kolor tekstu, marginesy, czy też pozycja danego elementu względem innych elementów lub okna przeglądarki.
+Kaskadowe arkusze stylów (ang. \emph{Cascading Style Sheets}) to język służący do opisu wyświetlania struktury opisanej w języku HTML. Wersja 3 składa się z wielu modułów. Każdy z nich dodaje nowe możliwości lub rozszerza te zdefiniowane w CSS 2 zachowując wsteczną kompatybilność (ang. \emph{backward compatibility}).
+
+\begin{itemize}
+  \item css3-background - specyfikacja W3C REC-CSS3-Background \cite{w3c-rec-css3-background}
+  \item css3-box - specyfikacja W3C REC-CSS3-Box \cite{w3c-rec-css3-box}
+  \item css-cascade-3 - specyfikacja W3C REC-CSS-Cascade-3 \cite{w3c-rec-css3-cascade}
+  \item css3-color - specyfikacja W3C REC-CSS3-Color \cite{w3c-rec-css3-color}
+  \item css3-content - specyfikacja W3C REC-CSS-Content-3 \cite{w3c-rec-css3-content}
+  \item css-fonts-3 - specyfikacja W3C REC-CSS-Fonts-3 \cite{w3c-rec-css3-fonts}
+  \item css3-gcpm - specyfikacja W3C REC-CSS-GCPM-3 \cite{w3c-rec-css3-gcpm}
+  \item css3-layout - specyfikacja W3C REC-CSS-Template-3 \cite{w3c-rec-css3-template}
+  \item css3-mediaqueries - specyfikacja W3C REC-CSS3-Mediaqueries \cite{w3c-rec-css3-mediaqueries}
+  \item css3-multicol - specyfikacja W3C REC-CSS3-Multicol \cite{w3c-rec-css3-multicol}
+  \item css3-page - specyfikacja W3C REC-CSS3-Page \cite{w3c-rec-css3-page}
+  \item css3-selectors - specyfikacja W3C REC-CSS3-Selectors \cite{w3c-rec-css3-selectors}
+  \item css-3-ui - W3C REC-CSS-UI-3 \cite{w3c-rec-css3-ui}
+\end{itemize}
+
+Za pomocą CSS opisać można wszystkie pojęcia odpowiedzialne za reprezentację elementów HTML, takie jak rodzina czcionek, kolor tekstu, marginesy, czy też pozycja danego elementu względem innych elementów lub okna przeglądarki.
 
 CSS został stworzony w celu odseparowania struktury dokumentu od formy jego prezentacji. Zalety tej separacji to zwiększony zakres dostępności witryny, zmniejszona zawiłość dokumentu, łatwiejsze wprowadzanie zmian w strukturze dokumentu. CSS ułatwia także zmiany w wyświetlaniu strony w zależności od obsługiwanego medium (ekran komputera, ekran tabletu, ekran telefonu komórkowego).
 
@@ -135,7 +153,24 @@ JavaScript może zostać użyty również po stronie serwera dzięki darmowemu �
 
 \subsubsection{DOM}
 
-Obiektowy model dokumentu (ang. \emph{Document Object Model}) to zespół klas i interfejsów programistycznych umożliwiających dostęp do elementów strony napisanej w języku HTML. DOM pozwala dokonywać dowolnych modyfikacji poprzez tworzenie, usuwanie i modyfikację tzw. węzłów (ang. \emph{nodes}). Początkowo nie istniał standardowy obiektowy model dokumentu. Twórcy najpopulaniejszych przeglądarek tworzyłi własne niezgodne ze sobą modele. Organizacja W3C \cite{w3c} przygotowała ujednolicony standard obiektowego modelu dokumentu, w którym dokment jest dostępny pod postacią globalnego obiektu \emph{document}, który posiada metody do np. pobierania elementu na podstawie identyfikatora \emph{document.getElementById} lub na podstawie klasy \emph{document.getElementByClassName}. Standard W3C definiuje interfejsy DOM tylko dla języków JavaScript i Java.
+Obiektowy model dokumentu (ang. \emph{Document Object Model}) to zespół klas i interfejsów programistycznych umożliwiających dostęp do elementów strony napisanej w języku HTML. Istnieje kilka tzw. poziomów DOM (ang. \emph{level}):
+
+\begin{itemize}
+  \item DOM Level 0 - nie stanowi oficjalnego standardu W3C \cite{w3c}, pierwotnie był modelem zaimplementowanym w przeglądarce Netscape Navigator 3.0, obecnie wspierają go wszystkie przeglądarki
+  \item DOM Level 1 - specyfikacja W3C REC-DOM-Level-1 \cite{w3c-rec-dom-level-1} 
+  \item DOM Level 2 - specyfikacja W3C REC-DOM-Level-2 \cite{w3c-rec-dom-level-2} 
+  \item DOM Level 3 - definicję stanowi sześć specyfikacji
+  \begin{itemize}
+    \item DOM Level 3 Core - specyfikacja W3C DOM-Level-3-Core \cite{w3c-rec-dom-level-3-core}
+    \item DOM Level 3 Load and Save - specyfikacja W3C DOM-Level-3-LS \cite{w3c-rec-dom-level-3-ls}
+    \item DOM Level 3 XPath - specyfikacja W3C DOM-Level-3-XPath \cite{w3c-rec-dom-level-3-xpath}
+    \item DOM Level 3 Views and Formatting - specyfikacja W3C DOM-Level-3-Views \cite{w3c-rec-dom-level-3-views}
+    \item DOM Level 3 Requirements - specyfikacja W3C DOM-Level-3-Requirements \cite{w3c-rec-dom-level-3-requirements}
+    \item DOM Level 3 Validation - specyfikacja W3C DOM-Level-3-Val \cite{w3c-rec-dom-level-3-val}
+  \end{itemize}
+\end{itemize}
+
+DOM pozwala dokonywać dowolnych modyfikacji poprzez tworzenie, usuwanie i modyfikację tzw. węzłów (ang. \emph{nodes}). Początkowo nie istniał standardowy obiektowy model dokumentu. Twórcy najpopulaniejszych przeglądarek tworzyłi własne niezgodne ze sobą modele. Organizacja W3C \cite{w3c} przygotowała ujednolicony standard obiektowego modelu dokumentu, w którym dokment jest dostępny pod postacią globalnego obiektu \emph{document}, który posiada metody do np. pobierania elementu na podstawie identyfikatora \emph{document.getElementById} lub na podstawie klasy \emph{document.getElementByClassName}. Standard W3C definiuje interfejsy DOM tylko dla języków JavaScript i Java.
 
 Drzewo DOM wygenerowane dla przykładu opisanego w rozdziale \ref{html}:
 
@@ -162,9 +197,27 @@ Drzewo DOM wygenerowane dla przykładu opisanego w rozdziale \ref{html}:
   \caption{Drzewo DOM wygenerowane dla przykładu opisanego w rozdziale \ref{html}}
 \end{figure}
 
-\subsubsection{HTTP / HTTPS}
+\subsubsection{HTTP/1.1}
 
-HTTP (ang.\emph{(Hypertext Transfer Protocol)})
+Protokół przesyłania dokumentów hipertekstowych (ang.\emph{(Hypertext Transfer Protocol)}) to protokół za pomocą którego przysła się żadania udostępnienia dokumentów z serwera WWW oraz informacje z forumlarzy internetowych. Obecną definicję HTTP stanowi RFC 2616 \cite{rfc2616}
+
+Protokół HTTP udostępnia znormalizowany sposób komunikowania się komputerów ze sobą. Określa on formę żądań (ang. \emph{requests}) klienta dotyczących danych oraz formę odpowiedzi (ang. \emph{responses}) serwera na te żądania. Klientem może być np. przeglądarka internetowa. Jest zaliczany do protokołów bezstanowych (ang. \emph{stateless}) ponieważ nie zachowuje żadnych informacji o poprzednich transakcjach z klientem. Pozwala to znacznie zmniejszyć obciążenie serwera, jednak uniemożliwia zapamiętanie konkretnego stanu użytkownika w sytuacji gdy jest to potrzbne np. przy implementacji koszyka z zakupami w sklepie internetowym. Najczęstszym rozwiązaniem tego problemu jest wprowadzenie mechanizmu ciasteczek (ang. \emph{cookies}). Ciasteczka to mały fragment tekstu zawierający pary klucz-wartość. Przesyłane są one z każdym żądaniem do serwera. Alternatywne rozwiązania to ukryte parametry (gdy aktualna strona zawiera formularz) oraz parametry umieszczone w ujednoliconym formacie adresowania zasobów (ang. \emph{Uniform Resource Locator}.
+
+Wywołania protokołu HTTP zaczynają się od \url{http://}. HTTP standardowo korzysta z portu numer 80 protokołu kontroli transmisji (ang. \emph{Transmission Control Protocol}).
+
+Przykład
+
+\subsubsection{HTTPS}
+
+Bezpieczny protokół przesyłania dokumentów hipertekstowych (ang. \emph{Hypertext Transfer Protocol Secure}) to szyfrowana wersja protokołu HTTP. Obecną definicję HTTPS stanowi RFC 2660 \cite{rfc2660}
+
+W odróżnieniu od protokołu HTTPS protokół HTTP do komunikacji stosuje niezaszyfrowany tekst. HTTPS początkowo szyfrował dane za pomocą protokołu SSL (ang. \emph{Secure Socket Layer}), natomiast obecnie używany jest protokół TLS (ang. \emph{Transport Layer Security}). Szyfrowanie zapobiega przechtywywaniu i zmienianiu przesyłanych danych. 
+
+Wywołania protokołu HTTPS zaczynają się od \url{https://}. HTTPS standardowo korzysta z portu numer 443 protokołu kontroli transmisji. 
+
+\subsubsection{HTTP/2}
+
+Obecną definicję HTTP/2 stanowi RFC 7540 \cite{rfc7540}
 
 \subsection{Mechanizm ładowania strony internetowej i jej zasobów}
 
@@ -261,6 +314,57 @@ HTTP (ang.\emph{(Hypertext Transfer Protocol)})
     \url{https://yarnpkg.com/}
   \bibitem{w3c}
     \url{https://www.w3.org/}
+  \bibitem{w3c-rec-html51}
+    \url{https://www.w3.org/TR/html51/}
+  \bibitem{w3c-rec-css3-background}
+    \url{https://www.w3.org/TR/css3-background/}
+  \bibitem{w3c-rec-css3-box}
+    \url{https://www.w3.org/TR/css3-box/}
+  \bibitem{w3c-rec-css3-cascade}
+    \url{https://www.w3.org/TR/css-cascade-3/}
+  \bibitem{w3c-rec-css3-color}
+    \url{https://www.w3.org/TR/css3-color/}
+  \bibitem{w3c-rec-css3-content}
+    \url{https://www.w3.org/TR/css-content-3/}
+  \bibitem{w3c-rec-css3-fonts}
+    \url{https://www.w3.org/TR/css-fonts-3/}
+  \bibitem{w3c-rec-css3-gcpm}
+    \url{https://www.w3.org/TR/css-gcpm-3/}
+  \bibitem{w3c-rec-css3-template}
+    \url{https://www.w3.org/TR/css-template-3/}
+  \bibitem{w3c-rec-css3-mediaqueries}
+    \url{https://www.w3.org/TR/css3-mediaqueries/}
+  \bibitem{w3c-rec-css3-multicol}
+    \url{https://www.w3.org/TR/css3-multicol/}
+  \bibitem{w3c-rec-css3-page}
+    \url{https://www.w3.org/TR/css3-page/}
+  \bibitem{w3c-rec-css3-selectors}
+    \url{https://www.w3.org/TR/css3-selectors/}
+  \bibitem{w3c-rec-css3-ui}
+    \url{https://www.w3.org/TR/css-ui-3/}
+  \bibitem{w3c-rec-dom-level-1}
+    \url{https://www.w3.org/TR/DOM-Level-1/}
+  \bibitem{w3c-rec-dom-level-2}
+    \url{https://www.w3.org/TR/DOM-Level-2/}
+  \bibitem{w3c-rec-dom-level-3-core}
+    \url{https://www.w3.org/TR/DOM-Level-3-Core/}
+  \bibitem{w3c-rec-dom-level-3-ls}
+    \url{https://www.w3.org/TR/DOM-Level-3-LS/}
+  \bibitem{w3c-rec-dom-level-3-xpath}
+    \url{https://www.w3.org/TR/DOM-Level-3-XPath/}
+  \bibitem{w3c-rec-dom-level-3-views}
+    \url{https://www.w3.org/TR/DOM-Level-3-Views/}
+  \bibitem{w3c-rec-dom-level-3-requirements}
+    \url{https://www.w3.org/TR/DOM-Requirements/}
+  \bibitem{w3c-rec-dom-level-3-val}
+    \url{https://www.w3.org/TR/DOM-Level-3-Val/}
+
+  \bibitem{rfc2616}
+    \url{https://www.ietf.org/rfc/rfc2616}
+  \bibitem{rfc2660}
+    \url{https://www.ietf.org/rfc/rfc2660}
+  \bibitem{rfc7540}
+    \url{https://www.ietf.org/rfc/rfc7540}
 \end{thebibliography}
 
 \end{document}
