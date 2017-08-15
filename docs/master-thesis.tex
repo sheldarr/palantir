@@ -151,7 +151,7 @@ W języku HTML za umieszczanie skryptów JavaScript odpowiedzialny jest znacznik
 
 JavaScript może zostać użyty również po stronie serwera dzięki darmowemu środowisku uruchomieniowemu Node.js\cite{node.js}. Node.js zaprojektowany został do tworzenia wysoce skalowalnych aplikacji internetowych, szczególnie właśnie serwerów napisanych w języku JavaScript. Architektura Node.js składa się z silnika V8 \cite{v8} stworzonego przez Google i opiera się na sterowaniu zdarzeniami wykorzystującymi asynchroniczny system wejścia-wyjścia. Kod źródłowy jest otwarty (ang. \emph{open source}) i każdy może brać udział w jego rozwijaniu. Domyślnym menedżer pakietów dla Node.js jest Npm \cite{npm}, jednak warto zapoznać się z alternatywnym mendedżerem o nazwie Yarn \cite{yarn}, którego głównymi zaletami są szybsze pobieranie zależności oraz bardziej płaska stuktura drzewa pobranych zależności.
 
-\subsubsection{DOM}
+\subsubsection{DOM} \label{dom}
 
 Obiektowy model dokumentu (ang. \emph{Document Object Model}) to zespół klas i interfejsów programistycznych umożliwiających dostęp do elementów strony napisanej w języku HTML. Istnieje kilka tzw. poziomów DOM (ang. \emph{level}):
 
@@ -322,6 +322,16 @@ Jeśli przeglądarka napotka znacznik odnoszący się do kolejnego zasobu wtedy 
   \item \emph{<link rel="stylesheet" type="text/css" href="style.css\">} - załączenie pliku ze stylami CSS
   \item \emph{<script type="text/javascript\" src="script.js\">} - załączenie pliku z kodem w języku JavaScript
   \item \emph{<img src="image.png\">} - załączenie pliku graficznego
+\end{enumerate}
+
+\subsubsection{Budowanie}
+
+W chwili, w której przeglądarka zakończy parsowanie dokumentu i wszystkie zewnętrzne zasoby zostaną pobrane następuje proces budowania strony, czyli łączenia informacji znalezionych w głównym pliku HTML oraz pobranych zasobach. Na budowę strony składają się trzy kroki:
+
+\begin{enumerate}
+  \item \emph{Konstrukcja DOM} - obiektowa reprezentacja struktury opisanej w pliku HTML. Szerzej opisana w rozdziale \ref{dom}
+  \item \emph{Konstrukcja CSSOM} - obiektowa reprezentacja kaskadowych arkuszy stylów
+  \item \emph{Konstrukcja Render Tree} - połączenie DOM oraz CSSOM, na podstawie którego przeglądarka jest w stanie poprawnie wyświetlić stronę internetową
 \end{enumerate}
 
 \subsubsection{Renderowanie}
