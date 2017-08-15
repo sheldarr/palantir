@@ -361,6 +361,13 @@ W chwili, w której przeglądarka zakończy parsowanie dokumentu i wszystkie zew
 
 \subsubsection{Renderowanie}
 
+Po wykonaniu wszystkich wcześniejszych kroków przeglądarka jest w końcu gotowa aby zacząć wyświetlanie elementów na ekranie. Na ten etap składają się dwa kroki:
+
+\begin{enumerate}
+  \item \emph{Layout / Reflow} - przeglądarka wie już co wyświetlić na podstawie DOM, wie też w jaki sposób to wyświetlić na podstawie CSSOM oraz zna relację pomiędzy tymi dwoma elementami na podstawie Render Tree. Rzeczą, której nie wie jest rozmiar elementów, które musi wyświetlić oraz miejsce na ekranie, w którym umieścić poszczególne elementy. Atrybuty takie jak np. szerokość elementów może być ustawiona relatywnie względem rodzica np. 25\% co dodatkowo powoduje problem z wyświetleniem ponieważ potrzebna jest wtedy informacja o wielkości tego rodzica. Ten krok odpowiedzialny jest właśnie za określenie wszystkich tych niewiadomych na podstawie szerokości ekranu (który jest korzeniem w tej strukturze) i wszystkie relatywne wartości bezpośrednich dzieci obliczane są na podstawie niego
+  \item \emph{Paint} - po skończeniu wszystkich obliczeń z punktu poprzedniegop rzeglądarka konwertuje każdy węzeł Render Tree na rzeczywiste piksele wyświetlane na ekranie. Użytkownik w pełni widzi oraz może korzystać ze strony internetowej
+\end{enumerate}
+
 \subsection{Model współbieżności oraz pętla zdarzeń}
 
 \section{Aplikacja do badań wydajnościowych i czasowych}
