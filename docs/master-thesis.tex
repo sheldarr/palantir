@@ -253,7 +253,20 @@ Wywołania protokołu HTTPS zaczynają się od \url{https://}. HTTPS standardowo
 
 \subsubsection{HTTP/2}
 
-Obecną definicję HTTP/2 stanowi RFC 7540 \cite{rfc7540}
+Protokół HTTP/2 to unowocześniejszego protokołu HTTP/1.1. Został on opracowany na podstawie wczesnych wersji ekperymentalnego protokołu SPDY \cite{spdy}. Obecną definicję HTTP/2 stanowi RFC 7540 \cite{rfc7540}. Poniżej przedstawiono najważniejsze zalety protokołu HTTP/2
+
+\begin{enumerate}
+  \item \emph{Multipleksowanie} - protokół nawiązuje tylko jedno trwałe połączenie z serwerem za pomocą którego pobierane są wszystkie pliku niezbędne do prawidłowego wyświetlenia strony
+  \item \emph{Powiadomienia Push} - serwer może wysłać dodatkowe informacje np. może wysłać pliki, które są potrzebne do prawidłowego wyświetlenia strony zanim przeglądarka internetowa zauważy tą potrzebę
+  \item \emph{Ustalanie priorytetów} - każde zapytanie o plik posiada swój priorytet, który nadawany jest przez serwer. Umożliwia to najpierw pobranie najważniejszych plików, które pozwolą wyrenderować kluczowe fragmenty strony internetowej, a następnie doczytać kolejne elementy
+  \item \emph{Kompresja nagłówków} - protokół HTTP/2 unika duplikacji informacji występującyh pomiędzy różnymi nagłówkami i wysyła je w skompresowanym formacie
+  \item \emph{Szyfrowanie} - pomimo, iż szyfrowanie według protokołu HTTP/2 nie jest wymagane to większość najważniejszych przeglądarek internetowych implementuje HTTP/2 wyłącznie z wykorzystaniem protokołu TLS
+\end{enumerate}
+
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{http2-mux.png}
+	\caption{Multipeksowanie HTTP/2}
+\end{figure}
 
 \subsection{Mechanizm ładowania strony internetowej i jej zasobów}
 
@@ -350,6 +363,8 @@ Obecną definicję HTTP/2 stanowi RFC 7540 \cite{rfc7540}
     \url{https://yarnpkg.com/}
   \bibitem{es2016}
     \url{https://www.ecma-international.org/ecma-262/7.0/}
+  \bibitem{spdy}
+    \url{http://dev.chromium.org/spdy/}
   \bibitem{w3c}
     \url{https://www.w3.org/}
   \bibitem{w3c-rec-html51}
