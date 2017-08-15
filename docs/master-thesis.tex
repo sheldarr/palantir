@@ -195,6 +195,31 @@ DOM pozwala dokonywać dowolnych modyfikacji poprzez tworzenie, usuwanie i modyf
   \caption{Drzewo DOM wygenerowane dla przykładu opisanego w rozdziale \ref{html}}
 \end{figure}
 
+\subsubsection{CSSOM} \label{cssom}
+
+Obiektowy model kaskadowych arkuszy stylów (ang. \emph{CSS Object Model}) to zespoł interfejsów programistycznych umożliwiających dostęp do stylów napisanych w języku CSS.
+
+CSSOM blokuje wszystko przed wyświetleniem tzn. przeglądarka internetowa nie zacznie niczego renderować dopóki w pełni nie zostanie zakończona budowa CSSOM. W przypadku nieoptymalnej struktury CSS budowa może trwać bardzo długo co skutkuje widoczną dla użytkownika białą stroną bez zawartości.
+
+CSSOM musi być zbudowany na nowo z każdym przeładowaniem strony, oznacza to, iż nawet jeśli pliki CSS zostały umieszczone w pamięci podręcznej (ang. \emph{cache}) to nie uchroni to przeglądarki przed koniecznością budowy CSSOM.
+
+Istnieje związek pomiędzy kaskadowymi arkuszami stylów, które przeglądarka ładuje i skryptami JavaScript umieszczonymi na stronie. Żeby przeglądarka wyświetliła cokolwiek musi poprawnie zakończyć budowę CSSOM, w przypadku gdy budowa ta zostanie wstrzymana przez skrypty czas potrzebny na wyświetlenie jakiegokolwiek elementu wzrośnie. W przypadku nieoptymalnej kombinacji skryptów oraz stylów czas ten może wzrosnąc drastycznie skutkując bardzo negatywnymi doświadczeniami użytkownika, w najgorszym wypadku spowodować zniechęcenie użytkownika do dalszego oczekiwania i opuszczenie strony.
+
+\begin{figure}
+  \centering
+  \begin{tikzpicture}
+    \Tree[.body(font-size:10px) 
+      [.h1(font-size:1.6rem) ]
+      [.form(font-size:1.4rem) 
+        [.label(font-size:1.2rem) ]
+        [.input(font-size:1.2rem) ]
+      ]
+      [.button(font-size:1.4rem) ]
+    ]
+  \end{tikzpicture}
+  \caption{Przykładowe drzewo CSSOM wygenerowane dla przykładu opisanego w rozdziale \ref{html}}
+\end{figure}
+
 \subsubsection{HTTP/1.1} \label{http/1.1}
 
 Protokół przesyłania dokumentów hipertekstowych (ang.\emph{(Hypertext Transfer Protocol)}) to protokół za pomocą którego przysła się żadania udostępnienia dokumentów z serwera WWW oraz informacje z forumlarzy internetowych. Obecną definicję HTTP stanowi RFC 2616 \cite{rfc2616}
@@ -330,7 +355,7 @@ W chwili, w której przeglądarka zakończy parsowanie dokumentu i wszystkie zew
 
 \begin{enumerate}
   \item \emph{Konstrukcja DOM} - obiektowa reprezentacja struktury opisanej w pliku HTML. Szerzej opisana w rozdziale \ref{dom}
-  \item \emph{Konstrukcja CSSOM} - obiektowa reprezentacja kaskadowych arkuszy stylów
+  \item \emph{Konstrukcja CSSOM} - obiektowa reprezentacja kaskadowych arkuszy stylów. Szerzej opisana w rozdziale \ref{cssom}
   \item \emph{Konstrukcja Render Tree} - połączenie DOM oraz CSSOM, na podstawie którego przeglądarka jest w stanie poprawnie wyświetlić stronę internetową
 \end{enumerate}
 
