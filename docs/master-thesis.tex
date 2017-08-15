@@ -195,7 +195,7 @@ DOM pozwala dokonywać dowolnych modyfikacji poprzez tworzenie, usuwanie i modyf
   \caption{Drzewo DOM wygenerowane dla przykładu opisanego w rozdziale \ref{html}}
 \end{figure}
 
-\subsubsection{HTTP/1.1}
+\subsubsection{HTTP/1.1} \label{http/1.1}
 
 Protokół przesyłania dokumentów hipertekstowych (ang.\emph{(Hypertext Transfer Protocol)}) to protokół za pomocą którego przysła się żadania udostępnienia dokumentów z serwera WWW oraz informacje z forumlarzy internetowych. Obecną definicję HTTP stanowi RFC 2616 \cite{rfc2616}
 
@@ -243,7 +243,7 @@ Date: Tue, 15 Aug 2017 10:28:41 GMT
 Connection: keep-alive
 \end{lstlisting}
 
-\subsubsection{HTTPS}
+\subsubsection{HTTPS} \label{https}
 
 Bezpieczny protokół przesyłania dokumentów hipertekstowych (ang. \emph{Hypertext Transfer Protocol Secure}) to szyfrowana wersja protokołu HTTP. Obecną definicję HTTPS stanowi RFC 2660 \cite{rfc2660}
 
@@ -251,9 +251,9 @@ W odróżnieniu od protokołu HTTPS protokół HTTP do komunikacji stosuje nieza
 
 Wywołania protokołu HTTPS zaczynają się od \url{https://}. HTTPS standardowo korzysta z portu numer 443 protokołu kontroli transmisji. 
 
-\subsubsection{HTTP/2}
+\subsubsection{HTTP/2} \label{http/2}
 
-Protokół HTTP/2 to unowocześniejszego protokołu HTTP/1.1. Został on opracowany na podstawie wczesnych wersji ekperymentalnego protokołu SPDY \cite{spdy}. Obecną definicję HTTP/2 stanowi RFC 7540 \cite{rfc7540}. Poniżej przedstawiono najważniejsze zalety protokołu HTTP/2
+Protokół HTTP/2 to unowocześniejszego protokołu HTTP/1.1. Został on opracowany na podstawie wczesnych wersji ekperymentalnego protokołu SPDY \cite{spdy}. Obecną definicję HTTP/2 stanowi RFC 7540 \cite{rfc7540}. W przeciwieństwie do wersji HTTP/1.1, protokół HTTP/2 jest w pełni binarny tzn. że tekst zrozumiały dla człowieka zastąpiony został zbiorem tak zwanych ramek (ang. \emph{frames}) o ściśle określonym formacie i zastosowaniu. Poniżej przedstawiono najważniejsze zalety protokołu HTTP/2.
 
 \begin{enumerate}
   \item \emph{Multipleksowanie} - protokół nawiązuje tylko jedno trwałe połączenie z serwerem za pomocą którego pobierane są wszystkie pliku niezbędne do prawidłowego wyświetlenia strony
@@ -268,7 +268,49 @@ Protokół HTTP/2 to unowocześniejszego protokołu HTTP/1.1. Został on opracow
 	\caption{Multipeksowanie HTTP/2}
 \end{figure}
 
-\subsection{Mechanizm ładowania strony internetowej i jej zasobów}
+\subsection{Proces ładowania strony internetowej i jej zasobów}
+
+Końcowym produktem przeglądarki internetowej jest w pełni załadowana i wyrenderowana strona internetowa, która oferuje użytkownikowi wszystkie zaimplementowane wcześniej funkcjonalności. Proces, który jest odpowiedzialny za dostarczenie tego produktu można podzielić na cztery główne etapy.
+
+\begin{enumerate}
+  \item żądanie
+  \item odpowiedź
+  \item budowanie
+  \item renderowanie
+\end{enumerate}
+
+\subsubsection{Żądanie}
+
+Najpopularniejsze przypadki tworzenia nowego żądania przez przeglądarkę internetową są generowane przez użytkownika poprzez:
+
+\begin{enumerate}
+  \item wpisanie adresu strony internetowej
+  \item kliknięcie na odnośnik przekierowujący do innej strony lub do podstrony aktualnej strony internetowej
+  \item przeładowanie aktualnej strony internetowej
+\end{enumerate}
+
+Moment tworzenia nowego żadania równoznaczny jest z wydarzeniem które nosi nazwę "\emph{Navigation Start}". Zdarzenie to jest punktem, w którym przeglądarka zaczyna zbierać dodatkowe informacje na temat wydajności np. o czasie ładowania strony. Przeglądarka internetowa tworzy żądanie zgodnie z zasadami protokołu HTTP/1.1, który został bardziej szczegółowo opisny w rozdziale \ref{http/1.1}. Jeśli serwer wspiera obsługę nowszej wersji HTTP/2 wtedy wykorzystany jest nowszy protokół opisany w rozdziale \ref{http/2}. Całe wykonanie żądania przez przeglądarkę możemy podzielić na poszczególne fazy:
+
+\begin{enumerate}
+  \item \emph{Kolejkowanie} - przeglądarka kolejkuje żądania w następujących sytuacjach:
+    \begin{itemize}
+      \item aktualnie istnieją inne żądania do przetworzenia o wyższym priorytecie
+      \item aktualnie istnieje już sześć otwartych połączen TCP dla konkretnego źródła (ang. \emph{origin}). Ograniczenie to dotyczy tylko HTTP/1.0 oraz HTTP/1.1
+    \end{itemize}
+  \item \emph{Odroczenie} - żądanie czeka na swoją kolej na przetworzenie z przyczyn wymienionych we wcześniejszym podpunkcie
+  \item \emph{Podgląd DNS} - przeglądarka stara się przetłumaczyć adres internetowy na adres IP za pomocą usługi systemu nazw domenowych (ang. \emph{Domain Name System})
+  \item \emph{Negocjowanie z pośrednikiem} - przeglądarka prowadzi negocjacje z serwerem pośredniczącym (ang. \emph{proxy})
+  \item \emph{Wysłanie żądania} - przeglądarka wysyła żądanie do serwera
+  \item \emph{Oczekiwanie} - przeglądarka oczekuje na pierwsze bajty odpowiedzi, w tym czasie mierzony jest parametr TTFB (ang. \emph{Time To First Byte}) oznaczający czas jaki minął zanim przeglądarka otrzymała pierwszy bajt odpowiedzi
+  \item \emph{Pobieranie zawartości} - przeglądarka pobiera całą zawartość odpowiedzi
+  \item \emph{Otrzymanie notyfikacji Push} - serwer wysyła dodatkowe dane dla przeglądarki, jest to element unikalny dla HTTP/2
+  \item \emph{Czytanie notyfikacji Push} - przeglądarka czyta oraz interpretuje otrzymane wcześniej dodatkowe dane
+\end{enumerate}
+
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{request-timing-chrome.png}
+	\caption{Przykładowy wykres przedstawiający czas poszczególnych faz przetwarzania żądania wygenerowany w przeglądarce Chrome}
+\end{figure}
 
 \subsection{Model współbieżności oraz pętla zdarzeń}
 
