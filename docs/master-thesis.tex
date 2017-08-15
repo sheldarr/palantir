@@ -273,13 +273,13 @@ Protokół HTTP/2 to unowocześniejszego protokołu HTTP/1.1. Został on opracow
 Końcowym produktem przeglądarki internetowej jest w pełni załadowana i wyrenderowana strona internetowa, która oferuje użytkownikowi wszystkie zaimplementowane wcześniej funkcjonalności. Proces, który jest odpowiedzialny za dostarczenie tego produktu można podzielić na cztery główne etapy.
 
 \begin{enumerate}
-  \item żądanie
-  \item odpowiedź
+  \item żądanie i odpowiedź
+  \item parsowanie
   \item budowanie
   \item renderowanie
 \end{enumerate}
 
-\subsubsection{Żądanie}
+\subsubsection{Żądanie i odpowiedź}
 
 Najpopularniejsze przypadki tworzenia nowego żądania przez przeglądarkę internetową są generowane przez użytkownika poprzez:
 
@@ -311,6 +311,20 @@ Moment tworzenia nowego żadania równoznaczny jest z wydarzeniem które nosi na
   \includegraphics[width=\textwidth]{request-timing-chrome.png}
 	\caption{Przykładowy wykres przedstawiający czas poszczególnych faz przetwarzania żądania wygenerowany w przeglądarce Chrome}
 \end{figure}
+
+\subsubsection{Parsowanie}
+
+W momencie gdy przeglądarka w pełni przetworzy żądanie i otrzyma dokument w postaci pliku zawierającego kod HTML wtedy następuje proces czytania treści tego pliku w procesie zwanym parsowaniem. Pod pojęciem parsowanie ukrywa się czytanie treści z uwzględnieniem analizy składniowej specyficznej dla konkretnego języka. W przypadku języka HTML przeglądarka oczekuje znaczników z parametrami. 
+
+Jeśli przeglądarka napotka znacznik odnoszący się do kolejnego zasobu wtedy proces parsowania zostaje zatrzymany i tworzone jest żądanie  w celu pobrania zawartości potrzebnej do pełnego wyświetlenia strony. Dopiero gdy przeglądarka pobierze cały zewnętrzny zasób proces parsowania zostaje kontynuowany. Znaczniki blokujące poprzez tworzenie odniesienia do zewnętrznego zasobu to:
+
+\begin{enumerate}
+  \item \emph{<link rel="stylesheet" type="text/css" href="style.css\">} - załączenie pliku ze stylami CSS
+  \item \emph{<script type="text/javascript\" src="script.js\">} - załączenie pliku z kodem w języku JavaScript
+  \item \emph{<img src="image.png\">} - załączenie pliku graficznego
+\end{enumerate}
+
+\subsubsection{Renderowanie}
 
 \subsection{Model współbieżności oraz pętla zdarzeń}
 
