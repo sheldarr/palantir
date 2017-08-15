@@ -203,7 +203,45 @@ Protokół HTTP udostępnia znormalizowany sposób komunikowania się komputeró
 
 Wywołania protokołu HTTP zaczynają się od \url{http://}. HTTP standardowo korzysta z portu numer 80 protokołu kontroli transmisji (ang. \emph{Transmission Control Protocol}).
 
-Przykład
+Zapytanie HTTP zaczynaja się od nazwy metody, która określa akcję jaką obiekt tworzący zapytanie chce wykonać na zasobie podstępnym pod określonym adresem. Dostępne metody to:
+
+\begin{enumerate}
+  \item \emph{GET} - pobranie zasobu
+  \item \emph{HEAD} - pobranie informacji o zasobie, metoda stosowana do sprawdzania dostępności zasobu
+  \item \emph{PUT} - aktualizacja zasobu
+  \item \emph{POST} - stworzenie nowego zasobu
+  \item \emph{DELETE} - usunięcie zasobu
+  \item \emph{OPTIONS} - pobranie informacji o możliwych operacjach do wykonania na zasobie
+  \item \emph{TRACE} - metoda stosowana do diagnostyki kanału komunikacyjnego
+  \item \emph{PATCH} - częściowa aktualizacja zasobu
+\end{enumerate}
+
+Poniżej przedstawione przykładowe żądanie HTTP/1.1 przeglądarki Chrome i odpowiedź serwera opisanego w rozdziale \ref{server}.
+
+\begin{lstlisting}[caption=Przykładowe żądanie HTTP/1.1,]
+GET / HTTP/1.1
+Host: localhost:8080
+Connection: keep-alive
+Pragma: no-cache
+Cache-Control: no-cache
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 
+  (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,
+  image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: pl-PL,pl;q=0.8,en-US;q=0.6,en;q=0.4
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Przykładowa odpowiedź HTTP/1.1]
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: text/html; charset=utf-8
+Content-Length: 116
+ETag: W/"74-IGpXmXtcB0E/yn+QbK3UFXMrMU8"
+Date: Tue, 15 Aug 2017 10:28:41 GMT
+Connection: keep-alive
+\end{lstlisting}
 
 \subsubsection{HTTPS}
 
