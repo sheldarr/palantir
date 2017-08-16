@@ -207,19 +207,20 @@ Istnieje związek pomiędzy kaskadowymi arkuszami stylów, które przeglądarka 
 
 \begin{figure}
   \centering
-  \begin{tikzpicture}
-    \Tree[.body(font-size:10px) 
-      [.h1(font-size:1.6rem) ]
-      [.form(font-size:1.4rem) 
-        [.label(font-size:1.2rem) ]
-        [.input(font-size:1.2rem) ]
+  \resizebox{\textwidth}{!}{
+    \begin{tikzpicture}
+      \Tree[.body(font-size:10px) 
+        [.h1(font-size:1.6rem) ]
+        [.form(font-size:1.4rem) 
+          [.label(font-size:1.2rem) ]
+          [.input(font-size:1.2rem) ]
+        ]
+        [.button(font-size:1.4rem) ]
       ]
-      [.button(font-size:1.4rem) ]
-    ]
-  \end{tikzpicture}
+    \end{tikzpicture}
+  }
   \caption{Przykładowe drzewo CSSOM wygenerowane dla przykładu opisanego w rozdziale \ref{html}}
 \end{figure}
-
 \subsubsection{HTTP/1.1} \label{http/1.1}
 
 Protokół przesyłania dokumentów hipertekstowych (ang.\emph{(Hypertext Transfer Protocol)}) to protokół za pomocą którego przysła się żadania udostępnienia dokumentów z serwera WWW oraz informacje z forumlarzy internetowych. Obecną definicję HTTP stanowi RFC 2616 \cite{rfc2616}
