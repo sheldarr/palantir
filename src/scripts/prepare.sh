@@ -9,12 +9,12 @@ else
     echo "OK"
 fi
 
-if [ -e ./public/vendor/chancejs.min.js ]
+if [ -e ./public/vendor/chance.min.js ]
 then
-    echo "ChanceJs already copied"
+    echo "Chance already copied"
 else
-    echo -n "ChanceJs not found. Copying from node_modules..."
-    cp ./node_modules/chancejs/packages/chancejs.min.js ./public/vendor
+    echo -n "Chance not found. Copying from node_modules..."
+    cp ./node_modules/chance/dist/chance.min.js ./public/vendor
     echo "OK"
 fi
 

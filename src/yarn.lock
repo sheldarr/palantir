@@ -45,13 +45,6 @@ angular@1.6.5:
   version "1.6.5"
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.5.tgz#37f788eebec5ce2e3fa02b17bbcb2a231576a0d6"
 
-"argparse@~ 0.1.3":
-  version "0.1.16"
-  resolved "https://registry.yarnpkg.com/argparse/-/argparse-0.1.16.tgz#cfd01e0fbba3d6caed049fbd758d40f65196f57c"
-  dependencies:
-    underscore "~1.7.0"
-    underscore.string "~2.4.0"
-
 array-flatten@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/array-flatten/-/array-flatten-1.1.1.tgz#9a5f699051b1e7073328f2a008968b64ea2955d2"
@@ -71,12 +64,9 @@ center-align@^0.1.1:
     align-text "^0.1.3"
     lazy-cache "^1.0.3"
 
-chancejs@^0.0.8:
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/chancejs/-/chancejs-0.0.8.tgz#6392b1c887693e48b3e6a610efb0c4171ff14ba0"
-  dependencies:
-    mixinsjs "0.1.1"
-    neat "0.0.74"
+chance@^1.0.10:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/chance/-/chance-1.0.10.tgz#03500b04ad94e778dd2891b09ec73a6ad87b1996"
 
 character-parser@^2.1.1:
   version "2.2.0"
@@ -98,31 +88,6 @@ cliui@^2.1.0:
     center-align "^0.1.1"
     right-align "^0.1.1"
     wordwrap "0.0.2"
-
-coffee-script@1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/coffee-script/-/coffee-script-1.4.0.tgz#5e3bc8aac26c01a8e27bf107722c5655f5ad7d36"
-
-"coffee-script@>= 1.1.3", coffee-script@>=1.0.1, coffee-script@>=1.2.0:
-  version "1.12.7"
-  resolved "https://registry.yarnpkg.com/coffee-script/-/coffee-script-1.12.7.tgz#c05dae0cb79591d05b3070a8433a98c9a89ccc53"
-
-coffeelint@0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/coffeelint/-/coffeelint-0.2.0.tgz#eef7d5f0909a2eee13fe93a50d15899ca9be5fc7"
-  dependencies:
-    coffee-script ">=1.2.0"
-    optimist ">=0.2.8"
-
-colors@0.6.0-1:
-  version "0.6.0-1"
-  resolved "https://registry.yarnpkg.com/colors/-/colors-0.6.0-1.tgz#6dbb68ceb8bc60f2b313dcc5ce1599f06d19e67a"
-
-commander@1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-1.0.5.tgz#457295bb976e388e9dd0db52de4333e249f3d88c"
-  dependencies:
-    keypress "0.1.x"
 
 commander@2.8.x:
   version "2.8.1"
@@ -165,16 +130,6 @@ create-react-class@^15.6.0:
     loose-envify "^1.3.1"
     object-assign "^4.1.1"
 
-cssom@0.2.x:
-  version "0.2.5"
-  resolved "https://registry.yarnpkg.com/cssom/-/cssom-0.2.5.tgz#2682709b5902e7212df529116ff788cd5b254894"
-
-debug@*:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-3.0.0.tgz#1d2feae53349047b08b264ec41906ba17a8516e4"
-  dependencies:
-    ms "2.0.0"
-
 debug@2.6.8:
   version "2.6.8"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.8.tgz#e731531ca2ede27d188222427da17821d68ff4fc"
@@ -192,10 +147,6 @@ depd@1.1.1, depd@~1.1.1:
 destroy@~1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/destroy/-/destroy-1.0.4.tgz#978857442c44749e4206613e37946205826abd80"
-
-"docco@git://github.com/abe33/docco.git#feature-exports":
-  version "0.3.1"
-  resolved "git://github.com/abe33/docco.git#199cbc8addca9500287938182e986958f4126f36"
 
 doctypes@^1.1.0:
   version "1.1.0"
@@ -280,10 +231,6 @@ finalhandler@~1.0.4:
     statuses "~1.3.1"
     unpipe "~1.0.0"
 
-"findit@>= 0.1.2":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/findit/-/findit-2.0.0.tgz#6509f0126af4c178551cfa99394e032e13a4d56e"
-
 forwarded@~0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/forwarded/-/forwarded-0.1.0.tgz#19ef9874c4ae1c297bcf078fde63a09b66a84363"
@@ -296,39 +243,15 @@ function-bind@^1.0.2:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.0.tgz#16176714c801798e4e8f2cf7f7529467bb4a5771"
 
-glob@3.1.14:
-  version "3.1.14"
-  resolved "https://registry.yarnpkg.com/glob/-/glob-3.1.14.tgz#f97a731c41da6695dc83944bbb2177e9a29b363d"
-  dependencies:
-    graceful-fs "~1.1.2"
-    inherits "1"
-    minimatch "0.2"
-
-graceful-fs@~1.1.2:
-  version "1.1.14"
-  resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-1.1.14.tgz#07078db5f6377f6321fceaaedf497de124dc9465"
-
 "graceful-readlink@>= 1.0.0":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/graceful-readlink/-/graceful-readlink-1.0.1.tgz#4cafad76bc62f02fa039b2f94e9a3dd3a391a725"
-
-haml-coffee@1.6.2:
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/haml-coffee/-/haml-coffee-1.6.2.tgz#1a7ba90660485c7fd1eb7f96def3188976975fcc"
-  dependencies:
-    coffee-script ">= 1.1.3"
-    findit ">= 0.1.2"
-    optimist ">= 0.3.0"
 
 has@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/has/-/has-1.0.1.tgz#8461733f538b0837c9361e39a9ab9e9704dc2f28"
   dependencies:
     function-bind "^1.0.2"
-
-"highlight.js@git://github.com/abe33/highlight.js.git#node_build":
-  version "7.2.0"
-  resolved "git://github.com/abe33/highlight.js.git#8abb167e3d4aa687c04dde55658658ef2e8f48af"
 
 http-errors@~1.6.2:
   version "1.6.2"
@@ -342,10 +265,6 @@ http-errors@~1.6.2:
 iconv-lite@~0.4.13:
   version "0.4.18"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.18.tgz#23d8656b16aae6742ac29732ea8f0336a4789cf2"
-
-inherits@1:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/inherits/-/inherits-1.0.2.tgz#ca4309dadee6b54cc0b8d247e8d7c7a0975bdc9b"
 
 inherits@2.0.3:
   version "2.0.3"
@@ -394,23 +313,6 @@ isomorphic-fetch@^2.1.1:
     node-fetch "^1.0.1"
     whatwg-fetch ">=0.10.0"
 
-"jasmine-node@git://github.com/abe33/jasmine-node.git#patch-1":
-  version "1.0.26"
-  resolved "git://github.com/abe33/jasmine-node.git#fc6862f1025983625aa514e32f457bb501411dc2"
-  dependencies:
-    coffee-script ">=1.0.1"
-    jasmine-reporters ">=0.2.0"
-    requirejs ">=0.27.1"
-    underscore ">= 1.3.1"
-    walkdir ">= 0.0.1"
-
-jasmine-reporters@>=0.2.0:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/jasmine-reporters/-/jasmine-reporters-2.2.1.tgz#de9a9201367846269e7ca8adff5b44221671fcbd"
-  dependencies:
-    mkdirp "^0.5.1"
-    xmldom "^0.1.22"
-
 js-stringify@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/js-stringify/-/js-stringify-1.0.2.tgz#1736fddfd9724f28a3682adc6230ae7e4e9679db"
@@ -419,22 +321,12 @@ js-tokens@^3.0.0:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
 
-js-yaml@1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-1.0.2.tgz#ee3f5cebdf1b62d721e573480879d12e919c80d0"
-  dependencies:
-    argparse "~ 0.1.3"
-
 jstransformer@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/jstransformer/-/jstransformer-1.0.0.tgz#ed8bf0921e2f3f1ed4d5c1a44f68709ed24722c3"
   dependencies:
     is-promise "^2.0.0"
     promise "^7.0.1"
-
-keypress@0.1.x:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/keypress/-/keypress-0.1.0.tgz#4a3188d4291b66b4f65edb99f806aa9ae293592a"
 
 kind-of@^3.0.2:
   version "3.2.2"
@@ -455,10 +347,6 @@ loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.3.1:
   resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.3.1.tgz#d1a8ad33fa9ce0e713d65fdd0ac8b748d478c848"
   dependencies:
     js-tokens "^3.0.0"
-
-lru-cache@2:
-  version "2.7.3"
-  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-2.7.3.tgz#6d4524e8b955f95d4f5b58851ce21dd72fb4e952"
 
 media-typer@0.3.0:
   version "0.3.0"
@@ -492,66 +380,13 @@ mime@1.3.4:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/mime/-/mime-1.3.4.tgz#115f9e3b6b3daf2959983cb38f149a2d40eb5d53"
 
-minimatch@0.2:
-  version "0.2.14"
-  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-0.2.14.tgz#c74e780574f63c6f9a090e90efbe6ef53a6a756a"
-  dependencies:
-    lru-cache "2"
-    sigmund "~1.0.0"
-
-minimist@0.0.8:
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/minimist/-/minimist-0.0.8.tgz#857fcabfc3397d2625b8228262e86aa7a011b05d"
-
-minimist@~0.0.1:
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/minimist/-/minimist-0.0.10.tgz#de3f98543dbf96082be48ad1a0c7cda836301dcf"
-
 mithril@1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/mithril/-/mithril-1.1.3.tgz#ece88a8e71a6906021c9b7a907abd40ec3d901b8"
 
-mixinsjs@0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/mixinsjs/-/mixinsjs-0.1.1.tgz#b37b6bab779213a3dedd69e979177e99f8bd71d6"
-  dependencies:
-    neat "0.0.74"
-
-mkdirp@0.3.x:
-  version "0.3.5"
-  resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.3.5.tgz#de3e5f8961c88c787ee1368df849ac4413eca8d7"
-
-mkdirp@^0.5.1:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
-  dependencies:
-    minimist "0.0.8"
-
 ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
-
-mustache@0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/mustache/-/mustache-0.7.0.tgz#fca750fb3ebde6377f77498c71cf9fd23a502ee9"
-
-neat@0.0.74:
-  version "0.0.74"
-  resolved "https://registry.yarnpkg.com/neat/-/neat-0.0.74.tgz#6945e634bb5e63eb3e8bf00367510da0453d65bd"
-  dependencies:
-    coffee-script "1.4.0"
-    coffeelint "0.2.0"
-    colors "0.6.0-1"
-    commander "1.0.5"
-    docco "git://github.com/abe33/docco.git#feature-exports"
-    glob "3.1.14"
-    haml-coffee "1.6.2"
-    highlight.js "git://github.com/abe33/highlight.js.git#node_build"
-    jasmine-node "git://github.com/abe33/jasmine-node.git#patch-1"
-    js-yaml "1.0.2"
-    mustache "0.7.0"
-    stylus "0.30.1"
-    uglify-js "1.3.4"
 
 negotiator@0.6.1:
   version "0.6.1"
@@ -577,13 +412,6 @@ on-finished@~2.3.0:
   resolved "https://registry.yarnpkg.com/on-finished/-/on-finished-2.3.0.tgz#20f1336481b083cd75337992a16971aa2d906947"
   dependencies:
     ee-first "1.1.1"
-
-"optimist@>= 0.3.0", optimist@>=0.2.8:
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/optimist/-/optimist-0.6.1.tgz#da3ea74686fa21a19a111c326e90eb15a0196686"
-  dependencies:
-    minimist "~0.0.1"
-    wordwrap "~0.0.2"
 
 parseurl@~1.3.1:
   version "1.3.1"
@@ -732,10 +560,6 @@ repeat-string@^1.5.2:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/repeat-string/-/repeat-string-1.6.1.tgz#8dcae470e1c88abc2d600fff4a776286da75e637"
 
-requirejs@>=0.27.1:
-  version "2.3.4"
-  resolved "https://registry.yarnpkg.com/requirejs/-/requirejs-2.3.4.tgz#f45c48e66ebf0f163da57f6e0cf40fd57996ef50"
-
 resolve@^1.1.6:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.4.0.tgz#a75be01c53da25d934a98ebd0e4c4a7312f92a86"
@@ -783,10 +607,6 @@ setprototypeof@1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/setprototypeof/-/setprototypeof-1.0.3.tgz#66567e37043eeb4f04d91bd658c0cbefb55b8e04"
 
-sigmund@~1.0.0:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/sigmund/-/sigmund-1.0.1.tgz#3ff21f198cad2175f9f3b781853fd94d0d19b590"
-
 source-map@0.4.x:
   version "0.4.4"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.4.4.tgz#eba4f5da9c0dc999de68032d8b4f76173652036b"
@@ -800,14 +620,6 @@ source-map@~0.5.1:
 "statuses@>= 1.3.1 < 2", statuses@~1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.3.1.tgz#faf51b9eb74aaef3b3acf4ad5f61abf24cb7b93e"
-
-stylus@0.30.1:
-  version "0.30.1"
-  resolved "https://registry.yarnpkg.com/stylus/-/stylus-0.30.1.tgz#8fce4fb3940f4556e1dca1c43ce8be2876c80325"
-  dependencies:
-    cssom "0.2.x"
-    debug "*"
-    mkdirp "0.3.x"
 
 token-stream@0.0.1:
   version "0.0.1"
@@ -828,10 +640,6 @@ ua-parser-js@^0.7.9:
   version "0.7.14"
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.14.tgz#110d53fa4c3f326c121292bbeac904d2e03387ca"
 
-uglify-js@1.3.4:
-  version "1.3.4"
-  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-1.3.4.tgz#282cec40db568798e0ec6d71d0c989d323f0636b"
-
 uglify-js@^2.6.1:
   version "2.8.29"
   resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-2.8.29.tgz#29c5733148057bb4e1f75df35b7a9cb72e6a59dd"
@@ -844,18 +652,6 @@ uglify-js@^2.6.1:
 uglify-to-browserify@~1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/uglify-to-browserify/-/uglify-to-browserify-1.0.2.tgz#6e0924d6bda6b5afe349e39a6d632850a0f882b7"
-
-underscore.string@~2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/underscore.string/-/underscore.string-2.4.0.tgz#8cdd8fbac4e2d2ea1e7e2e8097c42f442280f85b"
-
-"underscore@>= 1.3.1":
-  version "1.8.3"
-  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.8.3.tgz#4f3fb53b106e6097fcf9cb4109f2a5e9bdfa5022"
-
-underscore@~1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.7.0.tgz#6bbaf0877500d36be34ecaa584e0db9fef035209"
 
 unpipe@~1.0.0:
   version "1.0.0"
@@ -877,10 +673,6 @@ vue@2.4.2:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.4.2.tgz#a9855261f191c978cc0dc1150531b8d08149b58c"
 
-"walkdir@>= 0.0.1":
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/walkdir/-/walkdir-0.0.11.tgz#a16d025eb931bd03b52f308caed0f40fcebe9532"
-
 whatwg-fetch@>=0.10.0:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-2.0.3.tgz#9c84ec2dcf68187ff00bc64e1274b442176e1c84"
@@ -899,14 +691,6 @@ with@^5.0.0:
 wordwrap@0.0.2:
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/wordwrap/-/wordwrap-0.0.2.tgz#b79669bb42ecb409f83d583cad52ca17eaa1643f"
-
-wordwrap@~0.0.2:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/wordwrap/-/wordwrap-0.0.3.tgz#a3d5da6cd5c0bc0008d37234bbaf1bed63059107"
-
-xmldom@^0.1.22:
-  version "0.1.27"
-  resolved "https://registry.yarnpkg.com/xmldom/-/xmldom-0.1.27.tgz#d501f97b3bdb403af8ef9ecc20573187aadac0e9"
 
 yargs@~3.10.0:
   version "3.10.0"
