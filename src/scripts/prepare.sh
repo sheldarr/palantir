@@ -1,55 +1,64 @@
 #!/bin/sh
 
-if [ -e ./public/milligram.min.css ]
+if [ -e ./public/vendor/milligram.min.css ]
 then
     echo "Milligram already copied"
 else
     echo -n "Milligram not found. Copying from node_modules..."
-    cp ./node_modules/milligram/dist/milligram.min.css ./public
+    cp ./node_modules/milligram/dist/milligram.min.css ./public/vendor
     echo "OK"
 fi
 
-if [ -e ./public/angular.min.js ]
+if [ -e ./public/vendor/chancejs.min.js ]
+then
+    echo "ChanceJs already copied"
+else
+    echo -n "ChanceJs not found. Copying from node_modules..."
+    cp ./node_modules/chancejs/packages/chancejs.min.js ./public/vendor
+    echo "OK"
+fi
+
+if [ -e ./public/vendor/angular.min.js ]
 then
     echo "Angular 1 already copied"
 else
     echo -n "Angular 1 not found. Copying from node_modules..."
-    cp ./node_modules/angular/angular.min.js ./public
+    cp ./node_modules/angular/angular.min.js ./public/vendor
     echo "OK"
 fi
 
-if [ -e ./public/core.js ]
+if [ -e ./public/vendor/core.js ]
 then
     echo "Angular 2 already copied"
 else
     echo -n "Angular 2 not found. Copying from node_modules..."
-    cp ./node_modules/@angular/core/@angular/core.js ./public
+    cp ./node_modules/@angular/core/@angular/core.js ./public/vendor
     echo "OK"
 fi
 
-if [ -e ./public/mithril.min.js ]
+if [ -e ./public/vendor/mithril.min.js ]
 then
     echo "Mithril already copied"
 else
     echo -n "Mithril not found. Copying from node_modules..."
-    cp ./node_modules/mithril/mithril.min.js ./public
+    cp ./node_modules/mithril/mithril.min.js ./public/vendor
     echo "OK"
 fi
 
-if [ -e ./public/react.min.js ]
+if [ -e ./public/vendor/react.min.js ]
 then
     echo "React already copied"
 else
     echo -n "React not found. Copying from node_modules..."
-    cp ./node_modules/react/dist/react.min.js ./public
+    cp ./node_modules/react/dist/react.min.js ./public/vendor
     echo "OK"
 fi
 
-if [ -e ./public/vue.min.js ]
+if [ -e ./public/vendor/vue.min.js ]
 then
     echo "Vue already copied"
 else
     echo -n "Vue not found. Copying from node_modules..."
-    cp ./node_modules/vue/dist/vue.min.js ./public
+    cp ./node_modules/vue/dist/vue.min.js ./public/vendor
     echo "OK"
 fi

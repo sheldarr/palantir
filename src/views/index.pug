@@ -1,5 +1,10 @@
 extends layout.pug
 
 block content
-    h1 Server is running
-    p Environment #{environment}
+    .container
+        .column
+            .row
+                h1 Server is running
+            .row
+                p Environment 
+                    em #{environment}
