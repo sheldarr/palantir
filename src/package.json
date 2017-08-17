@@ -5,7 +5,8 @@
   "author": "Kewin Polok",
   "license": "MIT",
   "scripts": {
-    "start": "node ./index.js"
+    "start": "node ./index.js",
+    "prepare": "./scripts/prepare.sh"
   },
   "dependencies": {
     "@angular/core": "4.3.3",
