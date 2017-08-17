@@ -280,3 +280,6 @@ TSWLatexianTemp*
 
 # built pdf files
 *.pdf
+
+# public content
+public/
