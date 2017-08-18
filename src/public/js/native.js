@@ -1,4 +1,5 @@
-const PERSONS_QUANTITY = 100;
+const PERSONS_QUANTITY = 50;
+const MUTATION_CHANCE = 0.50;
 
 const generator = new RandomPersonsGenerator();
 
@@ -19,8 +20,10 @@ for(let i = 0; i < PERSONS_QUANTITY; i++) {
     });
 }
 
-function randomize () {
-    const persons = generator.generate(PERSONS_QUANTITY);
+const persons = generator.generate(PERSONS_QUANTITY);
+
+function mutate () {
+    generator.mutate(persons, MUTATION_CHANCE);
 
     for(let i = 0; i < PERSONS_QUANTITY; i++) {
         personsRows[i].nameCell.innerHTML = persons[i].name;
@@ -28,7 +31,7 @@ function randomize () {
         personsRows[i].genderCell.innerHTML = persons[i].gender;
     }
     
-    setTimeout(randomize, 0);
+    setTimeout(mutate, 0);
 }
 
-randomize();
+mutate();

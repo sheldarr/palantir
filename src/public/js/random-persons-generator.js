@@ -11,6 +11,22 @@ const RandomPersonsGenerator = (function () {
                 gender: chance.gender()
             })
         }
+
+        return persons
+    };
+
+    RandomPersonsGenerator.prototype.mutate = (persons, mutationChance) => {
+        for (let i = 0; i < persons.length; i++) {
+            if(Math.random() < mutationChance) {
+                persons[i].name = chance.name();
+            }
+            if(Math.random() < mutationChance) {
+                persons[i].age = chance.age();
+            }
+            if(Math.random() < mutationChance) {
+                persons[i].gender = chance.gender();
+            }
+        }
         return persons
     };
 
