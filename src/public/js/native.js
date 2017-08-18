@@ -27,6 +27,7 @@ function randomize () {
         personsRows[i].ageCell.innerHTML = persons[i].age;
         personsRows[i].genderCell.innerHTML = persons[i].gender;
     }
+    
     setTimeout(randomize, 0);
 }
 
