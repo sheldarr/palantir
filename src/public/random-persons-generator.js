@@ -1,7 +1,5 @@
 const RandomPersonsGenerator = (function () {
-    function RandomPersonsGenerator() {
-        this.chance = new Chance();
-    }
+    function RandomPersonsGenerator() {}
 
     RandomPersonsGenerator.prototype.generate = (quantity) => {
         const persons = [];
