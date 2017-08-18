@@ -3,7 +3,7 @@ const PERSONS_QUANTITY = 100;
 const generator = new RandomPersonsGenerator();
 
 const personsTable = document.getElementById('persons');
-const personsRows = []
+const personsRows = [];
 
 for(let i = 0; i < PERSONS_QUANTITY; i++) {
     const personRow = personsTable.insertRow();

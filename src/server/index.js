@@ -20,7 +20,11 @@ class Server {
 
     setRoutes(application) {
         application.get('/', function (request, respone) {
-            respone.render('index', { title: 'Server', environment: process.env.NODE_ENV});
+            respone.render('index', { title: 'JavaScript Frameworks Performance Benchamrk' });
+        });
+
+        application.get('/native', function (request, respone) {
+            respone.render('native', { title: 'Native implementation' });
         });
 
         application.get('/examples/html', function (request, respone) {
