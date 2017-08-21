@@ -495,9 +495,38 @@ Fragment \emph{queue.waitForMessage()} oczekuje synchronicznie, aż pojawi się 
 
 \subsection{Chrome DevTools}
 
-\cite{chrome-devtools}
+Aplikacją, która posłuży do badań wydajności zarówno czasowej jak i pamięciowej jest \emph{Chrome DevTools} \cite{chrome-devtools}. Jest to aplikacja wbudowana w przeglądarkę \emph{Chrome}, która zawiera szereg narzędzi do tworzenia, debugowania oraz profilowania aplikacji internetowych. 
+
+\subsubsection{Uruchamianie Chrome DevTools}
+
+Aby uruchomić \emph{Chrome DevTools} wystarczy pobrać i uruchomić przeglądarkę \emph{Chrome} \cite{chrome}, a następnie wykonać dowolny z poniższych sposóbow:
+
+\begin{itemize}
+  \item Wybrać opcję \emph{Więcej narzędzi -> Narzędzia developerskie} z głównego menu przeglądarki \emph{Chrome}
+  \item Kliknąc prawym przyciskiem myszki w dowolny element strony internetowej, a następnie wybrać opcję \emph{Inspekcja elementu}
+  \item Wcisnąć kombinację przycisków \emph{Control+Shift+I}
+\end{itemize}
+
+\subsubsection{Narzędzia Chrome DevTools}
+
+\emph{Chrome DevTools} jest potężnym zbiorem narzędzi, na który składają się:
+
+\begin{enumerate}
+  \item Tryb urządzenia - wspomaga tworzenie stron internetowych z myślą o urządzeniach mobilnych takich jak np. smartfony. Korzystając z tego modułu możemy sprawdzić jak aplikacja zachowuje się przy różnych wielkościach ekranu, czy jest responsywna i czy pozwala bez przeszkód korzystać z funkcjonalności oferowanych przez stronę internetową. W trybie urządzenia możemy również emulować wbudowane w urządzenia czujniki jak np. GPS, czy też akcelerometr
+  \item Zakładka \emph{Elementy} - służy do modyfikacji w czasie rzeczywistym struktury strony internetowej oraz styli CSS pojedynczego wybranego elementu lub wielu zgrupowanych za pomocą selektora. Zakładka ta pozwala również dokonać inspekcji wszystkich animacji znajdujących się na stronie
+  \item Zakładka \emph{Konsola} - pozwala na wykonanie dowolnego poprawnego kodu \emph{JavaScript}. Z poziomu konsoli posiadamy dostęp do interfejsów \emph{DOM} i \emph{CSSOM} aktualnie załadowanej strony internetowej co pozwala na praktycznie dowolną interakcję
+  \item Zakładka \emph{Źródła} - dzięki tej zakładce możemy debugować dowolny skrypt napisany w języku \emph{JavaScript}, który został załączony do strony internetowej. Dzięki wbudowanemu interfejsowi graficznemu w łatwy sposób możemy umieszczać punkty wstrzymania (ang. \emph{brakepoint}) i wykonywać kod linijka po linijce podglądając w czasie rzeczywistym wartość wszystkich zmiennych oraz ramek odłożonych na stos
+  \item Zakładka \emph{Sieć} - służy do podglądania zarówno wykresów czasowych ładowania poszczególnych elementów strony internetowej jak i nagłówków wszystkich żądań oraz odpowiedzi \emph{HTTP}
+  \item Zakładka \emph{Wydajność} - 
+  \item Zakładka \emph{Pamięc} - służy do tworzenia migawki (ang. \emph{snapshot}) aktualnego stanu sterty. Pozwala również zbierać informacje o tym jak była alokowana pamięc komputerowa w trakcie działania aplikacji i reprezentować zebrane dane na wykresie czasowym
+  \item Zakładka \emph{Aplikacja} - dostarcza wglądu do takich elementów aplikacji internetowej jak manifest, ciasteczka, pamięc podręczna, lokalny magazyn (ang. \emph{local storage}), magazyn sesji (ang. \emph{session storage}). Dodatkowo pozwala modyfikować tworzyć oraz modyfikować istniejące wpisy w czasie rzeczywistym
+  \item Zakładka \emph{Bezpieczeństwo} - służy do rozwiązywania problemów związanymi z certyfikatami internetowymi, za pomocą wbudowanej przeglądarki możemy zapoznać się ze szczegółowymi informacajami na temat każdego certyfikatu związanego ze stroną internetową
+\end{enumerate}
 
 \subsection{Badania wydajności pamięciowej}
+
+
+https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/edit
 
 \subsection{Badania wydajności czasowej}
 
@@ -574,6 +603,8 @@ Fragment \emph{queue.waitForMessage()} oczekuje synchronicznie, aż pojawi się 
     \url{https://www.ietf.org/rfc/rfc2660}
   \bibitem{rfc7540}
     \url{https://www.ietf.org/rfc/rfc7540}
+  \bibitem{chrome}
+    \url{https://www.google.pl/chrome/browser/desktop/index.html}
   \bibitem{chrome-devtools}
     \url{https://developers.google.com/web/tools/chrome-devtools/}
 \end{thebibliography}
