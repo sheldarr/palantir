@@ -296,18 +296,19 @@ Protokół HTTP/2 to unowocześniejszego protokołu HTTP/1.1. Został on opracow
 
 \subsection{Proces ładowania strony internetowej i jej zasobów}
 
-Końcowym produktem przeglądarki internetowej jest w pełni załadowana i wyrenderowana strona internetowa, która oferuje użytkownikowi wszystkie zaimplementowane wcześniej funkcjonalności. Proces, który jest odpowiedzialny za dostarczenie tego produktu można podzielić na cztery główne etapy.
+Końcowym produktem przeglądarki internetowej jest w pełni załadowana i wyrenderowana strona internetowa, która oferuje użytkownikowi wszystkie zaimplementowane wcześniej funkcjonalności. Proces, który jest odpowiedzialny za dostarczenie tego produktu można podzielić na cztery etapy.
 
 \begin{enumerate}
-  \item żądanie i odpowiedź
+  \item pobieranie
   \item parsowanie
   \item budowanie
   \item renderowanie
 \end{enumerate}
 
-\subsubsection{Żądanie i odpowiedź}
+\subsubsection{Pobieranie}
 
-Najpopularniejsze przypadki tworzenia nowego żądania przez przeglądarkę internetową są generowane przez użytkownika poprzez:
+Proces ładowania strony internetowej w przeglądarce zaczyna się od pobrania treści strony internetowej wraz ze wszystkimi zasobami potrzebnymi do jej wyświetlenia.
+Przeglądarka pobiera wszystkie elementy za pomocą żądań \emph{HTTP}. Użytkownik może rozpocząć pobieranie na kilka sposbów:
 
 \begin{enumerate}
   \item wpisanie adresu strony internetowej
@@ -315,7 +316,7 @@ Najpopularniejsze przypadki tworzenia nowego żądania przez przeglądarkę inte
   \item przeładowanie aktualnej strony internetowej
 \end{enumerate}
 
-Moment tworzenia nowego żadania równoznaczny jest z wydarzeniem które nosi nazwę "\emph{Navigation Start}". Zdarzenie to jest punktem, w którym przeglądarka zaczyna zbierać dodatkowe informacje na temat wydajności np. o czasie ładowania strony. Przeglądarka internetowa tworzy żądanie zgodnie z zasadami protokołu HTTP/1.1, który został bardziej szczegółowo opisny w rozdziale \ref{http/1.1}. Jeśli serwer wspiera obsługę nowszej wersji HTTP/2 wtedy wykorzystany jest nowszy protokół opisany w rozdziale \ref{http/2}. Całe wykonanie żądania przez przeglądarkę możemy podzielić na poszczególne fazy:
+Moment stworzenia pierwszego żądania równoznaczny jest z początkiem wydarzenia które nosi nazwę "\emph{Navigation Start}". Zdarzenie to jest punktem, w którym przeglądarka zaczyna zbierać dodatkowe informacje na temat wydajności np. o czasie ładowania strony. Przeglądarka internetowa tworzy żądanie zgodnie z zasadami protokołu HTTP/1.1, który został bardziej szczegółowo opisny w rozdziale \ref{http/1.1}. Jeśli serwer wspiera obsługę nowszej wersji HTTP/2 wtedy wykorzystany jest nowszy protokół opisany w rozdziale \ref{http/2}. Całe wykonanie żądania przez przeglądarkę możemy podzielić na poszczególne fazy:
 
 \begin{enumerate}
   \item \emph{Kolejkowanie} - przeglądarka kolejkuje żądania w następujących sytuacjach:
@@ -335,7 +336,7 @@ Moment tworzenia nowego żadania równoznaczny jest z wydarzeniem które nosi na
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{request-timing-chrome.png}
-	\caption{Przykładowy wykres przedstawiający czas trwania poszczególnych faz przetwarzania żądania wygenerowany w przeglądarce Chrome}
+	\caption{Przykładowy wykres przedstawiający czas trwania poszczególnych faz przetwarzania żądania wygenerowany za pomocą Chrome DevTools}
 \end{figure}
 
 \subsubsection{Parsowanie}
@@ -517,7 +518,7 @@ Aby uruchomić \emph{Chrome DevTools} wystarczy pobrać i uruchomić przeglądar
   \item Zakładka \emph{Konsola} - pozwala na wykonanie dowolnego poprawnego kodu \emph{JavaScript}. Z poziomu konsoli posiadamy dostęp do interfejsów \emph{DOM} i \emph{CSSOM} aktualnie załadowanej strony internetowej co pozwala na praktycznie dowolną interakcję
   \item Zakładka \emph{Źródła} - dzięki tej zakładce możemy debugować dowolny skrypt napisany w języku \emph{JavaScript}, który został załączony do strony internetowej. Dzięki wbudowanemu interfejsowi graficznemu w łatwy sposób możemy umieszczać punkty wstrzymania (ang. \emph{brakepoint}) i wykonywać kod linijka po linijce podglądając w czasie rzeczywistym wartość wszystkich zmiennych oraz ramek odłożonych na stos
   \item Zakładka \emph{Sieć} - służy do podglądania zarówno wykresów czasowych ładowania poszczególnych elementów strony internetowej jak i nagłówków wszystkich żądań oraz odpowiedzi \emph{HTTP}
-  \item Zakładka \emph{Wydajność} - 
+  \item Zakładka \emph{Wydajność} - zakładka ta została bardziej szczegółowo opisana w dalszej części pracy ponieważ stanowi kluczowe narzędzie do celów badań wydajnościowych
   \item Zakładka \emph{Pamięc} - służy do tworzenia migawki (ang. \emph{snapshot}) aktualnego stanu sterty. Pozwala również zbierać informacje o tym jak była alokowana pamięc komputerowa w trakcie działania aplikacji i reprezentować zebrane dane na wykresie czasowym
   \item Zakładka \emph{Aplikacja} - dostarcza wglądu do takich elementów aplikacji internetowej jak manifest, ciasteczka, pamięc podręczna, lokalny magazyn (ang. \emph{local storage}), magazyn sesji (ang. \emph{session storage}). Dodatkowo pozwala modyfikować tworzyć oraz modyfikować istniejące wpisy w czasie rzeczywistym
   \item Zakładka \emph{Bezpieczeństwo} - służy do rozwiązywania problemów związanymi z certyfikatami internetowymi, za pomocą wbudowanej przeglądarki możemy zapoznać się ze szczegółowymi informacajami na temat każdego certyfikatu związanego ze stroną internetową
