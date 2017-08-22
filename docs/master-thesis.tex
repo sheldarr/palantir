@@ -16,6 +16,8 @@
 
 \usepackage{tikz-qtree}
 
+\usepackage{amsmath}
+
 \usepackage{graphicx}
 \graphicspath{ {../figures/} }
 
@@ -294,7 +296,7 @@ Protokół HTTP/2 to unowocześniejszego protokołu HTTP/1.1. Został on opracow
 	\caption{Multipeksowanie HTTP/2}
 \end{figure}
 
-\subsection{Proces ładowania strony internetowej i jej zasobów}
+\subsection{Proces wyświetlania strony internetowej}
 
 Końcowym produktem przeglądarki internetowej jest w pełni załadowana i wyrenderowana strona internetowa, która oferuje użytkownikowi wszystkie zaimplementowane wcześniej funkcjonalności. Proces, który jest odpowiedzialny za dostarczenie tego produktu można podzielić na cztery etapy.
 
@@ -341,7 +343,7 @@ Moment stworzenia pierwszego żądania równoznaczny jest z początkiem wydarzen
 
 \subsubsection{Parsowanie}
 
-W momencie gdy przeglądarka w pełni przetworzy żądanie i otrzyma dokument w postaci pliku zawierającego kod HTML wtedy następuje proces czytania treści tego pliku w procesie zwanym parsowaniem. Pod pojęciem parsowanie ukrywa się czytanie treści z uwzględnieniem analizy składniowej specyficznej dla konkretnego języka. W przypadku języka HTML przeglądarka oczekuje znaczników z parametrami. 
+W momencie gdy przeglądarka w pełni przetworzy żądanie i otrzyma dokument w postaci pliku zawierającego kod HTML wtedy następuje proces czytania treści tego pliku w procesie zwanym parsowaniem. Pod pojęciem parsowanie ukrywa się czytanie treści z uwzględnieniem analizy składniowej specyficznej dla konkretnego języka. W przypadku języka HTML przeglądarka oczekuje poprawnie zdefiniowanych znaczników z właściwymi parametrami. 
 
 Jeśli przeglądarka napotka znacznik odnoszący się do kolejnego zasobu wtedy proces parsowania zostaje zatrzymany i tworzone jest żądanie  w celu pobrania zawartości potrzebnej do pełnego wyświetlenia strony. Dopiero gdy przeglądarka pobierze cały zewnętrzny zasób proces parsowania zostaje kontynuowany. Znaczniki blokujące poprzez tworzenie odniesienia do zewnętrznego zasobu to:
 
@@ -358,23 +360,69 @@ W chwili, w której przeglądarka zakończy parsowanie dokumentu i wszystkie zew
 \begin{enumerate}
   \item \emph{Konstrukcja DOM} - obiektowa reprezentacja struktury opisanej w pliku HTML. Szerzej opisana w rozdziale \ref{dom}
   \item \emph{Konstrukcja CSSOM} - obiektowa reprezentacja kaskadowych arkuszy stylów. Szerzej opisana w rozdziale \ref{cssom}
-  \item \emph{Konstrukcja Render Tree} - połączenie DOM oraz CSSOM, na podstawie którego przeglądarka jest w stanie poprawnie wyświetlić stronę internetową
+  \item \emph{Konstrukcja drzewa renderowania (ang. Render Tree)} - drzewiasta struktura będąca połączeniem DOM oraz CSSOM, na podstawie którego przeglądarka jest w stanie poprawnie wyświetlić stronę internetową
 \end{enumerate}
 
 \subsubsection{Renderowanie}
 
-Po wykonaniu wszystkich wcześniejszych kroków przeglądarka jest w końcu gotowa aby zacząć wyświetlanie elementów na ekranie. Na ten etap składają się dwa kroki:
+Po wykonaniu wszystkich wcześniejszych kroków przeglądarka jest w końcu gotowa przejść do procesu renderowania. Większość współczesnych urządzeń odświeża ekran z częstotliwością 60 razy na sekundę. Jeśli aktualnie wykonywana jest jakaś animacja, przesuwanie lub użytkownik zwyczajnie przewija stronę internetową wtedy przeglądarka musi dopasować się do częstotliwości odświeżania urządzenia i przygotować nowy obrazek lub klatkę (ang. \emph{frame}) dla każdego pojedynczego odświeżenia ekranu. Każda z tych klatek posiada 16 milisekund na przygotowanie się do wyświetlenia. Wynika to z bardzo prostego obliczenia:
+
+\begin{equation}
+  \frac{1s}{60} = 16.66 ms
+\end{equation}
+
+Należy jednak pamiętać o tym, że przeglądarka posiada również swoje zadania do wykonania dlatego w rzewczywistości warto wykonać wszystkie własne zadania w czasie ponizej 10 milisekund. Po przekroczeniu tej wartości spada częstotliwość wyświetlania klatek co może objawiać się efektem migotania elementów wyświetlanych na ekranie. Migotanie jest niechcianym zjawiskiem ponieważ odbija się bardzo negatywnie na doświadczeniach użytkownika korzystającego ze strony internetowej.
+
+Proces renderowania możemy podzielić na pięć postępujących po sobie etapów tzw. rurociągu (ang. \emph{pipeline}). Każdy z tych etapów ma znączacy wpływ na to w jaki sposób wyświetlone zostaną piksele na ekranie.
+
+\begin{figure}[ht]
+	\caption{Etapy rurociągu procesu renderowania}
+\end{figure}
 
 \begin{enumerate}
-  \item \emph{Layout / Reflow} - przeglądarka wie już co wyświetlić na podstawie DOM, wie też w jaki sposób to wyświetlić na podstawie CSSOM oraz zna relację pomiędzy tymi dwoma elementami na podstawie Render Tree. Rzeczą, której nie wie jest rozmiar elementów, które musi wyświetlić oraz miejsce na ekranie, w którym umieścić poszczególne elementy. Atrybuty takie jak np. szerokość elementów może być ustawiona relatywnie względem rodzica np. 25\% co dodatkowo powoduje problem z wyświetleniem ponieważ potrzebna jest wtedy informacja o wielkości tego rodzica. Ten krok odpowiedzialny jest właśnie za określenie wszystkich tych niewiadomych na podstawie szerokości ekranu (który jest korzeniem w tej strukturze) i wszystkie relatywne wartości bezpośrednich dzieci obliczane są na podstawie niego
-  \item \emph{Paint} - po skończeniu wszystkich obliczeń z punktu poprzedniegop rzeglądarka konwertuje każdy węzeł Render Tree na rzeczywiste piksele wyświetlane na ekranie. Użytkownik w pełni widzi oraz może korzystać ze strony internetowej
+  \item \emph{JavaScript / CSS} - język \emph{JavaScript} ten może zostać użyty do zadań, które ostatecznie skutkują wizualnymi zwianami na ekranie. Do tego typu zadań możemy zaliczyć np. wywołanie animacji, sortowanie zestawu danych, dodawanie elementów do strony za pomocą interfejsów \emph{DOM}. Animacje mogą również być definiowane za pomocą kasakdowych arkuszy styli.
+  \item \emph{Kalkulacja styli} - służy do określenia które reguły CSS zaaplikować do konkretnych elementów na podstawie pasujących selektorów oraz oblicza wartości poszczególnych właściwości \emph{CSS}
+  \item \emph{Układ (ang. Layout)} - przeglądarka wie już co wyświetlić na podstawie \emph{DOM}, wie też w jaki sposób to wyświetlić na podstawie \emph{CSSOM} oraz zna relację pomiędzy tymi dwoma elementami na podstawie \emph{Render Tree}. Na tym etapie przeglądarka oblicza jak dużą przestrzeń elementy będą zajmować na ekranie. Obliczenia te są potrzebne ponieważ właściwości jednego elementu często wpływają relatywnie na inne. Przykładowo szerokość elementu \emph{body}, które umiejscowione jest bardzo wysoko blisko korzenia w drzewie elementów wpłynie na szerokość wszystkich podelementów aż do tzw. liści. Z racji dużej ilości obliczeń proces ten może mocno angażować procesor.
+  \item \emph{Malowanie (ang. Paint)} - malowanie jest processem wypełniania poszczególnych pikseli na ekranie. Sprowadza się do wyświetlenia tekstu, kolorów, obrazków, obramowań, cieni, czyli głównie wszystkiego co wpływa na wizualną część każdego elementu. Najczęściej elementy malowane są na wielu powierzchniach popularnie nazywanych warstwami
+  \item \emph{Kompozycja (ang. Compositing)} - ponieważ elementy strony mogły zostać potencjalnie namalowane na wielu różnych warstawach, przeglądarka musi wyświetlić warstwy w odpowiedniej kolejności. Dotyczy to szczególnie elementów, które wzajemnie na siebie nachodzą, od błędnej kompozycji może zależeć czy element, który powinien być przykryty przypadkowo zostanie wyrysowany na warstwie znajdującej się na samej górze
 \end{enumerate}
+
+Każda część rurociągu może potencjalnie wywołać efekt migotania dlatego też ważne jest dokładne zrozumienie jest co powoduje wyzwalanie poszczególnych części.
+
+Czasami można spotkac się z określeniem rasteryzacji (ang. \emph{rasterization}) używanym jako synonim etapu malowania. Dzieję się tak dlatego ponieważ malowanie składa się z dwoch zadań:
+
+\begin{enumerate}
+  \item tworzenia listy prymitywnych elemtów do wyrysowania takich jak np. punkty, odcinki, krzywe, okręgi, koła, kwadraty
+  \item wypełniania pikseli na ekranie
+\end{enumerate}
+
+To właśnie ostatnie z wymienionych zadań jest właściwą rasteryzacją, czyli działaniem polegającym na jak najwierniejszym przedstawieniu płaskiej figury geometrycznej na urządzeniu rastrowym, dysponującym skończoną rozdzielczością, w naszym przypadku na ekranie urządzenia. Warto przytoczyć tutaj fakt, iż niektóre implementacje wykonują wymienione zadania na różnych wątkach procesora (ang. \emph{threads}), jednak dzieje się to poza jakąkolwiek kontrolą programisty.
+
+Przygotowanie klatki do wyświetenia nie zawsze musi przechodzić przez wszystkie pięc etapów rurociągu. Istnieją trzy kombinacje elementów, które odgrywają rolę przy przygotowaniu klatki w momencie gdy nastąpiła wizualna zmiana obojętnie czy z powodu kodu napisanego w języku \emph{JavaScript}, czy też z powodu zdefiniowanych styli \emph{CSS}.
+
+\begin{enumerate}
+  \item \emph{JavaScript / CSS > Style > Layout > Paint > Composite} - pełne przejście przez wszystkie etapy. Ma miejsce w momencie gdy zmeinia się właściwość powiązana z układem elementów na stronie np. szerokość, wysokośc, pozycja elementu. Przeglądarka musi sprawdzić wszystkie pozostałe elementy, dokonać odpowiednich obliczeń potrzebnych na pełne przemalowanie warstw, a ostatecznie dokonania ich kompozycji
+  \item \emph{JavaScript / CSS > Style > Paint > Composite} - kombinacja ta ma miejsce w momencie gdy zmienia się właściwość powiązana wyłącznie z malowaniem strony jak np. tło, kolor tekstu. Przeglądarka nie musi wtedy na nowo opracowywać układu strony, co nie zmienia faktu, że musi przejść przez etap malowania
+  \item \emph{JavaScript / CSS > Style > Composite} - najbardziej pożądana kombinacja ponieważ nie wymaga ani opracowania układu strony, ani jej przemalowania. Ma miejsce tylko gdy zmienia się właściwość nie powiązana ze wcześniej wymienionymi etapami
+\end{enumerate}
+
+\begin{figure}[ht]
+	\caption{JavaScript / CSS > Style > Layout > Paint > Composite}
+\end{figure}
+
+\begin{figure}[ht]
+	\caption{JavaScript / CSS > Style > Paint > Composite}
+\end{figure}
+
+\begin{figure}[ht]
+	\caption{JavaScript / CSS > Style > Composite}
+\end{figure}
 
 \subsection{Model współbieżności oraz pętla zdarzeń}
 
-Język JavaScript posiada model współbieżności opary na pętli zdarzeń (ang. \emph{event loop}. Ten model różni się od modeli zaimplementowanych w innych językach jak np. \emph{C} lub \emph{Java}.
+Język JavaScript posiada model współbieżności oparty na pętli zdarzeń (ang. \emph{event loop}. Ten model różni się od modeli zaimplementowanych w innych językach jak np. \emph{C} lub \emph{Java}.
 
-Poniższe sekcje wyjaśniają model teoretyczny. Nowoczesne silniki JavaScript implementują i optymalizują opisaną semantykę.
+Poniższe sekcje wyjaśniają model teoretyczny. Nowoczesne silniki JavaScript implementują i optymalizują opisaną tutaj semantykę.
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{concurrency-model.png}
@@ -428,7 +476,7 @@ Fragment \emph{queue.waitForMessage()} oczekuje synchronicznie, aż pojawi się 
   \item \emph{Brak blokowania} - w przeciwieńswie do wielu innych języków JavaScript nigdy się nie blokuje. Obsługa wejścia / wyjścia zazwyczaj odbywa się za pośrednictwem zdarzeń i wywołan zwrotnych. Tym samym gdy aplikacja nadal może przetwarzać inne rzeczy jak np. wprowadzanie danych przez użytkownika
 \end{enumerate}
 
-\section{Serwer dla aplikacji internetowych} \label{server}
+\section{Serwer} \label{server}
 
 \subsubsection{Opis}
 
