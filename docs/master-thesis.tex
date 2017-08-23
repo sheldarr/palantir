@@ -572,12 +572,112 @@ Aby uruchomić \emph{Chrome DevTools} wystarczy pobrać i uruchomić przeglądar
   \item Zakładka \emph{Bezpieczeństwo} - służy do rozwiązywania problemów związanymi z certyfikatami internetowymi, za pomocą wbudowanej przeglądarki możemy zapoznać się ze szczegółowymi informacajami na temat każdego certyfikatu związanego ze stroną internetową
 \end{enumerate}
 
+\subsection{Badania wydajności czasowej} 
+
+\subsubsection{Zbieranie danych} \label{gathering-time-performance-data}
+Do zbierania danych na temat wydajności czasowej wykorzystanie zostanie zakładka \emph{Wydajność (ang. Performance)} dostępna bezpośrednio po uruchomieniu \emph{Chrome DevTools}.
+
+Zbierać dane na temat wydajności możemy na dwa sposoby:
+
+\begin{enumerate}
+  \item Klikając przycisk reprezentujący czarną kropkę, spowoduje to nagrywanie (ang. \emph{recording}) wszelkich informacji od momentu wciśnięcia przycisku, strona internetowa jest już załadowana i uruchomiona w oknie przeglądarki. Nagrywanie należy zatrzymać klikając odpowiedni przycisk widoczny na ekranie
+  \item Klikając przycisk reprezentujący kręcącą się strzałkę, spowoduje to przeładowanie strony internetowej i nagrywanie danych od samego początku procesu wczytywania strony internetowej aż do jej pełnego załadowania
+\end{enumerate}
+
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{chrome-devtools-performance-recording-runtime.png}
+	\caption{Nagrywanie danych w trakcie działania aplikacji}
+\end{figure} 
+
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{chrome-devtools-performance-recording-reload.png}
+	\caption{Nagrywanie danych od momentu wczytywania strony}
+\end{figure}
+
+Po zatrzymaniu nagrywania narzędzie automatycznie dokona reprezentacji zebranych danych za pomocą kilku widoków.
+
+\subsubsection{Widok zbiorczy}
+
+Najwyżej położonym widokiem służacym przedstwieniu zebranych danych jest widok zbiorczy, który składa się z kilku wykresów. Częścią wspólną wszystkich wykresów jest pozioma oś reprezentująca upływający czas. Poniżej opisane zostały wszystkie wykresy wchodzące w skład widoku zbiorczego:
+
+\begin{enumerate}
+  \item FPS - wykres ten przedstawia ilość klatek na sekundę, które przeglądarka była w stanie przygotować do wyświetlenia
+  \item CPU - wykres ten przedstawia zmieniające sięw  czasie zużycie procesora
+  \item NET - wykres przedstawia czas, w którym przeglądarka pobierała wszystkie zasoby potrzebne do wyświetlenia strony oraz czekała na rozwiązanie wszelkich żądań \emph{HTTP} poprzez sieć
+  \item HEAP - wykres przestawiający ilość pamięci zajmowanej przez stertę. Bardzo dobrze widać na nim cykliczne działanie zbieracza nieużytków (ang. \emph{Garbage collector}), który jest jedną z metod automatycznego zarządzania dynamicznie przydzieloną pamięcią. Nagłe usuwanie ze sterty niepotrzebnych obiektów powoduje spadek na wykresie i powstawanie charakterystycznych "ząbków".
+\end{enumerate}
+
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{chrome-devtools-performance-summary-view.png}
+	\caption{Przykładowy wygenerowany wykres zbiorczy}
+\end{figure}
+
+\subsubsection{Widok sieci}
+
+Widok sieci jest widokiem przedstawiającym w bardziej precyzyjny sposób odcinki czasu, w których ładowane były poszczególne zasoby.
+
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{chrome-devtools-performance-network-view.png}
+	\caption{Przykładowy wygenerowany widok sieci}
+\end{figure}
+
+\subsubsection{Widok klatek}
+
+Widok klatek jest bardzo małym wykresem przedstawiającym jak zmieniała się liczba klatek na sekundę.
+
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{chrome-devtools-performance-frames-view.png}
+	\caption{Przykładowy wygenerowany widok głównego wątku}
+\end{figure}
+
+\subsubsection{Widok głównego wątku}
+
+Widok głównego wątku pokazuje dokładnie jakie zadania były wykonywane przez główny wątek. Zadania te pogrupowane są w kategorie za pomocą kolorów:
+
+\begin{enumerate}
+  \item niebieski - obejmuje wszystkie zadania związane z ładowaniem zasobów (w tym parsowanie)
+  \item żółty - obejmuje wszystkie zadania związane ze skrytami napisanymi w języku \emph{JavaScript}
+  \item fioletowy - obejmuje wszystkie zadania związane z renderowaniem
+  \item zielony - obejmuje wszystkie zadanie związane z malowaniem
+  \item szary - obejmuje wszystkie pozostałe zadanie nie wpasowujące się w pozostałe kategorie
+  \item biały - przedstawia okres bezczynności, w którym nie były wykonywane żadne zadania
+\end{enumerate}
+
+Przyjęta kolorystyka jest spójna dla wszystkich widoków zakładki \emph{Wydajność}. Po wskazaniu kursorem myszki dowolnego elementu wyświetlone zostają bardziej szczegółowe informacje takie jak np. dokładny czas trwania zadania i jego źródło.
+
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{chrome-devtools-performance-main-view.png}
+	\caption{Przykładowy wygenerowany wykres klatek}
+\end{figure}
+
 \subsection{Badania wydajności pamięciowej}
 
+\subsubsection{Zbieranie danych}
+
+Do zbierania danych na temat wydajności pamięciowej wykorzystany został dokładnie ten sam mechanizm jaki został wykorzystany przy zbieraniu danych na temat wydajości czasowej opisany w rozdziale \cite{gathering-time-performance-data}. Za pomocą tego mechanizmu możemy włączyć opcję zbierania informacji na temat zużycia pamięci, spowoduje to dodatkowo wyświetlenie widoku wykorzystania pamięci.
+
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{chrome-devtools-performance-memory-checkbox.png}
+	\caption{Włączanie zbierania informacji na temat wykorzystania pamięci}
+\end{figure}
+
+\subsubsection{Widok wykorzystania pamięci}
+
+Widok przedstawia jak w czasie zmienia się ilość pamięci zajętej przez stertę. Dodatkowo przedstawia on najmniejszą i najwięszką liczbę elementów w następujących kategoriach:
+
+\begin{enumerate}
+  \item Dokumenty (ang. \emph{Documents})
+  \item Węzły (ang. \emph{Nodes})
+  \item Funkcje nasłuchujące (ang. \emph{Listeners})
+  \item Pamięc GPU (ang. \emph{GPU Memory})
+\end{enumerate}
+
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{chrome-devtools-performance-memory-view.png}
+	\caption{Przykładowy wygenerowany widok wykorzystania pamięci}
+\end{figure}
 
 https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/edit
-
-\subsection{Badania wydajności czasowej}
 
 \section{Porównanie wyników i wnioski}
 
