@@ -338,7 +338,7 @@ Moment stworzenia pierwszego żądania równoznaczny jest z początkiem wydarzen
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{request-timing-chrome.png}
-	\caption{Przykładowy wykres przedstawiający czas trwania poszczególnych faz przetwarzania żądania wygenerowany za pomocą Chrome DevTools}
+	\caption{Przykładowy widok przedstawiający czas trwania poszczególnych faz przetwarzania żądania wygenerowany za pomocą Chrome DevTools}
 \end{figure}
 
 \subsubsection{Parsowanie}
@@ -647,14 +647,17 @@ Przyjęta kolorystyka jest spójna dla wszystkich widoków zakładki \emph{Wydaj
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{chrome-devtools-performance-main-view.png}
-	\caption{Przykładowy wygenerowany wykres klatek}
+	\caption{Przykładowy wygenerowany widok klatek}
 \end{figure}
+
+https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/edit
+
 
 \subsection{Badania wydajności pamięciowej}
 
 \subsubsection{Zbieranie danych}
 
-Do zbierania danych na temat wydajności pamięciowej wykorzystany został dokładnie ten sam mechanizm jaki został wykorzystany przy zbieraniu danych na temat wydajości czasowej opisany w rozdziale \cite{gathering-time-performance-data}. Za pomocą tego mechanizmu możemy włączyć opcję zbierania informacji na temat zużycia pamięci, spowoduje to dodatkowo wyświetlenie widoku wykorzystania pamięci.
+Do zbierania danych na temat wydajności pamięciowej wykorzystany został dokładnie ten sam mechanizm jaki został wykorzystany przy zbieraniu danych na temat wydajości czasowej opisany w rozdziale \cite{gathering-time-performance-data}. Za pomocą tego funkcjonalności możemy włączyć opcję zbierania informacji na temat zużycia pamięci, spowoduje to dodatkowo wyświetlenie widoku wykorzystania pamięci.
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{chrome-devtools-performance-memory-checkbox.png}
@@ -677,7 +680,32 @@ Widok przedstawia jak w czasie zmienia się ilość pamięci zajętej przez ster
 	\caption{Przykładowy wygenerowany widok wykorzystania pamięci}
 \end{figure}
 
-https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/edit
+\subsubsection{Zakładka \emph{Pamięć}}
+
+\emph{Chrome DevTools} udostępnia specjalnie dedykowaną zakładkę o nazwie \emph{Pamięc}, która oferuje dodatkowe funkcjonalności przydatne przy np. debugowaniu aplikacji w celu znalezienia fragmentów kodu odpowiedzialnych za wyciek pamięci. Dostępne opcje to:
+
+\begin{enumerate}
+  \item migawka zawartości sterty - pozwala utrwalić aktualny stan sterty, a następnie dokonać przeglądu jej zawartości za pomocą wbudowanej przeglądarki
+  \item nagranie profilu alokacji pamięci - pozwala zbierać dane na temat alokacji pamięci z poziomu kodu napisanego w języku \emph{JavaScript}. Dane te można przejrzeć za pomocą trzech widoków. Wykresu, drzewa "od-dołu" (ang. \emph{Bottom Up}) oraz drzewa "od-góry" (ang. \emph{Top Down})
+  \item alokacja pamięci przedstawiona na wykresie czasowym - pozwala zbierać dane na temat alokacji pamięci lecz przedstawia je na osi czasowej
+\end{enumerate}
+
+Wszystkie opcje umożliwiają opcjonalne zapisanie zebranych danych do pliku na dysku.
+
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{chrome-devtools-performance-heap-snapshot.png}
+	\caption{Przeglądarka zawartości utworzonej migawki sterty}
+\end{figure}
+
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{chrome-devtools-performance-allocation-profile.png}
+	\caption{Wykres wygenerowany na podstawie profilu alokacji pamięci}
+\end{figure}
+
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{chrome-devtools-performance-allocation-timeline.png}
+	\caption{Wykres czasowy alokacji pamięci}
+\end{figure}
 
 \section{Porównanie wyników i wnioski}
 
