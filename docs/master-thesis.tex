@@ -709,21 +709,10 @@ Wszystkie opcje umożliwiają opcjonalne zapisanie zebranych danych do pliku na 
 
 \subsubsection{Trace Event Format}
 
-Dane zebrane przez Chrome DevTools w trakcie testów wydajnościowych można zapisać na dysku w formacie o nazwie \emph{Trace Event Format} \cite{trace-event-format}. Dzięki temu możemy dokonać właśnej analizy lub wizualizacji danych. Struktura \emph{Trace Event Format} zgodna jest ze standardem przechowywania danych JSON (ang. \emph{JavaScript Object Notation}) \cite{json} i może występować w dwóch wariantach:
+Dane zebrane przez Chrome DevTools w trakcie testów wydajnościowych można zapisać na dysku w formacie o nazwie \emph{Trace Event Format} \cite{trace-event-format}. Dzięki temu możemy dokonać właśnej analizy lub wizualizacji danych. Struktura \emph{Trace Event Format} zgodna jest ze standardem przechowywania danych JSON (ang. \emph{JavaScript Object Notation}) \cite{json} i może występować w dwóch wariantach.
 
-\begin{enumerate}
-  \item Wariant tablicowy (ang. \emph{JSON Array Format}) - cały plik składa się z tablicy przechowującej obiektu zarejestrowanych zdarzeń. Zdarzenia te nie muszą być poukładane chronologicznie według znaczników czasu. Rodzaje zdarzeń oraz ich właściwości zostały opisane poniżej
-  \item Wariant obiektowy (ang. \emph{JSON Object Format}) - bardziej elsatyczny format, w którym plik składa się z jednego, głównego obiektu. Obiekt ten może posiadać następujące pola:
-  \begin{enumerate}
-    \item traceEvents - jedyne wymagane pole, które jest tablicą zarejestrowanych zdarzeń odpowiadająca dokładnie wariantowi tablicowemu formatu \emph{Trace Event Format}
-    \item displayTimeUnit - jednostka, w której podane zostały znaczniki czasu. Dostępne jednostki to \emph{ms} oraz \emph{ns}. Domyślna jednostka to \emph{ms}
-    \item systemTraceEvents - ciąg znaków kompatybilnych z \emph{Linux ftrace} lub \emph{Windows ETW}
-    \item powerTraceAsString - ciąg znaków kompatybilnych z \emph{BattOr}
-    \item stackFrames - struktura przechowująca informacje o ramkach odłożonych na stosie
-    \item samples - tablica przechowująca dane rozszerzające traceEvents o informacje zarejestrowane na poziomie systemu operacyjnego 
-  \end{enumerate}
-  Dopuszcza się możliwość definicji pól o nazwach innych niż wymienione wcześniej dla dodatkowego opisania danych (metadane)
-\end{enumerate}
+\subsubsection{Wariant tablicowy}
+Wariant tablicowy (ang. \emph{JSON Array Format}) - cały plik składa się z tablicy przechowującej obiektu zarejestrowanych zdarzeń. Zdarzenia te nie muszą być poukładane chronologicznie według znaczników czasu. 
 
 \begin{lstlisting}[caption=Przykładowy wariant tablicowy]
 [{
@@ -742,6 +731,19 @@ Dane zebrane przez Chrome DevTools w trakcie testów wydajnościowych można zap
   "ts": 833
 }]
 \end{lstlisting}
+
+\subsubsection{Wariant obiektowy}
+
+ Wariant obiektowy (ang. \emph{JSON Object Format}) - bardziej elsatyczny format, w którym plik składa się z jednego, głównego obiektu. Obiekt ten może posiadać następujące pola:
+  \begin{enumerate}
+    \item traceEvents - jedyne wymagane pole, które jest tablicą zarejestrowanych zdarzeń odpowiadająca dokładnie wariantowi tablicowemu formatu \emph{Trace Event Format}
+    \item displayTimeUnit - jednostka, w której podane zostały znaczniki czasu. Dostępne jednostki to \emph{ms} oraz \emph{ns}. Domyślna jednostka to \emph{ms}
+    \item systemTraceEvents - ciąg znaków kompatybilnych z \emph{Linux ftrace} lub \emph{Windows ETW}
+    \item powerTraceAsString - ciąg znaków kompatybilnych z \emph{BattOr}
+    \item stackFrames - struktura przechowująca informacje o ramkach odłożonych na stosie
+    \item samples - tablica przechowująca dane rozszerzające traceEvents o informacje zarejestrowane na poziomie systemu operacyjnego 
+  \end{enumerate}
+Dopuszcza się możliwość definicji pól o nazwach innych niż wymienione wcześniej dla dodatkowego opisania danych (metadane)
 
 \begin{lstlisting}[caption=Przykładowy wariant obiektowy]
 {
@@ -763,6 +765,8 @@ Dane zebrane przez Chrome DevTools w trakcie testów wydajnościowych można zap
   "displayTimeUnit": "ns",
 }
 \end{lstlisting}
+
+\subsubsection{Zdarzenia}
 
 \section{Porównanie wyników i wnioski}
 
