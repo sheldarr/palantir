@@ -790,9 +790,10 @@ Podstawowymi obiektami, które można poddać analizie są zdarzenia. Istnieje k
 \begin{center}
   \begin{tabularx}{\textwidth}{|X|X|}\hline
     \emph{Typ zdarzenia} & \emph{Fazy zdarzenia}\\ \hline
-    Zdarzenia z czasem trwania (\emph{ang. duration events}) & \textbf{B} początek (\emph{ang. begin}),\newline
+    Zdarzenia trwające (\emph{ang. duration events}) & \textbf{B} początek (\emph{ang. begin}),\newline
     \textbf{E} koniec (\emph{ang. end})\\ \hline
     Zdarzenia kompletne (\emph{ang. complete events}) & \textbf{X}\\ \hline
+    Zdarzenia natychmiastowe (\emph{ang. instant events}) & \textbf{i, I}(przestarzałe)\\ \hline
     Zdarzenia zliczające (\emph{ang. counter events}) & \textbf{c}\\ \hline
     Zdarzenia asynchroniczne (\emph{ang. async events}) & \textbf{b} (początek),\newline
     \textbf{n} (natychmiastowe zdarzenie asynchroniczne),\newline
@@ -811,11 +812,26 @@ Podstawowymi obiektami, które można poddać analizie są zdarzenia. Istnieje k
     Zdarzenia z metadanymi (\emph{ang. metadata events}) & \textbf{M}\\ \hline
     Zdarzenia zrzutu pamięci (\emph{ang. memory dump events}) & \textbf{V} (zrzut pamięci globalnej)\newline
     \textbf{v} (zrzut pamięci procesu)\\ \hline
-    Zdarzenia oznaczające (\emph{ang. mark events}) & \textbf{R}\\ \hline
-    Zdarzenia synchronizacj zegara (\emph{ang. clock sync events}) & \textbf{c}\\ \hline
+    Zdarzenia synchronizacji zegara (\emph{ang. clock sync events}) & \textbf{c}\\ \hline
     Zdarzenia kontekstowe (\emph{ang. context events}) & \textbf{(, )}\\ \hline
   \end{tabularx}
 \end{center}
+
+Poniżej przedstawiono opis każdego z możliwych typów zdarzeń:
+
+\begin{enumerate}
+  \item zdarzenia trwające - umożliwiają określenie czasu trwania pracy nad danym wątkiem. Zdarzenia czasowe są określane przez typy \textbf{B} i \textbf{E}. Zdarzenie \textbf{B} musi nastąpić przed odpowiednim wydarzeniem \textbf{E}. Można zagnieżdżać zdarzenia \textbf{B} i \textbf{E}. Znaczniki czasowe dla zdarzeń muszą być ułożone w kolejności rosnącej dla danego wątku. Znaczniki czasu w różnych wątkach nie muszą być ułożone w kolejności rosnącej.
+  \item zdarzenia kompletne - każde kompletne zdarzenie logicznie łączy parę zdarzeń (\textbf{B} i \textbf{E}). Kompletne zdarzenia są oznaczone przez typ fazy \textbf{X}.
+  \item zdarzenia natychmiastowe - odpowiadają czemuś co miało miejsce lecz bez przypisanego czasu trwania.
+  \item zdarzenia zliczające - mogą śledzić wartość lub wiele wartości zmieniających się w czasie.
+  \item zdarzenia asynchroniczne - służą do rejestrowania asynchronicznych operacji. Mogą pochodzić zarówno z różnych procesów jak i wątków.
+  \item zdarzenia przepływające - z założenia są bardzo podobne do zdarzeń asynchronicznych, ale dodatkowo pozwalają na łączenie ich ze sobą w wątkach i/lub procesach.
+  \item zdarzenia obiektowe - służą za konstrukcję do śledzenia złożonych struktur danych.
+  \item zdarzenia z metadanymi - są używane do powiązania dodatkowych informacji z wydarzeniami.
+  \item zdarzenia zrzutu pamięci - odpowiadają zrzutom pamięci procesu lub grupie procesów.
+  \item zdarzenia synchronizacji zegara - służą do synchonizacji czasu w przypadku gdy zdarzenia rejestrowane są przez różne byty.
+  \item zdarzenia kontekstowe - są używane do oznaczania sekwencji zdarzeń.
+\end{enumerate}
 
 \begin{lstlisting}[caption=Przykładowe zdarzenie]
 {
