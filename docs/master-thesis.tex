@@ -14,6 +14,10 @@
 }
 \usepackage{listings}
 
+\usepackage{tabularx}
+\usepackage{ltablex}
+\newcolumntype{x}{p{4cm}}
+
 \usepackage{tikz-qtree}
 
 \usepackage{amsmath}
@@ -770,7 +774,7 @@ Dopuszcza się możliwość definicji pól o nazwach innych niż wymienione wcze
 
 \subsubsection{Zdarzenia}
 
-Podstawowymi obiektami, które można poddać analizie są zdarzenia. Istnieje kilka rodzajów zdarzeń. Pola, które występują dla zdarzenia niezależnie od jego rodzaju to:
+Podstawowymi obiektami, które można poddać analizie są zdarzenia. Istnieje kilka rodzajów zdarzeń. Poniżej przedstawiono pola występujące w każdym zdarzeniu niezależnie od jego typu:
 
 \begin{enumerate}
   \item name - nazwa zdarzenia
@@ -782,6 +786,36 @@ Podstawowymi obiektami, które można poddać analizie są zdarzenia. Istnieje k
   \item tid - identyfikator wątku, który spowodował zaistnienie zdarzenia
   \item args - argumenty, które zostały dostarczone dla zdarzenia
 \end{enumerate}
+
+\begin{center}
+  \begin{tabularx}{\textwidth}{|X|X|}\hline
+    \emph{Typ zdarzenia} & \emph{Fazy zdarzenia}\\ \hline
+    Zdarzenia z czasem trwania (\emph{ang. duration events}) & \textbf{B} początek (\emph{ang. begin}),\newline
+    \textbf{E} koniec (\emph{ang. end})\\ \hline
+    Zdarzenia kompletne (\emph{ang. complete events}) & \textbf{X}\\ \hline
+    Zdarzenia zliczające (\emph{ang. counter events}) & \textbf{c}\\ \hline
+    Zdarzenia asynchroniczne (\emph{ang. async events}) & \textbf{b} (początek),\newline
+    \textbf{n} (natychmiastowe zdarzenie asynchroniczne),\newline
+    \textbf{e} (koniec)\newline\newline
+    \textit{Przestarzałe}\newline
+    \textbf{S} (początek),\newline
+    \textbf{T} (krok kolejny),\newline
+    \textbf{p} (krok poprzedni),\newline
+    \textbf{F} (koniec)\\ \hline
+    Zdarzenia przepływające (\emph{ang. flow events}) & \textbf{s} (początek),\newline
+    \textbf{t} (krok),\newline
+    \textbf{f} (koniec)\\ \hline
+    Zdarzenia obiektowe (\emph{ang. object events}) & \textbf{N} (stworzenie)\newline
+    \textbf{O} (migawka)\newline
+    \textbf{D} (zniszczenie)\\ \hline
+    Zdarzenia z metadanymi (\emph{ang. metadata events}) & \textbf{M}\\ \hline
+    Zdarzenia zrzutu pamięci (\emph{ang. memory dump events}) & \textbf{V} (zrzut pamięci globalnej)\newline
+    \textbf{v} (zrzut pamięci procesu)\\ \hline
+    Zdarzenia oznaczające (\emph{ang. mark events}) & \textbf{R}\\ \hline
+    Zdarzenia synchronizacj zegara (\emph{ang. clock sync events}) & \textbf{c}\\ \hline
+    Zdarzenia kontekstowe (\emph{ang. context events}) & \textbf{(, )}\\ \hline
+  \end{tabularx}
+\end{center}
 
 \begin{lstlisting}[caption=Przykładowe zdarzenie]
 {
