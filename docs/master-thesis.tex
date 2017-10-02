@@ -734,15 +734,17 @@ Wariant tablicowy (ang. \emph{JSON Array Format}) - cały plik składa się z ta
 
 \subsubsection{Wariant obiektowy}
 
- Wariant obiektowy (ang. \emph{JSON Object Format}) - bardziej elsatyczny format, w którym plik składa się z jednego, głównego obiektu. Obiekt ten może posiadać następujące pola:
-  \begin{enumerate}
-    \item traceEvents - jedyne wymagane pole, które jest tablicą zarejestrowanych zdarzeń odpowiadająca dokładnie wariantowi tablicowemu formatu \emph{Trace Event Format}
-    \item displayTimeUnit - jednostka, w której podane zostały znaczniki czasu. Dostępne jednostki to \emph{ms} oraz \emph{ns}. Domyślna jednostka to \emph{ms}
-    \item systemTraceEvents - ciąg znaków kompatybilnych z \emph{Linux ftrace} lub \emph{Windows ETW}
-    \item powerTraceAsString - ciąg znaków kompatybilnych z \emph{BattOr}
-    \item stackFrames - struktura przechowująca informacje o ramkach odłożonych na stosie
-    \item samples - tablica przechowująca dane rozszerzające traceEvents o informacje zarejestrowane na poziomie systemu operacyjnego 
-  \end{enumerate}
+Wariant obiektowy (ang. \emph{JSON Object Format}) - bardziej elsatyczny format, w którym plik składa się z jednego, głównego obiektu. Obiekt ten może posiadać następujące pola:
+
+\begin{enumerate}
+  \item traceEvents - jedyne wymagane pole, które jest tablicą zarejestrowanych zdarzeń odpowiadająca dokładnie wariantowi tablicowemu formatu \emph{Trace Event Format}
+  \item displayTimeUnit - jednostka, w której podane zostały znaczniki czasu. Dostępne jednostki to \emph{ms} oraz \emph{ns}. Domyślna jednostka to \emph{ms}
+  \item systemTraceEvents - ciąg znaków kompatybilnych z \emph{Linux ftrace} lub \emph{Windows ETW}
+  \item powerTraceAsString - ciąg znaków kompatybilnych z \emph{BattOr}
+  \item stackFrames - struktura przechowująca informacje o ramkach odłożonych na stosie
+  \item samples - tablica przechowująca dane rozszerzające traceEvents o informacje zarejestrowane na poziomie systemu operacyjnego 
+\end{enumerate}
+
 Dopuszcza się możliwość definicji pól o nazwach innych niż wymienione wcześniej dla dodatkowego opisania danych (metadane)
 
 \begin{lstlisting}[caption=Przykładowy wariant obiektowy]
@@ -767,6 +769,35 @@ Dopuszcza się możliwość definicji pól o nazwach innych niż wymienione wcze
 \end{lstlisting}
 
 \subsubsection{Zdarzenia}
+
+Podstawowymi obiektami, które można poddać analizie są zdarzenia. Istnieje kilka rodzajów zdarzeń. Pola, które występują dla zdarzenia niezależnie od jego rodzaju to:
+
+\begin{enumerate}
+  \item name - nazwa zdarzenia
+  \item cat - kolekcja oddzielonych przecinkiem kategorii powiązanych ze zdarzeniem
+  \item ph - pojedynczy znak określający typ zdarzenia. Table prawidłowych wartości została przedstawiona poniżej.
+  \item ts - znacznik czasowy zdarzenia podany z dokładnością do milisekundy
+  \item tts - opcjonalny znacznik czasowy wątku zdarzenia podany z dokładnością do milisekundy
+  \item pid - identyfikator procesu, który spowodował zaistnienie zdarzenia
+  \item tid - identyfikator wątku, który spowodował zaistnienie zdarzenia
+  \item args - argumenty, które zostały dostarczone dla zdarzenia
+\end{enumerate}
+
+\begin{lstlisting}[caption=Przykładowe zdarzenie]
+{
+  "name": "myName",
+  "cat": "category,list",
+  "ph": "B",
+  "ts": 12345,
+  "pid": 123,
+  "tid": 456,
+  "args": {
+    "someArg": 1,
+    "anotherArg": {
+      "value": "my value"
+    }
+  }
+\end{lstlisting}
 
 \section{Porównanie wyników i wnioski}
 
