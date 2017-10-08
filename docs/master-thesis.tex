@@ -498,6 +498,14 @@ Współczesne biblioteki często wzajemnie zapożyczają i implementują pomysł
 
 \subsubsection{Komponenty}
 
+Architektura strony internetwoej zbudowanej za pomocą współczesnych bibliotek programistycznych opiera się najczęściej na idei komponentów. Poprzez komponenty rozumi się fragment strony internetowej, który posiada jasno określoną odpowiedzialność. Komponenty buduje się z połaczęnia HTML, JavaScript oraz CSS, tym samym komponent zawiera wszystkie informacje potrzebne do wyświetlenia oraz działania. Dzięki tej niezależności komponenty są w łatwy sposób testowalne, mają jasno określony interfejs za pomocą którego komunikują się z innymi komponentami. Raz określony komponent może być użyty w wielu miejscach co pozwala uniknąc niepotrzebnej duplikacji kodu.
+
+Struktura strony internetowej opartej na komponentach może zostać przedstawiona za pomocą drzewa, którego korzeniem jest główny komponent, który najczęściej po prostu składa się z kilku komponentów o bardziej specyficznych odpowiedzialnościach. Te komponenty moga składać się z kolejnych i tak dalej. 
+
+Komponenty mogą przechowywać swój aktualny stan za pomocą prywatnych zmiennych, potrzebnych do poprawnego wyświetlenia oraz działania komponentu. 
+
+Kolejną charakterystyczną cechą komponentów jest ich cykl życia (ang. \emph{lifecycle}). Programista tworząc komponent może definiować fragmenty kodu, który zostanie uruchomiony w pewnych sytuacjach. Te sytuacje zależą od biblioteki ale najczęściej to moment w którym komponent zostaje stworzony, moment w którym zostaje niszczony oraz moment, w którym zmieniają się dostarczane do niego dane poprzez z góry określony interfejs.
+
 \subsubsection{Wirtualny obiektowy model dokumentu}
 
 \subsubsection{Wstrzykiwanie zależności}
