@@ -23,8 +23,24 @@ class Server {
             respone.render('index', { title: 'JavaScript Frameworks Performance Benchamrk' });
         });
 
-        application.get('/native', function (request, respone) {
-            respone.render('native', { title: 'Native implementation' });
+        application.get('/angular', function (request, respone) {
+            respone.render('angular', { title: 'Angular implementation' });
+        });
+
+        application.get('/angular2', function (request, respone) {
+            respone.render('angular2', { title: 'Angular 2 implementation' });
+        });
+
+        application.get('/react', function (request, respone) {
+            respone.render('react', { title: 'React implementation' });
+        });
+        
+        application.get('/vue', function (request, respone) {
+            respone.render('vue', { title: 'Vue.js implementation' });
+        });
+
+        application.get('/mithril', function (request, respone) {
+            respone.render('mithril', { title: 'Mithril.js implementation' });
         });
 
         application.get('/examples/html', function (request, respone) {

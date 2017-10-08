@@ -9,6 +9,15 @@ else
     echo "OK"
 fi
 
+if [ -e ./public/vendor/stats.min.js ]
+then
+    echo "stats.js already copied"
+else
+    echo -n "stats.js not found. Copying from node_modules..."
+    cp ./node_modules/stats.js/build/stats.min.js ./public/vendor
+    echo "OK"
+fi
+
 if [ -e ./public/vendor/chance.min.js ]
 then
     echo "Chance already copied"
