@@ -26,7 +26,7 @@ block content
                             th Used HDD [MB]
                             th Uptime
                         tr(
-                            ng-repeat="virtualMachine in virtualMachines"
+                            ng-repeat="virtualMachine in virtualMachines.get()"
                         )
                             td {{ virtualMachine.name }}
                             td {{ virtualMachine.status }}
