@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import angular from 'angular';
 import PerformanceTest from './angular/performace-test.controller';
 import VirtualMachinesTable from './angular/virtual-machines-table.component';
