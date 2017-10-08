@@ -1,3 +1,6 @@
+import angular from 'angular';
+import VirtualMachines from '../helpers/virtual-machines.js'
+
 const application = angular.module('application', []);
 
 application.controller('PerformanceTestController', function ($scope, $timeout) {

@@ -1,8 +1,10 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
     entry: {
-        angular: './implementations/angular.js'
+        angular: './implementations/angular.js',
+        stats: './helpers/stats.js'
     },
     output: {
         path: path.resolve(__dirname, "public", "js"),
@@ -18,5 +20,9 @@ module.exports = {
                 }
             }
         ]
-    }
+    },
+    plugins: [new webpack.optimize.CommonsChunkPlugin({
+        name: "commons",
+        filename: "commons.js",
+    })]
 }
