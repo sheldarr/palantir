@@ -502,11 +502,15 @@ Architektura strony internetwoej zbudowanej za pomocą współczesnych bibliotek
 
 Struktura strony internetowej opartej na komponentach może zostać przedstawiona za pomocą drzewa, którego korzeniem jest główny komponent, który najczęściej po prostu składa się z kilku komponentów o bardziej specyficznych odpowiedzialnościach. Te komponenty moga składać się z kolejnych i tak dalej. 
 
-Komponenty mogą przechowywać swój aktualny stan za pomocą prywatnych zmiennych, potrzebnych do poprawnego wyświetlenia oraz działania komponentu. 
+Komponenty mogą przechowywać swój aktualny stan potrzebny do poprawnego wyświetlenia oraz działania wykorzystując do tego zmienne o zakresie prywatnym to jest takim, który nie jest w żaden sposób udostępniany innym obiektom.
 
 Kolejną charakterystyczną cechą komponentów jest ich cykl życia (ang. \emph{lifecycle}). Programista tworząc komponent może definiować fragmenty kodu, który zostanie uruchomiony w pewnych sytuacjach. Te sytuacje zależą od biblioteki ale najczęściej to moment w którym komponent zostaje stworzony, moment w którym zostaje niszczony oraz moment, w którym zmieniają się dostarczane do niego dane poprzez z góry określony interfejs.
 
 \subsubsection{Wirtualny obiektowy model dokumentu}
+
+Niektóre z bibliotek implementują mechanizm wirutalnego obiektowego modelu dokumentu (ang. \emph{ Virtual DOM}), jego głównym celem jest przyspieszenie działania aplikacji. Działanie tego mechanizmu polega na trzymaniu w pamięci kopii aktualnego obiektowego modelu dokumentu. W momencie, w którym DOM się zmienia np. w wyniku działania użytkownika najpierw modyfikowana jest wirtualna kopia przechowywana w pamięci. Po ustabilizowaniu się kopii wirtualnej zmiany nakładane są na rzeczywisty DOM.
+
+Operacje wykonywane na kopii przechowywanej w pamięci są szybsze niż operowanie na rzeczywistym obiekcie. Dodatkowo liczba nakładanych zmian jest minimalna, oczekiwanie na stabilizację kopii pozwala uniknąć wprowadzania zmian, które są tymczasowe i nie mają miejsca w wersji finalnej.
 
 \subsubsection{Wstrzykiwanie zależności}
 
@@ -525,12 +529,12 @@ Użycie tej techniki pozwala tworzyć łatwo testowalne obiekty. Sprawdza się s
 \begin{center}
   \begin{tabularx}{\textwidth}{|X|X|X|X|X|X|}\hline
     & \emph{Angular 1} & \emph{Angular 2} & \emph{ReactJS} & \emph{Vue.js} & \emph{Mithril.js}\\ \hline
-    Rok wydania & 2009 & 2016 & 2013 & 2014 & ??? \\ \hline
-    Liczba kontrybutorów w serwisie GitHub & ??? & ??? & ??? & ??? & ??? \\ \hline
-    Liczba gwiazdek w serwise GitHub & ??? & ??? & ??? & ??? & ??? \\ \hline
-    Kompo- nenty & ??? & ??? & ??? & ??? & ??? \\ \hline
-    Wirtualny DOM & Nie & ??? & Tak & ??? & Tak \\ \hline
-    Wstrzy- kiwanie zależności & ??? & ??? & ??? & ??? & ??? \\ \hline
+    Rok wydania & 2009 & 2016 & 2013 & 2014 & 2014 \\ \hline
+    Liczba kontrybutorów w serwisie GitHub & 1603 & 510 & 1099 & 144 & 202 \\ \hline
+    Liczba gwiazdek w serwise GitHub & 57235 & 28483 & 77623 & 69281 & 8007 \\ \hline
+    Kompo- nenty & Tak & Tak & Tak & Tak & Tak \\ \hline
+    Wirtualny DOM & Nie & Nie & Tak & Tak & Tak \\ \hline
+    Wstrzy- kiwanie zależności & Tak & Tak & Nie & Nie & Nie \\ \hline
   \end{tabularx}
 \end{center}
 
