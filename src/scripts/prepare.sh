@@ -27,6 +27,15 @@ else
     echo "OK"
 fi
 
+if [ -e ./public/vendor/moment.min.js ]
+then
+    echo "Moment.js already copied"
+else
+    echo -n "Moment.js not found. Copying from node_modules..."
+    cp ./node_modules/moment/min/moment.min.js ./public/vendor
+    echo "OK"
+fi
+
 if [ -e ./public/vendor/angular.min.js ]
 then
     echo "Angular 1 already copied"
