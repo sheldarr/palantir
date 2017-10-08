@@ -510,6 +510,18 @@ Kolejną charakterystyczną cechą komponentów jest ich cykl życia (ang. \emph
 
 \subsubsection{Wstrzykiwanie zależności}
 
+Niektóre z bibliotek udostępmniają mechanizm wstrzykiwania zależności (ang. \emph {Dependency injection}), jest to jeden z możliwych sposobów dostarczania zależności do komponentów.
+
+Ogólnie rzecz biorąc wstrzykiwanie zależności to wzorzec projektowy i wzorzec architektury oprogramowania polegający na usuwaniu bezpośrednich zależności pomiędzy komponentami. Polega na przekazywaniu gotowych, utworzonych instancji obiektów udostępniających swoje metody i właściwości obiektom, które z nich korzystają. Wstrzykiwanie zależności jest alternatywą do podejścia, gdzie obiekty tworzą instancję obiektów, z których korzystają. 
+
+Użycie tej techniki pozwala tworzyć łatwo testowalne obiekty. Sprawdza się szczególnie w powiązaniu z programowaniem sterowanym testami (ang. \emph{test-driven development}). Programowanie to polega na następującym tworzeniu oprogramowania:
+
+\begin{enumerate} 
+  \item opracowanie interfejsów
+  \item opracowanie testów jednostkowych, które testują funkcjonalności interfejsu
+  \item właściwa implementacja
+\end{enumerate} 
+
 \begin{center}
   \begin{tabularx}{\textwidth}{|X|X|X|X|X|X|}\hline
     & \emph{Angular 1} & \emph{Angular 2} & \emph{ReactJS} & \emph{Vue.js} & \emph{Mithril.js}\\ \hline
