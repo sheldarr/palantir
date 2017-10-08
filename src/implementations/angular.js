@@ -1,16 +1,9 @@
 import angular from 'angular';
-import VirtualMachines from '../helpers/virtual-machines.js'
+import PerformanceTest from './angular/performace-test.controller';
+import VirtualMachinesTable from './angular/virtual-machines-table.component';
 
 const application = angular.module('application', []);
 
-application.controller('PerformanceTestController', function ($scope, $timeout) {
-    $scope.virtualMachines = new VirtualMachines(20);
-    
-    const refresh = () => {
-        $scope.virtualMachines.update();
+application.controller('PerformanceTestController', PerformanceTest);
 
-        $timeout(refresh, 0);
-    };
-
-    refresh();
-});
+application.component('virtualMachinesTable', VirtualMachinesTable);

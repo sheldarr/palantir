@@ -18,11 +18,19 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                 }
+            },
+            {
+                test: /\.pug$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'pug-loader',
+                }
             }
         ]
     },
     plugins: [new webpack.optimize.CommonsChunkPlugin({
         name: "commons",
         filename: "commons.js",
-    })]
+    })],
+    devtool: "eval"
 }
