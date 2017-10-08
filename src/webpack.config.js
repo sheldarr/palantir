@@ -4,7 +4,8 @@ const webpack = require('webpack');
 module.exports = {
     entry: {
         angular: './implementations/angular.js',
-        stats: './helpers/stats.js'
+        stats: './helpers/stats.js',
+        vendor: ['moment', 'chance', 'stats.js']
     },
     output: {
         path: path.resolve(__dirname, "public", "js"),
@@ -28,9 +29,16 @@ module.exports = {
             }
         ]
     },
-    plugins: [new webpack.optimize.CommonsChunkPlugin({
-        name: "commons",
-        filename: "commons.js",
-    })],
+    plugins: [
+        new webpack.optimize.CommonsChunkPlugin({
+            name: "vendor",
+            filename: "vendor.js",
+            minChunks: Infinity,
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: "commons",
+            filename: "commons.js"
+        })
+    ],
     devtool: "eval"
 }
