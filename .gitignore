@@ -281,5 +281,5 @@ TSWLatexianTemp*
 # built pdf files
 *.pdf
 
-# public vendor content
-vendor
+# public 
+public
