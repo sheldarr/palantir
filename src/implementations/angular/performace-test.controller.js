@@ -1,4 +1,4 @@
-import VirtualMachines from '../../helpers/virtual-machines.js'
+import VirtualMachines from '../../helpers/virtual-machines'
 
 export default function ($scope, $timeout) {
     const virtualMachines = new VirtualMachines(20);

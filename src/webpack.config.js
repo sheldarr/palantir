@@ -4,6 +4,7 @@ const webpack = require('webpack');
 module.exports = {
     entry: {
         angular: './implementations/angular.js',
+        react: './implementations/react.js',
         stats: './helpers/stats.js',
         vendor: ['moment', 'chance', 'stats.js']
     },
