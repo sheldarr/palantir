@@ -2,8 +2,12 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
+    resolve: {
+        extensions: ['.ts', '.tsx', '.js', '.jsx']
+    },
     entry: {
         angular: './implementations/angular.js',
+        angular2: './implementations/angular2.js',
         polyfills: './helpers/polyfills.js',
         react: './implementations/react.js',
         stats: './helpers/stats.js',
@@ -28,6 +32,10 @@ module.exports = {
                 use: {
                     loader: 'pug-loader',
                 }
+            },
+            {
+                test: /\.tsx?$/,
+                loader: 'awesome-typescript-loader'
             }
         ]
     },
