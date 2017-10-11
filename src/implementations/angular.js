@@ -1,10 +1,9 @@
-import 'babel-polyfill';
 import angular from 'angular';
-import PerformanceTest from './angular/performace-test.controller';
+
+import PerformanceTest from './angular/performance-test.component';
 import VirtualMachinesTable from './angular/virtual-machines-table.component';
 
 const application = angular.module('application', []);
 
-application.controller('PerformanceTestController', PerformanceTest);
-
+application.component('performanceTest', PerformanceTest);
 application.component('virtualMachinesTable', VirtualMachinesTable);
