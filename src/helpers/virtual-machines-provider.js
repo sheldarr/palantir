@@ -1,7 +1,7 @@
 import * as Chance from 'chance';
 import moment from 'moment';
 
-export default class VirtualMachines {
+export default class VirtualMachinesProvider {
     constructor(number) {
         this.machines = [];
 

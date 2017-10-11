@@ -1,13 +1,8 @@
 import React from 'react';
 
-import VirtualMachines from '../../helpers/virtual-machines';
-
 class VirtualMachinesTable extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            virtualMachines: props.virtualMachines
-        };
     }
 
     render() {
@@ -28,7 +23,7 @@ class VirtualMachinesTable extends React.Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {this.state.virtualMachines.map((virtualMachine) => {
+                    {this.props.virtualMachines.map((virtualMachine) => {
                         return (
                             <tr key={virtualMachine.name}>
                                 <td> {virtualMachine.name} </td>

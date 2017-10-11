@@ -1,12 +1,12 @@
-import VirtualMachines from '../../helpers/virtual-machines'
+import VirtualMachinesProvider from '../../helpers/virtual-machines-provider'
 
 export default function ($scope, $timeout) {
-    const virtualMachines = new VirtualMachines(20);
+    const virtualMachinesProvider = new VirtualMachinesProvider(20);
     
-    $scope.virtualMachines = virtualMachines.get();
+    $scope.virtualMachines = virtualMachinesProvider.get();
     
     const refresh = () => {
-        virtualMachines.update();
+        virtualMachinesProvider.update();
 
         $timeout(refresh, 0);
     };

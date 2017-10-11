@@ -1,18 +1,24 @@
 import React from 'react';
 
-import VirtualMachines from '../../helpers/virtual-machines';
+import VirtualMachinesProvider from '../../helpers/virtual-machines-provider';
 import VirtualMachinesTable from './virtual-machines-table.component.jsx'
+
+const virtualMachinesProvider = new VirtualMachinesProvider(20);
 
 class PerformanceTest extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            virtualMachines: new VirtualMachines(20)
+            virtualMachines: virtualMachinesProvider.get()
         };
     }
 
     refresh() {
-        this.state.virtualMachines.update();
+        virtualMachinesProvider.update();
+
+        this.setState({
+            virtualMachines: virtualMachinesProvider.get()
+        })
 
         setTimeout(() => { this.refresh() }, 0);
     }
@@ -24,7 +30,7 @@ class PerformanceTest extends React.Component {
     render() {
         return (
             <VirtualMachinesTable
-                virtualMachines={this.state.virtualMachines.get()}
+                virtualMachines={this.state.virtualMachines}
             />
         );
     }
