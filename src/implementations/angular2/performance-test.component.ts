@@ -5,7 +5,7 @@ import { VirtualMachine } from './virtual-machine.type';
 
 declare const require: NodeRequireFunction;
 
-const virtualMachinesProvider = new VirtualMachinesProvider(20);
+const virtualMachinesProvider = new VirtualMachinesProvider(process.env.VIRTUAL_MACHINES);
 
 @Component({
     selector: 'performance-test',
