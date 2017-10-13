@@ -10,6 +10,7 @@ module.exports = {
     entry: {
         angular: './implementations/angular.js',
         angular2: './implementations/angular2.js',
+        mithril: './implementations/mithril.js',
         polyfills: './helpers/polyfills.js',
         react: './implementations/react.js',
         stats: './helpers/stats.js',
