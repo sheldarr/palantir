@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node ./index.js",
+    "lint": "eslint {helpers/,implementations/}/**/*.js && tslint {helpers/,implementations/}/**/*.ts",
     "prepare": "./scripts/prepare.sh"
   },
   "dependencies": {

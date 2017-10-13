@@ -1,5 +1,7 @@
-import * as Chance from 'chance';
+import Chance from 'chance';
 import moment from 'moment';
+
+const chance = new Chance();
 
 export default class VirtualMachinesProvider {
     constructor(number) {
