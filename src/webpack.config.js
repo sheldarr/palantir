@@ -14,7 +14,8 @@ module.exports = {
         polyfills: './helpers/polyfills.js',
         react: './implementations/react.js',
         stats: './helpers/stats.js',
-        vendor: ['moment', 'chance', 'stats.js']
+        vendor: ['moment', 'chance', 'stats.js'],
+        vue: './implementations/vue.js'
     },
     output: {
         path: path.resolve(__dirname, "public", "js"),
@@ -39,6 +40,10 @@ module.exports = {
             {
                 test: /\.tsx?$/,
                 loader: 'awesome-typescript-loader'
+            },
+            {
+                test: /\.vue$/,
+                loader: 'vue-loader'
             }
         ]
     },

@@ -1,0 +1,37 @@
+<template lang="pug">
+    table
+        thead
+            tr
+                th Name
+                th Status
+                th Average CPU load
+                th Available memory [MB]
+                th Used memory [MB]
+                th Free memory [MB]
+                th Available HDD [MB]
+                th Free HDD [MB]
+                th Used HDD [MB]
+                th Uptime
+        tbody
+            tr(
+                v-for="virtualMachine in virtualMachines"
+            )
+                td {{ virtualMachine.name }}
+                td {{ virtualMachine.status }}
+                td {{ virtualMachine.averageCpuLoad.toFixed(2) }}
+                td {{ virtualMachine.memory.available.toFixed(0) }}
+                td {{ virtualMachine.memory.used.toFixed(0) }}
+                td {{ virtualMachine.memory.free.toFixed(0) }}
+                td {{ virtualMachine.hdd.available.toFixed(0) }}
+                td {{ virtualMachine.hdd.used.toFixed(0) }}
+                td {{ virtualMachine.hdd.free.toFixed(0) }}
+                td {{ virtualMachine.uptime }}
+</template>
+
+<script>
+    export default {
+        props: {
+            virtualMachines: Array
+        }
+    }
+</script>
