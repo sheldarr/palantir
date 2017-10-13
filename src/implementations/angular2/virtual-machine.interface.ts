@@ -1,4 +1,4 @@
-export type VirtualMachine = {
+export interface VirtualMachine {
     name: string;
     status: string;
     averageCpuLoad: number;

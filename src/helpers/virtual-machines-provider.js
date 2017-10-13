@@ -5,7 +5,7 @@ export default class VirtualMachinesProvider {
     constructor(number) {
         this.machines = [];
 
-        for (var index = 0; index < number; index++) {
+        for (let index = 0; index < number; index++) {
             this.machines.push({
                 name: chance.word(),
                 status: 'OK',
@@ -31,7 +31,7 @@ export default class VirtualMachinesProvider {
     }
 
     update() {
-        for (var index = 0; index < this.machines.length; index++) {
+        for (let index = 0; index < this.machines.length; index++) {
             const machine = this.machines[index];
             if (chance.bool({likelihood: 0.01})) {
                 machine.status = 'ERROR';

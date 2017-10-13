@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'; 
 import React from 'react';
 
 class VirtualMachinesTable extends React.Component {
@@ -43,6 +44,10 @@ class VirtualMachinesTable extends React.Component {
             </table>
         );
     }
+}
+
+VirtualMachinesTable.propTypes = {
+    virtualMachines: PropTypes.Array
 };
 
 export default VirtualMachinesTable;

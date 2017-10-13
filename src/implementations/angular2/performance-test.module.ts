@@ -5,11 +5,13 @@ import { PerformanceTestComponent } from './performance-test.component';
 import { VirtualMachinesTableComponent } from './virtual-machines-table.component';
 
 @NgModule({
-    imports: [ BrowserModule ],
+    bootstrap: [ PerformanceTestComponent ],
     declarations: [
         PerformanceTestComponent,
         VirtualMachinesTableComponent
     ],
-    bootstrap: [ PerformanceTestComponent ]
+    imports: [ BrowserModule ],
+
 })
+
 export class PerformanceTestModule {}

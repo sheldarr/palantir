@@ -57,6 +57,7 @@ class Server {
         const { PORT: port } = process.env;
 
         this.application.listen(port, () => {
+            /*eslint no-console: 0*/
             console.log(`Server listening on port ${port}`);
         })
     }

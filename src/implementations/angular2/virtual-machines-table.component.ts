@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { VirtualMachine } from './virtual-machine.type';
+import { VirtualMachine } from './virtual-machine.interface';
 
 declare const require: NodeRequireFunction;
 
@@ -9,5 +9,5 @@ declare const require: NodeRequireFunction;
     template: require('./virtual-machines-table.template.pug')()
 })
 export class VirtualMachinesTableComponent {
-    @Input() virtualMachines: VirtualMachine[];
+    @Input() public virtualMachines: VirtualMachine[];
 }

@@ -34,6 +34,6 @@ class PerformanceTest extends React.Component {
             />
         );
     }
-};
+}
 
 export default PerformanceTest;

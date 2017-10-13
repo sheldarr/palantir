@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import VirtualMachinesProvider from '../../helpers/virtual-machines-provider';
-import { VirtualMachine } from './virtual-machine.type';
+import { VirtualMachine } from './virtual-machine.interface';
 
 declare const require: NodeRequireFunction;
 
@@ -15,13 +15,13 @@ export class PerformanceTestComponent implements OnInit {
     public virtualMachines: VirtualMachine[];
 
     public constructor() {
-        this.virtualMachines = virtualMachinesProvider.get()
+        this.virtualMachines = virtualMachinesProvider.get();
     }
 
-    ngOnInit() {
+    public ngOnInit() {
         this.refresh();
     }
-    
+
     private refresh = (): void => {
         virtualMachinesProvider.update();
         setTimeout(this.refresh, 0);

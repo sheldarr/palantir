@@ -1,7 +1,7 @@
 import Stats from 'stats.js'
 
 window.onload = () => {
-    var stats = new Stats();
+    const stats = new Stats();
 
     document.body.appendChild(stats.dom);
 
