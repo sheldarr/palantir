@@ -7,7 +7,7 @@
 <script>
     import VirtualMachinesProvider from '../../helpers/virtual-machines-provider';
 
-    const virtualMachinesProvider = new VirtualMachinesProvider(process.env.VIRTUAL_MACHINES);
+    const virtualMachinesProvider = new VirtualMachinesProvider();
 
     export default {
         created() {

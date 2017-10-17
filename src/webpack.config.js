@@ -1,8 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 
-const DEFAULT_VIRTUAL_MACHINES = 20;
-
 module.exports = {
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx']
@@ -56,10 +54,7 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({
             name: "commons",
             filename: "commons.js"
-        }),
-        new webpack.DefinePlugin({
-            'process.env.VIRTUAL_MACHINES': JSON.stringify(process.env.VIRTUAL_MACHINES || DEFAULT_VIRTUAL_MACHINES)
-        }),
+        })
     ],
     devtool: "eval"
 }

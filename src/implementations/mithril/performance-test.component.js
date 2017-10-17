@@ -3,7 +3,7 @@ import m from 'mithril';
 import VirtualMachinesProvider from '../../helpers/virtual-machines-provider';
 import VirtualMachinesTableComponent from './virtual-machines-table.component';
 
-const virtualMachinesProvider = new VirtualMachinesProvider(process.env.VIRTUAL_MACHINES);
+const virtualMachinesProvider = new VirtualMachinesProvider();
 
 const PerformanceComponent = {
     virtualMachines: virtualMachinesProvider.get(),

@@ -3,11 +3,14 @@ import moment from 'moment';
 
 const chance = new Chance();
 
+const DEFAULT_VIRTUAL_MACHINES = 64;
+const virtualMachines = localStorage.getItem('virtualMachines') || DEFAULT_VIRTUAL_MACHINES
+
 export default class VirtualMachinesProvider {
-    constructor(number) {
+    constructor() {
         this.machines = [];
 
-        for (let index = 0; index < number; index++) {
+        for (let index = 0; index < virtualMachines; index++) {
             this.machines.push({
                 name: chance.word(),
                 status: 'OK',

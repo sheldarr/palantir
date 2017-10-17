@@ -1,7 +1,7 @@
 import VirtualMachinesProvider from '../../helpers/virtual-machines-provider'
 
 export default function ($scope, $timeout) {
-    const virtualMachinesProvider = new VirtualMachinesProvider(process.env.VIRTUAL_MACHINES);
+    const virtualMachinesProvider = new VirtualMachinesProvider();
     
     $scope.virtualMachines = virtualMachinesProvider.get();
     
