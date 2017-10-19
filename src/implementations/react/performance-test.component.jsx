@@ -16,9 +16,7 @@ class PerformanceTest extends React.Component {
     refresh() {
         virtualMachinesProvider.update();
 
-        this.setState({
-            virtualMachines: virtualMachinesProvider.get()
-        })
+        this.setState(this.state);
 
         setTimeout(() => { this.refresh() }, 0);
     }

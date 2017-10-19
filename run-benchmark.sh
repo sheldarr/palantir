@@ -11,8 +11,8 @@ do
     do
         echo "$virtualMachine"
 
-        node ./chrome-performance-logs-recorder/build/main.js --verbose --url="http://localhost:8080/$framework" --filter-event-names="DrawFrame,Layout,Paint" --duration=1000 --local-storage="virtualMachines:$virtualMachine" --output-filename="$framework.$virtualMachine.json"
-        node ./trace-event-format-analyzer/build/main.js --verbose --paths="$framework.$virtualMachine.json" --complete-events="Paint" --duration-events="Layout" --immediate-events="DrawFrame" --output
+        node ./chrome-performance-logs-recorder/build/main.js --verbose --url="http://localhost:8080/$framework" --filter-event-names="DrawFrame,Layout,Paint" --duration=60000 --local-storage="virtualMachines:$virtualMachine" --output-filename="$framework_$virtualMachine.json" --trim=10
+        node ./trace-event-format-analyzer/build/main.js --verbose --paths="$framework_$virtualMachine.json" --complete-events="Paint" --duration-events="Layout" --immediate-events="DrawFrame" --output
     done
 done
 
