@@ -629,13 +629,120 @@ tbody
 
 \subsection{Angular}
 
-\subsubsection{Opis}
-
-\subsubsection{Wady i zalety}
-
-\subsubsection{Mechanizm działania}
+AngularJS jest ciągle bardzo popularnym środowiskiem programistycznym, którego pierwsza wersja wydana została w 2009 roku. Aktualnie nie jest już dalej rozwijany na rzecz swojego następcy, czyli bardzo podobnie nazywającej się bilioteki o nazwie Angular. To co go odróżnia od innych bibliotek to wbudowany domyślnie mechanizm wstrzykiwania zależności kosztem mechanizmu wirtualnego obiektowego modelu dokumentu. Tak jak wszyscy konkurencji umożliwia tworzenie aplikacji za pomocą komponentów.
 
 \subsubsection{Implementacja}
+
+\begin{lstlisting}[caption=Inicjalizacja głównego modułu]
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
+import { PerformanceTestModule } from './angular/performance-test.module';
+
+platformBrowserDynamic().bootstrapModule(PerformanceTestModule);
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Główny moduł]
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { PerformanceTestComponent } from './performance-test.component';
+import { VirtualMachinesTableComponent } from './virtual-machines-table.component';
+
+@NgModule({
+    bootstrap: [ PerformanceTestComponent ],
+    declarations: [
+        PerformanceTestComponent,
+        VirtualMachinesTableComponent
+    ],
+    imports: [ BrowserModule ],
+
+})
+export class PerformanceTestModule {}
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Główny komponent]
+// performance-test.component.ts
+import { Component, OnInit } from '@angular/core';
+
+import VirtualMachinesProvider from '../../helpers/virtual-machines-provider';
+import { VirtualMachine } from './virtual-machine.interface';
+
+declare const require: NodeRequireFunction;
+
+const virtualMachinesProvider = new VirtualMachinesProvider();
+
+@Component({
+    selector: 'performance-test',
+    template: require('./performance-test.template.pug')()
+})
+export class PerformanceTestComponent implements OnInit {
+    public virtualMachines: VirtualMachine[];
+
+    public constructor() {
+        this.virtualMachines = virtualMachinesProvider.get();
+    }
+
+    public ngOnInit() {
+        this.refresh();
+    }
+
+    private refresh = (): void => {
+        virtualMachinesProvider.update();
+        setTimeout(this.refresh, 0);
+    }
+}
+
+// performance-test.template.pug
+virtual-machines-table(
+  [virtualMachines]="virtualMachines"
+)
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Komponent tabeli]
+// virtual-machines-table.component.ts
+import { Component, Input } from '@angular/core';
+
+import { VirtualMachine } from './virtual-machine.interface';
+
+declare const require: NodeRequireFunction;
+
+@Component({
+    selector: 'virtual-machines-table',
+    template: require('./virtual-machines-table.template.pug')()
+})
+export class VirtualMachinesTableComponent {
+    @Input() public virtualMachines: VirtualMachine[];
+}
+
+// virtual-machines-table.template.pug
+table
+thead
+    tr
+        th Name
+        th Status
+        th Average CPU load
+        th Available memory [MB]
+        th Used memory [MB]
+        th Free memory [MB]
+        th Available HDD [MB]
+        th Free HDD [MB]
+        th Used HDD [MB]
+        th Uptime
+tbody
+    tr(
+        *ngFor="let virtualMachine of virtualMachines"
+    )
+        td {{ virtualMachine.name }}
+        td {{ virtualMachine.status }}
+        td {{ virtualMachine.averageCpuLoad.toFixed(2) }}
+        td {{ virtualMachine.memory.available.toFixed(0) }}
+        td {{ virtualMachine.memory.used.toFixed(0) }}
+        td {{ virtualMachine.memory.free.toFixed(0) }}
+        td {{ virtualMachine.hdd.available.toFixed(0) }}
+        td {{ virtualMachine.hdd.used.toFixed(0) }}
+        td {{ virtualMachine.hdd.free.toFixed(0) }}
+        td {{ virtualMachine.uptime }}
+\end{lstlisting}
 
 \subsection{React}
 
