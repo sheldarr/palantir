@@ -943,13 +943,90 @@ export default VirtualMachinesTable;
 
 \subsection{Vue.js}
 
-\subsubsection{Opis}
-
-\subsubsection{Wady i zalety}
-
-\subsubsection{Mechanizm działania}
+--Description--
 
 \subsubsection{Implementacja}
+
+\begin{lstlisting}[caption=Inicjalizacja głównego komponentu]
+import Vue from 'vue';
+
+import PerformanceTestComponent from './vue/performance-test.component.vue';
+import VirtualMachinesTableComponent from './vue/virtual-machines-table.component.vue';
+
+Vue.component('virtual-machines-table', VirtualMachinesTableComponent)
+
+new Vue(PerformanceTestComponent)
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Główny komponent]
+<template lang="pug">
+  virtual-machines-table(
+      v-bind:virtual-machines="virtualMachines"
+  )
+</template>
+
+<script>
+  import VirtualMachinesProvider from '../../helpers/virtual-machines-provider';
+
+  const virtualMachinesProvider = new VirtualMachinesProvider();
+
+  export default {
+      created() {
+          this.refresh();
+      },
+      data: {
+          virtualMachines: virtualMachinesProvider.get()
+      },
+      el: '#root',
+      methods: {
+          refresh() {
+              virtualMachinesProvider.update();
+              setTimeout(() => { this.refresh() }, 0);
+          }
+      }
+  }
+</script>
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Komponent tabeli]
+<template lang="pug">
+  table
+      thead
+          tr
+              th Name
+              th Status
+              th Average CPU load
+              th Available memory [MB]
+              th Used memory [MB]
+              th Free memory [MB]
+              th Available HDD [MB]
+              th Free HDD [MB]
+              th Used HDD [MB]
+              th Uptime
+      tbody
+          tr(
+              v-for="virtualMachine in virtualMachines"
+          )
+              td {{ virtualMachine.name }}
+              td {{ virtualMachine.status }}
+              td {{ virtualMachine.averageCpuLoad.toFixed(2) }}
+              td {{ virtualMachine.memory.available.toFixed(0) }}
+              td {{ virtualMachine.memory.used.toFixed(0) }}
+              td {{ virtualMachine.memory.free.toFixed(0) }}
+              td {{ virtualMachine.hdd.available.toFixed(0) }}
+              td {{ virtualMachine.hdd.used.toFixed(0) }}
+              td {{ virtualMachine.hdd.free.toFixed(0) }}
+              td {{ virtualMachine.uptime }}
+</template>
+
+<script>
+  export default {
+      props: {
+          virtualMachines: Array
+      }
+  }
+</script>
+\end{lstlisting}
 
 \section{Badania wydajnościowe}
 
