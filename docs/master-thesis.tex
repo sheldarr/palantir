@@ -968,10 +968,66 @@ Dane wyjściowe zapisane do pliku o rozszerzeniu \emph{JSON} są zgodne z opisan
 
 \subsubsection{Opis}
 
+\emph{trace-event-format-analyzer} to aplikacja, która potrafi dokonać analizy setki megabajtów danych zarejestrowanych w formacie \emph{Trace Event Format}.
+
 \subsubsection{Specyfikacja wewnętrzna}
+
+Aplikacja została napisana w języku \emph{JavaScript} w standardzie ECMAScript 2016 \cite{es2016}. Środowiskiem uruchomieniowym jest \emph{Node.js} \cite{node.js} w wersji \emph{8.1.4}. Do poprawnego zainstalowania zewnętrznych zależności potrzebny jest menedżer pakietów \emph{Yarn} \cite{yarn}.
+
+Aplikacja wczytuje plik z rozszerzeniem \emph{JSON} a następnie iteruje po kolekcji zdarzeń dokonując odpowiednich obliczeń.
 
 \subsubsection{Specyfikacja zewnętrzna}
 
+\textbf{Sposób uruchomienia programu} \newline
+
+Żeby uruchomić program należy przejść za pomocą konsoli do głównego folderu programu a następnie wywołać następujące komendy:
+
+\begin{lstlisting}
+yarn install
+yarn ./build/main.js [parametry]
+\end{lstlisting}
+
+\textbf{Format danych wejściowych} \newline
+
+Aplikacja przyjmuje następujące parametry:
+
+\begin{itemize}
+  \item \emph{-{}-complete-events} (domyślna wartość \emph{' '}) - odseparowane przecinkami nazwy zdarzeń kompletnych, które mają zostać poddane analizie
+  \item \emph{-{}-decimal-places} (domyślna wartość \emph{4}) - liczba miejsc po przecinku, do których mają zostać zaokrąglone wyniki
+  \item \emph{-{}-duration-events} (domyślna wartość \emph{' '}) - odseparowane przecinkami nazwy zdarzeń trwających, które mają zostać poddane analizie
+  \item \emph{-{}-immediate-events} (domyślna wartość \emph{' '}) - odseparowane przecinkami nazwy zdarzeń natychmiastowych, które mają zostać poddane analizie
+  \item \emph{-{}-output} (domyślna wartość \emph{'false}) - flaga włączająca zapis analizy do pliku w formacie \emph{JSON}
+  \item \emph{-{}-paths} (domyślna wartość \emph{' '}) - odseparowane przecinkami ścieżki plików, które mają zostać wczytane oraz poddane analizie
+  \item \emph{-{}-silent} (domyślna wartość \emph{false}) - flaga wyłączająca wszelkie informacje na wyjściu
+  \item \emph{-{}-verbose} (domyślna wartość \emph{false}) - flaga włączająca dodatkowe informacje na wyjściu
+\end{itemize}
+
+\textbf{Format danych wyjściowych} \newline
+
+Dane wyjściowe, które opcjonalnie mogą zostać zapisane do pliku o rozszerzeniu \emph{JSON} są obiektem o następujących właściwościach:
+
+\begin{enumerate}
+  \item \emph{completeEvents} - obiekt zdarzeń kompletnych, którego właściwości odpowiadają nazwom analizowanych zdarzeń tego typu
+  \item \emph{durationEvents} - obiekt zdarzeń trwających, którego właściwości odpowiadają nazwom analizowanych zdarzeń tego typu
+  \item \emph{immediateEvents} - obiekt zdarzeń natychmiastowych, którego właściwości odpowiadają nazwom analizowanych zdarzeń tego typu
+\end{enumerate}
+
+Każdy obiekt odpowiadający konkretnemu zdarzeniu posiada następujące właściwości:
+
+\begin{enumerate}
+  \item \emph{deltas} - przechowuje wyliczone statystyki na podstawie czasu pomiędzy kolejnymi zdarzeniami (jednostka to milisekundy)
+  \item \emph{eps} - przechowuje wyliczone statystyki na podstawie ilości zdarzeń na sekundę (jednostka to zdarzenia na sekundę)
+\end{enumerate}
+
+Obiekt przechowujący wyliczone statystyki posiada następujace właściwości:
+
+\begin{enumerate}
+  \item \emph{min} - minimalna zarejestrowana wartość
+  \item \emph{mean} - średnia zarejestrowanych wartości
+  \item \emph{percentiles} - obliczone percentyle kolejno 50\%, 66\%, 75\%, 80\%, 85\%, 90\%, 95\%, 98\%, 99\%, 100\%
+  \item \emph{standardDeviation} - odchylenie standardowe
+  \item \emph{variance} - wariancja
+\end{enumerate}
 
 \section{Porównanie wyników i wnioski}
 
