@@ -975,6 +975,8 @@ Użycie tej techniki pozwala tworzyć łatwo testowalne obiekty. Sprawdza się s
   \end{tabularx}
 \end{center}
 
+\subsection{Schemat implementacji}
+
 \subsection{AngularJS}
 
 \subsubsection{Opis}
@@ -985,23 +987,32 @@ AngularJS jest ciągle bardzo popularnym środowiskiem programistycznym, któreg
 
 Inicjalizaca aplikacji napisanej za pomocą AngularJS polega na wywołaniu metody \emph{module} dostarczanej za pomocą globalnego obiektu \emph{angular}. Następnie za pomocą metody \emph{component} rejestrowane są poszczególne komponenty.
 
-\begin{lstlisting}[caption=Inicjalizacja aplikacji oraz rejestracja komponentów]
+\begin{lstlisting}[caption=Inicjalizacja głównego modułu oraz rejestracja komponentów]
 import angular from 'angular';
 
-import PerformanceTest from './angularjs/performance-test.component';
-import VirtualMachinesTable from './angularjs/virtual-machines-table.component';
+import PerformanceTest from
+    './angularjs/performance-test.component';
+import VirtualMachinesTable from
+    './angularjs/virtual-machines-table.component';
 
 const application = angular.module('application', []);
 
-application.component('performanceTest', PerformanceTest);
-application.component('virtualMachinesTable', VirtualMachinesTable);
+application.component(
+    'performanceTest',
+    PerformanceTest
+);
+application.component(
+    'virtualMachinesTable',
+    VirtualMachinesTable
+);
 \end{lstlisting}
 
 Definicja głównego komponentu składa się z trzech plików odpowiednio: komponentu, kontrolera oraz widoku. Plik zawierający definicję komponentu łączy kontroler z konkretnym widokiem.
 
 \begin{lstlisting}[caption=Główny komponent]
 // performance-test.component.js
-import PerformanceTestController from './performance-test.controller';
+import PerformanceTestController from
+    './performance-test.controller';
 
 export default {
     template: require('./performance-test.template.pug')(),
@@ -1009,10 +1020,12 @@ export default {
 }
 
 // performance-test.controller.js
-import VirtualMachinesProvider from '../../helpers/virtual-machines-provider'
+import VirtualMachinesProvider from
+    '../../helpers/virtual-machines-provider'
 
 export default function ($scope, $timeout) {
-    const virtualMachinesProvider = new VirtualMachinesProvider();
+    const virtualMachinesProvider =
+        new VirtualMachinesProvider();
     
     $scope.virtualMachines = virtualMachinesProvider.get();
     
@@ -1027,7 +1040,7 @@ export default function ($scope, $timeout) {
 
 // performance-test.template.js
 virtual-machines-table(
-  virtual-machines="virtualMachines"
+    virtual-machines="virtualMachines"
 )
 \end{lstlisting}
 
@@ -1035,7 +1048,8 @@ Komponent tabeli posiada zdefiniowaną tablicę wirtualnych maszyn za pomocą w�
 
 \begin{lstlisting}[caption=Komponent tabeli]
 // virtual-machines-table.component.js
-import VirtualMachinesTableController from './virtual-machines-table.controller';
+import VirtualMachinesTableController from
+    './virtual-machines-table.controller';
 
 export default {
     template: require('./virtual-machines-table.template.pug')(),
