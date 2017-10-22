@@ -1103,9 +1103,11 @@ tbody
 Inicjalizacja głównego modułu jest prosta i polega na wywołaniu funkcji \emph{platformBrowserDynamic} dostarczanej w paczce \emph{@angular/platform-browser-dynamic}. Jako parametr należy przekazać zdefiniowany główny moduł aplikacji.
 
 \begin{lstlisting}[caption=Inicjalizacja głównego modułu]
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { platformBrowserDynamic } from
+    '@angular/platform-browser-dynamic';
 
-import { PerformanceTestModule } from './angular/performance-test.module';
+import { PerformanceTestModule } from
+    './angular/performance-test.module';
 
 platformBrowserDynamic().bootstrapModule(PerformanceTestModule);
 \end{lstlisting}
@@ -1116,8 +1118,10 @@ Definicja głównego komponentu polega na zdefiniowaniu klasy udekorowanej dekor
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { PerformanceTestComponent } from './performance-test.component';
-import { VirtualMachinesTableComponent } from './virtual-machines-table.component';
+import { PerformanceTestComponent } from
+    './performance-test.component';
+import { VirtualMachinesTableComponent } from
+    './virtual-machines-table.component';
 
 @NgModule({
     bootstrap: [ PerformanceTestComponent ],
@@ -1137,8 +1141,10 @@ Główny komponent to klasa udekorowana dekoratorem \emph{@Component}. Dekorator
 // performance-test.component.ts
 import { Component, OnInit } from '@angular/core';
 
-import VirtualMachinesProvider from '../../helpers/virtual-machines-provider';
-import { VirtualMachine } from './virtual-machine.interface';
+import VirtualMachinesProvider from
+    '../../helpers/virtual-machines-provider';
+import { VirtualMachine } from
+    './virtual-machine.interface';
 
 declare const require: NodeRequireFunction;
 
@@ -1167,7 +1173,7 @@ export class PerformanceTestComponent implements OnInit {
 
 // performance-test.template.pug
 virtual-machines-table(
-  [virtualMachines]="virtualMachines"
+    [virtualMachines]="virtualMachines"
 )
 \end{lstlisting}
 
