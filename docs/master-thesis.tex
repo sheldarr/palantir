@@ -1238,7 +1238,8 @@ Inicjalizacja głównego komponentu jest bardzo prosta i sproawdza się do wywo�
 \begin{lstlisting}[caption=Inicjalizacja głównego komponentu]
 import m from 'mithril';
 
-import PerformanceTestComponent from './mithril/performance-test.component';
+import PerformanceTestComponent from
+    './mithril/performance-test.component';
 
 const root = document.getElementById('root');
 
@@ -1250,8 +1251,10 @@ Definicja głównego komponentu mieści się w jednym pliku i sprowadza się do 
 \begin{lstlisting}[caption=Główny komponent]
 import m from 'mithril';
 
-import VirtualMachinesProvider from '../../helpers/virtual-machines-provider';
-import VirtualMachinesTableComponent from './virtual-machines-table.component';
+import VirtualMachinesProvider from
+    '../../helpers/virtual-machines-provider';
+import VirtualMachinesTableComponent from
+    './virtual-machines-table.component';
 
 const virtualMachinesProvider = new VirtualMachinesProvider();
 
@@ -1267,7 +1270,10 @@ const PerformanceComponent = {
         this.refresh();
     },
     view: function () {
-        return m(VirtualMachinesTableComponent, {virtualMachines: this.virtualMachines});
+        return m
+            VirtualMachinesTableComponent,
+            {virtualMachines: this.virtualMachines}
+        );
     }
 }
 
