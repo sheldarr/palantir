@@ -63,11 +63,6 @@
 
 Przeglądarka internetowa (ang. \emph{web browser}) to program komputerowy służący do pobierania i wyświetlania stron internetowych udostępnianych przez serwery WWW. Komunikacja z serwerem odbywa się najczęściej za pomocą protokołu HTTP (ang. \emph{Hypertext Transfer Protocol})lub odpowiednika w wersji szyfrowanej HTTPS (ang. \emph{Hypertext Transfer Protocol Secure}). Nierzadko przeglądarki internetowe są w stanie obsługiwać inne protokoły takie jak np. FTP (ang. \emph{File Transfer Protocol}) wykorzystywany do serwerów plików, czy też protokoły POP3 (ang. \emph{Post Office Protocol}), IMAP (ang. \emph{Internet Message Access Protocol}) i SMTP (ang. \emph{Simple Mail Transfer Protocol}) wykorzystywane do poczty elektronicznej. 
 
-\begin{figure}[ht]
-  \includegraphics[width=\textwidth]{web-browers-usage-share.png}
-	\caption{Udział najwaznieższych przeglądarek na rynku w latach 2009-2016}
-\end{figure}
-
 \subsection{Technologie}
 
 Współczesne strony internetowe to nierzadko bardzo skompliowane aplikacje, dlatego też przeglądarki internetowe muszą bardzo dobrze obsługiwać wiele technologii, które działając razem pozwalają dostarczyć bardzo wysokiej jakości doświadczenia użytkownika (ang. \emph{User experience}). 
@@ -484,7 +479,7 @@ Fragment \emph{queue.waitForMessage()} oczekuje synchronicznie, aż pojawi się 
 
 Aktualny wybór bibliotek programistycznych do tworzenia aplikacji internetowych w języku \emph{JavaScript} jest bardzo szeroki. Zdecydowana większość bibliotek tworzona i utrzymywana jest zgodnie z zasadami wolnego oprogramowania \emph{Open Source}. Im większa popularność biblioteki tym większa szansa na wkład użytkowników w postaci nowych funkcjonalności, poprawiania błędów (w tym tych związanych z bezpieczeństwem), czy też optymalizacji. Podjęcie decyzji jakiej biblioteki użyć może być bardzo trudne zwłaszcza, że dosłownie z miesiąca na miesiąć może powstać nowa biblioteka zaskarbiająca sobie dużą sympatię programistów i tym samem pociągnać za sobą przepływ społeczeństwa zaangażowanego w tworzenie oprogramowania. 
 
-\subsection{Charakterystyczne cechy}
+\subsection{Charakterystyczne funkcjonalności}
 
 Współczesne biblioteki często wzajemnie zapożyczają i implementują pomysły, czy też rozwiązania, które sprawdziły się w środowisku produkcyjnym. Rozwiązania te pozwalają na szybkie tworzenie oprogramowania przez doświadczonego programistę, ale narzucona struktura oprogramowania jest na tyle prosta, że może nad nim pracować osoba mniej doświadczona programistycznie. Niektóre ze stosowanych roziązań niosą pozytywne efekty również dla użytkownika końcowego w postaci szybko renderującej się i reagującej na akcje użytkownika strony internetowej.
 
@@ -521,12 +516,15 @@ Użycie tej techniki pozwala tworzyć łatwo testowalne obiekty. Sprawdza się s
 \begin{center}
   \begin{tabularx}{\textwidth}{|X|X|X|X|X|X|}\hline
     & \emph{AngularJS} & \emph{Angular} & \emph{React} & \emph{Vue.js} & \emph{mithril.js}\\ \hline
-    Rok wydania & 2009 & 2016 & 2013 & 2014 & 2014 \\ \hline
+    Rok wydania pierwszej wersji & 2009 & 2016 & 2013 & 2014 & 2014 \\ \hline
+    Wersja badana & 1.6.5 & 4.3.3 & 15.6.1 & 2.4.2 & 1.1.3 \\ \hline
     Liczba kontrybutorów w serwisie GitHub & 1603 & 510 & 1099 & 144 & 202 \\ \hline
     Liczba gwiazdek w serwise GitHub & 57235 & 28483 & 77623 & 69281 & 8007 \\ \hline
     Kompo- nenty & Tak & Tak & Tak & Tak & Tak \\ \hline
     Wirtualny DOM & Nie & Nie & Tak & Tak & Tak \\ \hline
     Wstrzy- kiwanie zależności & Tak & Tak & Nie & Nie & Nie \\ \hline
+    Wielkość po minifikacji & 171,7kB & 567,7kB & 20,7kB & 57,1kB & 22,5kB \\ \hline
+    Wielkość po minifikacji i kompresji gzip & 59,6kB & 141,7kB & 6,9kB & 20,2kB & 8,1kB \\ \hline
   \end{tabularx}
 \end{center}
 
@@ -764,7 +762,7 @@ tbody
 
 \subsubsection{Opis}
 
-\emph{mihtril.js} jest stosunkowo mało popularną biblioteką w porównaniu do swoich konkurentów. To co go wyróżnia to mała wielkość oraz według swoich twórców lepsza wydajność niż główni konkurenci. Biblioteka ta nie posiada wbudowanego mechanizmu wstrzykiwania zależności. W odróżnieniu od obu bibliotek z rodziny \emph{Angular} posiada mechanizm wirtualnego obiektowego modelu dokumentu. Podobnie jak wszyscy swoi konkurencji pozwala definiować komponenty.
+\emph{mihtril.js} jest stosunkowo mało popularną biblioteką w porównaniu do swoich konkurentów. Jej niewątpliwą zaletą jest mała wielkość. Po minifikacji oraz kompresji gzip zajmuje około 8,1kB. Biblioteka ta nie posiada wbudowanego mechanizmu wstrzykiwania zależności. W odróżnieniu od obu bibliotek z rodziny \emph{Angular} posiada mechanizm wirtualnego obiektowego modelu dokumentu. Podobnie jak wszyscy swoi konkurencji pozwala definiować komponenty.
 
 \subsubsection{Implementacja}
 
