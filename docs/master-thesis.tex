@@ -773,6 +773,154 @@ Wszystkie opcje umożliwiają opcjonalne zapisanie zebranych danych do pliku na 
 	\caption{Wykres czasowy alokacji pamięci}
 \end{figure}
 
+\section{Aplikacje wspomające badania} \label{utils}
+
+W celu poprawnego przeprowadzenia badań zostały stworzone trzy małe aplikacje, które w znaczący sposób pomogły zebrać potrzebne dane. Głównym celem była automatyzacja wszystkich manualnych czynności. Osiągając cel główny udało się również zminimalizować efekt zniekształcenia pomiarów poprzez ręczną ingerencję człowieka.
+
+\subsection{javascript-frameworks-benchmark}
+
+\subsubsection{Opis}
+
+\emph{javascript-frameworks-benchmark} to aplikacja, która przechowuje kod źródłowy wszystkich implementacji opartych na opisanych w pracy magisterskiej bibliotekach programistycznych. Po jej uruchomieniu pod lokalnym adresem \emph{http://localhost} i domyślnym porcie \emph{8080} dostępna jest strona za pomocą, której w łatwy sposób można przejść do wybranej przez siebie implementacji.
+
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{javascript-frameworks-benchmark.png}
+	\caption{Widok strony wyboru implementacji}
+\end{figure}
+
+\subsubsection{Specyfikacja wewnętrzna}
+
+Aplikacja została napisana w języku \emph{JavaScript} w standardzie ECMAScript 2016 \cite{es2016}. Środowiskiem uruchomieniowym jest \emph{Node.js} \cite{node.js} w wersji \emph{8.1.4}. Do poprawnego zainstalowania zewnętrznych zależności potrzebny jest menedżer pakietów \emph{Yarn} \cite{yarn}. Serwer obsługujący żadania \emph{HTTP} oparty został na bibliotece \emph{Express} \cite{express}.
+
+\subsubsection{Specyfikacja zewnętrzna}
+
+\textbf{Sposób uruchomienia programu} \newline
+
+Żeby uruchomić program należy przejść za pomocą konsoli do głównego folderu programu a następnie wywołać następujące komendy:
+
+\begin{lstlisting}
+yarn install
+yarn start
+\end{lstlisting}
+
+\textbf{Format danych wejściowych} \newline
+
+Aplikacja nie przyjmuje danych wejściowych. \newline
+
+\textbf{Format danych wyjściowych} \newline
+
+Aplikacja nie podaje żadnych danych na wyjściu. Odpowiada na żądania \emph{HTTP} pod domyślnym adresem \emph{http://localhost:8080}
+
+\subsection{chrome-performance-logs-recorder}
+
+\subsubsection{Opis}
+
+\emph{chrome-performance-logs-recorder} to aplikacja, która w automatyczny sposób uruchamia przeglądarkę internetową, przechodzi pod określony adres a następnie zbiera informacje związane z wydajnością aby pod koniec zapisać je do pliku w formacie \emph{JSON}. 
+
+\subsubsection{Specyfikacja wewnętrzna}
+
+Aplikacja została napisana w języku \emph{JavaScript} w standardzie ECMAScript 2016 \cite{es2016}. Środowiskiem uruchomieniowym jest \emph{Node.js} \cite{node.js} w wersji \emph{8.1.4}. Do poprawnego zainstalowania zewnętrznych zależności potrzebny jest menedżer pakietów \emph{Yarn} \cite{yarn} oraz przeglądarka internetowa \emph{Chrome}.
+
+Automatyczne działanie opiera się na uruchomieniu serwera \emph{Selenium} \cite{selenium}, który to uruchamia a następnie podłącza się do przeglądarki internetowej sam udostępniajać interfejs programistyczny do większości akcji, które może robić standardowy użytkownik przeglądarki. Aby korzystać w pełni z funkcjonalności oferowanych przez \emph{Selenium} użyto wiązań (ang. \emph{bindings}) dostarczanych przez paczkę \emph{wd} \cite{wd}, które pozwalają na dostęp do interfejsu \emph{Selenium} z poziomu języka \emph{JavaScript} w środowisku \emph{Node.js}.
+
+\subsubsection{Specyfikacja zewnętrzna}
+
+\textbf{Sposób uruchomienia programu} \newline
+
+Żeby uruchomić program należy przejść za pomocą konsoli do głównego folderu programu a następnie wywołać następujące komendy:
+
+\begin{lstlisting}
+yarn install
+yarn ./build/main.js [parametry]
+\end{lstlisting}
+
+\textbf{Format danych wejściowych} \newline
+
+Aplikacja przyjmuje następujące parametry:
+
+\begin{itemize}
+  \item \emph{-{}-debug} (domyślna wartość \emph{false}) - flaga włączająca dodatkowe infomacje na wyjściu
+  \item \emph{-{}-duration} (domyślna wartość \emph{5000}) - czas zbierania informacji podanych w milisekundach
+  \item \emph{-{}-filter-event-names} (domyślna wartość \emph{' '}) - odseprowane przecinkami nazwy zdarzeń, o których informacje mają być zbierane przez aplikację
+  \item \emph{-{}-local-storage} (domyślna wartość \emph{key:value}) - pozwala zapisać w przeglądarce jedną parę klucz-wartość za pomocą mechanizmu przeglądarki \emph{LocalStorage}
+  \item \emph{-{}-output-filename} (domyślna wartość \emph{'trace.json}) - nazwa pliku do którego mają zostać zapisane informacje
+  \item \emph{-{}-silent} (domyślna wartość \emph{false}) - flaga wyłączająca wszelkie informacje na wyjściu
+  \item \emph{-{}-trace-categories} (domyślna wartość \emph{'devtools.timeline,} \newline \emph{disabled-by-default-devtools.timeline.frame,rail'}) - odseparowane przecinkami kategorie zdarzeń, o których informacje mają być zbierane przez aplikację
+  \item \emph{-{}-trim} (domyślna wartość \emph{0}) - podana w procentach ilość zdarzeń, która ma zostać obcięta z końcowego raportu (na początku oraz na końcu)
+  \item \emph{-{}-url} (domyślna wartość \emph{' '}) - adres strony internetowej, na podstawie której mają być zbierane przez aplikację informacje
+  \item \emph{-{}-verbose} (domyślna wartość \emph{false}) - flaga włączająca dodatkowe informacje na wyjściu
+\end{itemize}
+
+\textbf{Format danych wyjściowych} \newline
+
+Dane wyjściowe zapisane do pliku o rozszerzeniu \emph{JSON} są zgodne z opisanym wcześniej formatem \emph
+{Trace Event Format} \ref{trace-event-format-section}.
+
+\subsection{trace-event-format-analyzer}
+
+\subsubsection{Opis}
+
+\emph{trace-event-format-analyzer} to aplikacja, która potrafi dokonać analizy setki megabajtów danych zarejestrowanych w formacie \emph{Trace Event Format}.
+
+\subsubsection{Specyfikacja wewnętrzna}
+
+Aplikacja została napisana w języku \emph{JavaScript} w standardzie ECMAScript 2016 \cite{es2016}. Środowiskiem uruchomieniowym jest \emph{Node.js} \cite{node.js} w wersji \emph{8.1.4}. Do poprawnego zainstalowania zewnętrznych zależności potrzebny jest menedżer pakietów \emph{Yarn} \cite{yarn}.
+
+Aplikacja wczytuje plik z rozszerzeniem \emph{JSON} a następnie iteruje po kolekcji zdarzeń dokonując odpowiednich obliczeń.
+
+\subsubsection{Specyfikacja zewnętrzna}
+
+\textbf{Sposób uruchomienia programu} \newline
+
+Żeby uruchomić program należy przejść za pomocą konsoli do głównego folderu programu a następnie wywołać następujące komendy:
+
+\begin{lstlisting}
+yarn install
+yarn ./build/main.js [parametry]
+\end{lstlisting}
+
+\textbf{Format danych wejściowych} \newline
+
+Aplikacja przyjmuje następujące parametry:
+
+\begin{itemize}
+  \item \emph{-{}-complete-events} (domyślna wartość \emph{' '}) - odseparowane przecinkami nazwy zdarzeń kompletnych, które mają zostać poddane analizie
+  \item \emph{-{}-decimal-places} (domyślna wartość \emph{4}) - liczba miejsc po przecinku, do których mają zostać zaokrąglone wyniki
+  \item \emph{-{}-duration-events} (domyślna wartość \emph{' '}) - odseparowane przecinkami nazwy zdarzeń trwających, które mają zostać poddane analizie
+  \item \emph{-{}-immediate-events} (domyślna wartość \emph{' '}) - odseparowane przecinkami nazwy zdarzeń natychmiastowych, które mają zostać poddane analizie
+  \item \emph{-{}-output} (domyślna wartość \emph{'false}) - flaga włączająca zapis analizy do pliku w formacie \emph{JSON}
+  \item \emph{-{}-paths} (domyślna wartość \emph{' '}) - odseparowane przecinkami ścieżki plików, które mają zostać wczytane oraz poddane analizie
+  \item \emph{-{}-silent} (domyślna wartość \emph{false}) - flaga wyłączająca wszelkie informacje na wyjściu
+  \item \emph{-{}-verbose} (domyślna wartość \emph{false}) - flaga włączająca dodatkowe informacje na wyjściu
+\end{itemize}
+
+\textbf{Format danych wyjściowych} \newline
+
+Dane wyjściowe, które opcjonalnie mogą zostać zapisane do pliku o rozszerzeniu \emph{JSON} są obiektem o następujących właściwościach:
+
+\begin{enumerate}
+  \item \emph{completeEvents} - obiekt zdarzeń kompletnych, którego właściwości odpowiadają nazwom analizowanych zdarzeń tego typu
+  \item \emph{durationEvents} - obiekt zdarzeń trwających, którego właściwości odpowiadają nazwom analizowanych zdarzeń tego typu
+  \item \emph{immediateEvents} - obiekt zdarzeń natychmiastowych, którego właściwości odpowiadają nazwom analizowanych zdarzeń tego typu
+\end{enumerate}
+
+Każdy obiekt odpowiadający konkretnemu zdarzeniu posiada następujące właściwości:
+
+\begin{enumerate}
+  \item \emph{deltas} - przechowuje wyliczone statystyki na podstawie czasu pomiędzy kolejnymi zdarzeniami (jednostka to milisekundy)
+  \item \emph{eps} - przechowuje wyliczone statystyki na podstawie ilości zdarzeń na sekundę (jednostka to zdarzenia na sekundę)
+\end{enumerate}
+
+Obiekt przechowujący wyliczone statystyki posiada następujace właściwości:
+
+\begin{enumerate}
+  \item \emph{min} - minimalna zarejestrowana wartość
+  \item \emph{mean} - średnia zarejestrowanych wartości
+  \item \emph{percentiles} - obliczone percentyle kolejno 50\%, 66\%, 75\%, 80\%, 85\%, 90\%, 95\%, 98\%, 99\%, 100\%
+  \item \emph{standardDeviation} - odchylenie standardowe
+  \item \emph{variance} - wariancja
+\end{enumerate}
+
 \section{Biblioteki programistyczne do tworzenia aplikacji internetowych}
 
 Aktualny wybór bibliotek programistycznych do tworzenia aplikacji internetowych w języku \emph{JavaScript} jest bardzo szeroki. Zdecydowana większość bibliotek tworzona i utrzymywana jest zgodnie z zasadami wolnego oprogramowania \emph{Open Source}. Im większa popularność biblioteki tym większa szansa na wkład użytkowników w postaci nowych funkcjonalności, poprawiania błędów (w tym tych związanych z bezpieczeństwem), czy też optymalizacji. Podjęcie decyzji jakiej biblioteki użyć może być bardzo trudne zwłaszcza, że dosłownie z miesiąca na miesiąć może powstać nowa biblioteka zaskarbiająca sobie dużą sympatię programistów i tym samem pociągnać za sobą przepływ społeczeństwa zaangażowanego w tworzenie oprogramowania. 
@@ -1372,154 +1520,6 @@ Komponent tabeli również wykorzystuje specyficzny plik, który jest charaktery
 \subsection{Badania wydajności czasowej} 
 
 \subsection{Badania wydajności pamięciowej}
-
-\section{Aplikacje wspomające badania} \label{utils}
-
-W ramach pisania pracy magisterskiej zostały napisane trzy mniejsze aplikacje, które w znaczący sposób pomogły zebrać potrzebne dane. Głównym celem była automatyzacja wszystkich manualnych czynności. Osiągając cel główny udało się również zminimalizować efekt zniekształcenia pomiarów poprzez ręczną ingerencję człowieka.
-
-\subsection{javascript-frameworks-benchmark}
-
-\subsubsection{Opis}
-
-\emph{javascript-frameworks-benchmark} to aplikacja, która przechowuje kod źródłowy wszystkich implementacji opartych na opisanych w pracy magisterskiej bibliotekach programistycznych. Po jej uruchomieniu pod lokalnym adresem \emph{http://localhost} i domyślnym porcie \emph{8080} dostępna jest strona za pomocą, której w łatwy sposób można przejść do wybranej przez siebie implementacji.
-
-\begin{figure}[ht]
-  \includegraphics[width=\textwidth]{javascript-frameworks-benchmark.png}
-	\caption{Widok strony wyboru implementacji}
-\end{figure}
-
-\subsubsection{Specyfikacja wewnętrzna}
-
-Aplikacja została napisana w języku \emph{JavaScript} w standardzie ECMAScript 2016 \cite{es2016}. Środowiskiem uruchomieniowym jest \emph{Node.js} \cite{node.js} w wersji \emph{8.1.4}. Do poprawnego zainstalowania zewnętrznych zależności potrzebny jest menedżer pakietów \emph{Yarn} \cite{yarn}. Serwer obsługujący żadania \emph{HTTP} oparty został na bibliotece \emph{Express} \cite{express}.
-
-\subsubsection{Specyfikacja zewnętrzna}
-
-\textbf{Sposób uruchomienia programu} \newline
-
-Żeby uruchomić program należy przejść za pomocą konsoli do głównego folderu programu a następnie wywołać następujące komendy:
-
-\begin{lstlisting}
-yarn install
-yarn start
-\end{lstlisting}
-
-\textbf{Format danych wejściowych} \newline
-
-Aplikacja nie przyjmuje danych wejściowych. \newline
-
-\textbf{Format danych wyjściowych} \newline
-
-Aplikacja nie podaje żadnych danych na wyjściu. Odpowiada na żądania \emph{HTTP} pod domyślnym adresem \emph{http://localhost:8080}
-
-\subsection{chrome-performance-logs-recorder}
-
-\subsubsection{Opis}
-
-\emph{chrome-performance-logs-recorder} to aplikacja, która w automatyczny sposób uruchamia przeglądarkę internetową, przechodzi pod określony adres a następnie zbiera informacje związane z wydajnością aby pod koniec zapisać je do pliku w formacie \emph{JSON}. 
-
-\subsubsection{Specyfikacja wewnętrzna}
-
-Aplikacja została napisana w języku \emph{JavaScript} w standardzie ECMAScript 2016 \cite{es2016}. Środowiskiem uruchomieniowym jest \emph{Node.js} \cite{node.js} w wersji \emph{8.1.4}. Do poprawnego zainstalowania zewnętrznych zależności potrzebny jest menedżer pakietów \emph{Yarn} \cite{yarn} oraz przeglądarka internetowa \emph{Chrome}.
-
-Automatyczne działanie opiera się na uruchomieniu serwera \emph{Selenium} \cite{selenium}, który to uruchamia a następnie podłącza się do przeglądarki internetowej sam udostępniajać interfejs programistyczny do większości akcji, które może robić standardowy użytkownik przeglądarki. Aby korzystać w pełni z funkcjonalności oferowanych przez \emph{Selenium} użyto wiązań (ang. \emph{bindings}) dostarczanych przez paczkę \emph{wd} \cite{wd}, które pozwalają na dostęp do interfejsu \emph{Selenium} z poziomu języka \emph{JavaScript} w środowisku \emph{Node.js}.
-
-\subsubsection{Specyfikacja zewnętrzna}
-
-\textbf{Sposób uruchomienia programu} \newline
-
-Żeby uruchomić program należy przejść za pomocą konsoli do głównego folderu programu a następnie wywołać następujące komendy:
-
-\begin{lstlisting}
-yarn install
-yarn ./build/main.js [parametry]
-\end{lstlisting}
-
-\textbf{Format danych wejściowych} \newline
-
-Aplikacja przyjmuje następujące parametry:
-
-\begin{itemize}
-  \item \emph{-{}-debug} (domyślna wartość \emph{false}) - flaga włączająca dodatkowe infomacje na wyjściu
-  \item \emph{-{}-duration} (domyślna wartość \emph{5000}) - czas zbierania informacji podanych w milisekundach
-  \item \emph{-{}-filter-event-names} (domyślna wartość \emph{' '}) - odseprowane przecinkami nazwy zdarzeń, o których informacje mają być zbierane przez aplikację
-  \item \emph{-{}-local-storage} (domyślna wartość \emph{key:value}) - pozwala zapisać w przeglądarce jedną parę klucz-wartość za pomocą mechanizmu przeglądarki \emph{LocalStorage}
-  \item \emph{-{}-output-filename} (domyślna wartość \emph{'trace.json}) - nazwa pliku do którego mają zostać zapisane informacje
-  \item \emph{-{}-silent} (domyślna wartość \emph{false}) - flaga wyłączająca wszelkie informacje na wyjściu
-  \item \emph{-{}-trace-categories} (domyślna wartość \emph{'devtools.timeline,} \newline \emph{disabled-by-default-devtools.timeline.frame,rail'}) - odseparowane przecinkami kategorie zdarzeń, o których informacje mają być zbierane przez aplikację
-  \item \emph{-{}-trim} (domyślna wartość \emph{0}) - podana w procentach ilość zdarzeń, która ma zostać obcięta z końcowego raportu (na początku oraz na końcu)
-  \item \emph{-{}-url} (domyślna wartość \emph{' '}) - adres strony internetowej, na podstawie której mają być zbierane przez aplikację informacje
-  \item \emph{-{}-verbose} (domyślna wartość \emph{false}) - flaga włączająca dodatkowe informacje na wyjściu
-\end{itemize}
-
-\textbf{Format danych wyjściowych} \newline
-
-Dane wyjściowe zapisane do pliku o rozszerzeniu \emph{JSON} są zgodne z opisanym wcześniej formatem \emph
-{Trace Event Format} \ref{trace-event-format-section}.
-
-\subsection{trace-event-format-analyzer}
-
-\subsubsection{Opis}
-
-\emph{trace-event-format-analyzer} to aplikacja, która potrafi dokonać analizy setki megabajtów danych zarejestrowanych w formacie \emph{Trace Event Format}.
-
-\subsubsection{Specyfikacja wewnętrzna}
-
-Aplikacja została napisana w języku \emph{JavaScript} w standardzie ECMAScript 2016 \cite{es2016}. Środowiskiem uruchomieniowym jest \emph{Node.js} \cite{node.js} w wersji \emph{8.1.4}. Do poprawnego zainstalowania zewnętrznych zależności potrzebny jest menedżer pakietów \emph{Yarn} \cite{yarn}.
-
-Aplikacja wczytuje plik z rozszerzeniem \emph{JSON} a następnie iteruje po kolekcji zdarzeń dokonując odpowiednich obliczeń.
-
-\subsubsection{Specyfikacja zewnętrzna}
-
-\textbf{Sposób uruchomienia programu} \newline
-
-Żeby uruchomić program należy przejść za pomocą konsoli do głównego folderu programu a następnie wywołać następujące komendy:
-
-\begin{lstlisting}
-yarn install
-yarn ./build/main.js [parametry]
-\end{lstlisting}
-
-\textbf{Format danych wejściowych} \newline
-
-Aplikacja przyjmuje następujące parametry:
-
-\begin{itemize}
-  \item \emph{-{}-complete-events} (domyślna wartość \emph{' '}) - odseparowane przecinkami nazwy zdarzeń kompletnych, które mają zostać poddane analizie
-  \item \emph{-{}-decimal-places} (domyślna wartość \emph{4}) - liczba miejsc po przecinku, do których mają zostać zaokrąglone wyniki
-  \item \emph{-{}-duration-events} (domyślna wartość \emph{' '}) - odseparowane przecinkami nazwy zdarzeń trwających, które mają zostać poddane analizie
-  \item \emph{-{}-immediate-events} (domyślna wartość \emph{' '}) - odseparowane przecinkami nazwy zdarzeń natychmiastowych, które mają zostać poddane analizie
-  \item \emph{-{}-output} (domyślna wartość \emph{'false}) - flaga włączająca zapis analizy do pliku w formacie \emph{JSON}
-  \item \emph{-{}-paths} (domyślna wartość \emph{' '}) - odseparowane przecinkami ścieżki plików, które mają zostać wczytane oraz poddane analizie
-  \item \emph{-{}-silent} (domyślna wartość \emph{false}) - flaga wyłączająca wszelkie informacje na wyjściu
-  \item \emph{-{}-verbose} (domyślna wartość \emph{false}) - flaga włączająca dodatkowe informacje na wyjściu
-\end{itemize}
-
-\textbf{Format danych wyjściowych} \newline
-
-Dane wyjściowe, które opcjonalnie mogą zostać zapisane do pliku o rozszerzeniu \emph{JSON} są obiektem o następujących właściwościach:
-
-\begin{enumerate}
-  \item \emph{completeEvents} - obiekt zdarzeń kompletnych, którego właściwości odpowiadają nazwom analizowanych zdarzeń tego typu
-  \item \emph{durationEvents} - obiekt zdarzeń trwających, którego właściwości odpowiadają nazwom analizowanych zdarzeń tego typu
-  \item \emph{immediateEvents} - obiekt zdarzeń natychmiastowych, którego właściwości odpowiadają nazwom analizowanych zdarzeń tego typu
-\end{enumerate}
-
-Każdy obiekt odpowiadający konkretnemu zdarzeniu posiada następujące właściwości:
-
-\begin{enumerate}
-  \item \emph{deltas} - przechowuje wyliczone statystyki na podstawie czasu pomiędzy kolejnymi zdarzeniami (jednostka to milisekundy)
-  \item \emph{eps} - przechowuje wyliczone statystyki na podstawie ilości zdarzeń na sekundę (jednostka to zdarzenia na sekundę)
-\end{enumerate}
-
-Obiekt przechowujący wyliczone statystyki posiada następujace właściwości:
-
-\begin{enumerate}
-  \item \emph{min} - minimalna zarejestrowana wartość
-  \item \emph{mean} - średnia zarejestrowanych wartości
-  \item \emph{percentiles} - obliczone percentyle kolejno 50\%, 66\%, 75\%, 80\%, 85\%, 90\%, 95\%, 98\%, 99\%, 100\%
-  \item \emph{standardDeviation} - odchylenie standardowe
-  \item \emph{variance} - wariancja
-\end{enumerate}
 
 \section{Porównanie wyników i wnioski}
 
