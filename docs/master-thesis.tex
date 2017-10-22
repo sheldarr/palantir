@@ -538,6 +538,8 @@ AngularJS jest ciągle bardzo popularnym środowiskiem programistycznym, któreg
 
 \subsubsection{Implementacja}
 
+Inicjalizaca aplikacji napisanej za pomocą AngularJS polega na wywołaniu metody \emph{module} dostarczanej za pomocą globalnego obiektu \emph{angular}. Następnie za pomocą metody \emph{component} rejestrowane są poszczególne komponenty.
+
 \begin{lstlisting}[caption=Inicjalizacja aplikacji oraz rejestracja komponentów]
 import angular from 'angular';
 
@@ -549,6 +551,8 @@ const application = angular.module('application', []);
 application.component('performanceTest', PerformanceTest);
 application.component('virtualMachinesTable', VirtualMachinesTable);
 \end{lstlisting}
+
+Definicja głównego komponentu składa się z trzech plików odpowiednio: komponentu, kontrolera oraz widoku. Plik zawierający definicję komponentu łączy kontroler z konkretnym widokiem.
 
 \begin{lstlisting}[caption=Główny komponent]
 // performance-test.component.js
@@ -581,6 +585,8 @@ virtual-machines-table(
   virtual-machines="virtualMachines"
 )
 \end{lstlisting}
+
+Komponent tabeli posiada zdefiniowaną tablicę wirtualnych maszyn za pomocą właściwości \emph{bindings}. Tablica ta zostanie przekazana automatycznie do kontrolera komponentu. Poszególne wiersze tabeli zostaną wygenerowane za pomocą atrybutu \emph{ng-repeat}, który to powieli określony fragment dla każdego elementu tabeli.
 
 \begin{lstlisting}[caption=Komponent tabeli]
 // virtual-machines-table.component.js
@@ -629,9 +635,11 @@ tbody
 
 \subsection{Angular}
 
-AngularJS jest ciągle bardzo popularnym środowiskiem programistycznym, którego pierwsza wersja wydana została w 2009 roku. Aktualnie nie jest już dalej rozwijany na rzecz swojego następcy, czyli bardzo podobnie nazywającej się bilioteki o nazwie Angular. To co go odróżnia od innych bibliotek to wbudowany domyślnie mechanizm wstrzykiwania zależności kosztem mechanizmu wirtualnego obiektowego modelu dokumentu. Tak jak wszyscy konkurencji umożliwia tworzenie aplikacji za pomocą komponentów.
+\emph{Angular} to zyskujący coraz bardziej na popularności następca biblioteki \emph{AngularJS}. Bardzo podobna nazwa wprowadza wiele zamieszania, a sprawę nie ułatwia fakt, że początkowo biblioteka znana była pod nazwą \emph{Angular 2}. Dla osób dopiero co zapoznających się z tą biblioteką może to być bardzo mylące, zwłasza, że najnowsza jego wersja to \emph{4} i nie jest w pełni kompatybilna wstecznie z wersją \emph{2}. \emph{Angular} posiada wiele cech wspólnych z \emph{AngularJS} lecz różnić jest również jest na tyle dużo, że należy rozpatrywać tą bibliotekę jako zupełnie nowy byt. \emph{Angular} posiada mechanizm wstrzykiwania zależności oraz komponentów, nie posiada jednak mechanizmu wirtualnego obiektowego modelu dokumentu.
 
 \subsubsection{Implementacja}
+
+Inicjalizacja głównego modułu jest prosta i polega na wywołaniu funkcji \emph{platformBrowserDynamic} dostarczanej w paczce \emph{@angular/platform-browser-dynamic}. Jako parametr należy przekazać zdefiniowany główny moduł aplikacji.
 
 \begin{lstlisting}[caption=Inicjalizacja głównego modułu]
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
@@ -640,6 +648,8 @@ import { PerformanceTestModule } from './angular/performance-test.module';
 
 platformBrowserDynamic().bootstrapModule(PerformanceTestModule);
 \end{lstlisting}
+
+Definicja głównego komponentu polega na zdefiniowaniu klasy udekorowanej dekoratorem \emph{@NgModule}. Wewnątrz tego modułu deklarujemy wszystkie komponenty dostępne wewnątrz aplikacji.
 
 \begin{lstlisting}[caption=Główny moduł]
 import { NgModule } from '@angular/core';
@@ -659,6 +669,8 @@ import { VirtualMachinesTableComponent } from './virtual-machines-table.componen
 })
 export class PerformanceTestModule {}
 \end{lstlisting}
+
+Główny komponent to klasa udekorowana dekoratorem \emph{@Component}. Dekorator ten odpowiedzialny jest za powiązanie klasy będącej odpowiednikiem kontrolera znanego z \emph{AngularJS} z odpowiednim widokiem.
 
 \begin{lstlisting}[caption=Główny komponent]
 // performance-test.component.ts
@@ -697,6 +709,8 @@ virtual-machines-table(
   [virtualMachines]="virtualMachines"
 )
 \end{lstlisting}
+
+Komponent tabeli wykorzystuje ponownie dekorator \emph{@Component}. Komponent tabeli posiada zdefiniowaną tablicę wirtualnych maszyn za pomocą dekoratora \emph{@Input} zdefiniowanego wewnątrz ciała klasy. Poszególne wiersze tabeli zostaną wygenerowane za pomocą atrybutu \emph{*ngFor}, który to powieli określony fragment dla każdego elementu tabeli.
 
 \begin{lstlisting}[caption=Komponent tabeli]
 // virtual-machines-table.component.ts
