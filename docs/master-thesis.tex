@@ -615,6 +615,164 @@ Poniżej przedstawiono opis każdego z możliwych typów zdarzeń:
   }
 \end{lstlisting}
 
+\section{Chrome DevTools}
+
+Aplikacją, która znacząco wspomaga zbieranie informacji na temat wydajności czasowej jak i pamięciowej jest \emph{Chrome DevTools} \cite{chrome-devtools}. Jest to aplikacja wbudowana w przeglądarkę \emph{Chrome}. Zawiera szereg narzędzi do badania aplikacji internetowych oraz wizualizacji zebranych danych.
+
+\subsection{Uruchamianie Chrome DevTools}
+
+Aby uruchomić \emph{Chrome DevTools} wystarczy pobrać i uruchomić przeglądarkę \emph{Chrome} \cite{chrome}, a następnie wykonać dowolny z poniższych sposóbow:
+
+\begin{itemize}
+  \item Wybrać opcję \emph{Więcej narzędzi -> Narzędzia developerskie} z głównego menu przeglądarki \emph{Chrome}
+  \item Kliknąc prawym przyciskiem myszki w dowolny element strony internetowej, a następnie wybrać opcję \emph{Inspekcja elementu}
+  \item Wcisnąć kombinację przycisków \emph{Control+Shift+I}
+\end{itemize}
+
+\subsection{Narzędzia Chrome DevTools}
+
+\emph{Chrome DevTools} jest potężnym zbiorem narzędzi, na który składają się:
+
+\begin{enumerate}
+  \item Tryb urządzenia - wspomaga tworzenie stron internetowych z myślą o urządzeniach mobilnych takich jak np. smartfony. Korzystając z tego modułu możemy sprawdzić jak aplikacja zachowuje się przy różnych wielkościach ekranu, czy jest responsywna i czy pozwala bez przeszkód korzystać z funkcjonalności oferowanych przez stronę internetową. W trybie urządzenia możemy również emulować wbudowane w urządzenia czujniki jak np. GPS, czy też akcelerometr
+  \item Zakładka \emph{Elementy} - służy do modyfikacji w czasie rzeczywistym struktury strony internetowej oraz styli CSS pojedynczego wybranego elementu lub wielu zgrupowanych za pomocą selektora. Zakładka ta pozwala również dokonać inspekcji wszystkich animacji znajdujących się na stronie
+  \item Zakładka \emph{Konsola} - pozwala na wykonanie dowolnego poprawnego kodu \emph{JavaScript}. Z poziomu konsoli posiadamy dostęp do interfejsów \emph{DOM} i \emph{CSSOM} aktualnie załadowanej strony internetowej co pozwala na praktycznie dowolną interakcję
+  \item Zakładka \emph{Źródła} - dzięki tej zakładce możemy debugować dowolny skrypt napisany w języku \emph{JavaScript}, który został załączony do strony internetowej. Dzięki wbudowanemu interfejsowi graficznemu w łatwy sposób możemy umieszczać punkty wstrzymania (ang. \emph{brakepoint}) i wykonywać kod linijka po linijce podglądając w czasie rzeczywistym wartość wszystkich zmiennych oraz ramek odłożonych na stos
+  \item Zakładka \emph{Sieć} - służy do podglądania zarówno wykresów czasowych ładowania poszczególnych elementów strony internetowej jak i nagłówków wszystkich żądań oraz odpowiedzi \emph{HTTP}
+  \item Zakładka \emph{Wydajność} - zakładka ta została bardziej szczegółowo opisana w dalszej części pracy ponieważ stanowi kluczowe narzędzie do celów badań wydajnościowych
+  \item Zakładka \emph{Pamięc} - służy do tworzenia migawki (ang. \emph{snapshot}) aktualnego stanu sterty. Pozwala również zbierać informacje o tym jak była alokowana pamięc komputerowa w trakcie działania aplikacji i reprezentować zebrane dane na wykresie czasowym
+  \item Zakładka \emph{Aplikacja} - dostarcza wglądu do takich elementów aplikacji internetowej jak manifest, ciasteczka, pamięc podręczna, lokalny magazyn (ang. \emph{local storage}), magazyn sesji (ang. \emph{session storage}). Dodatkowo pozwala modyfikować tworzyć oraz modyfikować istniejące wpisy w czasie rzeczywistym
+  \item Zakładka \emph{Bezpieczeństwo} - służy do rozwiązywania problemów związanymi z certyfikatami internetowymi, za pomocą wbudowanej przeglądarki możemy zapoznać się ze szczegółowymi informacajami na temat każdego certyfikatu związanego ze stroną internetową
+\end{enumerate}
+
+\subsection{Manualne zbieranie danych}
+Aby manualnie zebrać dane na temat wydajności można wykorzystać zakładkę \emph{Wydajność (ang. Performance)}, która dostępna jest bezpośrednio po uruchomieniu \emph{Chrome DevTools}. Po wybraniu tej zakładki możemy zebrać dane na dwa sposoby:
+
+\begin{enumerate}
+  \item Klikając przycisk reprezentujący czarną kropkę, spowoduje to nagrywanie (ang. \emph{recording}) wszelkich informacji od momentu wciśnięcia przycisku, strona internetowa jest już załadowana i uruchomiona w oknie przeglądarki. Nagrywanie należy zatrzymać klikając odpowiedni przycisk widoczny na ekranie
+  \item Klikając przycisk reprezentujący kręcącą się strzałkę, spowoduje to przeładowanie strony internetowej i nagrywanie danych od samego początku procesu wczytywania strony internetowej aż do jej pełnego załadowania
+\end{enumerate}
+
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{chrome-devtools-performance-recording-runtime.png}
+	\caption{Nagrywanie danych w trakcie działania aplikacji}
+\end{figure} 
+
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{chrome-devtools-performance-recording-reload.png}
+	\caption{Nagrywanie danych od momentu wczytywania strony}
+\end{figure}
+
+\subsection{Wizualizacja zebranych danych}
+
+Po zatrzymaniu nagrywania narzędzie automatycznie dokona reprezentacji zebranych danych za pomocą kilku widoków.
+
+\subsubsection{Widok zbiorczy}
+
+Najwyżej położonym widokiem służacym przedstwieniu zebranych danych jest widok zbiorczy, który składa się z kilku wykresów. Częścią wspólną wszystkich wykresów jest pozioma oś reprezentująca upływający czas. Poniżej opisane zostały wszystkie wykresy wchodzące w skład widoku zbiorczego:
+
+\begin{enumerate}
+  \item FPS - wykres ten przedstawia ilość klatek na sekundę, które przeglądarka była w stanie przygotować do wyświetlenia
+  \item CPU - wykres ten przedstawia zmieniające sięw  czasie zużycie procesora
+  \item NET - wykres przedstawia czas, w którym przeglądarka pobierała wszystkie zasoby potrzebne do wyświetlenia strony oraz czekała na rozwiązanie wszelkich żądań \emph{HTTP} poprzez sieć
+  \item HEAP - wykres przestawiający ilość pamięci zajmowanej przez stertę. Bardzo dobrze widać na nim cykliczne działanie zbieracza nieużytków (ang. \emph{Garbage collector}), który jest jedną z metod automatycznego zarządzania dynamicznie przydzieloną pamięcią. Nagłe usuwanie ze sterty niepotrzebnych obiektów powoduje spadek na wykresie i powstawanie charakterystycznych "ząbków".
+\end{enumerate}
+
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{chrome-devtools-performance-summary-view.png}
+	\caption{Przykładowy wygenerowany wykres zbiorczy}
+\end{figure}
+
+\subsubsection{Widok sieci}
+
+Widok sieci jest widokiem przedstawiającym w bardziej precyzyjny sposób odcinki czasu, w których ładowane były poszczególne zasoby.
+
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{chrome-devtools-performance-network-view.png}
+	\caption{Przykładowy wygenerowany widok sieci}
+\end{figure}
+
+\subsubsection{Widok klatek}
+
+Widok klatek jest bardzo małym wykresem przedstawiającym jak zmieniała się liczba klatek na sekundę.
+
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{chrome-devtools-performance-main-view.png}
+	\caption{Przykładowy wygenerowany widok klatek}
+\end{figure}
+
+\subsubsection{Widok głównego wątku}
+
+Widok głównego wątku pokazuje dokładnie jakie zadania były wykonywane przez główny wątek. Zadania te pogrupowane są w kategorie za pomocą kolorów:
+
+\begin{enumerate}
+  \item niebieski - obejmuje wszystkie zadania związane z ładowaniem zasobów (w tym parsowanie)
+  \item żółty - obejmuje wszystkie zadania związane ze skrytami napisanymi w języku \emph{JavaScript}
+  \item fioletowy - obejmuje wszystkie zadania związane z renderowaniem
+  \item zielony - obejmuje wszystkie zadanie związane z malowaniem
+  \item szary - obejmuje wszystkie pozostałe zadanie nie wpasowujące się w pozostałe kategorie
+  \item biały - przedstawia okres bezczynności, w którym nie były wykonywane żadne zadania
+\end{enumerate}
+
+Przyjęta kolorystyka jest spójna dla wszystkich widoków zakładki \emph{Wydajność}. Po wskazaniu kursorem myszki dowolnego elementu wyświetlone zostają bardziej szczegółowe informacje takie jak np. dokładny czas trwania zadania i jego źródło.
+
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{chrome-devtools-performance-frames-view.png}
+	\caption{Przykładowy wygenerowany widok głównego wątku}
+\end{figure}
+
+\subsection{Manualne zbieranie danych pod kątek wydajności pamięciowej}
+
+Aby manualnie zebrać dane na temat wydajności pamięciowej przed włączeniem nagrywania należy włączyć opcję zbierania informacji na temat zużycia pamięci. Dzięki temu uzyskamy dostęp do jednego dodatkowego widoku wykorzystania pamięci.
+
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{chrome-devtools-performance-memory-checkbox.png}
+	\caption{Włączanie zbierania informacji na temat wykorzystania pamięci}
+\end{figure}
+
+\subsubsection{Widok wykorzystania pamięci}
+
+Widok przedstawia jak w czasie zmienia się ilość pamięci zajętej przez stertę. Dodatkowo przedstawia on najmniejszą i najwięszką liczbę elementów w następujących kategoriach:
+
+\begin{enumerate}
+  \item Dokumenty (ang. \emph{Documents})
+  \item Węzły (ang. \emph{Nodes})
+  \item Funkcje nasłuchujące (ang. \emph{Listeners})
+  \item Pamięc GPU (ang. \emph{GPU Memory})
+\end{enumerate}
+
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{chrome-devtools-performance-memory-view.png}
+	\caption{Przykładowy wygenerowany widok wykorzystania pamięci}
+\end{figure}
+
+\subsubsection{Zakładka \emph{Pamięć}}
+
+\emph{Chrome DevTools} udostępnia specjalnie dedykowaną zakładkę o nazwie \emph{Pamięc}, która oferuje dodatkowe funkcjonalności przydatne przy np. debugowaniu aplikacji w celu znalezienia fragmentów kodu odpowiedzialnych za wyciek pamięci. Dostępne opcje to:
+
+\begin{enumerate}
+  \item migawka zawartości sterty - pozwala utrwalić aktualny stan sterty, a następnie dokonać przeglądu jej zawartości za pomocą wbudowanej przeglądarki
+  \item nagranie profilu alokacji pamięci - pozwala zbierać dane na temat alokacji pamięci z poziomu kodu napisanego w języku \emph{JavaScript}. Dane te można przejrzeć za pomocą trzech widoków. Wykresu, drzewa "od-dołu" (ang. \emph{Bottom Up}) oraz drzewa "od-góry" (ang. \emph{Top Down})
+  \item alokacja pamięci przedstawiona na wykresie czasowym - pozwala zbierać dane na temat alokacji pamięci lecz przedstawia je na osi czasowej
+\end{enumerate}
+
+Wszystkie opcje umożliwiają opcjonalne zapisanie zebranych danych do pliku na dysku.
+
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{chrome-devtools-performance-heap-snapshot.png}
+	\caption{Przeglądarka zawartości utworzonej migawki sterty}
+\end{figure}
+
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{chrome-devtools-performance-allocation-profile.png}
+	\caption{Wykres wygenerowany na podstawie profilu alokacji pamięci}
+\end{figure}
+
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{chrome-devtools-performance-allocation-timeline.png}
+	\caption{Wykres czasowy alokacji pamięci}
+\end{figure}
+
 \section{Biblioteki programistyczne do tworzenia aplikacji internetowych}
 
 Aktualny wybór bibliotek programistycznych do tworzenia aplikacji internetowych w języku \emph{JavaScript} jest bardzo szeroki. Zdecydowana większość bibliotek tworzona i utrzymywana jest zgodnie z zasadami wolnego oprogramowania \emph{Open Source}. Im większa popularność biblioteki tym większa szansa na wkład użytkowników w postaci nowych funkcjonalności, poprawiania błędów (w tym tych związanych z bezpieczeństwem), czy też optymalizacji. Podjęcie decyzji jakiej biblioteki użyć może być bardzo trudne zwłaszcza, że dosłownie z miesiąca na miesiąć może powstać nowa biblioteka zaskarbiająca sobie dużą sympatię programistów i tym samem pociągnać za sobą przepływ społeczeństwa zaangażowanego w tworzenie oprogramowania. 
@@ -1211,171 +1369,13 @@ Komponent tabeli również wykorzystuje specyficzny plik, który jest charaktery
 
 \section{Badania wydajnościowe}
 
-\subsection{Chrome DevTools}
-
-Aplikacją, która posłuży do badań wydajności zarówno czasowej jak i pamięciowej jest \emph{Chrome DevTools} \cite{chrome-devtools}. Jest to aplikacja wbudowana w przeglądarkę \emph{Chrome}, która zawiera szereg narzędzi do tworzenia, debugowania oraz profilowania aplikacji internetowych. 
-
-\subsubsection{Uruchamianie Chrome DevTools}
-
-Aby uruchomić \emph{Chrome DevTools} wystarczy pobrać i uruchomić przeglądarkę \emph{Chrome} \cite{chrome}, a następnie wykonać dowolny z poniższych sposóbow:
-
-\begin{itemize}
-  \item Wybrać opcję \emph{Więcej narzędzi -> Narzędzia developerskie} z głównego menu przeglądarki \emph{Chrome}
-  \item Kliknąc prawym przyciskiem myszki w dowolny element strony internetowej, a następnie wybrać opcję \emph{Inspekcja elementu}
-  \item Wcisnąć kombinację przycisków \emph{Control+Shift+I}
-\end{itemize}
-
-\subsubsection{Narzędzia Chrome DevTools}
-
-\emph{Chrome DevTools} jest potężnym zbiorem narzędzi, na który składają się:
-
-\begin{enumerate}
-  \item Tryb urządzenia - wspomaga tworzenie stron internetowych z myślą o urządzeniach mobilnych takich jak np. smartfony. Korzystając z tego modułu możemy sprawdzić jak aplikacja zachowuje się przy różnych wielkościach ekranu, czy jest responsywna i czy pozwala bez przeszkód korzystać z funkcjonalności oferowanych przez stronę internetową. W trybie urządzenia możemy również emulować wbudowane w urządzenia czujniki jak np. GPS, czy też akcelerometr
-  \item Zakładka \emph{Elementy} - służy do modyfikacji w czasie rzeczywistym struktury strony internetowej oraz styli CSS pojedynczego wybranego elementu lub wielu zgrupowanych za pomocą selektora. Zakładka ta pozwala również dokonać inspekcji wszystkich animacji znajdujących się na stronie
-  \item Zakładka \emph{Konsola} - pozwala na wykonanie dowolnego poprawnego kodu \emph{JavaScript}. Z poziomu konsoli posiadamy dostęp do interfejsów \emph{DOM} i \emph{CSSOM} aktualnie załadowanej strony internetowej co pozwala na praktycznie dowolną interakcję
-  \item Zakładka \emph{Źródła} - dzięki tej zakładce możemy debugować dowolny skrypt napisany w języku \emph{JavaScript}, który został załączony do strony internetowej. Dzięki wbudowanemu interfejsowi graficznemu w łatwy sposób możemy umieszczać punkty wstrzymania (ang. \emph{brakepoint}) i wykonywać kod linijka po linijce podglądając w czasie rzeczywistym wartość wszystkich zmiennych oraz ramek odłożonych na stos
-  \item Zakładka \emph{Sieć} - służy do podglądania zarówno wykresów czasowych ładowania poszczególnych elementów strony internetowej jak i nagłówków wszystkich żądań oraz odpowiedzi \emph{HTTP}
-  \item Zakładka \emph{Wydajność} - zakładka ta została bardziej szczegółowo opisana w dalszej części pracy ponieważ stanowi kluczowe narzędzie do celów badań wydajnościowych
-  \item Zakładka \emph{Pamięc} - służy do tworzenia migawki (ang. \emph{snapshot}) aktualnego stanu sterty. Pozwala również zbierać informacje o tym jak była alokowana pamięc komputerowa w trakcie działania aplikacji i reprezentować zebrane dane na wykresie czasowym
-  \item Zakładka \emph{Aplikacja} - dostarcza wglądu do takich elementów aplikacji internetowej jak manifest, ciasteczka, pamięc podręczna, lokalny magazyn (ang. \emph{local storage}), magazyn sesji (ang. \emph{session storage}). Dodatkowo pozwala modyfikować tworzyć oraz modyfikować istniejące wpisy w czasie rzeczywistym
-  \item Zakładka \emph{Bezpieczeństwo} - służy do rozwiązywania problemów związanymi z certyfikatami internetowymi, za pomocą wbudowanej przeglądarki możemy zapoznać się ze szczegółowymi informacajami na temat każdego certyfikatu związanego ze stroną internetową
-\end{enumerate}
-
 \subsection{Badania wydajności czasowej} 
-
-\subsubsection{Zbieranie danych} \label{gathering-time-performance-data}
-Do zbierania danych na temat wydajności czasowej wykorzystanie zostanie zakładka \emph{Wydajność (ang. Performance)} dostępna bezpośrednio po uruchomieniu \emph{Chrome DevTools}.
-
-Zbierać dane na temat wydajności możemy na dwa sposoby:
-
-\begin{enumerate}
-  \item Klikając przycisk reprezentujący czarną kropkę, spowoduje to nagrywanie (ang. \emph{recording}) wszelkich informacji od momentu wciśnięcia przycisku, strona internetowa jest już załadowana i uruchomiona w oknie przeglądarki. Nagrywanie należy zatrzymać klikając odpowiedni przycisk widoczny na ekranie
-  \item Klikając przycisk reprezentujący kręcącą się strzałkę, spowoduje to przeładowanie strony internetowej i nagrywanie danych od samego początku procesu wczytywania strony internetowej aż do jej pełnego załadowania
-\end{enumerate}
-
-\begin{figure}[ht]
-  \includegraphics[width=\textwidth]{chrome-devtools-performance-recording-runtime.png}
-	\caption{Nagrywanie danych w trakcie działania aplikacji}
-\end{figure} 
-
-\begin{figure}[ht]
-  \includegraphics[width=\textwidth]{chrome-devtools-performance-recording-reload.png}
-	\caption{Nagrywanie danych od momentu wczytywania strony}
-\end{figure}
-
-Po zatrzymaniu nagrywania narzędzie automatycznie dokona reprezentacji zebranych danych za pomocą kilku widoków.
-
-\subsubsection{Widok zbiorczy}
-
-Najwyżej położonym widokiem służacym przedstwieniu zebranych danych jest widok zbiorczy, który składa się z kilku wykresów. Częścią wspólną wszystkich wykresów jest pozioma oś reprezentująca upływający czas. Poniżej opisane zostały wszystkie wykresy wchodzące w skład widoku zbiorczego:
-
-\begin{enumerate}
-  \item FPS - wykres ten przedstawia ilość klatek na sekundę, które przeglądarka była w stanie przygotować do wyświetlenia
-  \item CPU - wykres ten przedstawia zmieniające sięw  czasie zużycie procesora
-  \item NET - wykres przedstawia czas, w którym przeglądarka pobierała wszystkie zasoby potrzebne do wyświetlenia strony oraz czekała na rozwiązanie wszelkich żądań \emph{HTTP} poprzez sieć
-  \item HEAP - wykres przestawiający ilość pamięci zajmowanej przez stertę. Bardzo dobrze widać na nim cykliczne działanie zbieracza nieużytków (ang. \emph{Garbage collector}), który jest jedną z metod automatycznego zarządzania dynamicznie przydzieloną pamięcią. Nagłe usuwanie ze sterty niepotrzebnych obiektów powoduje spadek na wykresie i powstawanie charakterystycznych "ząbków".
-\end{enumerate}
-
-\begin{figure}[ht]
-  \includegraphics[width=\textwidth]{chrome-devtools-performance-summary-view.png}
-	\caption{Przykładowy wygenerowany wykres zbiorczy}
-\end{figure}
-
-\subsubsection{Widok sieci}
-
-Widok sieci jest widokiem przedstawiającym w bardziej precyzyjny sposób odcinki czasu, w których ładowane były poszczególne zasoby.
-
-\begin{figure}[ht]
-  \includegraphics[width=\textwidth]{chrome-devtools-performance-network-view.png}
-	\caption{Przykładowy wygenerowany widok sieci}
-\end{figure}
-
-\subsubsection{Widok klatek}
-
-Widok klatek jest bardzo małym wykresem przedstawiającym jak zmieniała się liczba klatek na sekundę.
-
-\begin{figure}[ht]
-  \includegraphics[width=\textwidth]{chrome-devtools-performance-frames-view.png}
-	\caption{Przykładowy wygenerowany widok głównego wątku}
-\end{figure}
-
-\subsubsection{Widok głównego wątku}
-
-Widok głównego wątku pokazuje dokładnie jakie zadania były wykonywane przez główny wątek. Zadania te pogrupowane są w kategorie za pomocą kolorów:
-
-\begin{enumerate}
-  \item niebieski - obejmuje wszystkie zadania związane z ładowaniem zasobów (w tym parsowanie)
-  \item żółty - obejmuje wszystkie zadania związane ze skrytami napisanymi w języku \emph{JavaScript}
-  \item fioletowy - obejmuje wszystkie zadania związane z renderowaniem
-  \item zielony - obejmuje wszystkie zadanie związane z malowaniem
-  \item szary - obejmuje wszystkie pozostałe zadanie nie wpasowujące się w pozostałe kategorie
-  \item biały - przedstawia okres bezczynności, w którym nie były wykonywane żadne zadania
-\end{enumerate}
-
-Przyjęta kolorystyka jest spójna dla wszystkich widoków zakładki \emph{Wydajność}. Po wskazaniu kursorem myszki dowolnego elementu wyświetlone zostają bardziej szczegółowe informacje takie jak np. dokładny czas trwania zadania i jego źródło.
-
-\begin{figure}[ht]
-  \includegraphics[width=\textwidth]{chrome-devtools-performance-main-view.png}
-	\caption{Przykładowy wygenerowany widok klatek}
-\end{figure}
 
 \subsection{Badania wydajności pamięciowej}
 
-\subsubsection{Zbieranie danych}
+\section{Aplikacje wspomające badania} \label{utils}
 
-Do zbierania danych na temat wydajności pamięciowej wykorzystany został dokładnie ten sam mechanizm jaki został wykorzystany przy zbieraniu danych na temat wydajości czasowej opisany w rozdziale \cite{gathering-time-performance-data}. Za pomocą tego funkcjonalności możemy włączyć opcję zbierania informacji na temat zużycia pamięci, spowoduje to dodatkowo wyświetlenie widoku wykorzystania pamięci.
-
-\begin{figure}[ht]
-  \includegraphics[width=\textwidth]{chrome-devtools-performance-memory-checkbox.png}
-	\caption{Włączanie zbierania informacji na temat wykorzystania pamięci}
-\end{figure}
-
-\subsubsection{Widok wykorzystania pamięci}
-
-Widok przedstawia jak w czasie zmienia się ilość pamięci zajętej przez stertę. Dodatkowo przedstawia on najmniejszą i najwięszką liczbę elementów w następujących kategoriach:
-
-\begin{enumerate}
-  \item Dokumenty (ang. \emph{Documents})
-  \item Węzły (ang. \emph{Nodes})
-  \item Funkcje nasłuchujące (ang. \emph{Listeners})
-  \item Pamięc GPU (ang. \emph{GPU Memory})
-\end{enumerate}
-
-\begin{figure}[ht]
-  \includegraphics[width=\textwidth]{chrome-devtools-performance-memory-view.png}
-	\caption{Przykładowy wygenerowany widok wykorzystania pamięci}
-\end{figure}
-
-\subsubsection{Zakładka \emph{Pamięć}}
-
-\emph{Chrome DevTools} udostępnia specjalnie dedykowaną zakładkę o nazwie \emph{Pamięc}, która oferuje dodatkowe funkcjonalności przydatne przy np. debugowaniu aplikacji w celu znalezienia fragmentów kodu odpowiedzialnych za wyciek pamięci. Dostępne opcje to:
-
-\begin{enumerate}
-  \item migawka zawartości sterty - pozwala utrwalić aktualny stan sterty, a następnie dokonać przeglądu jej zawartości za pomocą wbudowanej przeglądarki
-  \item nagranie profilu alokacji pamięci - pozwala zbierać dane na temat alokacji pamięci z poziomu kodu napisanego w języku \emph{JavaScript}. Dane te można przejrzeć za pomocą trzech widoków. Wykresu, drzewa "od-dołu" (ang. \emph{Bottom Up}) oraz drzewa "od-góry" (ang. \emph{Top Down})
-  \item alokacja pamięci przedstawiona na wykresie czasowym - pozwala zbierać dane na temat alokacji pamięci lecz przedstawia je na osi czasowej
-\end{enumerate}
-
-Wszystkie opcje umożliwiają opcjonalne zapisanie zebranych danych do pliku na dysku.
-
-\begin{figure}[ht]
-  \includegraphics[width=\textwidth]{chrome-devtools-performance-heap-snapshot.png}
-	\caption{Przeglądarka zawartości utworzonej migawki sterty}
-\end{figure}
-
-\begin{figure}[ht]
-  \includegraphics[width=\textwidth]{chrome-devtools-performance-allocation-profile.png}
-	\caption{Wykres wygenerowany na podstawie profilu alokacji pamięci}
-\end{figure}
-
-\begin{figure}[ht]
-  \includegraphics[width=\textwidth]{chrome-devtools-performance-allocation-timeline.png}
-	\caption{Wykres czasowy alokacji pamięci}
-\end{figure}
-
-\section{Aplikacje wspomające pomiary} \label{utils}
-
-W ramach pisania pracy magisterskiej zostały napisane trzy mniejsze aplikacje, które w znaczący sposób pomogły zebrać potrzebne dane. Głównym celem była automatyzacja wszystkich czasochłonnych i żmudnych czynności. Osiągając cel główny udało się również zminimalizować efekt zniekształcenia pomiarów poprzez manualną ingerencję człowieka.
+W ramach pisania pracy magisterskiej zostały napisane trzy mniejsze aplikacje, które w znaczący sposób pomogły zebrać potrzebne dane. Głównym celem była automatyzacja wszystkich manualnych czynności. Osiągając cel główny udało się również zminimalizować efekt zniekształcenia pomiarów poprzez ręczną ingerencję człowieka.
 
 \subsection{javascript-frameworks-benchmark}
 
