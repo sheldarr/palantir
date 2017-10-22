@@ -475,6 +475,146 @@ Fragment \emph{queue.waitForMessage()} oczekuje synchronicznie, aż pojawi się 
   \item \emph{Brak blokowania} - w przeciwieńswie do wielu innych języków JavaScript nigdy się nie blokuje. Obsługa wejścia / wyjścia zazwyczaj odbywa się za pośrednictwem zdarzeń i wywołan zwrotnych. Tym samym gdy aplikacja nadal może przetwarzać inne rzeczy jak np. wprowadzanie danych przez użytkownika
 \end{enumerate}
 
+\section{Trace Event Format} \label{trace-event-format-section}
+
+Dane zebrane z przeglądarki internetowej podczas testów wydajnościowych zapisane zostały w formacie o nazwie \emph{Trace Event Format} \cite{trace-event-format}. Struktura \emph{Trace Event Format} zgodna jest ze standardem przechowywania danych JSON (ang. \emph{JavaScript Object Notation}) \cite{json} i może występować w dwóch wariantach.
+
+\subsection{Wariant tablicowy}
+
+Plik przechowujący dane w wariancie tablicowym (ang. \emph{JSON Array Format}) składa się z jednej tablicy przechowującej obikety zarejestrowanych zdarzeń. Zdarzenia te nie muszą być poukładane chronologicznie według znaczników czasu. 
+
+\begin{lstlisting}[caption=Przykładowy wariant tablicowy]
+[{
+  "name": "Asub",
+  "cat": "PERF",
+  "ph": "B",
+  "pid": 22630,
+  "tid": 22630,
+  "ts": 829
+}, {
+  "name": "Asub",
+  "cat": "PERF",
+  "ph": "E",
+  "pid": 22630,
+  "tid": 22630,
+  "ts": 833
+}]
+\end{lstlisting}
+
+\subsection{Wariant obiektowy}
+
+Plik przechowujący dane w wraciencie obiektowym (ang. \emph{JSON Object Format}) składa się z jednego, głównego obiektu. Obiekt ten może posiadać następujące pola:
+
+\begin{enumerate}
+  \item traceEvents - jedyne wymagane pole, które jest tablicą zarejestrowanych zdarzeń. Tablica ta odpowiada dokładnie wariantowi tablicowemu formatu \emph{Trace Event Format}
+  \item displayTimeUnit - jednostka, w której podane zostały znaczniki czasu. Możliwe jednostki to \emph{ms} oraz \emph{ns}. Domyślna jednostka to \emph{ms}
+  \item systemTraceEvents - ciąg znaków kompatybilnych z \emph{Linux ftrace} \cite{ftrace} lub \emph{Windows ETW} \cite{etw}
+  \item powerTraceAsString - ciąg znaków kompatybilnych z \emph{BattOr} \cite {battor}
+  \item stackFrames - struktura przechowująca informacje o ramkach odłożonych na stosie
+  \item samples - tablica przechowująca dane rozszerzające traceEvents o informacje zarejestrowane na poziomie systemu operacyjnego 
+\end{enumerate}
+
+Dopuszcza się możliwość definicji pól o nazwach innych niż wymienione wcześniej dla dodatkowego opisania danych (metadane)
+
+\begin{lstlisting}[caption=Przykładowy wariant obiektowy]
+{
+  "traceEvents": [[{
+    "name": "Asub",
+    "cat": "PERF",
+    "ph": "B",
+    "pid": 22630,
+    "tid": 22630,
+    "ts": 829
+  }, {
+    "name": "Asub",
+    "cat": "PERF",
+    "ph": "E",
+    "pid": 22630,
+    "tid": 22630,
+    "ts": 833
+  }],
+  "displayTimeUnit": "ns",
+}
+\end{lstlisting}
+
+\subsection{Zdarzenia}
+
+Podstawowymi obiektami, które można poddać analizie są zdarzenia. Istnieje kilka rodzajów zdarzeń. Poniżej przedstawiono pola występujące w każdym zdarzeniu niezależnie od jego typu:
+
+\begin{enumerate}
+  \item name - nazwa zdarzenia
+  \item cat - kolekcja oddzielonych przecinkiem kategorii powiązanych ze zdarzeniem
+  \item ph - pojedynczy znak określający typ zdarzenia. Table prawidłowych wartości została przedstawiona poniżej.
+  \item ts - znacznik czasowy zdarzenia podany z dokładnością do milisekundy
+  \item tts - opcjonalny znacznik czasowy wątku zdarzenia podany z dokładnością do milisekundy
+  \item pid - identyfikator procesu, który spowodował zaistnienie zdarzenia
+  \item tid - identyfikator wątku, który spowodował zaistnienie zdarzenia
+  \item args - argumenty, które zostały dostarczone dla zdarzenia
+\end{enumerate}
+
+\begin{center}
+  \begin{tabularx}{\textwidth}{|X|X|}\hline
+    \emph{Typ zdarzenia} & \emph{Fazy zdarzenia}\\ \hline
+    Zdarzenia trwające (\emph{ang. duration events}) & \textbf{B} początek (\emph{ang. begin}),\newline
+    \textbf{E} koniec (\emph{ang. end})\\ \hline
+    Zdarzenia kompletne (\emph{ang. complete events}) & \textbf{X}\\ \hline
+    Zdarzenia natychmiastowe (\emph{ang. instant events}) & \textbf{i, I}(przestarzałe)\\ \hline
+    Zdarzenia zliczające (\emph{ang. counter events}) & \textbf{c}\\ \hline
+    Zdarzenia asynchroniczne (\emph{ang. async events}) & \textbf{b} (początek),\newline
+    \textbf{n} (natychmiastowe zdarzenie asynchroniczne),\newline
+    \textbf{e} (koniec)\newline\newline
+    \textit{Przestarzałe}\newline
+    \textbf{S} (początek),\newline
+    \textbf{T} (krok kolejny),\newline
+    \textbf{p} (krok poprzedni),\newline
+    \textbf{F} (koniec)\\ \hline
+    Zdarzenia przepływające (\emph{ang. flow events}) & \textbf{s} (początek),\newline
+    \textbf{t} (krok),\newline
+    \textbf{f} (koniec)\\ \hline
+    Zdarzenia obiektowe (\emph{ang. object events}) & \textbf{N} (stworzenie)\newline
+    \textbf{O} (migawka)\newline
+    \textbf{D} (zniszczenie)\\ \hline
+    Zdarzenia z metadanymi (\emph{ang. metadata events}) & \textbf{M}\\ \hline
+    Zdarzenia zrzutu pamięci (\emph{ang. memory dump events}) & \textbf{V} (zrzut pamięci globalnej)\newline
+    \textbf{v} (zrzut pamięci procesu)\\ \hline
+    Zdarzenia synchronizacji zegara (\emph{ang. clock sync events}) & \textbf{c}\\ \hline
+    Zdarzenia kontekstowe (\emph{ang. context events}) & \textbf{(, )}\\ \hline
+  \caption {Fazy zdarzeń i odpowiadające im typy}
+  \end{tabularx}
+\end{center}
+
+Poniżej przedstawiono opis każdego z możliwych typów zdarzeń:
+
+\begin{enumerate}
+  \item zdarzenia trwające - umożliwiają określenie czasu trwania pracy nad danym wątkiem. Zdarzenia czasowe są określane przez typy \textbf{B} i \textbf{E}. Zdarzenie \textbf{B} musi nastąpić przed odpowiednim wydarzeniem \textbf{E}. Można zagnieżdżać zdarzenia \textbf{B} i \textbf{E}. Znaczniki czasowe dla zdarzeń muszą być ułożone w kolejności rosnącej dla danego wątku. Znaczniki czasu w różnych wątkach nie muszą być ułożone w kolejności rosnącej.
+  \item zdarzenia kompletne - każde kompletne zdarzenie logicznie łączy parę zdarzeń (\textbf{B} i \textbf{E}). Kompletne zdarzenia są oznaczone przez typ fazy \textbf{X}.
+  \item zdarzenia natychmiastowe - odpowiadają czemuś co miało miejsce lecz bez przypisanego czasu trwania.
+  \item zdarzenia zliczające - mogą śledzić wartość lub wiele wartości zmieniających się w czasie.
+  \item zdarzenia asynchroniczne - służą do rejestrowania asynchronicznych operacji. Mogą pochodzić zarówno z różnych procesów jak i wątków.
+  \item zdarzenia przepływające - z założenia są bardzo podobne do zdarzeń asynchronicznych, ale dodatkowo pozwalają na łączenie ich ze sobą w wątkach i/lub procesach.
+  \item zdarzenia obiektowe - służą za konstrukcję do śledzenia złożonych struktur danych.
+  \item zdarzenia z metadanymi - są używane do powiązania dodatkowych informacji z wydarzeniami.
+  \item zdarzenia zrzutu pamięci - odpowiadają zrzutom pamięci procesu lub grupie procesów.
+  \item zdarzenia synchronizacji zegara - służą do synchonizacji czasu w przypadku gdy zdarzenia rejestrowane są przez różne byty.
+  \item zdarzenia kontekstowe - są używane do oznaczania sekwencji zdarzeń.
+\end{enumerate}
+
+\begin{lstlisting}[caption=Przykładowe zdarzenie]
+{
+  "name": "myName",
+  "cat": "category,list",
+  "ph": "B",
+  "ts": 12345,
+  "pid": 123,
+  "tid": 456,
+  "args": {
+    "someArg": 1,
+    "anotherArg": {
+      "value": "my value"
+    }
+  }
+\end{lstlisting}
+
 \section{Biblioteki programistyczne do tworzenia aplikacji internetowych}
 
 Aktualny wybór bibliotek programistycznych do tworzenia aplikacji internetowych w języku \emph{JavaScript} jest bardzo szeroki. Zdecydowana większość bibliotek tworzona i utrzymywana jest zgodnie z zasadami wolnego oprogramowania \emph{Open Source}. Im większa popularność biblioteki tym większa szansa na wkład użytkowników w postaci nowych funkcjonalności, poprawiania błędów (w tym tych związanych z bezpieczeństwem), czy też optymalizacji. Podjęcie decyzji jakiej biblioteki użyć może być bardzo trudne zwłaszcza, że dosłownie z miesiąca na miesiąć może powstać nowa biblioteka zaskarbiająca sobie dużą sympatię programistów i tym samem pociągnać za sobą przepływ społeczeństwa zaangażowanego w tworzenie oprogramowania. 
@@ -1233,144 +1373,6 @@ Wszystkie opcje umożliwiają opcjonalne zapisanie zebranych danych do pliku na 
 	\caption{Wykres czasowy alokacji pamięci}
 \end{figure}
 
-\subsubsection{Trace Event Format} \label{trace-event-format-section}
-
-Dane zebrane przez Chrome DevTools w trakcie testów wydajnościowych można zapisać na dysku w formacie o nazwie \emph{Trace Event Format} \cite{trace-event-format}. Dzięki temu możemy dokonać właśnej analizy lub wizualizacji danych. Struktura \emph{Trace Event Format} zgodna jest ze standardem przechowywania danych JSON (ang. \emph{JavaScript Object Notation}) \cite{json} i może występować w dwóch wariantach.
-
-\subsubsection{Wariant tablicowy}
-Wariant tablicowy (ang. \emph{JSON Array Format}) - cały plik składa się z tablicy przechowującej obiektu zarejestrowanych zdarzeń. Zdarzenia te nie muszą być poukładane chronologicznie według znaczników czasu. 
-
-\begin{lstlisting}[caption=Przykładowy wariant tablicowy]
-[{
-  "name": "Asub",
-  "cat": "PERF",
-  "ph": "B",
-  "pid": 22630,
-  "tid": 22630,
-  "ts": 829
-}, {
-  "name": "Asub",
-  "cat": "PERF",
-  "ph": "E",
-  "pid": 22630,
-  "tid": 22630,
-  "ts": 833
-}]
-\end{lstlisting}
-
-\subsubsection{Wariant obiektowy}
-
-Wariant obiektowy (ang. \emph{JSON Object Format}) - bardziej elsatyczny format, w którym plik składa się z jednego, głównego obiektu. Obiekt ten może posiadać następujące pola:
-
-\begin{enumerate}
-  \item traceEvents - jedyne wymagane pole, które jest tablicą zarejestrowanych zdarzeń odpowiadająca dokładnie wariantowi tablicowemu formatu \emph{Trace Event Format}
-  \item displayTimeUnit - jednostka, w której podane zostały znaczniki czasu. Dostępne jednostki to \emph{ms} oraz \emph{ns}. Domyślna jednostka to \emph{ms}
-  \item systemTraceEvents - ciąg znaków kompatybilnych z \emph{Linux ftrace} lub \emph{Windows ETW}
-  \item powerTraceAsString - ciąg znaków kompatybilnych z \emph{BattOr}
-  \item stackFrames - struktura przechowująca informacje o ramkach odłożonych na stosie
-  \item samples - tablica przechowująca dane rozszerzające traceEvents o informacje zarejestrowane na poziomie systemu operacyjnego 
-\end{enumerate}
-
-Dopuszcza się możliwość definicji pól o nazwach innych niż wymienione wcześniej dla dodatkowego opisania danych (metadane)
-
-\begin{lstlisting}[caption=Przykładowy wariant obiektowy]
-{
-  "traceEvents": [[{
-    "name": "Asub",
-    "cat": "PERF",
-    "ph": "B",
-    "pid": 22630,
-    "tid": 22630,
-    "ts": 829
-  }, {
-    "name": "Asub",
-    "cat": "PERF",
-    "ph": "E",
-    "pid": 22630,
-    "tid": 22630,
-    "ts": 833
-  }],
-  "displayTimeUnit": "ns",
-}
-\end{lstlisting}
-
-\subsubsection{Zdarzenia}
-
-Podstawowymi obiektami, które można poddać analizie są zdarzenia. Istnieje kilka rodzajów zdarzeń. Poniżej przedstawiono pola występujące w każdym zdarzeniu niezależnie od jego typu:
-
-\begin{enumerate}
-  \item name - nazwa zdarzenia
-  \item cat - kolekcja oddzielonych przecinkiem kategorii powiązanych ze zdarzeniem
-  \item ph - pojedynczy znak określający typ zdarzenia. Table prawidłowych wartości została przedstawiona poniżej.
-  \item ts - znacznik czasowy zdarzenia podany z dokładnością do milisekundy
-  \item tts - opcjonalny znacznik czasowy wątku zdarzenia podany z dokładnością do milisekundy
-  \item pid - identyfikator procesu, który spowodował zaistnienie zdarzenia
-  \item tid - identyfikator wątku, który spowodował zaistnienie zdarzenia
-  \item args - argumenty, które zostały dostarczone dla zdarzenia
-\end{enumerate}
-
-\begin{center}
-  \begin{tabularx}{\textwidth}{|X|X|}\hline
-    \emph{Typ zdarzenia} & \emph{Fazy zdarzenia}\\ \hline
-    Zdarzenia trwające (\emph{ang. duration events}) & \textbf{B} początek (\emph{ang. begin}),\newline
-    \textbf{E} koniec (\emph{ang. end})\\ \hline
-    Zdarzenia kompletne (\emph{ang. complete events}) & \textbf{X}\\ \hline
-    Zdarzenia natychmiastowe (\emph{ang. instant events}) & \textbf{i, I}(przestarzałe)\\ \hline
-    Zdarzenia zliczające (\emph{ang. counter events}) & \textbf{c}\\ \hline
-    Zdarzenia asynchroniczne (\emph{ang. async events}) & \textbf{b} (początek),\newline
-    \textbf{n} (natychmiastowe zdarzenie asynchroniczne),\newline
-    \textbf{e} (koniec)\newline\newline
-    \textit{Przestarzałe}\newline
-    \textbf{S} (początek),\newline
-    \textbf{T} (krok kolejny),\newline
-    \textbf{p} (krok poprzedni),\newline
-    \textbf{F} (koniec)\\ \hline
-    Zdarzenia przepływające (\emph{ang. flow events}) & \textbf{s} (początek),\newline
-    \textbf{t} (krok),\newline
-    \textbf{f} (koniec)\\ \hline
-    Zdarzenia obiektowe (\emph{ang. object events}) & \textbf{N} (stworzenie)\newline
-    \textbf{O} (migawka)\newline
-    \textbf{D} (zniszczenie)\\ \hline
-    Zdarzenia z metadanymi (\emph{ang. metadata events}) & \textbf{M}\\ \hline
-    Zdarzenia zrzutu pamięci (\emph{ang. memory dump events}) & \textbf{V} (zrzut pamięci globalnej)\newline
-    \textbf{v} (zrzut pamięci procesu)\\ \hline
-    Zdarzenia synchronizacji zegara (\emph{ang. clock sync events}) & \textbf{c}\\ \hline
-    Zdarzenia kontekstowe (\emph{ang. context events}) & \textbf{(, )}\\ \hline
-  \end{tabularx}
-\end{center}
-
-Poniżej przedstawiono opis każdego z możliwych typów zdarzeń:
-
-\begin{enumerate}
-  \item zdarzenia trwające - umożliwiają określenie czasu trwania pracy nad danym wątkiem. Zdarzenia czasowe są określane przez typy \textbf{B} i \textbf{E}. Zdarzenie \textbf{B} musi nastąpić przed odpowiednim wydarzeniem \textbf{E}. Można zagnieżdżać zdarzenia \textbf{B} i \textbf{E}. Znaczniki czasowe dla zdarzeń muszą być ułożone w kolejności rosnącej dla danego wątku. Znaczniki czasu w różnych wątkach nie muszą być ułożone w kolejności rosnącej.
-  \item zdarzenia kompletne - każde kompletne zdarzenie logicznie łączy parę zdarzeń (\textbf{B} i \textbf{E}). Kompletne zdarzenia są oznaczone przez typ fazy \textbf{X}.
-  \item zdarzenia natychmiastowe - odpowiadają czemuś co miało miejsce lecz bez przypisanego czasu trwania.
-  \item zdarzenia zliczające - mogą śledzić wartość lub wiele wartości zmieniających się w czasie.
-  \item zdarzenia asynchroniczne - służą do rejestrowania asynchronicznych operacji. Mogą pochodzić zarówno z różnych procesów jak i wątków.
-  \item zdarzenia przepływające - z założenia są bardzo podobne do zdarzeń asynchronicznych, ale dodatkowo pozwalają na łączenie ich ze sobą w wątkach i/lub procesach.
-  \item zdarzenia obiektowe - służą za konstrukcję do śledzenia złożonych struktur danych.
-  \item zdarzenia z metadanymi - są używane do powiązania dodatkowych informacji z wydarzeniami.
-  \item zdarzenia zrzutu pamięci - odpowiadają zrzutom pamięci procesu lub grupie procesów.
-  \item zdarzenia synchronizacji zegara - służą do synchonizacji czasu w przypadku gdy zdarzenia rejestrowane są przez różne byty.
-  \item zdarzenia kontekstowe - są używane do oznaczania sekwencji zdarzeń.
-\end{enumerate}
-
-\begin{lstlisting}[caption=Przykładowe zdarzenie]
-{
-  "name": "myName",
-  "cat": "category,list",
-  "ph": "B",
-  "ts": 12345,
-  "pid": 123,
-  "tid": 456,
-  "args": {
-    "someArg": 1,
-    "anotherArg": {
-      "value": "my value"
-    }
-  }
-\end{lstlisting}
-
 \section{Aplikacje wspomające pomiary} \label{utils}
 
 W ramach pisania pracy magisterskiej zostały napisane trzy mniejsze aplikacje, które w znaczący sposób pomogły zebrać potrzebne dane. Głównym celem była automatyzacja wszystkich czasochłonnych i żmudnych czynności. Osiągając cel główny udało się również zminimalizować efekt zniekształcenia pomiarów poprzez manualną ingerencję człowieka.
@@ -1451,7 +1453,8 @@ Aplikacja przyjmuje następujące parametry:
 
 \textbf{Format danych wyjściowych} \newline
 
-Dane wyjściowe zapisane do pliku o rozszerzeniu \emph{JSON} są zgodne z opisanym wcześniej formatem \emph{Trace Event Format} \ref{trace-event-format-section}.
+Dane wyjściowe zapisane do pliku o rozszerzeniu \emph{JSON} są zgodne z opisanym wcześniej formatem \emph
+{Trace Event Format} \ref{trace-event-format-section}.
 
 \subsection{trace-event-format-analyzer}
 
@@ -1525,6 +1528,12 @@ Obiekt przechowujący wyliczone statystyki posiada następujace właściwości:
 \subsection{Dalszy rozwój}
 
 \begin{thebibliography}{11}
+  \bibitem{ftrace}
+    \url{https://www.kernel.org/doc/Documentation/trace/ftrace.txt}
+  \bibitem{etw}
+    \url{https://msdn.microsoft.com/pl-pl/library/windows/desktop/bb968803(v=vs.85).aspx}
+  \bibitem{battor}
+    \url{https://github.com/aschulm/battor}
   \bibitem{milligram}
     \url{http://milligram.io/}
   \bibitem{node.js}
