@@ -710,7 +710,7 @@ virtual-machines-table(
 )
 \end{lstlisting}
 
-Komponent tabeli wykorzystuje ponownie dekorator \emph{@Component}. Komponent tabeli posiada zdefiniowaną tablicę wirtualnych maszyn za pomocą dekoratora \emph{@Input} zdefiniowanego wewnątrz ciała klasy. Poszególne wiersze tabeli zostaną wygenerowane za pomocą atrybutu \emph{*ngFor}, który to powieli określony fragment dla każdego elementu tabeli.
+Komponent tabeli wykorzystuje ponownie dekorator \emph{@Component}. Komponent tabeli posiada zdefiniowaną tablicę wirtualnych maszyn za pomocą dekoratora \emph{@Input} użytego wewnątrz ciała klasy. Poszególne wiersze tabeli zostaną wygenerowane za pomocą atrybutu \emph{*ngFor}, który to powieli określony fragment dla każdego elementu tabeli.
 
 \begin{lstlisting}[caption=Komponent tabeli]
 // virtual-machines-table.component.ts
@@ -852,9 +852,11 @@ export default VirtualMachinesTableComponent;
 
 \subsection{React}
 
---Description--
+\emph{React} jest biblioteką stworzoną przez programistów popularnego serwisu społecznościowego \emph{Facebook}. W bardzo szybkim czasie zyskał on na popularności dzięki bardzo prostemu \emph{API} co pozwala w krótkim czasie czerpać ze wszystkich jego możliwości. \emph{API} biblioteki \emph{React} jest również bardzo stabilnie i nie wymaga wprowadzania drastycznych zmian w kodzie w celu przejścia do nowszej wersji. Biblioteka ta posiada mechanizm wirtualnego obiektowego modelu dokumentu, pozwala definiować komponenty, nie posiada natomiast wbudowanego mechanizmu wstrzykiwania zależności.
 
 \subsubsection{Implementacja}
+
+Implementacja główngo komponentu przebiega bardzo podobnie jak w przypadku biblioteki \emph{mithril.js}. Tym razem wykorzystać jednak nalezy metodę \emph{render} obiektu \emph{ReactDOM}.
 
 \begin{lstlisting}[caption=Inicjalizacja głównego komponentu]
 import React from 'react';
@@ -864,6 +866,8 @@ import PerformanceTest from './react/performance-test.component.jsx';
 
 ReactDOM.render(<PerformanceTest/>, document.getElementById('root'));
 \end{lstlisting}
+
+Główny komponent jest klasą rozszerzającą klasę \emph{React.Component} za pomocą słowa kluczowego \emph{extends}.
 
 \begin{lstlisting}[caption=Główny komponent]
 import React from 'react';
@@ -904,6 +908,9 @@ class PerformanceTest extends React.Component {
 
 export default PerformanceTest;
 \end{lstlisting}
+
+Komponent tabeli jest klasą, która definiuje swój widok za pomocą metody \emph{render}. Metoda ta wykorzystuje format \emph{jsx} będący pomieszaniem języka \emph{JavaScript} z językiem \emph{HTML}
+Przekazana tablica wirtualnych maszyn dostępna jest pod właściwością \emph{props}. Powielenie fragmentu dla każdego elementu tablicy odbywa się z wykorzystaniem standardowej funkcji \emph{map}.
 
 \begin{lstlisting}[caption=Komponent tabeli]
 import PropTypes from 'prop-types'; 
