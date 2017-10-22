@@ -1481,12 +1481,17 @@ Inicjalizacja aplikacji polega na stworzeniu nowej instancji klasy \emph{Vue} pr
 \begin{lstlisting}[caption=Inicjalizacja głównego komponentu]
 import Vue from 'vue';
 
-import PerformanceTestComponent from './vue/performance-test.component.vue';
-import VirtualMachinesTableComponent from './vue/virtual-machines-table.component.vue';
+import PerformanceTestComponent from
+    './vue/performance-test.component.vue';
+import VirtualMachinesTableComponent from
+    './vue/virtual-machines-table.component.vue';
 
-Vue.component('virtual-machines-table', VirtualMachinesTableComponent)
+Vue.component(
+    'virtual-machines-table',
+    VirtualMachinesTableComponent
+);
 
-new Vue(PerformanceTestComponent)
+new Vue(PerformanceTestComponent);
 \end{lstlisting}
 
 Definicja głównego komponentu wykorzystuje jeden plik o specyficznej konstrukcji. Część odpowiedzialna za widok przechowywana jest wewnątrz znacznika \emph{template}, natomiast część odpowiedzialna za logikę komponentu wewnątrz znacznika \emph{script}. Definicja logiki sprowadza sie do stworzenia obiektu z odpowiednimi właściwościami.
@@ -1499,7 +1504,8 @@ Definicja głównego komponentu wykorzystuje jeden plik o specyficznej konstrukc
 </template>
 
 <script>
-  import VirtualMachinesProvider from '../../helpers/virtual-machines-provider';
+  import VirtualMachinesProvider from
+    '../../helpers/virtual-machines-provider';
 
   const virtualMachinesProvider = new VirtualMachinesProvider();
 
@@ -1544,13 +1550,20 @@ Komponent tabeli również wykorzystuje specyficzny plik, który jest charaktery
           )
               td {{ virtualMachine.name }}
               td {{ virtualMachine.status }}
-              td {{ virtualMachine.averageCpuLoad.toFixed(2) }}
-              td {{ virtualMachine.memory.available.toFixed(0) }}
-              td {{ virtualMachine.memory.used.toFixed(0) }}
-              td {{ virtualMachine.memory.free.toFixed(0) }}
-              td {{ virtualMachine.hdd.available.toFixed(0) }}
-              td {{ virtualMachine.hdd.used.toFixed(0) }}
-              td {{ virtualMachine.hdd.free.toFixed(0) }}
+              td {{ virtualMachine.averageCpuLoad
+                      .toFixed(2) }}
+              td {{ virtualMachine.memory.available
+                      .toFixed(0) }}
+              td {{ virtualMachine.memory.used
+                      .toFixed(0) }}
+              td {{ virtualMachine.memory.free
+                      .toFixed(0) }}
+              td {{ virtualMachine.hdd.available
+                      .toFixed(0) }}
+              td {{ virtualMachine.hdd.used
+                      .toFixed(0) }}
+              td {{ virtualMachine.hdd.free
+                      .toFixed(0) }}
               td {{ virtualMachine.uptime }}
 </template>
 
