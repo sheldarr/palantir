@@ -635,6 +635,8 @@ tbody
 
 \subsection{Angular}
 
+\subsubsection{Opis}
+
 \emph{Angular} to zyskujący coraz bardziej na popularności następca biblioteki \emph{AngularJS}. Bardzo podobna nazwa wprowadza wiele zamieszania, a sprawę nie ułatwia fakt, że początkowo biblioteka znana była pod nazwą \emph{Angular 2}. Dla osób dopiero co zapoznających się z tą biblioteką może to być bardzo mylące, zwłasza, że najnowsza jego wersja to \emph{4} i nie jest w pełni kompatybilna wstecznie z wersją \emph{2}. \emph{Angular} posiada wiele cech wspólnych z \emph{AngularJS} lecz różnić jest również jest na tyle dużo, że należy rozpatrywać tą bibliotekę jako zupełnie nowy byt. \emph{Angular} posiada mechanizm wstrzykiwania zależności oraz komponentów, nie posiada jednak mechanizmu wirtualnego obiektowego modelu dokumentu.
 
 \subsubsection{Implementacja}
@@ -760,6 +762,8 @@ tbody
 
 \subsection{mithril.js}
 
+\subsubsection{Opis}
+
 \emph{mihtril.js} jest stosunkowo mało popularną biblioteką w porównaniu do swoich konkurentów. To co go wyróżnia to mała wielkość oraz według swoich twórców lepsza wydajność niż główni konkurenci. Biblioteka ta nie posiada wbudowanego mechanizmu wstrzykiwania zależności. W odróżnieniu od obu bibliotek z rodziny \emph{Angular} posiada mechanizm wirtualnego obiektowego modelu dokumentu. Podobnie jak wszyscy swoi konkurencji pozwala definiować komponenty.
 
 \subsubsection{Implementacja}
@@ -851,6 +855,8 @@ export default VirtualMachinesTableComponent;
 \end{lstlisting}
 
 \subsection{React}
+
+\subsubsection{Opis}
 
 \emph{React} jest biblioteką stworzoną przez programistów popularnego serwisu społecznościowego \emph{Facebook}. W bardzo szybkim czasie zyskał on na popularności dzięki bardzo prostemu \emph{API} co pozwala w krótkim czasie czerpać ze wszystkich jego możliwości. \emph{API} biblioteki \emph{React} jest również bardzo stabilnie i nie wymaga wprowadzania drastycznych zmian w kodzie w celu przejścia do nowszej wersji. Biblioteka ta posiada mechanizm wirtualnego obiektowego modelu dokumentu, pozwala definiować komponenty, nie posiada natomiast wbudowanego mechanizmu wstrzykiwania zależności.
 
@@ -970,9 +976,14 @@ export default VirtualMachinesTable;
 
 \subsection{Vue.js}
 
---Description--
+\subsubsection{Opis}
+
+\emph{Vue.js} jest biblioteką stworzoną przez człowieka, który odszedł z grupy programistów tworzących bibliotekę \emph{AngularJS}, z tego powodu widać wiele inspiracji pochodzących z tej biblioteki.
+Posiada te same cechy co \emph{mithril.js} oraz \emph{React}, czyli komponenty, mechanizm \emph{VDOM} oraz brak wstrzykiwania zależności.
 
 \subsubsection{Implementacja}
+
+Inicjalizacja aplikacji polega na stworzeniu nowej instancji klasy \emph{Vue} przekazując jako parametr główny komponent aplikacji. Rejestracja pozostałych komponentów wymaga wykorzystania statycznej metody \emph{component} klasy \emph{Vue}.
 
 \begin{lstlisting}[caption=Inicjalizacja głównego komponentu]
 import Vue from 'vue';
@@ -984,6 +995,8 @@ Vue.component('virtual-machines-table', VirtualMachinesTableComponent)
 
 new Vue(PerformanceTestComponent)
 \end{lstlisting}
+
+Definicja głównego komponentu wykorzystuje jeden plik o specyficznej konstrukcji. Część odpowiedzialna za widok przechowywana jest wewnątrz znacznika \emph{template}, natomiast część odpowiedzialna za logikę komponentu wewnątrz znacznika \emph{script}. Definicja logiki sprowadza sie do stworzenia obiektu z odpowiednimi właściwościami.
 
 \begin{lstlisting}[caption=Główny komponent]
 <template lang="pug">
@@ -1014,6 +1027,8 @@ new Vue(PerformanceTestComponent)
   }
 </script>
 \end{lstlisting}
+
+Komponent tabeli również wykorzystuje specyficzny plik, który jest charakterystyczny dla biblioteki \emph{Vue.js}. Przekazana tablica wirtualnych maszyn dostępna jest pod właściwością \emph{props}. Powielenie fragmentu dla każdego elementu tablicy odbywa się z wykorzystaniem atrybutu \emph{v-for} bardzo podobnego do atybutów znanych z bibliotek z rodziny \emph{Angular}.
 
 \begin{lstlisting}[caption=Komponent tabeli]
 <template lang="pug">
