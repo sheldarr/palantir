@@ -760,9 +760,11 @@ tbody
 
 \subsection{mithril.js}
 
---Description--
+\emph{mihtril.js} jest stosunkowo mało popularną biblioteką w porównaniu do swoich konkurentów. To co go wyróżnia to mała wielkość oraz według swoich twórców lepsza wydajność niż główni konkurenci. Biblioteka ta nie posiada wbudowanego mechanizmu wstrzykiwania zależności. W odróżnieniu od obu bibliotek z rodziny \emph{Angular} posiada mechanizm wirtualnego obiektowego modelu dokumentu. Podobnie jak wszyscy swoi konkurencji pozwala definiować komponenty.
 
 \subsubsection{Implementacja}
+
+Inicjalizacja głównego komponentu jest bardzo prosta i sproawdza się do wywołania metody \emph{mount} udostępnianej przez obiekt \emph{m} dostarczany przez bibliotekę. Jako parametry przekazać należy obiekt z \emph{DOM} wewnątrz którego ma zostać zamontowany komponent przekazany jako drugi parametr.
 
 \begin{lstlisting}[caption=Inicjalizacja głównego komponentu]
 import m from 'mithril';
@@ -773,6 +775,8 @@ const root = document.getElementById('root');
 
 m.mount(root, PerformanceTestComponent)
 \end{lstlisting}
+
+Definicja głównego komponentu mieści się w jednym pliku i sprowadza się do zdefiniowania obiektu z odpowiednimi właściwościami.
 
 \begin{lstlisting}[caption=Główny komponent]
 import m from 'mithril';
@@ -800,6 +804,8 @@ const PerformanceComponent = {
 
 export default PerformanceComponent;
 \end{lstlisting}
+
+Komponent tabeli jest obiektem, który definiuje swój widok za pomocą odpowiednio zagnieżdżonych wywołań funkcji \emph{m} zwracającej instancje klasy \emph{VNode} będących wirtualną reprezentacją obiektów w \emph{DOM}. Przekazana tablica wirtualnych maszyn dostępna jest pod właściwością \emph{attrs}. Powielenie fragmentu dla każdego elementu tablicy odbywa się z wykorzystaniem standardowej funkcji \emph{map}.
 
 \begin{lstlisting}[caption=Komponent tabeli]
 import m from 'mithril';
