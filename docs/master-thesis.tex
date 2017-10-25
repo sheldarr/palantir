@@ -245,7 +245,7 @@ Zapytanie \emph{HTTP} zaczynaja się od nazwy metody, która określa akcję jak
 
 Poniżej przedstawione przykładowe żądanie \emph{HTTP/1.1} przeglądarki Chrome i odpowiedź serwera opisanego w rozdziale \ref{server}.
 
-\begin{lstlisting}[caption=Przykładowe żądanie HTTP/1.1,]
+\begin{lstlisting}[caption=Przykładowe żądanie \emph{HTTP/1.1}]
 GET / HTTP/1.1
 Host: localhost:8080
 Connection: keep-alive
@@ -260,7 +260,7 @@ Accept-Encoding: gzip, deflate, br
 Accept-Language: pl-PL,pl;q=0.8,en-US;q=0.6,en;q=0.4
 \end{lstlisting}
 
-\begin{lstlisting}[caption=Przykładowa odpowiedź HTTP/1.1]
+\begin{lstlisting}[caption=Przykładowa odpowiedź \emph{HTTP/1.1}]
 HTTP/1.1 200 OK
 X-Powered-By: Express
 Content-Type: text/html; charset=utf-8
@@ -272,28 +272,23 @@ Connection: keep-alive
 
 \subsubsection{HTTPS} \label{https}
 
-Bezpieczny protokół przesyłania dokumentów hipertekstowych (ang. \emph{Hypertext Transfer Protocol Secure}) to szyfrowana wersja protokołu HTTP. Obecną definicję HTTPS stanowi RFC 2660 \cite{rfc2660}
+Bezpieczny protokół przesyłania dokumentów hipertekstowych (ang. \emph{Hypertext Transfer Protocol Secure}) to szyfrowana wersja protokołu \emph{HTTP}. Obecną definicję \emph{HTTPS} stanowi \emph{RFC 2660} \cite{rfc2660}
 
-W odróżnieniu od protokołu HTTPS protokół HTTP do komunikacji stosuje niezaszyfrowany tekst. HTTPS początkowo szyfrował dane za pomocą protokołu SSL (ang. \emph{Secure Socket Layer}), natomiast obecnie używany jest protokół TLS (ang. \emph{Transport Layer Security}). Szyfrowanie zapobiega przechtywywaniu i zmienianiu przesyłanych danych. 
+W odróżnieniu od protokołu \emph{HTTPS}, protokół \emph{HTTP} do komunikacji stosuje niezaszyfrowany tekst. HTTPS początkowo szyfrował dane za pomocą protokołu \emph{SSL} (ang. \emph{Secure Socket Layer}), natomiast obecnie używany jest protokół \emph{TLS} (ang. \emph{Transport Layer Security}). Szyfrowanie zapobiega przechwytywaniu i zmienianiu przesyłanych danych. 
 
-Wywołania protokołu HTTPS zaczynają się od \url{https://}. HTTPS standardowo korzysta z portu numer 443 protokołu kontroli transmisji. 
+Wywołania protokołu \emph{HTTPS} zaczynają się od \url{https://}. \emph{HTTPS} standardowo korzysta z portu numer 443 protokołu kontroli transmisji. 
 
 \subsubsection{HTTP/2} \label{http/2}
 
-Protokół HTTP/2 to unowocześniejszego protokołu HTTP/1.1. Został on opracowany na podstawie wczesnych wersji ekperymentalnego protokołu SPDY \cite{spdy}. Obecną definicję HTTP/2 stanowi RFC 7540 \cite{rfc7540}. W przeciwieństwie do wersji HTTP/1.1, protokół HTTP/2 jest w pełni binarny tzn. że tekst zrozumiały dla człowieka zastąpiony został zbiorem tak zwanych ramek (ang. \emph{frames}) o ściśle określonym formacie i zastosowaniu. Poniżej przedstawiono najważniejsze zalety protokołu HTTP/2.
+Protokół \emph{HTTP/2} to unowocześniejszego protokołu \emph{HTTP/1.1}. Został on opracowany na podstawie wczesnych wersji ekperymentalnego protokołu \emph{SPDY} \cite{spdy}. Obecną definicję \emph{HTTP/2} stanowi \emph{RFC 7540} \cite{rfc7540}. W przeciwieństwie do wersji \emph{HTTP/1.1}, protokół \emph{HTTP/2} jest w pełni binarny. Format podobny do tekstu zrozumiałego dla człowieka zastąpiony został zbiorem tak zwanych ramek (ang. \emph{frames}) o ściśle określonym formacie i zastosowaniu. Poniżej przedstawiono najważniejsze zalety protokołu \emph{HTTP/2}.
 
 \begin{enumerate}
   \item \emph{Multipleksowanie} - protokół nawiązuje tylko jedno trwałe połączenie z serwerem za pomocą którego pobierane są wszystkie pliku niezbędne do prawidłowego wyświetlenia strony
-  \item \emph{Powiadomienia Push} - serwer może wysłać dodatkowe informacje np. może wysłać pliki, które są potrzebne do prawidłowego wyświetlenia strony zanim przeglądarka internetowa zauważy tą potrzebę
+  \item \emph{Powiadomienia Push} - serwer może wysłać dodatkowe informacje np. może wysłać pliki, które są potrzebne do prawidłowego wyświetlenia strony zanim przeglądarka internetowa zauważy tą potrzebę i ją zgłosi
   \item \emph{Ustalanie priorytetów} - każde zapytanie o plik posiada swój priorytet, który nadawany jest przez serwer. Umożliwia to najpierw pobranie najważniejszych plików, które pozwolą wyrenderować kluczowe fragmenty strony internetowej, a następnie doczytać kolejne elementy
-  \item \emph{Kompresja nagłówków} - protokół HTTP/2 unika duplikacji informacji występującyh pomiędzy różnymi nagłówkami i wysyła je w skompresowanym formacie
-  \item \emph{Szyfrowanie} - pomimo, iż szyfrowanie według protokołu HTTP/2 nie jest wymagane to większość najważniejszych przeglądarek internetowych implementuje HTTP/2 wyłącznie z wykorzystaniem protokołu TLS
+  \item \emph{Kompresja nagłówków} - protokół \emph{HTTP/2} unika duplikacji informacji występującyh pomiędzy różnymi nagłówkami i wysyła je w skompresowanym formacie
+  \item \emph{Szyfrowanie} - pomimo, iż szyfrowanie według protokołu \emph{HTTP/2} nie jest wymagane to większość najważniejszych przeglądarek internetowych implementuje \emph{HTTP/2} wyłącznie z wykorzystaniem protokołu \emph{TLS}
 \end{enumerate}
-
-\begin{figure}[ht]
-  \includegraphics[width=\textwidth]{http2-mux.png}
-	\caption{Multipeksowanie HTTP/2}
-\end{figure}
 
 \subsection{Proces wyświetlania strony internetowej}
 
@@ -309,7 +304,7 @@ Końcowym produktem przeglądarki internetowej jest w pełni załadowana i wyren
 \subsubsection{Pobieranie}
 
 Proces ładowania strony internetowej w przeglądarce zaczyna się od pobrania treści strony internetowej wraz ze wszystkimi zasobami potrzebnymi do jej wyświetlenia.
-Przeglądarka pobiera wszystkie elementy za pomocą żądań \emph{HTTP}. Użytkownik może rozpocząć pobieranie na kilka sposbów:
+Przeglądarka pobiera wszystkie elementy za pomocą żądań \emph{HTTP}. Użytkownik może rozpocząć pobieranie poprzez:
 
 \begin{enumerate}
   \item wpisanie adresu strony internetowej
@@ -317,21 +312,21 @@ Przeglądarka pobiera wszystkie elementy za pomocą żądań \emph{HTTP}. Użytk
   \item przeładowanie aktualnej strony internetowej
 \end{enumerate}
 
-Moment stworzenia pierwszego żądania równoznaczny jest z początkiem wydarzenia które nosi nazwę "\emph{Navigation Start}". Zdarzenie to jest punktem, w którym przeglądarka zaczyna zbierać dodatkowe informacje na temat wydajności np. o czasie ładowania strony. Przeglądarka internetowa tworzy żądanie zgodnie z zasadami protokołu HTTP/1.1, który został bardziej szczegółowo opisny w rozdziale \ref{http/1.1}. Jeśli serwer wspiera obsługę nowszej wersji HTTP/2 wtedy wykorzystany jest nowszy protokół opisany w rozdziale \ref{http/2}. Całe wykonanie żądania przez przeglądarkę możemy podzielić na poszczególne fazy:
+Moment stworzenia pierwszego żądania równoznaczny jest z początkiem ładowania strony internetowej. Od tego momentu przeglądarka może zacząć zbierać dodatkowe informacje na temat wydajności np. o całkowitym czasie ładowania strony. Przeglądarka internetowa tworzy żądanie zgodnie z zasadami protokołu \emph{HTTP/1.1}, który został bardziej szczegółowo opisny w rozdziale \ref{http/1.1}. Jeśli serwer wspiera obsługę nowszej wersji \emph{HTTP/2} wtedy wykorzystany jest nowszy protokół opisany w rozdziale \ref{http/2}. Całe wykonanie żądania przez przeglądarkę możemy podzielić na poszczególne fazy:
 
 \begin{enumerate}
-  \item \emph{Kolejkowanie} - przeglądarka kolejkuje żądania w następujących sytuacjach:
+  \item \emph{Kolejkowanie} - przeglądarka kolejkuje żądania w przypadku gdy:
     \begin{itemize}
       \item aktualnie istnieją inne żądania do przetworzenia o wyższym priorytecie
-      \item aktualnie istnieje już sześć otwartych połączen TCP dla konkretnego źródła (ang. \emph{origin}). Ograniczenie to dotyczy tylko HTTP/1.0 oraz HTTP/1.1
+      \item aktualnie istnieje już sześć otwartych połączeń TCP dla konkretnego źródła (ang. \emph{origin}). Ograniczenie to dotyczy tylko \emph{HTTP/1.0} oraz \emph{HTTP/1.1}
     \end{itemize}
   \item \emph{Odroczenie} - żądanie czeka na swoją kolej na przetworzenie z przyczyn wymienionych we wcześniejszym podpunkcie
-  \item \emph{Podgląd DNS} - przeglądarka stara się przetłumaczyć adres internetowy na adres IP za pomocą usługi systemu nazw domenowych (ang. \emph{Domain Name System})
+  \item \emph{Podgląd DNS} - przeglądarka stara się przetłumaczyć adres internetowy na adres \emph{IP} za pomocą usługi systemu nazw domenowych (ang. \emph{Domain Name System})
   \item \emph{Negocjowanie z pośrednikiem} - przeglądarka prowadzi negocjacje z serwerem pośredniczącym (ang. \emph{proxy})
   \item \emph{Wysłanie żądania} - przeglądarka wysyła żądanie do serwera
   \item \emph{Oczekiwanie} - przeglądarka oczekuje na pierwsze bajty odpowiedzi, w tym czasie mierzony jest parametr TTFB (ang. \emph{Time To First Byte}) oznaczający czas jaki minął zanim przeglądarka otrzymała pierwszy bajt odpowiedzi
   \item \emph{Pobieranie zawartości} - przeglądarka pobiera całą zawartość odpowiedzi
-  \item \emph{Otrzymanie notyfikacji Push} - serwer wysyła dodatkowe dane dla przeglądarki, jest to element unikalny dla HTTP/2
+  \item \emph{Otrzymanie notyfikacji Push} - serwer wysyła dodatkowe dane dla przeglądarki, jest to element unikalny dla \emph{HTTP/2}
   \item \emph{Czytanie notyfikacji Push} - przeglądarka czyta oraz interpretuje otrzymane wcześniej dodatkowe dane
 \end{enumerate}
 
