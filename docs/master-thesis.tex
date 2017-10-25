@@ -142,36 +142,36 @@ Ponieważ standardowy wygląd znaczników jest bardzo prosty to dodatkowo nieost
 
 \subsubsection{JavaScript}
 
-JavaScript to skryptowy język programowania, stworzony przez firmę Netscape, najczęściej stosowany na stronach internetowych. Pod koniec lat 90. XX wieku organizacja ECMA wydała na podstawie JavaScriptu standard języka skryptowego o nazwie ECMAScript. Najnowsza stabilna wersja ECMAScript nosi nazwę ECMAScript 2016 \cite{es2016} i została wydana 17 czerwca 2016. Organizacja ECMA zapowiedziała, że stabilna wersja tego standardu od wersji 2015 będzie ogłaszana co rok i to właśnie rok wydania będzie jednoznaczny z numerem wersji. Wcześniej mowa była o edycji standardu ECMAScript i do teraz często można się spotkać z zamiennem stosowaniem nazw ECMAScript 6 i ECMAScript 2015 (skracanych odpowiednio do ES6 i ES2015).
+\emph{JavaScript} to skryptowy język programowania, stworzony przez firmę Netscape, najczęściej stosowany na stronach internetowych. Pod koniec lat 90. XX wieku organizacja \emph{ECMA} wydała na podstawie JavaScriptu standard języka skryptowego o nazwie \emph{ECMAScript}. Najnowsza stabilna wersja \emph{ECMAScript} nosi nazwę \emph{ECMAScript 2016} \cite{es2016} i została wydana 17 czerwca 2016. Wersja ta często występuje pod nazwą \emph{ECMAScript 5} pomimo iż jest to forma odradzana i organizacja ECMA zapowiedziała, że stabilna wersja tego standardu będzie ogłaszana co rok i to właśnie rok wydania będzie oficjalnie odpowiadał numerowi wersji. 
 
-Najczęściej spotykanym zastosowaniem języka JavaScript są strony WWW. Skrypty napisane w tym języku najczęściej służą do zapewnienia interaktywności poprzez odpowiednie reagowanie na zdarzenia generowane przez użytkownika. Skrypty JavaScriptu uruchamiane przez strony internetowe mają znacznie ograniczony dostęp do komputera użytkownika. 
+Najczęściej spotykanym zastosowaniem języka JavaScript są strony \emph{WWW}. Skrypty napisane w tym języku najczęściej służą do zapewnienia interaktywności poprzez odpowiednie reagowanie na zdarzenia generowane przez użytkownika. Skrypty JavaScriptu uruchamiane przez strony internetowe mają znacznie ograniczony dostęp do komputera użytkownika. 
 
 Platformy programistyczne, które zostaną zbadane w ramach pracy magisterskiej napisane są języku JavaScript. Wspomagają one proces pisania aplikacji internetowej dostarczając odpowiednich funkcji i organizująć strukturę strony internetowej zgodnie z wytycznymi konkretnej platformy programistycznej.
 
-W języku HTML za umieszczanie skryptów JavaScript odpowiedzialny jest znacznik \emph{script} z opcjonalnymi parametrami \emph{type="text/javascript"} i \emph{language="javascript"}.
+W języku \emph{HTML} za umieszczanie skryptów \emph{JavaScript} odpowiedzialny jest znacznik \emph{script} z opcjonalnymi parametrami \emph{type="text/javascript"} i \emph{language="javascript"}.
 
-JavaScript może zostać użyty również po stronie serwera dzięki darmowemu środowisku uruchomieniowemu Node.js\cite{node.js}. Node.js zaprojektowany został do tworzenia wysoce skalowalnych aplikacji internetowych, szczególnie właśnie serwerów napisanych w języku JavaScript. Architektura Node.js składa się z silnika V8 \cite{v8} stworzonego przez Google i opiera się na sterowaniu zdarzeniami wykorzystującymi asynchroniczny system wejścia-wyjścia. Kod źródłowy jest otwarty (ang. \emph{open source}) i każdy może brać udział w jego rozwijaniu. Domyślnym menedżer pakietów dla Node.js jest Npm \cite{npm}, jednak warto zapoznać się z alternatywnym mendedżerem o nazwie Yarn \cite{yarn}, którego głównymi zaletami są szybsze pobieranie zależności oraz bardziej płaska stuktura drzewa pobranych zależności.
+\emph{JavaScript} może zostać użyty również poza środowiskiem przeglądarki internetowej dzięki darmowemu środowisku uruchomieniowemu \emph{Node.js} \cite{node.js}. \emph{Node.js} zaprojektowany został do tworzenia wysoce skalowalnych aplikacji internetowych, szczególnie serwerów napisanych w języku \emph{JavaScript}. Architektura \emph{Node.js} składa się z silnika \emph{V8} \cite{v8} stworzonego przez Google i opiera się na sterowaniu zdarzeniami wykorzystującymi asynchroniczny system wejścia-wyjścia. Kod źródłowy jest otwarty (ang. \emph{open source}) i każdy może brać udział w jego rozwijaniu. Domyślnym menedżerem pakietów dla \emph{Node.js} jest \emph{Npm} \cite{npm}, jednak warto zapoznać się z alternatywnym rozwiązaniem o nazwie \emph{Yarn} \cite{yarn}. \emph{Yarn} oferuje szybsze pobieranie zależności, większe bezpieczeństwo poprzez dodatkowe sprawdzanie sum kontrolnych oraz bardziej płaska stuktura drzewa pobranych zależności.
 
 \subsubsection{DOM} \label{dom}
 
-Obiektowy model dokumentu (ang. \emph{Document Object Model}) to zespół klas i interfejsów programistycznych umożliwiających dostęp do elementów strony napisanej w języku HTML. Istnieje kilka tzw. poziomów DOM (ang. \emph{level}):
+Obiektowy model dokumentu (ang. \emph{Document Object Model}) to zespół klas i interfejsów programistycznych umożliwiających dostęp do elementów strony napisanej w języku \emph{HTML}. Istnieje kilka tzw. poziomów \emph{DOM} (ang. \emph{level}):
 
 \begin{enumerate}
-  \item DOM Level 0 - nie stanowi oficjalnego standardu W3C \cite{w3c}, pierwotnie był modelem zaimplementowanym w przeglądarce Netscape Navigator 3.0, obecnie wspierają go wszystkie przeglądarki
-  \item DOM Level 1 - specyfikacja W3C REC-DOM-Level-1 \cite{w3c-rec-dom-level-1} 
-  \item DOM Level 2 - specyfikacja W3C REC-DOM-Level-2 \cite{w3c-rec-dom-level-2} 
+  \item DOM Level 0 - nie stanowi oficjalnego standardu \emph{W3C} \cite{w3c}, pierwotnie był modelem zaimplementowanym w przeglądarce Netscape Navigator 3.0, obecnie wspierają go wszystkie przeglądarki
+  \item DOM Level 1 - specyfikacja \emph{W3C REC-DOM-Level-1} \cite{w3c-rec-dom-level-1} 
+  \item DOM Level 2 - specyfikacja \emph{W3C REC-DOM-Level-2} \cite{w3c-rec-dom-level-2} 
   \item DOM Level 3 - definicję stanowi sześć specyfikacji
   \begin{itemize}
-    \item DOM Level 3 Core - specyfikacja W3C DOM-Level-3-Core \cite{w3c-rec-dom-level-3-core}
-    \item DOM Level 3 Load and Save - specyfikacja W3C DOM-Level-3-LS \cite{w3c-rec-dom-level-3-ls}
-    \item DOM Level 3 XPath - specyfikacja W3C DOM-Level-3-XPath \cite{w3c-rec-dom-level-3-xpath}
-    \item DOM Level 3 Views and Formatting - specyfikacja W3C DOM-Level-3-Views \cite{w3c-rec-dom-level-3-views}
-    \item DOM Level 3 Requirements - specyfikacja W3C DOM-Level-3-Requirements \cite{w3c-rec-dom-level-3-requirements}
-    \item DOM Level 3 Validation - specyfikacja W3C DOM-Level-3-Val \cite{w3c-rec-dom-level-3-val}
+    \item DOM Level 3 Core - specyfikacja \emph{W3C DOM-Level-3-Core} \cite{w3c-rec-dom-level-3-core}
+    \item DOM Level 3 Load and Save - specyfikacja \emph{W3C DOM-Level-3-LS} \cite{w3c-rec-dom-level-3-ls}
+    \item DOM Level 3 XPath - specyfikacja \emph{W3C DOM-Level-3-XPath} \cite{w3c-rec-dom-level-3-xpath}
+    \item DOM Level 3 Views and Formatting - specyfikacja \emph{W3C DOM-Level-3-Views} \cite{w3c-rec-dom-level-3-views}
+    \item DOM Level 3 Requirements - specyfikacja \emph{W3C DOM-Level-3-Requirements} \cite{w3c-rec-dom-level-3-requirements}
+    \item DOM Level 3 Validation - specyfikacja \emph{W3C DOM-Level-3-Val} \cite{w3c-rec-dom-level-3-val}
   \end{itemize}
 \end{enumerate}
 
-DOM pozwala dokonywać dowolnych modyfikacji poprzez tworzenie, usuwanie i modyfikację tzw. węzłów (ang. \emph{nodes}). Początkowo nie istniał standardowy obiektowy model dokumentu. Twórcy najpopulaniejszych przeglądarek tworzyłi własne niezgodne ze sobą modele. Organizacja W3C \cite{w3c} przygotowała ujednolicony standard obiektowego modelu dokumentu, w którym dokment jest dostępny pod postacią globalnego obiektu \emph{document}, który posiada metody do np. pobierania elementu na podstawie identyfikatora \emph{document.getElementById} lub na podstawie klasy \emph{document.getElementByClassName}. Standard W3C definiuje interfejsy DOM tylko dla języków JavaScript i Java.
+\emph{DOM} pozwala dokonywać dowolnych modyfikacji poprzez tworzenie, usuwanie i modyfikację tzw. węzłów (ang. \emph{nodes}). Początkowo nie istniał standardowy obiektowy model dokumentu. Twórcy najpopulaniejszych przeglądarek tworzyłi własne niezgodne ze sobą modele. Organizacja \emph{W3C} \cite{w3c} przygotowała ujednolicony standard obiektowego modelu dokumentu, w którym dokment jest dostępny pod postacią globalnego obiektu \emph{document}, który posiada metody do np. pobierania elementu na podstawie identyfikatora \emph{document.getElementById} lub na podstawie klasy \emph{document.getElementByClassName}. Standard \emph{W3C} definiuje interfejsy \emph{DOM} tylko dla języków \emph{JavaScript} i \emph{Java}.
 
 \begin{figure}
   \centering
@@ -193,18 +193,18 @@ DOM pozwala dokonywać dowolnych modyfikacji poprzez tworzenie, usuwanie i modyf
       ]
     ]
   \end{tikzpicture}
-  \caption{Drzewo DOM wygenerowane dla przykładu opisanego w rozdziale \ref{html}}
+  \caption{Drzewo \emph{DOM} wygenerowane dla przykładu opisanego w rozdziale \ref{html}}
 \end{figure}
 
 \subsubsection{CSSOM} \label{cssom}
 
-Obiektowy model kaskadowych arkuszy stylów (ang. \emph{CSS Object Model}) to zespoł interfejsów programistycznych umożliwiających dostęp do stylów napisanych w języku CSS.
+Obiektowy model kaskadowych arkuszy stylów (ang. \emph{CSS Object Model}) to zespół interfejsów programistycznych umożliwiających dostęp do stylów napisanych w języku \emph{CSS}.
 
-CSSOM blokuje wszystko przed wyświetleniem tzn. przeglądarka internetowa nie zacznie niczego renderować dopóki w pełni nie zostanie zakończona budowa CSSOM. W przypadku nieoptymalnej struktury CSS budowa może trwać bardzo długo co skutkuje widoczną dla użytkownika białą stroną bez zawartości.
+\emph{CSSOM} blokuje wszystko przed wyświetleniem tzn. przeglądarka internetowa nie zacząć renderować dopóki w pełni nie zostanie zakończona budowa \emph{CSSOM}. W przypadku nieoptymalnej struktury \emph{CSS} budowa może trwać bardzo długo co skutkuje widoczną dla użytkownika białą stroną bez zawartości.
 
-CSSOM musi być zbudowany na nowo z każdym przeładowaniem strony, oznacza to, iż nawet jeśli pliki CSS zostały umieszczone w pamięci podręcznej (ang. \emph{cache}) to nie uchroni to przeglądarki przed koniecznością budowy CSSOM.
+\emph{CSSOM} musi być zbudowany na nowo z każdym przeładowaniem strony, oznacza to, iż nawet jeśli pliki \emph{CSS} zostały umieszczone w pamięci podręcznej (ang. \emph{cache}) to nie uchroni to przeglądarki przed koniecznością budowy \emph{CSSOM}.
 
-Istnieje związek pomiędzy kaskadowymi arkuszami stylów, które przeglądarka ładuje i skryptami JavaScript umieszczonymi na stronie. Żeby przeglądarka wyświetliła cokolwiek musi poprawnie zakończyć budowę CSSOM, w przypadku gdy budowa ta zostanie wstrzymana przez skrypty czas potrzebny na wyświetlenie jakiegokolwiek elementu wzrośnie. W przypadku nieoptymalnej kombinacji skryptów oraz stylów czas ten może wzrosnąc drastycznie skutkując bardzo negatywnymi doświadczeniami użytkownika, w najgorszym wypadku spowodować zniechęcenie użytkownika do dalszego oczekiwania i opuszczenie strony.
+Istnieje związek pomiędzy kaskadowymi arkuszami stylów, które przeglądarka ładuje i skryptami \emph{JavaScript} umieszczonymi na stronie. Żeby przeglądarka wyświetliła cokolwiek musi poprawnie zakończyć budowę \emph{CSSOM}, w przypadku gdy budowa ta zostanie wstrzymana przez skrypty czas potrzebny na wyświetlenie jakiegokolwiek elementu wzrośnie. W przypadku nieoptymalnej kombinacji skryptów oraz stylów czas ten może wzrosnąc drastycznie skutkując bardzo negatywnymi doświadczeniami użytkownika, w najgorszym wypadku spowodować zniechęcenie użytkownika do dalszego oczekiwania i opuszczenie strony.
 
 \begin{figure}
   \centering
@@ -220,7 +220,7 @@ Istnieje związek pomiędzy kaskadowymi arkuszami stylów, które przeglądarka 
       ]
     \end{tikzpicture}
   }
-  \caption{Przykładowe drzewo CSSOM wygenerowane dla przykładu opisanego w rozdziale \ref{html}}
+  \caption{Przykładowe drzewo \emph{CSSOM} wygenerowane dla przykładu opisanego w rozdziale \ref{html}}
 \end{figure}
 \subsubsection{HTTP/1.1} \label{http/1.1}
 
