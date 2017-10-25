@@ -85,24 +85,24 @@ Strona internetowa zaczyna się od \emph{<!DOCTYPE html>}. Jest to specjalny zna
 Kaskadowe arkusze stylów (ang. \emph{Cascading Style Sheets}) to język służący do opisu wyświetlania struktury opisanej w języku \emph{HTML}. Wersja 3 składa się z wielu modułów. Każdy z nich dodaje nowe możliwości lub rozszerza te zdefiniowane w CSS 2 zachowując wsteczną kompatybilność (ang. \emph{backward compatibility}).
 
 \begin{enumerate}
-  \item css3-background - specyfikacja W3C REC-CSS3-Background \cite{w3c-rec-css3-background}
-  \item css3-box - specyfikacja W3C REC-CSS3-Box \cite{w3c-rec-css3-box}
-  \item css-cascade-3 - specyfikacja W3C REC-CSS-Cascade-3 \cite{w3c-rec-css3-cascade}
-  \item css3-color - specyfikacja W3C REC-CSS3-Color \cite{w3c-rec-css3-color}
-  \item css3-content - specyfikacja W3C REC-CSS-Content-3 \cite{w3c-rec-css3-content}
-  \item css-fonts-3 - specyfikacja W3C REC-CSS-Fonts-3 \cite{w3c-rec-css3-fonts}
-  \item css3-gcpm - specyfikacja W3C REC-CSS-GCPM-3 \cite{w3c-rec-css3-gcpm}
-  \item css3-layout - specyfikacja W3C REC-CSS-Template-3 \cite{w3c-rec-css3-template}
-  \item css3-mediaqueries - specyfikacja W3C REC-CSS3-Mediaqueries \cite{w3c-rec-css3-mediaqueries}
-  \item css3-multicol - specyfikacja W3C REC-CSS3-Multicol \cite{w3c-rec-css3-multicol}
-  \item css3-page - specyfikacja W3C REC-CSS3-Page \cite{w3c-rec-css3-page}
-  \item css3-selectors - specyfikacja W3C REC-CSS3-Selectors \cite{w3c-rec-css3-selectors}
-  \item css-3-ui - W3C REC-CSS-UI-3 \cite{w3c-rec-css3-ui}
+  \item css3-background - specyfikacja \emph{W3C REC-CSS3-Background} \cite{w3c-rec-css3-background}
+  \item css3-box - specyfikacja \emph{W3C REC-CSS3-Box} \cite{w3c-rec-css3-box}
+  \item css-cascade-3 - specyfikacja \emph{W3C REC-CSS-Cascade-3} \cite{w3c-rec-css3-cascade}
+  \item css3-color - specyfikacja \emph{W3C REC-CSS3-Color} \cite{w3c-rec-css3-color}
+  \item css3-content - specyfikacja \emph{W3C REC-CSS-Content-3} \cite{w3c-rec-css3-content}
+  \item css-fonts-3 - specyfikacja \emph{W3C REC-CSS-Fonts-3} \cite{w3c-rec-css3-fonts}
+  \item css3-gcpm - specyfikacja \emph{W3C REC-CSS-GCPM-3} \cite{w3c-rec-css3-gcpm}
+  \item css3-layout - specyfikacja \emph{W3C REC-CSS-Template-3} \cite{w3c-rec-css3-template}
+  \item css3-mediaqueries - specyfikacja \emph{W3C REC-CSS3-Mediaqueries} \cite{w3c-rec-css3-mediaqueries}
+  \item css3-multicol - specyfikacja \emph{W3C REC-CSS3-Multicol} \cite{w3c-rec-css3-multicol}
+  \item css3-page - specyfikacja \emph{W3C REC-CSS3-Page} \cite{w3c-rec-css3-page}
+  \item css3-selectors - specyfikacja \emph{W3C REC-CSS3-Selectors} \cite{w3c-rec-css3-selectors}
+  \item css-3-ui - \emph{W3C REC-CSS-UI-3} \cite{w3c-rec-css3-ui}
 \end{enumerate}
 
-Za pomocą CSS opisać można wszystkie pojęcia odpowiedzialne za reprezentację elementów HTML, takie jak rodzina czcionek, kolor tekstu, marginesy, czy też pozycja danego elementu względem innych elementów lub okna przeglądarki.
+Za pomocą \emph{CSS} opisać można wszystkie pojęcia odpowiedzialne za reprezentację elementów \emph{HTML}, takie jak rodzina czcionek, kolor tekstu, marginesy, czy też pozycja danego elementu względem innych elementów lub okna przeglądarki.
 
-CSS został stworzony w celu odseparowania struktury dokumentu od formy jego prezentacji. Zalety tej separacji to zwiększony zakres dostępności witryny, zmniejszona zawiłość dokumentu, łatwiejsze wprowadzanie zmian w strukturze dokumentu. CSS ułatwia także zmiany w wyświetlaniu strony w zależności od obsługiwanego medium (ekran komputera, ekran tabletu, ekran telefonu komórkowego).
+\emph{CSS} został stworzony w celu odseparowania struktury dokumentu od formy jego prezentacji. Zalety tej separacji to zwiększony zakres dostępności witryny, zmniejszona zawiłość dokumentu, łatwiejsze wprowadzanie zmian w strukturze dokumentu. \emph{CSS} ułatwia także zmiany w wyświetlaniu strony w zależności od obsługiwanego medium (ekran komputera, ekran tabletu, ekran telefonu komórkowego).
 
 Arkusz stylów składa się z reguł określających styl dla wybranych elementów dokumentu. Reguła składa się z selektora oraz deklaracji. Selektor określa grupę elementów, którego ma dotyczyć deklaracja. Deklaracja określa formatowanie i składa się z nazwy jednej z właściwości i jej wartości napisanej po dwukropku. Deklaracja musi być otoczona nawiasami klamrowymi.
 
@@ -131,9 +131,9 @@ Selektory mogą poszukiwać elementy na podstawie wielu różnych wartośći, je
   \item połączenie wcześniejszych selektorów operatorem logicznym \emph{AND} np. \emph{\#element-id .my-class}
 \end{itemize}
 
-Dobrą praktyką jest definiowanie selektorów na podstawie atrubutu \emph{class}, natomiast identyfikator, czyli atrybut \emph{id} powinien służyć do jednoznacznej identyfikacji elementu w strukturze HTML. Zgodnie z dokumentacją wiele znaczników może posiadać taką samą klasę, natomiast identyfikator aby spełniał swoje zadanie musi być unikalny.
+Dobrą praktyką jest definiowanie selektorów na podstawie atrubutu \emph{class}, natomiast identyfikator, czyli atrybut \emph{id} powinien służyć do jednoznacznej identyfikacji elementu w strukturze \emph{HTML}. Zgodnie z dokumentacją wiele znaczników może posiadać taką samą klasę, natomiast identyfikator aby spełniał swoje zadanie musi być unikalny.
 
-Ponieważ standardowy wygląd znaczników z punktu widzenia użytkownika może być interpretowany jako bardzo prosty to współcześnie nieostylowane strony internetowe zdarzają się bardzo rzadko. W celu pokazania jak duża może być różnica pomiędzy standardowym, a specjalnie ostylowanym wyglądem strony internetowej przedstawiony zostanie poprzedni przykład strony z formularzem wzbogacony o bardzo lekką bibliotekę CSS o nazwie Milligram\cite{milligram}, której rozmiar wynosi tylko 2kb.
+Ponieważ standardowy wygląd znaczników jest bardzo prosty to dodatkowo nieostylowane strony internetowe zdarzają się bardzo rzadko. W celu pokazania jak duża może być różnica pomiędzy standardowym, a specjalnie ostylowanym wyglądem strony internetowej poniżej przedstawiony został poprzedni przykład strony z formularzem wzbogacony o bardzo lekką bibliotekę \emph{CSS} o nazwie \emph{Milligram} \cite{milligram}. Biblioteka ta jest bardza lekka, jej rozmiar wynosi tylko 2kB.
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{html-css-chrome.png}
