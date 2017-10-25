@@ -337,24 +337,36 @@ Moment stworzenia pierwszego żądania równoznaczny jest z początkiem ładowan
 
 \subsubsection{Parsowanie}
 
-W momencie gdy przeglądarka w pełni przetworzy żądanie i otrzyma dokument w postaci pliku zawierającego kod HTML wtedy następuje proces czytania treści tego pliku w procesie zwanym parsowaniem. Pod pojęciem parsowanie ukrywa się czytanie treści z uwzględnieniem analizy składniowej specyficznej dla konkretnego języka. W przypadku języka HTML przeglądarka oczekuje poprawnie zdefiniowanych znaczników z właściwymi parametrami. 
+W momencie gdy przeglądarka w pełni przetworzy żądanie i otrzyma dokument w postaci pliku zawierającego kod \emph{HTML} wtedy następuje proces czytania treści tego pliku w procesie zwanym parsowaniem. Pod pojęciem parsowanie ukrywa się czytanie treści z uwzględnieniem analizy składniowej specyficznej dla konkretnego języka. W przypadku języka \emph{HTML} przeglądarka oczekuje poprawnie zdefiniowanych znaczników z właściwymi parametrami. 
 
 Jeśli przeglądarka napotka znacznik odnoszący się do kolejnego zasobu wtedy proces parsowania zostaje zatrzymany i tworzone jest żądanie  w celu pobrania zawartości potrzebnej do pełnego wyświetlenia strony. Dopiero gdy przeglądarka pobierze cały zewnętrzny zasób proces parsowania zostaje kontynuowany. Znaczniki blokujące poprzez tworzenie odniesienia do zewnętrznego zasobu to:
 
 \begin{enumerate}
-  \item \emph{<link rel="stylesheet" type="text/css" href="style.css\">} - załączenie pliku ze stylami CSS
-  \item \emph{<script type="text/javascript\" src="script.js\">} - załączenie pliku z kodem w języku JavaScript
-  \item \emph{<img src="image.png\">} - załączenie pliku graficznego
+  \item załączenie pliku ze stylami CSS
+  \item załączenie pliku z kodem w języku JavaScript
+  \item załączenie pliku graficznego
 \end{enumerate}
+
+\begin{lstlisting}[caption=Przykładowe załączenie pliku ze stylami \emph{css}]
+<link rel="stylesheet" type="text/css" href="style.css">
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Przykładowe załączenie pliku z kodem w języku \emph{JavaScript}]
+<script type="text/javascript" src="script.js">
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Przykładowe załączenie pliku graficznego]
+<img src="image.png">
+\end{lstlisting}
 
 \subsubsection{Budowanie}
 
-W chwili, w której przeglądarka zakończy parsowanie dokumentu i wszystkie zewnętrzne zasoby zostaną pobrane następuje proces budowania strony, czyli łączenia informacji znalezionych w głównym pliku HTML oraz pobranych zasobach. Na budowę strony składają się trzy kroki:
+W chwili, w której przeglądarka zakończy parsowanie dokumentu i wszystkie zewnętrzne zasoby zostaną pobrane następuje proces budowania strony, czyli łączenia informacji znalezionych w głównym pliku \emph{HTML} oraz pobranych zasobach. Na budowę strony składają się trzy kroki:
 
 \begin{enumerate}
-  \item \emph{Konstrukcja DOM} - obiektowa reprezentacja struktury opisanej w pliku HTML. Szerzej opisana w rozdziale \ref{dom}
+  \item \emph{Konstrukcja DOM} - obiektowa reprezentacja struktury opisanej w pliku \emph{HTML}. Szerzej opisana w rozdziale \ref{dom}
   \item \emph{Konstrukcja CSSOM} - obiektowa reprezentacja kaskadowych arkuszy stylów. Szerzej opisana w rozdziale \ref{cssom}
-  \item \emph{Konstrukcja drzewa renderowania (ang. Render Tree)} - drzewiasta struktura będąca połączeniem DOM oraz CSSOM, na podstawie którego przeglądarka jest w stanie poprawnie wyświetlić stronę internetową
+  \item \emph{Konstrukcja drzewa renderowania (ang. Render Tree)} - drzewiasta struktura będąca połączeniem \emph{DOM} oraz \emph{CSSOM}, na podstawie którego przeglądarka jest w stanie poprawnie wyświetlić stronę internetową
 \end{enumerate}
 
 \subsubsection{Renderowanie}
@@ -369,14 +381,10 @@ Należy jednak pamiętać o tym, że przeglądarka posiada również swoje zadan
 
 Proces renderowania możemy podzielić na pięć postępujących po sobie etapów tzw. rurociągu (ang. \emph{pipeline}). Każdy z tych etapów ma znączacy wpływ na to w jaki sposób wyświetlone zostaną piksele na ekranie.
 
-\begin{figure}[ht]
-	\caption{Etapy rurociągu procesu renderowania}
-\end{figure}
-
 \begin{enumerate}
-  \item \emph{JavaScript / CSS} - język \emph{JavaScript} ten może zostać użyty do zadań, które ostatecznie skutkują wizualnymi zwianami na ekranie. Do tego typu zadań możemy zaliczyć np. wywołanie animacji, sortowanie zestawu danych, dodawanie elementów do strony za pomocą interfejsów \emph{DOM}. Animacje mogą również być definiowane za pomocą kasakdowych arkuszy styli.
-  \item \emph{Kalkulacja styli} - służy do określenia które reguły CSS zaaplikować do konkretnych elementów na podstawie pasujących selektorów oraz oblicza wartości poszczególnych właściwości \emph{CSS}
-  \item \emph{Układ (ang. Layout)} - przeglądarka wie już co wyświetlić na podstawie \emph{DOM}, wie też w jaki sposób to wyświetlić na podstawie \emph{CSSOM} oraz zna relację pomiędzy tymi dwoma elementami na podstawie \emph{Render Tree}. Na tym etapie przeglądarka oblicza jak dużą przestrzeń elementy będą zajmować na ekranie. Obliczenia te są potrzebne ponieważ właściwości jednego elementu często wpływają relatywnie na inne. Przykładowo szerokość elementu \emph{body}, które umiejscowione jest bardzo wysoko blisko korzenia w drzewie elementów wpłynie na szerokość wszystkich podelementów aż do tzw. liści. Z racji dużej ilości obliczeń proces ten może mocno angażować procesor.
+  \item \emph{JavaScript / CSS} - język \emph{JavaScript} może zostać użyty do zadań, które ostatecznie skutkują wizualnymi zwianami na ekranie. Do tego typu zadań możemy zaliczyć np. wywołanie animacji, sortowanie zestawu danych, dodawanie elementów do strony za pomocą interfejsów \emph{DOM}. Animacje mogą również być definiowane za pomocą kasakdowych arkuszy styli
+  \item \emph{Kalkulacja styli} - służy do określenia które reguły \emph{CSS} zaaplikować do konkretnych elementów na podstawie pasujących selektorów oraz oblicza wartości poszczególnych właściwości \emph{CSS}
+  \item \emph{Układ (ang. Layout)} - na tym etapie przeglądarka wie już co wyświetlić na podstawie \emph{DOM}, wie też w jaki sposób to wyświetlić na podstawie \emph{CSSOM} oraz zna relację pomiędzy tymi dwoma elementami na podstawie \emph{Render Tree}. Na tym etapie przeglądarka oblicza jak dużą przestrzeń elementy będą zajmować na ekranie. Obliczenia te są potrzebne ponieważ właściwości jednego elementu często wpływają relatywnie na inne. Przykładowo szerokość elementu \emph{body}, które umiejscowione jest bardzo wysoko blisko korzenia w drzewie elementów wpłynie na szerokość wszystkich podelementów aż do tzw. liści. Z racji dużej ilości obliczeń proces ten może mocno angażować procesor.
   \item \emph{Malowanie (ang. Paint)} - malowanie jest processem wypełniania poszczególnych pikseli na ekranie. Sprowadza się do wyświetlenia tekstu, kolorów, obrazków, obramowań, cieni, czyli głównie wszystkiego co wpływa na wizualną część każdego elementu. Najczęściej elementy malowane są na wielu powierzchniach popularnie nazywanych warstwami
   \item \emph{Kompozycja (ang. Compositing)} - ponieważ elementy strony mogły zostać potencjalnie namalowane na wielu różnych warstawach, przeglądarka musi wyświetlić warstwy w odpowiedniej kolejności. Dotyczy to szczególnie elementów, które wzajemnie na siebie nachodzą, od błędnej kompozycji może zależeć czy element, który powinien być przykryty przypadkowo zostanie wyrysowany na warstwie znajdującej się na samej górze
 \end{enumerate}
@@ -392,25 +400,13 @@ Czasami można spotkac się z określeniem rasteryzacji (ang. \emph{rasterizatio
 
 To właśnie ostatnie z wymienionych zadań jest właściwą rasteryzacją, czyli działaniem polegającym na jak najwierniejszym przedstawieniu płaskiej figury geometrycznej na urządzeniu rastrowym, dysponującym skończoną rozdzielczością, w naszym przypadku na ekranie urządzenia. Warto przytoczyć tutaj fakt, iż niektóre implementacje wykonują wymienione zadania na różnych wątkach procesora (ang. \emph{threads}), jednak dzieje się to poza jakąkolwiek kontrolą programisty.
 
-Przygotowanie klatki do wyświetenia nie zawsze musi przechodzić przez wszystkie pięc etapów rurociągu. Istnieją trzy kombinacje elementów, które odgrywają rolę przy przygotowaniu klatki w momencie gdy nastąpiła wizualna zmiana obojętnie czy z powodu kodu napisanego w języku \emph{JavaScript}, czy też z powodu zdefiniowanych styli \emph{CSS}.
+Przygotowanie klatki do wyświetenia nie zawsze musi przechodzić przez wszystkie pięć etapów rurociągu. Istnieją trzy kombinacje elementów, które odgrywają rolę przy przygotowaniu klatki w momencie gdy nastąpiła wizualna zmiana obojętnie czy z powodu kodu napisanego w języku \emph{JavaScript}, czy też z powodu zdefiniowanych styli \emph{CSS}.
 
 \begin{enumerate}
-  \item \emph{JavaScript / CSS > Style > Layout > Paint > Composite} - pełne przejście przez wszystkie etapy. Ma miejsce w momencie gdy zmeinia się właściwość powiązana z układem elementów na stronie np. szerokość, wysokośc, pozycja elementu. Przeglądarka musi sprawdzić wszystkie pozostałe elementy, dokonać odpowiednich obliczeń potrzebnych na pełne przemalowanie warstw, a ostatecznie dokonania ich kompozycji
+  \item \emph{JavaScript / CSS > Style > Layout > Paint > Composite} - pełne przejście przez wszystkie etapy. Ma miejsce w momencie gdy zmienia się właściwość powiązana z układem elementów na stronie np. szerokość, wysokośc, pozycja elementu. Przeglądarka musi sprawdzić wszystkie pozostałe elementy, dokonać odpowiednich obliczeń potrzebnych na pełne przemalowanie warstw, a ostatecznie dokonania ich kompozycji
   \item \emph{JavaScript / CSS > Style > Paint > Composite} - kombinacja ta ma miejsce w momencie gdy zmienia się właściwość powiązana wyłącznie z malowaniem strony jak np. tło, kolor tekstu. Przeglądarka nie musi wtedy na nowo opracowywać układu strony, co nie zmienia faktu, że musi przejść przez etap malowania
   \item \emph{JavaScript / CSS > Style > Composite} - najbardziej pożądana kombinacja ponieważ nie wymaga ani opracowania układu strony, ani jej przemalowania. Ma miejsce tylko gdy zmienia się właściwość nie powiązana ze wcześniej wymienionymi etapami
 \end{enumerate}
-
-\begin{figure}[ht]
-	\caption{JavaScript / CSS > Style > Layout > Paint > Composite}
-\end{figure}
-
-\begin{figure}[ht]
-	\caption{JavaScript / CSS > Style > Paint > Composite}
-\end{figure}
-
-\begin{figure}[ht]
-	\caption{JavaScript / CSS > Style > Composite}
-\end{figure}
 
 \subsection{Model współbieżności oraz pętla zdarzeń}
 
