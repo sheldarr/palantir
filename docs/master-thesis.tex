@@ -403,21 +403,16 @@ To właśnie ostatnie z wymienionych zadań jest właściwą rasteryzacją, czyl
 Przygotowanie klatki do wyświetenia nie zawsze musi przechodzić przez wszystkie pięć etapów rurociągu. Istnieją trzy kombinacje elementów, które odgrywają rolę przy przygotowaniu klatki w momencie gdy nastąpiła wizualna zmiana obojętnie czy z powodu kodu napisanego w języku \emph{JavaScript}, czy też z powodu zdefiniowanych styli \emph{CSS}.
 
 \begin{enumerate}
-  \item \emph{JavaScript / CSS > Style > Layout > Paint > Composite} - pełne przejście przez wszystkie etapy. Ma miejsce w momencie gdy zmienia się właściwość powiązana z układem elementów na stronie np. szerokość, wysokośc, pozycja elementu. Przeglądarka musi sprawdzić wszystkie pozostałe elementy, dokonać odpowiednich obliczeń potrzebnych na pełne przemalowanie warstw, a ostatecznie dokonania ich kompozycji
+  \item \emph{JavaScript / CSS > Style > Layout > Paint > Composite} - pełne przejście przez wszystkie etapy. Ma miejsce w momencie gdy zmienia się właściwość powiązana z układem elementów na stronie np. szerokość, wysokość, pozycja elementu. Przeglądarka musi sprawdzić wszystkie pozostałe elementy, dokonać odpowiednich obliczeń potrzebnych na pełne przemalowanie warstw, a ostatecznie dokonać ich kompozycji
   \item \emph{JavaScript / CSS > Style > Paint > Composite} - kombinacja ta ma miejsce w momencie gdy zmienia się właściwość powiązana wyłącznie z malowaniem strony jak np. tło, kolor tekstu. Przeglądarka nie musi wtedy na nowo opracowywać układu strony, co nie zmienia faktu, że musi przejść przez etap malowania
   \item \emph{JavaScript / CSS > Style > Composite} - najbardziej pożądana kombinacja ponieważ nie wymaga ani opracowania układu strony, ani jej przemalowania. Ma miejsce tylko gdy zmienia się właściwość nie powiązana ze wcześniej wymienionymi etapami
 \end{enumerate}
 
 \subsection{Model współbieżności oraz pętla zdarzeń}
 
-Język JavaScript posiada model współbieżności oparty na pętli zdarzeń (ang. \emph{event loop}. Ten model różni się od modeli zaimplementowanych w innych językach jak np. \emph{C} lub \emph{Java}.
+Język JavaScript posiada model współbieżności oparty na pętli zdarzeń (ang. \emph{event loop}). Ten model różni się od modeli zaimplementowanych w innych językach jak np. \emph{C} lub \emph{Java}.
 
 Poniższe sekcje wyjaśniają model teoretyczny. Nowoczesne silniki JavaScript implementują i optymalizują opisaną tutaj semantykę.
-
-\begin{figure}[ht]
-  \includegraphics[width=\textwidth]{concurrency-model.png}
-	\caption{Wizualizacja modelu}
-\end{figure}
 
 \subsubsection{Stos}
 
@@ -437,11 +432,11 @@ function bar(x) {
 console.log(bar(2));
 \end{lstlisting}
 
-Na przedstawionym przykładzie w momencie wywołania funkcji \emph{bar} zostaje utworzona pierwsza ramka przechowująca argumenty przekazane do tej funkcji oraz lokalne zmienne. Następnie gdy wewnątrz funkcji \emph{bar} wywoływana jest funkcja \emph{foo} tworzona jest druga ramka przechowująca te same informacje tj. przekazane argumenty oraz lokalne zmienne. Ramka umieszczana jest na samej górze stosu nad pierwszym elementem. Kiedy następuje powrót z funkcji \emph{foo} element na samej górze stosu zostaje zdjęty (pozostawijąc tylko ramkę powiązaną z wywołaniem funkcji \emph{bar}). Po powrocie z funkcji \emph{bar} stos powonie staje się pusty.
+Na przedstawionym przykładzie w momencie wywołania funkcji \emph{bar} zostaje utworzona pierwsza ramka przechowująca argumenty przekazane do tej funkcji oraz lokalne zmienne. Następnie gdy wewnątrz funkcji \emph{bar} wywoływana jest funkcja \emph{foo} tworzona jest druga ramka przechowująca te same informacje tj. przekazane argumenty oraz lokalne zmienne. Ramka umieszczana jest na samej górze stosu nad pierwszym elementem. Kiedy następuje powrót z funkcji \emph{foo} element na samej górze stosu zostaje zdjęty (pozostawiając tylko ramkę powiązaną z wywołaniem funkcji \emph{bar}). Po powrocie z funkcji \emph{bar} stos powonie staje się pusty.
 
 \subsubsection{Sterta}
 
-Obiekty utworzone w języku JavaScript są umieszczane w stercie (ang. \emph{heap}). Poprzez stertę rozumi się duzą w większości nieustrukturyzowaną przestrzeń pamięci.
+Obiekty utworzone w języku JavaScript są umieszczane w stercie (ang. \emph{heap}). Poprzez stertę rozumi się dużą w większości nieustrukturyzowaną przestrzeń pamięci.
 
 \subsubsection{Kolejka}
 
@@ -461,9 +456,9 @@ while (queue.waitForMessage()) {
 Fragment \emph{queue.waitForMessage()} oczekuje synchronicznie, aż pojawi się wiadomość w kolejkce. Pętla zdarzen posiada kilka bardzo ważnych własności:
 
 \begin{enumerate}
-  \item \emph{Działanie do końca} - każda wiadomość jest przetwarzana całkowice przed przetworzeniem jakiejkolwiek innej wiadomości. To zachowanie gwarantuje, iż raz wywołana funkcja będzie działać do końca przed uruchomieniem dowolnego innego kodu. Jako przykład innego działania można przedstawić język C, gdzie np. jeśli funkcja dziąła w wątku może być zatrzymana w dowolnym momencie, aby uruchomić inny kod w innym wątku. Minusem tego modelu jest możliwość zaistnienia sytuacji w której przetwarzanie wiadomości trwa bardzo długo, w tym czasie aplikacja internetowa nie jest w stanie przetworzyć interakcji użytkownika. Przeglądarka obsługuje tą sytuację wyświetlając informację o tym, że wykonywanie skryptu trwa bardzo długo. Może to zniechęcić użytkownika do opuszczenia strony lub jej ponownego odświeżenia. Dobrą praktyką jest pisanie jak najkrótszej implementacji przetwarzania wiadomości
-  \item \emph{Sposób dodawania wiadomości} - w przeglądarce internetowej wiadomości dodawane są do kolejki w dowolnym momencie, w którym zdarzenie to ma miejsce pod warunkiem, że została dodana funkcja nasłuchująca konkretnego wydarzenia. Bez nasłuchiwania zdarzenia wiadomość ulega przepadnięciu. Istnieje możliwość dodanie wiadomości do kolejki za pomocą funkcji \emph{setTimeout}. Wiadomość ta zostanie dodana do kolejki po upływie czasu podanego jako argument funkcji. W przypadku, w którym w kolejce nie ma innej wiadomości to nowo dodana wiadomość zostanie przetworzona od razu, jeśli istnieją jakieś inne, wtedy komunikat dodany metodą \emph{setTimeout} będzie musiał poczekać zanim nie zostaną one przetworzone. Z tego powodu argument podany jako czas wkazuje na minimalny czas, a nie na gwarantowany czas. Z tego powodu należy również mieć na uwadze fakt, iż wywołanie funkcji \emph{setTimeout} z opóżnieniem 0 milisekund nie spowoduje przetworzena wiadomości od razu. Wszystko zależy od aktualnego stopnia zapełnienia kolejki.
-  \item \emph{Brak blokowania} - w przeciwieńswie do wielu innych języków JavaScript nigdy się nie blokuje. Obsługa wejścia / wyjścia zazwyczaj odbywa się za pośrednictwem zdarzeń i wywołan zwrotnych. Tym samym gdy aplikacja nadal może przetwarzać inne rzeczy jak np. wprowadzanie danych przez użytkownika
+  \item \emph{Działanie do końca} - każda wiadomość jest przetwarzana całkowicie przed przetworzeniem jakiejkolwiek innej wiadomości. To zachowanie gwarantuje, iż raz wywołana funkcja będzie działać do końca przed uruchomieniem dowolnego innego kodu. Jako przykład innego działania można przedstawić język \emph{C}, gdzie np. jeśli funkcja dziąła w wątku może być zatrzymana w dowolnym momencie, aby uruchomić inny kod w innym wątku. Minusem tego modelu jest możliwość zaistnienia sytuacji w której przetwarzanie wiadomości trwa bardzo długo, w tym czasie aplikacja internetowa nie jest w stanie przetworzyć interakcji użytkownika. Przeglądarka obsługuje tą sytuację wyświetlając informację o tym, że wykonywanie skryptu trwa bardzo długo. Może to zniechęcić użytkownika do opuszczenia strony lub jej ponownego odświeżenia. Dobrą praktyką jest pisanie jak najkrótszej implementacji przetwarzania wiadomości
+  \item \emph{Sposób dodawania wiadomości} - w przeglądarce internetowej wiadomości dodawane są do kolejki w dowolnym momencie, w którym zdarzenie to ma miejsce pod warunkiem, że została dodana funkcja nasłuchująca konkretnego wydarzenia. Bez nasłuchiwania zdarzenia wiadomość ulega przepadnięciu. Istnieje możliwość dodanie wiadomości do kolejki za pomocą funkcji \emph{setTimeout}. Wiadomość ta zostanie dodana do kolejki po upływie czasu podanego jako argument funkcji. W przypadku, w którym w kolejce nie ma innej wiadomości to nowo dodana wiadomość zostanie przetworzona od razu, jeśli istnieją jakieś inne, wtedy komunikat dodany metodą \emph{setTimeout} będzie musiał poczekać zanim nie zostaną one przetworzone. Z tego powodu argument podany jako czas wkazuje na minimalny czas, a nie na gwarantowany czas. Z tego powodu należy również mieć na uwadze fakt, iż wywołanie funkcji \emph{setTimeout} z opóżnieniem 0 milisekund nie spowoduje przetworzena wiadomości od razu. Wszystko zależy od aktualnego stopnia zapełnienia kolejki
+  \item \emph{Brak blokowania} - w przeciwieńswie do wielu innych języków JavaScript nigdy się nie blokuje. Obsługa wejścia / wyjścia zazwyczaj odbywa się za pośrednictwem zdarzeń i wywołań zwrotnych. Tym samym gdy aplikacja nadal może przetwarzać inne rzeczy jak np. wprowadzanie danych przez użytkownika
 \end{enumerate}
 
 \section{Trace Event Format} \label{trace-event-format-section}
