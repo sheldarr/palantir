@@ -776,7 +776,7 @@ W celu poprawnego przeprowadzenia badań zostały stworzone trzy małe aplikacje
 
 \subsubsection{Specyfikacja wewnętrzna}
 
-Aplikacja została napisana w języku \emph{JavaScript} w standardzie ECMAScript 2016 \cite{es2016}. Środowiskiem uruchomieniowym jest \emph{Node.js} \cite{node.js} w wersji \emph{8.1.4}. Do poprawnego zainstalowania zewnętrznych zależności potrzebny jest menedżer pakietów \emph{Yarn} \cite{yarn}. Serwer obsługujący żadania \emph{HTTP} oparty został na bibliotece \emph{Express} \cite{express}.
+Aplikacja została napisana w języku \emph{JavaScript} w standardzie \emph{ECMAScript 2016} \cite{es2016}. Środowiskiem uruchomieniowym jest \emph{Node.js} \cite{node.js} w wersji \emph{8.1.4}. Do poprawnego zainstalowania zewnętrznych zależności potrzebny jest menedżer pakietów \emph{Yarn} \cite{yarn}. Serwer obsługujący żadania \emph{HTTP} oparty został na bibliotece \emph{Express} \cite{express}.
 
 \subsubsection{Specyfikacja zewnętrzna}
 
@@ -795,19 +795,19 @@ Aplikacja nie przyjmuje danych wejściowych. \newline
 
 \textbf{Format danych wyjściowych} \newline
 
-Aplikacja nie podaje żadnych danych na wyjściu. Odpowiada na żądania \emph{HTTP} pod domyślnym adresem \emph{http://localhost:8080}
+Aplikacja nie podaje żadnych danych na wyjściu. Po uruchomieniu odpowiada na żądania \emph{HTTP} pod domyślnym adresem \emph{http://localhost:8080}
 
 \subsection{chrome-performance-logs-recorder}
 
 \subsubsection{Opis}
 
-\emph{chrome-performance-logs-recorder} to aplikacja, która w automatyczny sposób uruchamia przeglądarkę internetową, przechodzi pod określony adres a następnie zbiera informacje związane z wydajnością aby pod koniec zapisać je do pliku w formacie \emph{JSON}. 
+\emph{chrome-performance-logs-recorder} to aplikacja, która w automatyczny sposób uruchamia przeglądarkę internetową, przechodzi pod określony adres a następnie zbiera informacje związane z wydajnością aby pod koniec zapisać je do pliku z rozszerzeniem \emph{JSON} w formacie \emph{Trace Event Format}.
 
 \subsubsection{Specyfikacja wewnętrzna}
 
-Aplikacja została napisana w języku \emph{JavaScript} w standardzie ECMAScript 2016 \cite{es2016}. Środowiskiem uruchomieniowym jest \emph{Node.js} \cite{node.js} w wersji \emph{8.1.4}. Do poprawnego zainstalowania zewnętrznych zależności potrzebny jest menedżer pakietów \emph{Yarn} \cite{yarn} oraz przeglądarka internetowa \emph{Chrome}.
+Aplikacja została napisana w języku \emph{JavaScript} w standardzie \emph{ECMAScript 2016} \cite{es2016}. Środowiskiem uruchomieniowym jest \emph{Node.js} \cite{node.js} w wersji \emph{8.1.4}. Do poprawnego zainstalowania zewnętrznych zależności potrzebny jest menedżer pakietów \emph{Yarn} \cite{yarn} oraz przeglądarka internetowa \emph{Chrome}.
 
-Automatyczne działanie opiera się na uruchomieniu serwera \emph{Selenium} \cite{selenium}, który to uruchamia a następnie podłącza się do przeglądarki internetowej sam udostępniajać interfejs programistyczny do większości akcji, które może robić standardowy użytkownik przeglądarki. Aby korzystać w pełni z funkcjonalności oferowanych przez \emph{Selenium} użyto wiązań (ang. \emph{bindings}) dostarczanych przez paczkę \emph{wd} \cite{wd}, które pozwalają na dostęp do interfejsu \emph{Selenium} z poziomu języka \emph{JavaScript} w środowisku \emph{Node.js}.
+Automatyczne działanie opiera się na uruchomieniu serwera \emph{Selenium} \cite{selenium}, który to uruchamia a następnie podłącza się do przeglądarki internetowej. Po podłączeniu się do przeglądarki \emph{Selenium} udostępnia interfejs programistyczny do większości akcji, które może robić standardowy użytkownik przeglądarki. Aby korzystać w pełni z funkcjonalności oferowanych przez \emph{Selenium} użyto wiązań (ang. \emph{bindings}) dostarczanych przez paczkę \emph{wd} \cite{wd}, które pozwalają na dostęp do interfejsu \emph{Selenium} z poziomu języka \emph{JavaScript} w środowisku \emph{Node.js}.
 
 \subsubsection{Specyfikacja zewnętrzna}
 
@@ -839,8 +839,8 @@ Aplikacja przyjmuje następujące parametry:
 
 \textbf{Format danych wyjściowych} \newline
 
-Dane wyjściowe zapisane do pliku o rozszerzeniu \emph{JSON} są zgodne z opisanym wcześniej formatem \emph
-{Trace Event Format} \ref{trace-event-format-section}.
+Dane wyjściowe zapisywane są do pliku z rozszerzeniem \emph{JSON} oraz są zgodne z opisanym wcześniej formatem \emph
+{Trace Event Format} [\ref{trace-event-format-section}].
 
 \subsection{trace-event-format-analyzer}
 
@@ -917,7 +917,7 @@ Współczesne biblioteki często wzajemnie zapożyczają i implementują pomysł
 
 \subsubsection{Komponenty}
 
-Architektura strony internetwoej zbudowanej za pomocą współczesnych bibliotek programistycznych opiera się najczęściej na idei komponentów. Poprzez komponenty rozumi się fragment strony internetowej, który posiada jasno określoną odpowiedzialność. Komponenty buduje się z połaczęnia HTML, JavaScript oraz CSS, tym samym komponent zawiera wszystkie informacje potrzebne do wyświetlenia oraz działania. Dzięki tej niezależności komponenty są w łatwy sposób testowalne, mają jasno określony interfejs za pomocą którego komunikują się z innymi komponentami. Raz określony komponent może być użyty w wielu miejscach co pozwala uniknąc niepotrzebnej duplikacji kodu.
+Architektura strony internetwoej zbudowanej za pomocą współczesnych bibliotek programistycznych opiera się w zdecydowanej większości na idei komponentów. Poprzez komponenty rozumi się fragment strony internetowej, który posiada jasno określoną odpowiedzialność. Komponenty buduje się z połączenia \emph{HTML}, \emph{JavaScript} oraz \emph{CSS}, tym samym komponent zawiera wszystkie informacje potrzebne do wyświetlenia samego siebie oraz działania. Dzięki tej niezależności komponenty są w łatwy sposób testowalne, mają jasno określony interfejs za pomocą którego komunikują się z innymi komponentami. Raz określony komponent może być użyty w wielu miejscach co pozwala uniknąc niepotrzebnej duplikacji kodu.
 
 Struktura strony internetowej opartej na komponentach może zostać przedstawiona za pomocą drzewa, którego korzeniem jest główny komponent, który najczęściej po prostu składa się z kilku komponentów o bardziej specyficznych odpowiedzialnościach. Te komponenty moga składać się z kolejnych i tak dalej. 
 
