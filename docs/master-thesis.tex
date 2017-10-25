@@ -500,7 +500,7 @@ Plik przechowujący dane w wraciencie obiektowym (ang. \emph{JSON Object Format}
   \item samples - tablica przechowująca dane rozszerzające traceEvents o informacje zarejestrowane na poziomie systemu operacyjnego 
 \end{enumerate}
 
-Dopuszcza się możliwość definicji pól o nazwach innych niż wymienione wcześniej dla dodatkowego opisania danych (metadane)
+Dopuszczona jest możliwość definicji pól o nazwach innych niż wymienione wcześniej dla dodatkowego opisania danych (metadane).
 
 \begin{lstlisting}[caption=Przykładowy wariant obiektowy]
 {
@@ -530,7 +530,7 @@ Podstawowymi obiektami, które można poddać analizie są zdarzenia. Istnieje k
 \begin{enumerate}
   \item name - nazwa zdarzenia
   \item cat - kolekcja oddzielonych przecinkiem kategorii powiązanych ze zdarzeniem
-  \item ph - pojedynczy znak określający typ zdarzenia. Table prawidłowych wartości została przedstawiona poniżej.
+  \item ph - pojedynczy znak określający typ zdarzenia. Table prawidłowych wartości została przedstawiona poniżej
   \item ts - znacznik czasowy zdarzenia podany z dokładnością do milisekundy
   \item tts - opcjonalny znacznik czasowy wątku zdarzenia podany z dokładnością do milisekundy
   \item pid - identyfikator procesu, który spowodował zaistnienie zdarzenia
@@ -572,17 +572,17 @@ Podstawowymi obiektami, które można poddać analizie są zdarzenia. Istnieje k
 Poniżej przedstawiono opis każdego z możliwych typów zdarzeń:
 
 \begin{enumerate}
-  \item zdarzenia trwające - umożliwiają określenie czasu trwania pracy nad danym wątkiem. Zdarzenia czasowe są określane przez typy \textbf{B} i \textbf{E}. Zdarzenie \textbf{B} musi nastąpić przed odpowiednim wydarzeniem \textbf{E}. Można zagnieżdżać zdarzenia \textbf{B} i \textbf{E}. Znaczniki czasowe dla zdarzeń muszą być ułożone w kolejności rosnącej dla danego wątku. Znaczniki czasu w różnych wątkach nie muszą być ułożone w kolejności rosnącej.
-  \item zdarzenia kompletne - każde kompletne zdarzenie logicznie łączy parę zdarzeń (\textbf{B} i \textbf{E}). Kompletne zdarzenia są oznaczone przez typ fazy \textbf{X}.
-  \item zdarzenia natychmiastowe - odpowiadają czemuś co miało miejsce lecz bez przypisanego czasu trwania.
-  \item zdarzenia zliczające - mogą śledzić wartość lub wiele wartości zmieniających się w czasie.
-  \item zdarzenia asynchroniczne - służą do rejestrowania asynchronicznych operacji. Mogą pochodzić zarówno z różnych procesów jak i wątków.
-  \item zdarzenia przepływające - z założenia są bardzo podobne do zdarzeń asynchronicznych, ale dodatkowo pozwalają na łączenie ich ze sobą w wątkach i/lub procesach.
-  \item zdarzenia obiektowe - służą za konstrukcję do śledzenia złożonych struktur danych.
-  \item zdarzenia z metadanymi - są używane do powiązania dodatkowych informacji z wydarzeniami.
-  \item zdarzenia zrzutu pamięci - odpowiadają zrzutom pamięci procesu lub grupie procesów.
-  \item zdarzenia synchronizacji zegara - służą do synchonizacji czasu w przypadku gdy zdarzenia rejestrowane są przez różne byty.
-  \item zdarzenia kontekstowe - są używane do oznaczania sekwencji zdarzeń.
+  \item zdarzenia trwające - umożliwiają określenie czasu trwania pracy nad danym wątkiem. Zdarzenia czasowe są określane przez typy \textbf{B} i \textbf{E}. Zdarzenie \textbf{B} musi nastąpić przed odpowiednim wydarzeniem \textbf{E}. Można zagnieżdżać zdarzenia \textbf{B} i \textbf{E}. Znaczniki czasowe dla zdarzeń muszą być ułożone w kolejności rosnącej dla danego wątku. Znaczniki czasu w różnych wątkach nie muszą być ułożone w kolejności rosnącej
+  \item zdarzenia kompletne - każde kompletne zdarzenie logicznie łączy parę zdarzeń (\textbf{B} i \textbf{E}). Kompletne zdarzenia są oznaczone przez typ fazy \textbf{X}
+  \item zdarzenia natychmiastowe - odpowiadają czemuś co miało miejsce lecz bez przypisanego czasu trwania
+  \item zdarzenia zliczające - mogą śledzić wartość lub wiele wartości zmieniających się w czasie
+  \item zdarzenia asynchroniczne - służą do rejestrowania asynchronicznych operacji. Mogą pochodzić zarówno z różnych procesów jak i wątków
+  \item zdarzenia przepływające - z założenia są bardzo podobne do zdarzeń asynchronicznych, ale dodatkowo pozwalają na łączenie ich ze sobą w wątkach i/lub procesach
+  \item zdarzenia obiektowe - służą za konstrukcję do śledzenia złożonych struktur danych
+  \item zdarzenia z metadanymi - są używane do powiązania dodatkowych informacji z wydarzeniami
+  \item zdarzenia zrzutu pamięci - odpowiadają zrzutom pamięci procesu lub grupie procesów
+  \item zdarzenia synchronizacji zegara - służą do synchonizacji czasu w przypadku gdy zdarzenia rejestrowane są przez różne byty
+  \item zdarzenia kontekstowe - są używane do oznaczania sekwencji zdarzeń
 \end{enumerate}
 
 \begin{lstlisting}[caption=Przykładowe zdarzenie]
@@ -621,14 +621,14 @@ Aby uruchomić \emph{Chrome DevTools} wystarczy pobrać i uruchomić przeglądar
 
 \begin{enumerate}
   \item Tryb urządzenia - wspomaga tworzenie stron internetowych z myślą o urządzeniach mobilnych takich jak np. smartfony. Korzystając z tego modułu możemy sprawdzić jak aplikacja zachowuje się przy różnych wielkościach ekranu, czy jest responsywna i czy pozwala bez przeszkód korzystać z funkcjonalności oferowanych przez stronę internetową. W trybie urządzenia możemy również emulować wbudowane w urządzenia czujniki jak np. GPS, czy też akcelerometr
-  \item Zakładka \emph{Elementy} - służy do modyfikacji w czasie rzeczywistym struktury strony internetowej oraz styli CSS pojedynczego wybranego elementu lub wielu zgrupowanych za pomocą selektora. Zakładka ta pozwala również dokonać inspekcji wszystkich animacji znajdujących się na stronie
-  \item Zakładka \emph{Konsola} - pozwala na wykonanie dowolnego poprawnego kodu \emph{JavaScript}. Z poziomu konsoli posiadamy dostęp do interfejsów \emph{DOM} i \emph{CSSOM} aktualnie załadowanej strony internetowej co pozwala na praktycznie dowolną interakcję
+  \item Zakładka \emph{Elementy} - służy do modyfikacji w czasie rzeczywistym \emph{DOM} oraz \emph{CSS} pojedynczego wybranego elementu lub wielu zgrupowanych za pomocą selektora. Zakładka ta pozwala również dokonać inspekcji wszystkich animacji znajdujących się na stronie
+  \item Zakładka \emph{Konsola} - pozwala na wykonanie dowolnego poprawnego kodu \emph{JavaScript}. Z poziomu konsoli posiadamy dostęp do interfejsów \emph{DOM} i \emph{CSSOM} aktualnie załadowanej strony internetowej
   \item Zakładka \emph{Źródła} - dzięki tej zakładce możemy debugować dowolny skrypt napisany w języku \emph{JavaScript}, który został załączony do strony internetowej. Dzięki wbudowanemu interfejsowi graficznemu w łatwy sposób możemy umieszczać punkty wstrzymania (ang. \emph{brakepoint}) i wykonywać kod linijka po linijce podglądając w czasie rzeczywistym wartość wszystkich zmiennych oraz ramek odłożonych na stos
   \item Zakładka \emph{Sieć} - służy do podglądania zarówno wykresów czasowych ładowania poszczególnych elementów strony internetowej jak i nagłówków wszystkich żądań oraz odpowiedzi \emph{HTTP}
-  \item Zakładka \emph{Wydajność} - zakładka ta została bardziej szczegółowo opisana w dalszej części pracy ponieważ stanowi kluczowe narzędzie do celów badań wydajnościowych
-  \item Zakładka \emph{Pamięc} - służy do tworzenia migawki (ang. \emph{snapshot}) aktualnego stanu sterty. Pozwala również zbierać informacje o tym jak była alokowana pamięc komputerowa w trakcie działania aplikacji i reprezentować zebrane dane na wykresie czasowym
+  \item Zakładka \emph{Wydajność} - zakładka ta została bardziej szczegółowo opisana w następnym podrozdziale, ponieważ stanowi kluczowe narzędzie do celów badań wydajnościowych
+  \item Zakładka \emph{Pamięć} - służy do tworzenia migawki (ang. \emph{snapshot}) aktualnego stanu sterty. Pozwala również zbierać informacje o tym jak była alokowana pamięc komputerowa w trakcie działania aplikacji i reprezentować zebrane dane na wykresie czasowym
   \item Zakładka \emph{Aplikacja} - dostarcza wglądu do takich elementów aplikacji internetowej jak manifest, ciasteczka, pamięc podręczna, lokalny magazyn (ang. \emph{local storage}), magazyn sesji (ang. \emph{session storage}). Dodatkowo pozwala modyfikować tworzyć oraz modyfikować istniejące wpisy w czasie rzeczywistym
-  \item Zakładka \emph{Bezpieczeństwo} - służy do rozwiązywania problemów związanymi z certyfikatami internetowymi, za pomocą wbudowanej przeglądarki możemy zapoznać się ze szczegółowymi informacajami na temat każdego certyfikatu związanego ze stroną internetową
+  \item Zakładka \emph{Bezpieczeństwo} - służy do rozwiązywania problemów związanych z certyfikatami internetowymi, za pomocą wbudowanej przeglądarki możemy zapoznać się ze szczegółowymi informacajami na temat każdego certyfikatu związanego ze stroną internetową
 \end{enumerate}
 
 \subsection{Manualne zbieranie danych}
@@ -658,10 +658,10 @@ Po zatrzymaniu nagrywania narzędzie automatycznie dokona reprezentacji zebranyc
 Najwyżej położonym widokiem służacym przedstwieniu zebranych danych jest widok zbiorczy, który składa się z kilku wykresów. Częścią wspólną wszystkich wykresów jest pozioma oś reprezentująca upływający czas. Poniżej opisane zostały wszystkie wykresy wchodzące w skład widoku zbiorczego:
 
 \begin{enumerate}
-  \item FPS - wykres ten przedstawia ilość klatek na sekundę, które przeglądarka była w stanie przygotować do wyświetlenia
-  \item CPU - wykres ten przedstawia zmieniające sięw  czasie zużycie procesora
-  \item NET - wykres przedstawia czas, w którym przeglądarka pobierała wszystkie zasoby potrzebne do wyświetlenia strony oraz czekała na rozwiązanie wszelkich żądań \emph{HTTP} poprzez sieć
-  \item HEAP - wykres przestawiający ilość pamięci zajmowanej przez stertę. Bardzo dobrze widać na nim cykliczne działanie zbieracza nieużytków (ang. \emph{Garbage collector}), który jest jedną z metod automatycznego zarządzania dynamicznie przydzieloną pamięcią. Nagłe usuwanie ze sterty niepotrzebnych obiektów powoduje spadek na wykresie i powstawanie charakterystycznych "ząbków".
+  \item \emph{FPS} - wykres ten przedstawia ilość klatek na sekundę, które przeglądarka była w stanie przygotować do wyświetlenia
+  \item \emph{CPU} - wykres ten przedstawia zmieniające się w czasie zużycie procesora
+  \item \emph{NET} - wykres przedstawia czas, w którym przeglądarka pobierała wszystkie zasoby potrzebne do wyświetlenia strony oraz czekała na rozwiązanie wszelkich żądań \emph{HTTP}
+  \item \emph{HEAP} - wykres przestawiający ilość pamięci zajmowanej przez stertę. Bardzo dobrze widać na nim cykliczne działanie zbieracza nieużytków (ang. \emph{Garbage collector}), który jest jedną z metod automatycznego zarządzania dynamicznie przydzieloną pamięcią. Nagłe usuwanie ze sterty niepotrzebnych obiektów powoduje spadek na wykresie i powstawanie charakterystycznych "ząbków".
 \end{enumerate}
 
 \begin{figure}[ht]
@@ -738,8 +738,8 @@ Widok przedstawia jak w czasie zmienia się ilość pamięci zajętej przez ster
 
 \begin{enumerate}
   \item migawka zawartości sterty - pozwala utrwalić aktualny stan sterty, a następnie dokonać przeglądu jej zawartości za pomocą wbudowanej przeglądarki
-  \item nagranie profilu alokacji pamięci - pozwala zbierać dane na temat alokacji pamięci z poziomu kodu napisanego w języku \emph{JavaScript}. Dane te można przejrzeć za pomocą trzech widoków. Wykresu, drzewa "od-dołu" (ang. \emph{Bottom Up}) oraz drzewa "od-góry" (ang. \emph{Top Down})
-  \item alokacja pamięci przedstawiona na wykresie czasowym - pozwala zbierać dane na temat alokacji pamięci lecz przedstawia je na osi czasowej
+  \item nagranie profilu alokacji pamięci - pozwala zbierać dane na temat alokacji pamięci z poziomu kodu napisanego w języku \emph{JavaScript}
+  \item alokacja pamięci przedstawiona na wykresie czasowym - pozwala zbierać dane na temat alokacji pamięci oraz automatycznie przedstawia je na osi czasowej
 \end{enumerate}
 
 Wszystkie opcje umożliwiają opcjonalne zapisanie zebranych danych do pliku na dysku.
@@ -759,7 +759,7 @@ Wszystkie opcje umożliwiają opcjonalne zapisanie zebranych danych do pliku na 
 	\caption{Wykres czasowy alokacji pamięci}
 \end{figure}
 
-\section{Aplikacje wspomające badania} \label{utils}
+\section{Aplikacje wspomagające badania}
 
 W celu poprawnego przeprowadzenia badań zostały stworzone trzy małe aplikacje, które w znaczący sposób pomogły zebrać potrzebne dane. Głównym celem była automatyzacja wszystkich manualnych czynności. Osiągając cel główny udało się również zminimalizować efekt zniekształcenia pomiarów poprzez ręczną ingerencję człowieka.
 
