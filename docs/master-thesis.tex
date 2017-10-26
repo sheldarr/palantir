@@ -933,9 +933,9 @@ Operacje wykonywane na kopii przechowywanej w pamięci są szybsze niż operowan
 
 \subsubsection{Wstrzykiwanie zależności}
 
-Niektóre z bibliotek udostępmniają mechanizm wstrzykiwania zależności (ang. \emph {Dependency injection}), jest to jeden z możliwych sposobów dostarczania zależności do komponentów.
+Wstrzykiwania zależności (ang. \emph {Dependency injection}) jest jednym z bardziej popularnych wzorców projektowych oraz architektonicznych. Mechanizm ten jest jednym z możliwych sposobów dostarczania zależności do komponentów i usuwania bezpośrednich zależności pomiędzy komponentami.
 
-Ogólnie rzecz biorąc wstrzykiwanie zależności to wzorzec projektowy i wzorzec architektury oprogramowania polegający na usuwaniu bezpośrednich zależności pomiędzy komponentami. Polega na przekazywaniu gotowych, utworzonych instancji obiektów udostępniających swoje metody i właściwości obiektom, które z nich korzystają. Wstrzykiwanie zależności jest alternatywą do podejścia, gdzie obiekty tworzą instancję obiektów, z których korzystają. 
+Wstrzykiwanie zależności polega na przekazywaniu gotowych, utworzonych instancji obiektów do obiektów które z nich korzystają. Wstrzykiwanie zależności jest alternatywą do podejścia, w którym obiekty same tworzą instancję obiektów, z których korzystają. 
 
 Użycie tej techniki pozwala tworzyć łatwo testowalne obiekty. Sprawdza się szczególnie w powiązaniu z programowaniem sterowanym testami (ang. \emph{test-driven development}). Programowanie to polega na następującym tworzeniu oprogramowania:
 
@@ -943,7 +943,10 @@ Użycie tej techniki pozwala tworzyć łatwo testowalne obiekty. Sprawdza się s
   \item opracowanie interfejsów
   \item opracowanie testów jednostkowych, które testują funkcjonalności interfejsu
   \item właściwa implementacja
-\end{enumerate} 
+\end{enumerate}
+
+Biblioteki mogą mieć wbudowany mechanizm wstrzykiwania zależności, lecz nie jest to regułą. \newline
+
 
 \begin{center}
   \begin{tabularx}{\textwidth}{|X|X|X|X|X|X|}\hline
@@ -961,7 +964,21 @@ Użycie tej techniki pozwala tworzyć łatwo testowalne obiekty. Sprawdza się s
   \end{tabularx}
 \end{center}
 
-\subsection{Schemat implementacji}
+\subsection{Schemat aplikacji testowej}
+
+Aby w trakcie badań wydajnościowych uzyskać wyniki, które będzie można ze sobą porównywać wszystkie biblioteki będą implementowały taki sam schemat aplikacji.
+
+Aplikacja będzie składać się z nastepujących elementów dla każdej implementacji niezależnie od biblioteki:
+
+\begin{enumerate}
+  \item Inicjalizacja głównego komponentu/modułu - każda z bibliotek musi zostać zainicjalizowana, dzięki czemu zostanie wyrenderowany pierwszy komponent lub zostanie uruchomiony główny moduł odpowiedzialny za dalsze renderowanie
+  \item Główny komponent - korzystając z biblioteki zaimplementowany zostać musi główny komponent, który odpowiedzialny będzie za pobranie listy elementów potrzebnych do wyrenderowania oraz zgłoszenia potrzeby aktualizacji tej listy. Główny komponent przekazywać będzie listę elementów do komponentu odpowiedzialnego za wyświetlenie elementów w tablicy
+  \item Komponent tablicy elementów - komponent ten odpowiedzialny będzie za wyświetlenie stuktury tabeli, w której poszczególne wiersze odpowiadać będą elementom tablicy. Komponent musi reagować na zmiany elementów w tablicy i wyświetlać różnice najszybciej jak tylko jest w stanie to zrobić
+\end{enumerate}
+
+Aby przykładowa aplikacja bardziej przypominała przypadek ze świata rzeczywistego tablica przechowywać będzie elementy, które symulować będą stany wirtualnych maszyn. Na stan maszyny składać będą się takie parametry jak aktualne wykorzystanie procesora, aktualne wykorzystanie pamięci, aktualne wykorzystanie dysku, czas ciągłej pracy. W pojedyńczym wierszu tablicy będą również wyświetlane dane, które nie będą się zmieniać w czasie takie jak nazwa wirtualnej maszyny, całkowita dostępna pamięć, całkowita dostępna przestrzeń na dysku. Pozwoli to bibliotekom implementującym mechanizm wirtualnego obiektowego modelu dokumentu na wykorzystanie swoich zalet i ponowne użycie fragmentów \emph{DOM}, aby zminimalizować czas potrzebny do aktualizacji widoku.
+
+Kod odpowiedzialny za generowanie tablicy oraz aktualizowanie ich elementów jest współdzielony pomiędzy wszystkimi bibliotekami, więc narzut czasowy oraz pamięciowy jest taki tam i nie powinien powodować przekłamań w uzyskanych wynikach badań.
 
 \subsection{AngularJS}
 
