@@ -51,15 +51,57 @@
 
 \section{Wstęp}
 
+Czasom, w których aplikacje internetowe pisane były od podstaw z wykorzystaniem natywnych możliwości oferowanych przez połączenie technologii \emph{HTML}, \emph{CSS} oraz \emph{JavaScript} zdecydowanie daleko do współczesności. Aktualnie programiści do wyboru mają ogromny zbiór gotowych platform programistycznych służacych do tworzenia aplikacji internetowych w języku \emph{JavaScript}.
+
+Podjęcie decyzji, którą platformę użyć może być bardzo trudne, a fakt jej wybrania może mieć poważne konsekwencje w przyszłości z powodu kilku potencjalnych problemów. Jednym z takich problemów może sytuacja, w której popularna i szeroko rekomendowana przez społeczność programistów biblioteka traci na popularności z powodu nowego konkurenta. Konkurent ten oferuje wszystkie najbardziej lubiane cechy wcześniejszej biblioteki, przy okazji pozbywa się pewnych wad, a dodatkowo wprowadza swoje własne pomysły, czy też usprawnienia. Aktualnie wykorzystywana biblioteka przestaje być utrzymywana, w przypadku ujawnienia się luki związanej z bezpieczeństwem nie pojawia się tzw. łatka (ang. \emph{patch}). Programiści są wtedy zmuszeni do migracji do nowej biblioteki, bądź też do samodzielnego utrzymywania powoli wymierającej bilioteki.
+
+Migracja może posiadać różny stopień skomplikowania. W idealnej sytuacji programiści podmieniają jedynie bibliotekę na inną, która zachowuje w pełni kompatybilny interfejs. Do takiej sytuacji możemy porównać wejście biblioteki \emph{React} \cite{react} w wersję \emph{16.0}, w której to implementacja głównego rdzenia została przepisana od podstaw, przy okazji nie wprowadzając zmian w interfejsie. Z drugiej strony można przytoczyć przykład bibliteki \emph{AngularJS} \cite{angularjs} oraz swojego następny o podobnej nazwie \emph{Angular} \cite{angular}. Pomimo podobieństwa w nazwie różnice są bardzo drastyczne i bibliotekę \emph{Angular} należy analizować jako zupełnie osobny byt.
+
+Pomiędzy bibliotekami z rodziny \emph{Angular}, a \emph{React} aktualnie głównym konkurentem jest platforma \emph{Vue.js}, która czerpie garściami z lubianych oraz sprawdzonych funkcjonalności swoich konkurentów.
+
+Jedną z mniej popularnych bibliotek jest \emph{mithril.js}. Chwali się on bardzo małą objętością oraz wysoką wydajnością w porównaniu do swoich konkurentów.
+
 \subsection{Cel pracy}
+
+Celem pracy jest porównanie pięciu platform programistycznych służących do tworzenia aplikacji internetowych. Są to \emph{Angular}, \emph{AngularJS},
+\emph{mithril.js}, \emph{React} oraz \emph{Vue.js}. Porównanie zostanie przeprowadzone pod kątem wydajności czasowej oraz pamięciowej. Uzyskane wyniki pomóc mogą programistom zadecydować z jakiej biblioteki skorzystać jeśli ważnym elementem jest ich wydajność.
 
 \subsection{Układ pracy}
 
+Praca składa się z następujcych rozdziałów:
+
+\begin{enumerate}
+  \item \emph{Wstęp}
+  \item \emph{Specyfikacja problemu}
+  \item \emph{Środowisko przeglądarki internetowa} - zawiera opis działania przeglądarki internetowej oraz technologii jakie są wykorzystywane w środowisku przeglądarki internetowej do wyświetlenia aplikacji internetowej. W ramach tego rozdziału opisane zostały poszczególne kroki wyświetlania strony internetowej
+  \item \emph{Trace Event Format} - w tym rozdziale opisany został format \emph{Trace Event Format}, w którym udostępniane są informacje przeglądarki \emph{Chrome}na temat wydajności.
+  \item \emph{Chrome DevTools} - opis potężnego zbioru narzędzi przeglądarki \emph{Chrome}, który między innymi pozwala zapisać informacje na temat wydajności
+  \item \emph{Aplikacje wspomagające badania} - w ramach pisania pracy magisterskiej stworzone zostały małe aplikacje, które w znaczący sposób usprawniły proces zbierania danych. Rozdział zawiera ich dokumentację.
+  \item \emph{Platformy programistyczne do tworzenia aplikacji internetowych} - opis poszczególnych platform programistycznych oraz implementacji stworzonych za ich pomocą
+  \item \emph{Badania wydajnościowe} - zawiera przeprowadzone badania oraz osiągniete wyniki
+  \item \emph{Porównanie wyników i wnioski}
+  \item \emph{Podsumowanie}
+\end{enumerate}
+
 \section{Specyfikacja problemu}
 
-\subsection{Założenia dotyczące problemu}
+Aby w trakcie badań wydajnościowych uzyskać wyniki, które będzie można ze sobą porównywać wszystkie biblioteki będą implementowały taki sam schemat aplikacji.
 
-\section{Przeglądarka internetowa}
+\subsection{Schemat aplikacji testowej}
+
+Aplikacja będzie składać się z nastepujących elementów dla każdej implementacji niezależnie od biblioteki:
+
+\begin{enumerate}
+  \item Inicjalizacja głównego komponentu/modułu - każda z bibliotek musi zostać zainicjalizowana, dzięki czemu zostanie wyrenderowany pierwszy komponent lub zostanie uruchomiony główny moduł odpowiedzialny za dalsze renderowanie
+  \item Główny komponent - korzystając z biblioteki zaimplementowany zostać musi główny komponent, który odpowiedzialny będzie za pobranie listy elementów potrzebnych do wyrenderowania oraz zgłoszenia potrzeby aktualizacji tej listy. Główny komponent przekazywać będzie listę elementów do komponentu odpowiedzialnego za wyświetlenie elementów w tablicy
+  \item Komponent tablicy elementów - komponent ten odpowiedzialny będzie za wyświetlenie stuktury tabeli, w której poszczególne wiersze odpowiadać będą elementom tablicy. Komponent musi reagować na zmiany elementów w tablicy i wyświetlać różnice najszybciej jak tylko jest w stanie to zrobić
+\end{enumerate}
+
+Aby przykładowa aplikacja bardziej przypominała przypadek ze świata rzeczywistego tablica przechowywać będzie elementy, które symulować będą stany wirtualnych maszyn. Na stan maszyny składać będą się takie parametry jak aktualne wykorzystanie procesora, aktualne wykorzystanie pamięci, aktualne wykorzystanie dysku, czas ciągłej pracy. W pojedyńczym wierszu tablicy będą również wyświetlane dane, które nie będą się zmieniać w czasie takie jak nazwa wirtualnej maszyny, całkowita dostępna pamięć, całkowita dostępna przestrzeń na dysku. Pozwoli to bibliotekom implementującym mechanizm wirtualnego obiektowego modelu dokumentu na wykorzystanie swoich zalet i ponowne użycie fragmentów \emph{DOM}, aby zminimalizować czas potrzebny do aktualizacji widoku.
+
+Kod odpowiedzialny za generowanie tablicy oraz aktualizowanie ich elementów jest współdzielony pomiędzy wszystkimi bibliotekami, więc narzut czasowy oraz pamięciowy powinien być taki sam i nie powinien powodować przekłamań w uzyskanych wynikach badań.
+
+\section{Środowisko przeglądarki internetowej}
 
 Przeglądarka internetowa (ang. \emph{web browser}) to program komputerowy służący do pobierania i wyświetlania stron internetowych udostępnianych przez serwery \emph{WWW} (ang. \emph{World Wide Web}). Komunikacja z serwerem odbywa się najczęściej za pomocą protokołu \emph{HTTP} (ang. \emph{Hypertext Transfer Protocol})lub odpowiednika w wersji szyfrowanej \emph{HTTPS} (ang. \emph{Hypertext Transfer Protocol Secure}). Nierzadko przeglądarki internetowe są w stanie obsługiwać inne protokoły takie jak np. \emph{FTP} (ang. \emph{File Transfer Protocol}) wykorzystywany do serwerów plików, czy też protokoły \emph{POP3} (ang. \emph{Post Office Protocol}), \emph{IMAP} (ang. \emph{Internet Message Access Protocol}) i \emph{SMTP} (ang. \emph{Simple Mail Transfer Protocol}) wykorzystywane do poczty elektronicznej. 
 
@@ -907,9 +949,9 @@ Obiekt przechowujący wyliczone statystyki posiada następujace właściwości:
   \item \emph{variance} - wariancja
 \end{enumerate}
 
-\section{Biblioteki programistyczne do tworzenia aplikacji internetowych}
+\section{Platformy programistyczne do tworzenia aplikacji internetowych}
 
-Aktualny wybór bibliotek programistycznych do tworzenia aplikacji internetowych w języku \emph{JavaScript} jest bardzo szeroki. Zdecydowana większość bibliotek tworzona i utrzymywana jest zgodnie z zasadami wolnego oprogramowania \emph{Open Source}. Im większa popularność biblioteki tym większa szansa na wkład użytkowników w postaci nowych funkcjonalności, poprawiania błędów (w tym tych związanych z bezpieczeństwem), czy też optymalizacji. Podjęcie decyzji jakiej biblioteki użyć może być bardzo trudne zwłaszcza, że dosłownie z miesiąca na miesiąć może powstać nowa biblioteka zaskarbiająca sobie dużą sympatię programistów i tym samem pociągnać za sobą przepływ społeczeństwa zaangażowanego w tworzenie oprogramowania. 
+Aktualny wybór platform programistycznych do tworzenia aplikacji internetowych w języku \emph{JavaScript} jest bardzo szeroki. Zdecydowana większość bibliotek tworzona i utrzymywana jest zgodnie z zasadami wolnego oprogramowania \emph{Open Source}. Im większa popularność biblioteki tym większa szansa na wkład użytkowników w postaci nowych funkcjonalności, poprawiania błędów (w tym tych związanych z bezpieczeństwem), czy też optymalizacji. Podjęcie decyzji jakiej biblioteki użyć może być bardzo trudne zwłaszcza, że dosłownie z miesiąca na miesiąć może powstać nowa biblioteka zaskarbiająca sobie dużą sympatię programistów i tym samem pociągnać za sobą przepływ społeczeństwa zaangażowanego w tworzenie oprogramowania. 
 
 \subsection{Charakterystyczne funkcjonalności}
 
@@ -964,27 +1006,11 @@ Biblioteki mogą mieć wbudowany mechanizm wstrzykiwania zależności, lecz nie 
   \end{tabularx}
 \end{center}
 
-\subsection{Schemat aplikacji testowej}
-
-Aby w trakcie badań wydajnościowych uzyskać wyniki, które będzie można ze sobą porównywać wszystkie biblioteki będą implementowały taki sam schemat aplikacji.
-
-Aplikacja będzie składać się z nastepujących elementów dla każdej implementacji niezależnie od biblioteki:
-
-\begin{enumerate}
-  \item Inicjalizacja głównego komponentu/modułu - każda z bibliotek musi zostać zainicjalizowana, dzięki czemu zostanie wyrenderowany pierwszy komponent lub zostanie uruchomiony główny moduł odpowiedzialny za dalsze renderowanie
-  \item Główny komponent - korzystając z biblioteki zaimplementowany zostać musi główny komponent, który odpowiedzialny będzie za pobranie listy elementów potrzebnych do wyrenderowania oraz zgłoszenia potrzeby aktualizacji tej listy. Główny komponent przekazywać będzie listę elementów do komponentu odpowiedzialnego za wyświetlenie elementów w tablicy
-  \item Komponent tablicy elementów - komponent ten odpowiedzialny będzie za wyświetlenie stuktury tabeli, w której poszczególne wiersze odpowiadać będą elementom tablicy. Komponent musi reagować na zmiany elementów w tablicy i wyświetlać różnice najszybciej jak tylko jest w stanie to zrobić
-\end{enumerate}
-
-Aby przykładowa aplikacja bardziej przypominała przypadek ze świata rzeczywistego tablica przechowywać będzie elementy, które symulować będą stany wirtualnych maszyn. Na stan maszyny składać będą się takie parametry jak aktualne wykorzystanie procesora, aktualne wykorzystanie pamięci, aktualne wykorzystanie dysku, czas ciągłej pracy. W pojedyńczym wierszu tablicy będą również wyświetlane dane, które nie będą się zmieniać w czasie takie jak nazwa wirtualnej maszyny, całkowita dostępna pamięć, całkowita dostępna przestrzeń na dysku. Pozwoli to bibliotekom implementującym mechanizm wirtualnego obiektowego modelu dokumentu na wykorzystanie swoich zalet i ponowne użycie fragmentów \emph{DOM}, aby zminimalizować czas potrzebny do aktualizacji widoku.
-
-Kod odpowiedzialny za generowanie tablicy oraz aktualizowanie ich elementów jest współdzielony pomiędzy wszystkimi bibliotekami, więc narzut czasowy oraz pamięciowy jest taki tam i nie powinien powodować przekłamań w uzyskanych wynikach badań.
-
 \subsection{AngularJS}
 
 \subsubsection{Opis}
 
-AngularJS jest ciągle bardzo popularnym środowiskiem programistycznym, którego pierwsza wersja wydana została w 2009 roku. Aktualnie nie jest już dalej rozwijany na rzecz swojego następcy, czyli bardzo podobnie nazywającej się bilioteki o nazwie Angular. To co go odróżnia od innych bibliotek to wbudowany domyślnie mechanizm wstrzykiwania zależności kosztem mechanizmu wirtualnego obiektowego modelu dokumentu. Tak jak wszyscy konkurencji umożliwia tworzenie aplikacji za pomocą komponentów.
+AngularJS \cite{angularjs} jest ciągle bardzo popularnym środowiskiem programistycznym, którego pierwsza wersja wydana została w 2009 roku. Aktualnie nie jest już dalej rozwijany na rzecz swojego następcy, czyli bardzo podobnie nazywającej się bilioteki o nazwie Angular. To co go odróżnia od innych bibliotek to wbudowany domyślnie mechanizm wstrzykiwania zależności kosztem mechanizmu wirtualnego obiektowego modelu dokumentu. Tak jak wszyscy konkurencji umożliwia tworzenie aplikacji za pomocą komponentów.
 
 \subsubsection{Implementacja}
 
@@ -1099,7 +1125,7 @@ tbody
 
 \subsubsection{Opis}
 
-\emph{Angular} to zyskujący coraz bardziej na popularności następca biblioteki \emph{AngularJS}. Bardzo podobna nazwa wprowadza wiele zamieszania, a sprawę nie ułatwia fakt, że początkowo biblioteka znana była pod nazwą \emph{Angular 2}. Dla osób dopiero co zapoznających się z tą biblioteką może to być bardzo mylące, zwłasza, że najnowsza jego wersja to \emph{4} i nie jest w pełni kompatybilna wstecznie z wersją \emph{2}. \emph{Angular} posiada wiele cech wspólnych z \emph{AngularJS} lecz różnić jest również jest na tyle dużo, że należy rozpatrywać tą bibliotekę jako zupełnie nowy byt. \emph{Angular} posiada mechanizm wstrzykiwania zależności oraz komponentów, nie posiada jednak mechanizmu wirtualnego obiektowego modelu dokumentu.
+\emph{Angular} \cite{angular} to zyskujący coraz bardziej na popularności następca biblioteki \emph{AngularJS}. Bardzo podobna nazwa wprowadza wiele zamieszania, a sprawę nie ułatwia fakt, że początkowo biblioteka znana była pod nazwą \emph{Angular 2}. Dla osób dopiero co zapoznających się z tą biblioteką może to być bardzo mylące, zwłasza, że najnowsza jego wersja to \emph{4} i nie jest w pełni kompatybilna wstecznie z wersją \emph{2}. \emph{Angular} posiada wiele cech wspólnych z \emph{AngularJS} lecz różnić jest również jest na tyle dużo, że należy rozpatrywać tą bibliotekę jako zupełnie nowy byt. \emph{Angular} posiada mechanizm wstrzykiwania zależności oraz komponentów, nie posiada jednak mechanizmu wirtualnego obiektowego modelu dokumentu.
 
 \subsubsection{Implementacja}
 
@@ -1232,7 +1258,7 @@ tbody
 
 \subsubsection{Opis}
 
-\emph{mihtril.js} jest stosunkowo mało popularną biblioteką w porównaniu do swoich konkurentów. Jej niewątpliwą zaletą jest mała wielkość. Po minifikacji oraz kompresji gzip zajmuje około 8,1kB. Biblioteka ta nie posiada wbudowanego mechanizmu wstrzykiwania zależności. W odróżnieniu od obu bibliotek z rodziny \emph{Angular} posiada mechanizm wirtualnego obiektowego modelu dokumentu. Podobnie jak wszyscy swoi konkurencji pozwala definiować komponenty.
+\emph{mihtril.js} \cite{mithril.js} jest stosunkowo mało popularną biblioteką w porównaniu do swoich konkurentów. Jej niewątpliwą zaletą jest mała wielkość. Po minifikacji oraz kompresji gzip zajmuje około 8,1kB. Biblioteka ta nie posiada wbudowanego mechanizmu wstrzykiwania zależności. W odróżnieniu od obu bibliotek z rodziny \emph{Angular} posiada mechanizm wirtualnego obiektowego modelu dokumentu. Podobnie jak wszyscy swoi konkurencji pozwala definiować komponenty.
 
 \subsubsection{Implementacja}
 
@@ -1332,7 +1358,7 @@ export default VirtualMachinesTableComponent;
 
 \subsubsection{Opis}
 
-\emph{React} jest biblioteką stworzoną przez programistów popularnego serwisu społecznościowego \emph{Facebook}. W bardzo szybkim czasie zyskał on na popularności dzięki bardzo prostemu \emph{API} co pozwala w krótkim czasie czerpać ze wszystkich jego możliwości. \emph{API} biblioteki \emph{React} jest również bardzo stabilnie i nie wymaga wprowadzania drastycznych zmian w kodzie w celu przejścia do nowszej wersji. Biblioteka ta posiada mechanizm wirtualnego obiektowego modelu dokumentu, pozwala definiować komponenty, nie posiada natomiast wbudowanego mechanizmu wstrzykiwania zależności.
+\emph{React} \cite{react} jest biblioteką stworzoną przez programistów popularnego serwisu społecznościowego \emph{Facebook}. W bardzo szybkim czasie zyskał on na popularności dzięki bardzo prostemu \emph{API} co pozwala w krótkim czasie czerpać ze wszystkich jego możliwości. \emph{API} biblioteki \emph{React} jest również bardzo stabilnie i nie wymaga wprowadzania drastycznych zmian w kodzie w celu przejścia do nowszej wersji. Biblioteka ta posiada mechanizm wirtualnego obiektowego modelu dokumentu, pozwala definiować komponenty, nie posiada natomiast wbudowanego mechanizmu wstrzykiwania zależności.
 
 \subsubsection{Implementacja}
 
@@ -1474,7 +1500,7 @@ export default VirtualMachinesTable;
 
 \subsubsection{Opis}
 
-\emph{Vue.js} jest biblioteką stworzoną przez człowieka, który odszedł z grupy programistów tworzących bibliotekę \emph{AngularJS}, z tego powodu widać wiele inspiracji pochodzących z tej biblioteki.
+\emph{Vue.js} \cite{vue.js} jest biblioteką stworzoną przez człowieka, który odszedł z grupy programistów tworzących bibliotekę \emph{AngularJS}, z tego powodu widać wiele inspiracji pochodzących z tej biblioteki.
 Posiada te same cechy co \emph{mithril.js} oraz \emph{React}, czyli komponenty, mechanizm \emph{VDOM} oraz brak wstrzykiwania zależności.
 
 \subsubsection{Implementacja}
@@ -1592,6 +1618,16 @@ Komponent tabeli również wykorzystuje specyficzny plik, który jest charaktery
 \subsection{Dalszy rozwój}
 
 \begin{thebibliography}{11}
+  \bibitem{react}
+    \url https://reactjs.org/
+  \bibitem{angularjs}
+    \url https://angularjs.org/
+  \bibitem{angular}
+    \url https://angular.io/
+  \bibitem{mithril.js}
+    \url https://mithril.js.org
+  \bibitem{vue.js}
+    \url https://vuejs.org/
   \bibitem{ftrace}
     \url{https://www.kernel.org/doc/Documentation/trace/ftrace.txt}
   \bibitem{etw}
