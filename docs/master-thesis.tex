@@ -4,6 +4,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{pdfpages}
+\usepackage{booktabs}
 
 \usepackage{hyperref}
 \hypersetup{
@@ -886,7 +887,7 @@ Dane wyjściowe zapisywane są do pliku z rozszerzeniem \emph{JSON} oraz są zgo
 
 \subsubsection{Opis}
 
-\emph{trace-event-format-analyzer} to aplikacja, która potrafi dokonać analizy setki megabajtów danych zarejestrowanych w formacie \emph{Trace Event Format}.
+\emph{trace-event-format-analyzer} to aplikacja, która potrafi dokonać analizy statystycznej danych zarejestrowanych w formacie \emph{Trace Event Format}.
 
 \subsubsection{Specyfikacja wewnętrzna}
 
@@ -1605,7 +1606,109 @@ Komponent tabeli również wykorzystuje specyficzny plik, który jest charaktery
 
 \section{Badania wydajnościowe}
 
-\subsection{Badania wydajności czasowej} 
+Wszystkie badania przeprowadzone zostały na laptopie o następującej konfiguracji:
+
+\begin{itemize}
+  \item CPU - Intel(R) Core(TM) i5-2410M CPU @ 2.30GHz
+  \item RAM - 8GB
+  \item System operacyjny - Linux Mint 18.2 Sonya
+\end{itemize}
+
+Wersje oprogramowania:
+
+\begin{itemize}
+  \item \emph{Chrome} - 60.0.3112.90
+  \item \emph{Node.js} - 8.1.4
+\end{itemize}
+
+Przeglądarka \emph{Chrome} została uruchomiona z następujacymi parametrami pozwalającymi uzyskać dokładniejsze wyniki badań:
+
+\begin{itemize}
+  \item -{}-disable-background-networking
+  \item -{}-disable-component-extensions-with-background-pages
+  \item -{}-metrics-recording-only
+\end{itemize}
+
+Badania pod kątem różnych platform programistycznych zostały przeprowadzone ze starannością, aby środowisko w trakcie badań było możliwie najbardziej identyczne. Ilość zbędnych procesów działających w tle została zmniejszona do minimum, w celu uzyskania jak najmniejszego przekłamania wyników końcowych.
+
+Każda platforma programistyczna była testowana przez godzinę czasu dla liczby wirtualnych maszyn od 16 do 256 z krokiem równym 16 co daje 16 niezależnych pomiarów dla 5 platform, czyli łącznie 80 godzin pomiarów.
+
+\subsection{Badania wydajności czasowej}
+
+Rzeczywista liczba klatek na sekundę mierzona została na podstawie zdarzenia natychmiastowego o nazwie \emph{DrawFrame}. Zdarzenie to powstaje w momencie rysowania kolejnej klatki.
+
+\subsubsection{Angular}
+
+\begin{table}[]
+  \centering
+  \begin{tabular}{@{}lllllll@{}}
+  \toprule
+  Wirtualne maszyny      & 16      & 32      & 48      & 64      & 80      & 96      \\ \midrule
+  Min                    & 35.8230 & 24.9327 & 21.5494 & 23.9550 & 22.2802 & 18.5598 \\
+  Średnia arytmetyczna   & 60.3994 & 60.0407 & 59.6922 & 50.6024 & 43.6921 & 35.9992 \\
+  Percentyl 50\%         & 59.8480 & 60.2482 & 59.9628 & 51.4430 & 44.3597 & 36.5430 \\
+  Percentyl 66\%         & 62.2355 & 61.5006 & 60.5767 & 53.1011 & 45.2530 & 37.9737 \\
+  Percentyl 75\%         & 63.7633 & 62.4103 & 61.0165 & 54.0950 & 45.7666 & 38.6309 \\
+  Percentyl 80\%         & 64.5703 & 63.1712 & 61.5991 & 54.6538 & 46.0723 & 38.9879 \\
+  Percentyl 90\%         & 66.4231 & 65.4322 & 63.3032 & 56.1577 & 46.9109 & 39.7472 \\
+  Percentyl 95\%         & 70.0378 & 68.7002 & 64.6204 & 57.0483 & 47.4834 & 40.2674 \\
+  Percentyl 98\%         & 74.0576 & 77.0416 & 67.1456 & 58.0013 & 48.1371 & 40.6141 \\
+  Percentyl 99\%         & 77.4473 & 81.2876 & 68.5777 & 58.4215 & 48.9045 & 40.8230 \\
+  Percentyl 100\%        & 94.2329 & 94.4287 & 84.3313 & 79.1077 & 76.6812 & 61.0426 \\
+  Odchylenie standardowe & 5.5570  & 6.3691  & 4.1211  & 5.0946  & 3.5099  & 3.5984  \\
+  Wariancja              & 30.8798 & 40.5659 & 16.9831 & 25.9550 & 12.3193 & 12.9487 \\ \bottomrule
+  \end{tabular}
+  \caption{Angular - klatki na sekundę (FPS) część 1}
+\end{table}
+
+\begin{table}[]
+  \centering
+  \begin{tabular}{@{}lllllll@{}}
+  \toprule
+  Wirtualne maszyny      & 112     & 128     & 144     & 160     & 172     & 188     \\ \midrule
+  Min                    & 13.3774 & 13.4416 & 12.9958 & 11.1988 & 10.7087 & 9.8829  \\
+  Średnia arytmetyczna   & 31.3300 & 29.1274 & 26.9256 & 24.1682 & 23.0777 & 21.3871 \\
+  Percentyl 50\%         & 31.6546 & 29.7256 & 27.4514 & 24.5586 & 23.2250 & 21.5806 \\
+  Percentyl 66\%         & 32.8926 & 30.7135 & 28.1080 & 25.5990 & 24.4021 & 22.5953 \\
+  Percentyl 75\%         & 33.5087 & 31.1935 & 28.4843 & 25.9592 & 24.8102 & 23.0867 \\
+  Percentyl 80\%         & 33.7861 & 31.4149 & 28.6944 & 26.1233 & 25.0138 & 23.2499 \\
+  Percentyl 90\%         & 34.4887 & 31.9550 & 29.1639 & 26.5555 & 25.3762 & 23.6033 \\
+  Percentyl 95\%         & 34.9626 & 32.3060 & 29.4707 & 26.8384 & 25.5846 & 23.8237 \\
+  Percentyl 98\%         & 35.3582 & 32.6477 & 29.7992 & 27.1429 & 25.8104 & 24.0223 \\
+  Percentyl 99\%         & 35.6570 & 32.9240 & 29.9895 & 27.3172 & 25.9572 & 24.2078 \\
+  Percentyl 100\%        & 43.1444 & 34.6176 & 34.1052 & 29.3315 & 33.5852 & 28.8450 \\
+  Odchylenie standardowe & 2.8201  & 2.8032  & 2.2607  & 2.3287  & 2.1408  & 2.0341  \\
+  Wariancja              & 7.9532  & 7.8579  & 5.1106  & 5.4230  & 4.5829  & 4.1376  \\ \bottomrule
+  \end{tabular}
+  \caption{Angular - klatki na sekundę (FPS) część 2}
+\end{table}
+
+\begin{table}[]
+  \centering
+  \begin{tabular}{@{}llllll@{}}
+  \toprule
+  Wirtualne maszyny      & 204     & 220     & 232     & 248     & 256     \\ \midrule
+  Min                    & 11.2600 & 9.9182  & 9.1410  & 9.6382  & 8.5746  \\
+  Średnia arytmetyczna   & 19.9840 & 18.4973 & 18.2625 & 16.9970 & 16.6044 \\
+  Percentyl 50\%         & 20.0868 & 18.3003 & 19.0002 & 17.1403 & 17.2372 \\
+  Percentyl 66\%         & 20.7797 & 19.8708 & 19.3375 & 17.6604 & 17.6171 \\
+  Percentyl 75\%         & 21.4500 & 20.2597 & 19.5137 & 18.3473 & 17.8403 \\
+  Percentyl 80\%         & 21.6469 & 20.3965 & 19.6078 & 18.5398 & 17.9966 \\
+  Percentyl 90\%         & 21.9964 & 20.6646 & 19.8444 & 18.8377 & 18.3180 \\
+  Percentyl 95\%         & 22.1867 & 20.8364 & 20.0148 & 18.9970 & 18.5161 \\
+  Percentyl 98\%         & 22.3619 & 20.9965 & 20.1853 & 19.1501 & 18.6386 \\
+  Percentyl 99\%         & 22.4835 & 21.1042 & 20.2795 & 19.2701 & 18.7347 \\
+  Percentyl 100\%        & 23.3738 & 22.6347 & 23.5555 & 22.2856 & 20.4011 \\
+  Odchylenie standardowe & 1.6959  & 1.8333  & 1.8417  & 1.5722  & 1.7480  \\
+  Wariancja              & 2.8761  & 3.3610  & 3.3918  & 2.4719  & 3.0554  \\ \bottomrule
+  \end{tabular}
+  \caption{Angular - klatki na sekundę (FPS) część 3}
+\end{table}
+
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{angular-fps.jpg}
+	\caption{Angular - klatki na sekundę (FPS)}
+\end{figure}
 
 \subsection{Badania wydajności pamięciowej}
 
