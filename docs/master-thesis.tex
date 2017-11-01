@@ -1786,13 +1786,39 @@ Rzeczywista liczba klatek na sekundę mierzona została na podstawie zdarzenia n
 
 \section{Porównanie wyników i wnioski}
 
-\subsubsection{Wydajność czasowa}
+\subsection{Wydajność czasowa}
 
-\subsubsection{Wydajność pamięciowa}
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{frameworks-fps.jpg}
+	\caption{Platformy programistyczne - klatki na sekundę (FPS)}
+\end{figure}
+
+Analizując zbiorczy wykres przedstawiający porównanie ilości klatek na sekundę (im więcej tym lepiej) w zależności od wirtualnych maszyn jednoznacznie najlepiej wypada platforma programistyczna \emph{mithril.js}. Na kolejnych miejscach plasują się platformy \emph{AngularJS} oraz \emph{Angular}. Co ciekawe następca \emph{AngularJS} wypadł gorzej od swojego poprzednika. Na przedostatnim miejscu uplasował się \emph{Vue.js} odbiegający od triumfatora średnio o kilka klatek na sekundę. Zdecydowanie najgorzej wypadł \emph{React} zdecydowanie odbiegając od reszty. Może to być przyczyną nieoptymalnej implementacji dla danego scenariusza testowego, była ona jednak oparta na oficjalnej dokumentacji biblioteki \emph{React} z uwzględnieniem wszelkich informacji o potencjalnych, popularnych błędach implementacyjnych. 
+
+Biblioteki implementujące mechanizm wirtualnego obiektowego modelu dokumentu nie osiągnęły zdecydowanie lepszych wyników od bibliotek pozbawionych tego mechanizmu. Co prawda zwycięzcą został \emph{mithril.js}, lecz odpowiednio na drugim i trzecim miejscu uplasowały się biblioteki bez tego mechanizmu czyli \emph{AngularJS} oraz \emph{Angular}.
+
+\subsection{Wydajność pamięciowa}
 
 \section{Podsumowanie}
 
+Wyniki badań pokazały, że bardzo ciekawą propozycją jest platforma programistyczna \emph{mithril.js}, która pomimo tego, że nie jest najpopularniejszą biblioteką to uzyskała najlepsze wyniki w przeprowadzonych badaniach. 
+
+Niepokojący jest fakt, iż następca \emph{AngularJS} osiągnął gorsze wyniki od swojego poprzednika. Prócz tego rozmiar platformy \emph{Angular} jest zdecydowanie większy od swoich konkurentów co może wpływać negatywnie na działanie u użytkowników posiadających wolniejsze połączenie internetowe.
+
+Biblioteka \emph{Vue.js} posiada wiele nawiązań do \emph{AngularJS} jednak znacznie uproszczonych co powoduje, że z biblioteki korzysta się bardzo wygodnie. Wyniki badań jednak nie zachwycają i mogą skierować uwagę programistów w stronę konkurentów.
+
+Bardzo zagadkowe są wyniki osiągnięte przez bardzo popularną bibliotekę \emph{React}. Szersze zbadanie tego problemu może być dobrą propozycją do analizy w ramach dalszego rozwoju tematu pracy.
+
 \subsection{Dalszy rozwój}
+
+Istnieje wiele różnych kierunków, w których temat pracy magisterkiej może być dalej rozwijany. Poniżej przedstawiono niektóre z nich.
+
+\begin{itemize}
+  \item zbadanie kolejnych platform programistycznych
+  \item przygotowanie kolejnych scenariuszy testowych, które będą w stanie wykazać sytuacje, w których na przykład lepsze okażą się biblioteki implementujące mechanizm wirtualnego obiektowego modelu dokumentu
+  \item wykonanie badań w środowisku innej przeglądarki internetowej również udostępniającej informacje na temat wydajności za pomocą odpowiednich interfejsów. Potencjalnym kandydatem może być przeglądarka \emph{Mozilla Firefox} \cite{firefox}
+  \item dalsza automatyzacja procesu zbierania danych oraz ich analizy
+\end{itemize}
 
 \begin{thebibliography}{11}
   \bibitem{react}
@@ -1891,6 +1917,8 @@ Rzeczywista liczba klatek na sekundę mierzona została na podstawie zdarzenia n
     \url{https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/edit}
   \bibitem{json}
     \url{http://www.json.org/}
+  \bibitem{firefox}
+    \url{https://www.mozilla.org/pl/firefox/}
 \end{thebibliography}
 
 \end{document}
