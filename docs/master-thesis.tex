@@ -1607,7 +1607,7 @@ Komponent tabeli również wykorzystuje specyficzny plik, który jest charaktery
 
 \section{Badania wydajnościowe}
 
-Wszystkie badania przeprowadzone zostały na laptopie o następującej konfiguracji:
+Wszystkie badania przeprowadzone zostały za pomocą komputera o następującej konfiguracji:
 
 \begin{itemize}
   \item CPU - Intel(R) Core(TM) i5-2410M CPU @ 2.30GHz
@@ -1784,6 +1784,68 @@ Rzeczywista liczba klatek na sekundę mierzona została na podstawie zdarzenia n
 
 \subsection{Badania wydajności pamięciowej}
 
+Wydajność pamięciowa mierzona została na podstawie minimalnej wielkości pamięci zaalokowanej na stercie (ang. \emph{heap}), przy której aplikacja była w stanie poprawnie funkcjonować.
+
+\begin{table}[]
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{@{}llllllllllllllllll@{}}
+  \toprule
+  Wirtualne maszyny                 & 16         & 32         & 48         & 64         & 80         & 96         & 112        & 128        & 144        & 160        & 176        & 192        & 208        & 224        & 240        & 256        &  \\ \midrule
+  Minimalny rozmiar sterty {[}KB{]} & 27616.4135 & 27904.7750 & 28837.2877 & 29145.9789 & 29842.1646 & 30206.0723 & 29421.7389 & 31079.5915 & 30698.3522 & 31871.6344 & 32047.2940 & 32548.6094 & 33361.6876 & 33537.3595 & 34001.3173 & 35563.6187 &  \\ \bottomrule
+  \end{tabular}%
+  }
+  \caption{Angular - minimalny rozmiar sterty}
+\end{table}
+
+\begin{table}[]
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{@{}lllllllllllllllll@{}}
+  \toprule
+  Wirtualne maszyny        & 16         & 32         & 48         & 64         & 80         & 96         & 112        & 128        & 144        & 160        & 176        & 192        & 208        & 224        & 240        & 256        \\ \midrule
+  Minimalny rozmiar sterty [KB] & 24673.3543 & 22853.7092 & 25179.1871 & 26652.4256 & 26647.9803 & 26334.2587 & 26549.8688 & 27819.5247 & 27761.2876 & 28738.2432 & 29175.9008 & 29520.0147 & 30713.3663 & 30983.3087 & 32922.8489 & 31867.9627 \\ \bottomrule
+  \end{tabular}%
+  }
+  \caption{AngularJS - minimalny rozmiar sterty}
+\end{table}
+
+\begin{table}[]
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{@{}llllllllllllllllll@{}}
+  \toprule
+  Wirtualne maszyny                 & 16         & 32         & 48         & 64         & 80         & 96         & 112        & 128        & 144        & 160        & 176        & 192        & 208        & 224        & 240        & 256        &  \\ \midrule
+  Minimalny rozmiar sterty {[}KB{]} & 18669.9500 & 19538.4679 & 20058.1274 & 20743.9502 & 20146.2873 & 21003.1107 & 22878.2463 & 24677.9818 & 23188.6286 & 26401.9418 & 26450.3174 & 27740.6897 & 27301.4939 & 27975.4485 & 29538.7823 & 29005.0794 &  \\ \bottomrule
+  \end{tabular}%
+  }
+  \caption{mithril.js - minimalny rozmiar sterty}
+\end{table}
+
+\begin{table}[]
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{@{}llllllllllllllllll@{}}
+  \toprule
+  Wirtualne maszyny                 & 16         & 32         & 48         & 64         & 80         & 96         & 112        & 128        & 144        & 160        & 176        & 192        & 208        & 224        & 240        & 256        &  \\ \midrule
+  Minimalny rozmiar sterty {[}KB{]} & 16593.4993 & 16373.5054 & 17214.0475 & 18794.2027 & 18682.6790 & 20964.7949 & 22769.6739 & 22693.9105 & 22893.5562 & 24570.8424 & 24548.7582 & 26200.6102 & 26304.3926 & 26482.7452 & 27468.6351 & 28057.6440 &  \\ \bottomrule
+  \end{tabular}%
+  }
+  \caption{React - minimalny rozmiar sterty}
+\end{table}
+
+\begin{table}[]
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{@{}llllllllllllllllll@{}}
+  \toprule
+  Wirtualne maszyny                 & 16         & 32         & 48         & 64         & 80         & 96         & 112        & 128        & 144        & 160        & 176        & 192        & 208        & 224        & 240        & 256        &  \\ \midrule
+  Minimalny rozmiar sterty {[}KB{]} & 13623.7795 & 14438.9178 & 15281.2367 & 15453.4944 & 17270.8171 & 18658.5004 & 19278.2128 & 19529.2375 & 19932.1830 & 21786.8748 & 22258.4797 & 22251.7257 & 23164.2905 & 25416.1206 & 24377.4772 & 25230.7092 &  \\ \bottomrule
+  \end{tabular}%
+  }
+  \caption{Vue.js - minimalny rozmiar sterty}
+\end{table}
+
 \section{Porównanie wyników i wnioski}
 
 \subsection{Wydajność czasowa}
@@ -1799,15 +1861,22 @@ Biblioteki implementujące mechanizm wirtualnego obiektowego modelu dokumentu ni
 
 \subsection{Wydajność pamięciowa}
 
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{frameworks-heap.jpg}
+	\caption{Platformy programistyczne - minimalny rozmiar sterty}
+\end{figure}
+
+Dokonując analizy zbiorczego wykresu przestawiającego minimalny rozmiar sterty zarezerwowanej przez platformy programistyczne w zależności od liczby wirtualnych maszyn wyraźnie zauważyć można, iż najgorzej wypadły platformy z rodziny \emph{Angular} zdecydowanie odbiegając od swoich konkurentów. Pośrodku uplasowała się biblioteka \emph{mithril.js}, która osiągneła najlepsze wyniki przy badaniu wydajności czasowej. \emph{React} zajął drugie miejsce, natomiast najmniejsze zużycie pamięci wykazała biblioteka \emph{Vue.js}.
+
 \section{Podsumowanie}
 
-Wyniki badań pokazały, że bardzo ciekawą propozycją jest platforma programistyczna \emph{mithril.js}, która pomimo tego, że nie jest najpopularniejszą biblioteką to uzyskała najlepsze wyniki w przeprowadzonych badaniach. 
+Wyniki badań pokazały, że bardzo ciekawą propozycją jest platforma programistyczna \emph{mithril.js}, która pomimo tego, że nie jest najpopularniejszą biblioteką to uzyskała bardzo dobre wyniki w przeprowadzonych badaniach. 
 
-Niepokojący jest fakt, iż następca \emph{AngularJS} osiągnął gorsze wyniki od swojego poprzednika. Prócz tego rozmiar platformy \emph{Angular} jest zdecydowanie większy od swoich konkurentów co może wpływać negatywnie na działanie u użytkowników posiadających wolniejsze połączenie internetowe.
+Niepokojący jest fakt, iż następca \emph{AngularJS} osiągnął gorsze wyniki od swojego poprzednika zarówno w przypadku wydajności czasowej jak i pamięciowej. Dodatkowo rozmiar platformy \emph{Angular} jest zdecydowanie większy od swoich konkurentów co może wpływać negatywnie na działanie u użytkowników posiadających wolniejsze połączenie internetowe.
 
-Biblioteka \emph{Vue.js} posiada wiele nawiązań do \emph{AngularJS} jednak znacznie uproszczonych co powoduje, że z biblioteki korzysta się bardzo wygodnie. Wyniki badań jednak nie zachwycają i mogą skierować uwagę programistów w stronę konkurentów.
+Biblioteka \emph{Vue.js} posiada wiele nawiązań do \emph{AngularJS} jednak znacznie uproszczonych co powoduje, że z biblioteki korzysta się bardzo wygodnie. Wyniki wydajności czasowej jednak nie zachwycają i mogą skierować uwagę programistów w stronę konkurentów.
 
-Bardzo zagadkowe są wyniki osiągnięte przez bardzo popularną bibliotekę \emph{React}. Szersze zbadanie tego problemu może być dobrą propozycją do analizy w ramach dalszego rozwoju tematu pracy.
+Bardzo zagadkowe są wyniki wydajności czasowej osiągnięte przez bardzo popularną bibliotekę \emph{React}. Szersze zbadanie tego problemu może być dobrą propozycją do analizy w ramach dalszego rozwoju tematu pracy.
 
 \subsection{Dalszy rozwój}
 
