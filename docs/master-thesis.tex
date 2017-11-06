@@ -64,7 +64,7 @@ Jedną z mniej popularnych bibliotek jest \emph{mithril.js}. Chwali się on bard
 Celem pracy jest porównanie pięciu platform programistycznych służących do tworzenia aplikacji internetowych. Są to \emph{Angular}, \emph{AngularJS},
 \emph{mithril.js}, \emph{React} oraz \emph{Vue.js}. Porównanie zostanie przeprowadzone pod kątem wydajności czasowej oraz pamięciowej. Uzyskane wyniki pomóc mogą programistom zadecydować z jakiej biblioteki skorzystać jeśli ważnym elementem jest ich wydajność.
 
-Praca składa się z dziesięciu rozdziałów. Rozdział pierwszy stanowi wstęp. W rodziale drugim przedstawiono sformułowanie problemu. Rozdział trzeci zawiera opis środowiska przeglądarki internetowej, sposób jej działania oraz wykorzystywane technologie. W rozdziale czwartym opisano format danych o nazwie \emph{Trace Event Fomat}. Rozdział piąty zawiera opis zbioru narzędzi o nazwie \emph{Chrone DevTools}. Rozdział szósty przedstawia specyfikacje aplikacji pomagających przy badaniach przeprowadzonych w ramach pracy magisterskiej. W rozdziale siódmym znajduje się opis poszczególnych plaform programistycznych oraz implementacji stworzonych za ich pomocą. Rozdział ósmy zawiera przeprowadzone badania oraz osiągniete wyniki. W rozdziale dziewiątym zawarto porównanie wyników i wysunięte wnioski. Ostatni, dzięsiaty rozdział stanowi podsumowanie.
+Praca składa się z dziesięciu rozdziałów. Rozdział pierwszy stanowi wstęp. W rodziale drugim przedstawiono sformułowanie problemu. Rozdział trzeci zawiera opis środowiska przeglądarki internetowej, sposób jej działania oraz wykorzystywane technologie. W rozdziale czwartym opisano format danych o nazwie \emph{Trace Event Fomat}. Rozdział piąty zawiera opis zbioru narzędzi o nazwie \emph{Chrone DevTools}. Rozdział szósty przedstawia specyfikacje aplikacji pomagających przy badaniach przeprowadzanych w ramach pracy magisterskiej. W rozdziale siódmym znajduje się opis poszczególnych plaform programistycznych oraz implementacji stworzonych za ich pomocą. Rozdział ósmy zawiera przeprowadzone badania oraz osiągniete wyniki. W rozdziale dziewiątym zawarto porównanie wyników oraz wysunięte wnioski. Ostatni, dzięsiaty rozdział stanowi podsumowanie.
 
 \section{Specyfikacja problemu}
 
@@ -73,9 +73,9 @@ Aby w trakcie badań wydajnościowych uzyskać wyniki, które będzie można ze 
 Aplikacja będzie składać się z nastepujących elementów dla każdej implementacji niezależnie od biblioteki:
 
 \begin{enumerate}
-  \item Inicjalizacja głównego komponentu/modułu - każda z bibliotek musi zostać zainicjalizowana, dzięki czemu zostanie wyrenderowany pierwszy komponent lub zostanie uruchomiony główny moduł odpowiedzialny za dalsze renderowanie
-  \item Główny komponent - korzystając z biblioteki musi być zaimplementowany główny komponent, który odpowiedzialny będzie za pobranie listy elementów potrzebnych do wyrenderowania oraz zgłoszenia potrzeby aktualizacji tej listy. Główny komponent przekazywać będzie listę elementów do komponentu odpowiedzialnego za wyświetlenie elementów w tablicy
-  \item Komponent tablicy elementów - komponent ten odpowiedzialny będzie za wyświetlenie stuktury tabeli, w której poszczególne wiersze odpowiadać będą elementom tablicy. Komponent musi reagować na zmiany elementów w tablicy i wyświetlać różnice najszybciej jak tylko jest w stanie to zrobić
+  \item Inicjalizacja głównego komponentu/modułu - każda z bibliotek musi zostać zainicjalizowana, dzięki czemu zostanie wyrenderowany pierwszy komponent lub zostanie uruchomiony główny moduł odpowiedzialny za dalsze renderowanie.
+  \item Główny komponent - korzystając z biblioteki musi być zaimplementowany główny komponent, który odpowiedzialny będzie za pobranie listy elementów potrzebnych do wyrenderowania oraz zgłoszenia potrzeby aktualizacji tej listy. Główny komponent przekazywać będzie listę elementów do komponentu odpowiedzialnego za wyświetlenie elementów w tablicy.
+  \item Komponent tablicy elementów - komponent ten odpowiedzialny będzie za wyświetlenie stuktury tabeli, w której poszczególne wiersze odpowiadać będą elementom tablicy. Komponent musi reagować na zmiany elementów w tablicy i wyświetlać różnice najszybciej jak tylko jest w stanie to zrobić.
 \end{enumerate}
 
 Aby przykładowa aplikacja bardziej przypominała przypadek ze świata rzeczywistego tablica przechowywać będzie elementy, które symulować będą stany wirtualnych maszyn. Na stan maszyny składać będą się takie parametry jak aktualne wykorzystanie procesora, aktualne wykorzystanie pamięci, aktualne wykorzystanie dysku, czas ciągłej pracy. W pojedyńczym wierszu tablicy będą również wyświetlane dane, które nie będą się zmieniać w czasie takie jak nazwa wirtualnej maszyny, całkowita dostępna pamięć, całkowita dostępna przestrzeń na dysku. Pozwoli to bibliotekom implementującym mechanizm wirtualnego obiektowego modelu dokumentu na wykorzystanie swoich zalet i ponowne użycie fragmentów \emph{DOM}, aby zminimalizować czas potrzebny do aktualizacji widoku.
@@ -157,11 +157,12 @@ Selektory mogą poszukiwać elementy na podstawie wielu różnych wartośći, je
 
 Dobrą praktyką jest definiowanie selektorów na podstawie atrubutu \emph{class}, natomiast identyfikator, czyli atrybut \emph{id} powinien służyć do jednoznacznej identyfikacji elementu w strukturze \emph{HTML}. Zgodnie z dokumentacją wiele znaczników może posiadać taką samą klasę, natomiast identyfikator aby spełniał swoje zadanie musi być unikalny.
 
-Ponieważ standardowy wygląd znaczników jest bardzo prosty to dodatkowo nieostylowane strony internetowe zdarzają się bardzo rzadko. W celu pokazania jak duża może być różnica pomiędzy standardowym, a specjalnie ostylowanym wyglądem strony internetowej poniżej przedstawiony został poprzedni przykład strony z formularzem wzbogacony o bardzo lekką bibliotekę \emph{CSS} o nazwie \emph{Milligram} \cite{milligram}. Biblioteka ta jest bardza lekka, jej rozmiar wynosi tylko 2kB.
+Ponieważ standardowy wygląd znaczników jest bardzo prosty to dodatkowo nieostylowane strony internetowe zdarzają się bardzo rzadko. W celu pokazania jak duża może być różnica pomiędzy standardowym, a specjalnie ostylowanym wyglądem strony internetowej rysunek \ref{fig:example-page-mithril} przedstawia poprzedni przykład strony z formularzem wzbogacony o bardzo lekką bibliotekę \emph{CSS} o nazwie \emph{Milligram} \cite{milligram}. Biblioteka ta jest bardza lekka, jej rozmiar wynosi tylko 2kB.
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{html-css-chrome.png}
-	\caption{Ostylowany przykład wyrenderowany w przeglądarce Chrome}
+  \caption{Ostylowany przykład wyrenderowany w przeglądarce Chrome}
+  \label{fig:example-page-mithril}
 \end{figure}
 
 \subsubsection{JavaScript}
@@ -197,6 +198,8 @@ Obiektowy model dokumentu (ang. \emph{Document Object Model}) to zespół klas i
 
 \emph{DOM} pozwala dokonywać dowolnych modyfikacji poprzez tworzenie, usuwanie i modyfikację tzw. węzłów (ang. \emph{nodes}). Początkowo nie istniał standardowy obiektowy model dokumentu. Twórcy najpopulaniejszych przeglądarek tworzyłi własne niezgodne ze sobą modele. Organizacja \emph{W3C} \cite{w3c} przygotowała ujednolicony standard obiektowego modelu dokumentu, w którym dokment jest dostępny pod postacią globalnego obiektu \emph{document}, który posiada metody do np. pobierania elementu na podstawie identyfikatora \emph{document.getElementById} lub na podstawie klasy \emph{document.getElementByClassName}. Standard \emph{W3C} definiuje interfejsy \emph{DOM} tylko dla języków \emph{JavaScript} i \emph{Java}.
 
+Rysunek \ref{fig:example-page-dom} przedstawia drzewo \emph{DOM} wygenerowane dla wcześniejszej przykładowej strony internetowej opisanej w punkcie \ref{html}.
+
 \begin{figure}
   \centering
   \begin{tikzpicture}
@@ -217,7 +220,8 @@ Obiektowy model dokumentu (ang. \emph{Document Object Model}) to zespół klas i
       ]
     ]
   \end{tikzpicture}
-  \caption{Drzewo \emph{DOM} wygenerowane dla przykładu opisanego w rozdziale \ref{html}}
+  \caption{Przykładowe drzewo \emph{DOM}}
+  \label{fig:example-page-dom}
 \end{figure}
 
 \subsubsection{CSSOM} \label{cssom}
@@ -229,6 +233,8 @@ Obiektowy model kaskadowych arkuszy stylów (ang. \emph{CSS Object Model}) to ze
 \emph{CSSOM} musi być zbudowany na nowo z każdym przeładowaniem strony, oznacza to, iż nawet jeśli pliki \emph{CSS} zostały umieszczone w pamięci podręcznej (ang. \emph{cache}) to nie uchroni to przeglądarki przed koniecznością budowy \emph{CSSOM}.
 
 Istnieje związek pomiędzy kaskadowymi arkuszami stylów, które przeglądarka ładuje i skryptami \emph{JavaScript} umieszczonymi na stronie. Żeby przeglądarka wyświetliła cokolwiek musi poprawnie zakończyć budowę \emph{CSSOM}, w przypadku gdy budowa ta zostanie wstrzymana przez skrypty czas potrzebny na wyświetlenie jakiegokolwiek elementu wzrośnie. W przypadku nieoptymalnej kombinacji skryptów oraz stylów czas ten może wzrosnąc drastycznie skutkując bardzo negatywnymi doświadczeniami użytkownika, w najgorszym wypadku spowodować zniechęcenie użytkownika do dalszego oczekiwania i opuszczenie strony.
+
+Rysunek \ref{fig:example-page-cssom} przedstawia drzewo \emph{CSSOM} wygenerowane dla przykładu opisanego w punkcie \ref{html}.
 
 \begin{figure}
   \centering
@@ -244,7 +250,8 @@ Istnieje związek pomiędzy kaskadowymi arkuszami stylów, które przeglądarka 
       ]
     \end{tikzpicture}
   }
-  \caption{Przykładowe drzewo \emph{CSSOM} wygenerowane dla przykładu opisanego w rozdziale \ref{html}}
+  \caption{Przykładowe drzewo \emph{CSSOM}}
+  \label{fig:example-page-cssom}
 \end{figure}
 \subsubsection{HTTP/1.1} \label{http/1.1}
 
@@ -257,14 +264,14 @@ Wywołania protokołu \emph{HTTP} zaczynają się od \url{http://}. \emph{HTTP} 
 Zapytanie \emph{HTTP} zaczynaja się od nazwy metody, która określa akcję jaką obiekt tworzący zapytanie chce wykonać na zasobie podstępnym pod określonym adresem. Dostępne metody to:
 
 \begin{enumerate}
-  \item \emph{GET} - pobranie zasobu
-  \item \emph{HEAD} - pobranie informacji o zasobie, metoda stosowana do sprawdzania dostępności zasobu
-  \item \emph{PUT} - aktualizacja zasobu
-  \item \emph{POST} - stworzenie nowego zasobu
-  \item \emph{DELETE} - usunięcie zasobu
-  \item \emph{OPTIONS} - pobranie informacji o możliwych operacjach do wykonania na zasobie
-  \item \emph{TRACE} - metoda stosowana do diagnostyki kanału komunikacyjnego
-  \item \emph{PATCH} - częściowa aktualizacja zasobu
+  \item \emph{GET} - pobranie zasobu.
+  \item \emph{HEAD} - pobranie informacji o zasobie, metoda stosowana do sprawdzania dostępności zasobu.
+  \item \emph{PUT} - aktualizacja zasobu.
+  \item \emph{POST} - stworzenie nowego zasobu.
+  \item \emph{DELETE} - usunięcie zasobu.
+  \item \emph{OPTIONS} - pobranie informacji o możliwych operacjach do wykonania na zasobie.
+  \item \emph{TRACE} - metoda stosowana do diagnostyki kanału komunikacyjnego.
+  \item \emph{PATCH} - częściowa aktualizacja zasobu.
 \end{enumerate}
 
 Listing \ref{lst:http-request} przestawia przykładowe żądanie \emph{HTTP/1.1} przeglądarki Chrome. Listing \ref{lst:http-response} przedstawia odpowiedź na przykładowe żądanie.
@@ -354,9 +361,12 @@ Moment stworzenia pierwszego żądania równoznaczny jest z początkiem ładowan
   \item \emph{Czytanie notyfikacji Push} - przeglądarka czyta oraz interpretuje otrzymane wcześniej dodatkowe dane.
 \end{enumerate}
 
+Rysunek \ref{fig:request-timing-chrome} wygenerowany został za pomocą \emph{Chrome DevTools}. Pozwala on w bardzo prosty sposób dokonać analizy czasu trwania poszczególnych faz przetwarzania żądania.
+
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{request-timing-chrome.png}
-	\caption{Przykładowy widok przedstawiający czas trwania poszczególnych faz przetwarzania żądania wygenerowany za pomocą Chrome DevTools}
+  \caption{Przykładowy widok przedstawiający czas trwania poszczególnych faz przetwarzania żądania}
+  \label{fig:request-timing-chrome}
 \end{figure}
 
 \subsubsection{Parsowanie}
@@ -371,15 +381,17 @@ Jeśli przeglądarka napotka znacznik odnoszący się do kolejnego zasobu wtedy 
   \item załączenie pliku graficznego.
 \end{enumerate}
 
-\begin{lstlisting}[caption=Przykładowe załączenie pliku ze stylami \emph{css}]
+Listingi \ref{lst:include-css}, \ref{lst:include-js}, \ref{lst:include-img} przedstawiają przykładowe znaczniki tworzące odniesienia do zewnętrznych zasobów.
+
+\begin{lstlisting}[caption=Przykładowe załączenie pliku ze stylami \emph{css}, label={lst:include-css}]
 <link rel="stylesheet" type="text/css" href="style.css">
 \end{lstlisting}
 
-\begin{lstlisting}[caption=Przykładowe załączenie pliku z kodem w języku \emph{JavaScript}]
+\begin{lstlisting}[caption=Przykładowe załączenie pliku z kodem w języku \emph{JavaScript}, label={lst:include-js}]
 <script type="text/javascript" src="script.js">
 \end{lstlisting}
 
-\begin{lstlisting}[caption=Przykładowe załączenie pliku graficznego]
+\begin{lstlisting}[caption=Przykładowe załączenie pliku graficznego, label={lst:include-img}]
 <img src="image.png">
 \end{lstlisting}
 
@@ -491,9 +503,9 @@ Dane zebrane z przeglądarki internetowej podczas testów wydajnościowych zapis
 
 \subsection{Wariant tablicowy}
 
-Plik przechowujący dane w wariancie tablicowym (ang. \emph{JSON Array Format}) składa się z jednej tablicy przechowującej obikety zarejestrowanych zdarzeń. Zdarzenia te nie muszą być poukładane chronologicznie według znaczników czasu. 
+Plik przechowujący dane w wariancie tablicowym (ang. \emph{JSON Array Format}) składa się z jednej tablicy przechowującej obikety zarejestrowanych zdarzeń. Zdarzenia te nie muszą być poukładane chronologicznie według znaczników czasu. Listing \ref{lst:example-table-variant} przedstawia przykładowy tablicowy wariant formatu \emph{Trace Event Format}.
 
-\begin{lstlisting}[caption=Przykładowy wariant tablicowy]
+\begin{lstlisting}[caption=Przykładowy wariant tablicowy, label={lst:example-table-variant}]
 [{
   "name": "Asub",
   "cat": "PERF",
@@ -524,9 +536,9 @@ Plik przechowujący dane w wraciencie obiektowym (ang. \emph{JSON Object Format}
   \item samples - tablica przechowująca dane rozszerzające traceEvents o informacje zarejestrowane na poziomie systemu operacyjnego.
 \end{enumerate}
 
-Dopuszczona jest możliwość definicji pól o nazwach innych niż wymienione wcześniej dla dodatkowego opisania danych (metadane).
+Dopuszczona jest możliwość definicji pól o nazwach innych niż wymienione wcześniej dla dodatkowego opisania danych (metadane). Listing \ref{lst:example-object-variant} przedstawia przykładowy obiektowy wariant formatu \emph{Trace Event Format}.
 
-\begin{lstlisting}[caption=Przykładowy wariant obiektowy]
+\begin{lstlisting}[caption=Przykładowy wariant obiektowy, label={lst:example-object-variant}]
 {
   "traceEvents": [[{
     "name": "Asub",
@@ -554,7 +566,7 @@ Podstawowymi obiektami, które można poddać analizie są zdarzenia. Istnieje k
 \begin{enumerate}
   \item name - nazwa zdarzenia.
   \item cat - kolekcja oddzielonych przecinkiem kategorii powiązanych ze zdarzeniem.
-  \item ph - pojedynczy znak określający typ zdarzenia. Table prawidłowych wartości została przedstawiona poniżej.
+  \item ph - pojedynczy znak określający typ zdarzenia. Tabela \ref{tab:event-types} zawiera wszystkie prawidłowe wartości.
   \item ts - znacznik czasowy zdarzenia podany z dokładnością do milisekundy.
   \item tts - opcjonalny znacznik czasowy wątku zdarzenia podany z dokładnością do milisekundy.
   \item pid - identyfikator procesu, który spowodował zaistnienie zdarzenia.
@@ -590,6 +602,7 @@ Podstawowymi obiektami, które można poddać analizie są zdarzenia. Istnieje k
     Zdarzenia synchronizacji zegara (\emph{ang. clock sync events}) & \textbf{c}\\ \hline
     Zdarzenia kontekstowe (\emph{ang. context events}) & \textbf{(, )}\\ \hline
   \caption {Fazy zdarzeń i odpowiadające im typy}
+  \label {tab:event-types}
   \end{tabularx}
 \end{center}
 
@@ -609,7 +622,9 @@ Poniżej przedstawiono opis każdego z możliwych typów zdarzeń:
   \item zdarzenia kontekstowe - są używane do oznaczania sekwencji zdarzeń.
 \end{enumerate}
 
-\begin{lstlisting}[caption=Przykładowe zdarzenie]
+Listing \ref{lst:example-event} przedstawia przykładowe, poprawne zdarzenie formatu \emph{Trace Event Format}.
+
+\begin{lstlisting}[caption=Przykładowe zdarzenie, label={lst:example-event}]
 {
   "name": "myName",
   "cat": "category,list",
@@ -659,18 +674,20 @@ Aby uruchomić \emph{Chrome DevTools} wystarczy pobrać i uruchomić przeglądar
 Aby manualnie zebrać dane na temat wydajności można wykorzystać zakładkę \emph{Wydajność (ang. Performance)}, która dostępna jest bezpośrednio po uruchomieniu \emph{Chrome DevTools}. Po wybraniu tej zakładki możemy zebrać dane na dwa sposoby:
 
 \begin{enumerate}
-  \item Klikając przycisk reprezentujący czarną kropkę, spowoduje to nagrywanie (ang. \emph{recording}) wszelkich informacji od momentu wciśnięcia przycisku, strona internetowa jest już załadowana i uruchomiona w oknie przeglądarki. Nagrywanie należy zatrzymać klikając odpowiedni przycisk widoczny na ekranie.
-  \item Klikając przycisk reprezentujący kręcącą się strzałkę, spowoduje to przeładowanie strony internetowej i nagrywanie danych od samego początku procesu wczytywania strony internetowej aż do jej pełnego załadowania.
+  \item Klikając przycisk reprezentujący czarną kropkę przedstawiony na rysunku \ref{fig:chrome-devtools-performance-recording-runtime}. Spowoduje to nagrywanie (ang. \emph{recording}) wszelkich informacji od momentu wciśnięcia przycisku, strona internetowa jest już załadowana i uruchomiona w oknie przeglądarki. Nagrywanie należy zatrzymać klikając odpowiedni przycisk widoczny na ekranie. 
+  \item Klikając przycisk reprezentujący kręcącą się strzałkę przedstawiony na rysunku \ref{fig:chrome-devtools-performance-recording-reload}. Spowoduje to przeładowanie strony internetowej i nagrywanie danych od samego początku procesu wczytywania strony internetowej aż do jej pełnego załadowania.
 \end{enumerate}
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{chrome-devtools-performance-recording-runtime.png}
-	\caption{Nagrywanie danych w trakcie działania aplikacji}
+  \caption{Nagrywanie danych w trakcie działania aplikacji}
+  \label{fig:chrome-devtools-performance-recording-runtime}
 \end{figure} 
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{chrome-devtools-performance-recording-reload.png}
-	\caption{Nagrywanie danych od momentu wczytywania strony}
+  \caption{Nagrywanie danych od momentu wczytywania strony}
+  \label{fig:chrome-devtools-performance-recording-reload}
 \end{figure}
 
 \subsection{Wizualizacja zebranych danych}
@@ -679,7 +696,7 @@ Po zatrzymaniu nagrywania narzędzie automatycznie dokona reprezentacji zebranyc
 
 \subsubsection{Widok zbiorczy}
 
-Najwyżej położonym widokiem służacym przedstwieniu zebranych danych jest widok zbiorczy, który składa się z kilku wykresów. Częścią wspólną wszystkich wykresów jest pozioma oś reprezentująca upływający czas. Poniżej opisane zostały wszystkie wykresy wchodzące w skład widoku zbiorczego:
+Najwyżej położonym widokiem służacym przedstwieniu zebranych danych jest widok zbiorczy przedstawiony na rysunku \ref{fig:chrome-devtools-performance-summary-view}, który składa się z kilku wykresów. Częścią wspólną wszystkich wykresów jest pozioma oś reprezentująca upływający czas. Poniżej opisane zostały wszystkie wykresy wchodzące w skład widoku zbiorczego:
 
 \begin{enumerate}
   \item \emph{FPS} - wykres ten przedstawia ilość klatek na sekundę, które przeglądarka była w stanie przygotować do wyświetlenia.
@@ -690,30 +707,33 @@ Najwyżej położonym widokiem służacym przedstwieniu zebranych danych jest wi
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{chrome-devtools-performance-summary-view.png}
-	\caption{Przykładowy wygenerowany wykres zbiorczy}
+  \caption{Przykładowy wygenerowany wykres zbiorczy}
+  \label{fig:chrome-devtools-performance-summary-view}
 \end{figure}
 
 \subsubsection{Widok sieci}
 
-Widok sieci jest widokiem przedstawiającym w bardziej precyzyjny sposób odcinki czasu, w których ładowane były poszczególne zasoby.
+Widok sieci przedstawiony na rysunku \ref{fig:chrome-devtools-performance-network-view} jest widokiem przedstawiającym w bardziej precyzyjny sposób odcinki czasu, w których ładowane były poszczególne zasoby.
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{chrome-devtools-performance-network-view.png}
-	\caption{Przykładowy wygenerowany widok sieci}
+  \caption{Przykładowy wygenerowany widok sieci}
+  \label{fig:chrome-devtools-performance-network-view}
 \end{figure}
 
 \subsubsection{Widok klatek}
 
-Widok klatek jest bardzo małym wykresem przedstawiającym jak zmieniała się liczba klatek na sekundę.
+Widok klatek przedstawiony na rysunku \ref{fig:chrome-devtools-performance-main-view} jest bardzo małym wykresem przedstawiającym jak zmieniała się liczba klatek na sekundę.
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{chrome-devtools-performance-main-view.png}
-	\caption{Przykładowy wygenerowany widok klatek}
+  \caption{Przykładowy wygenerowany widok klatek}
+  \label{fig:chrome-devtools-performance-main-view}
 \end{figure}
 
 \subsubsection{Widok głównego wątku}
 
-Widok głównego wątku pokazuje dokładnie jakie zadania były wykonywane przez główny wątek. Zadania te pogrupowane są w kategorie za pomocą kolorów:
+Widok głównego wątku przedstawiony na rysunku \ref{fig:chrome-devtools-performance-frames-view} pokazuje dokładnie jakie zadania były wykonywane przez główny wątek. Zadania te pogrupowane są w kategorie za pomocą kolorów:
 
 \begin{enumerate}
   \item niebieski - obejmuje wszystkie zadania związane z ładowaniem zasobów (w tym parsowanie).
@@ -728,21 +748,23 @@ Przyjęta kolorystyka jest spójna dla wszystkich widoków zakładki \emph{Wydaj
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{chrome-devtools-performance-frames-view.png}
-	\caption{Przykładowy wygenerowany widok głównego wątku}
+  \caption{Przykładowy wygenerowany widok głównego wątku}
+  \label{fig:chrome-devtools-performance-frames-view}
 \end{figure}
 
 \subsection{Manualne zbieranie danych pod kątek wydajności pamięciowej}
 
-Aby manualnie zebrać dane na temat wydajności pamięciowej przed włączeniem nagrywania należy włączyć opcję zbierania informacji na temat zużycia pamięci. Dzięki temu uzyskamy dostęp do jednego dodatkowego widoku wykorzystania pamięci.
+Aby manualnie zebrać dane na temat wydajności pamięciowej przed włączeniem nagrywania należy włączyć opcję zbierania informacji na temat zużycia pamięci, której położenie dokładnie przedstawione zostało na rysunku \ref{fig:chrome-devtools-performance-memory-checkbox}. Dzięki temu uzyskamy dostęp do jednego dodatkowego widoku wykorzystania pamięci.
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{chrome-devtools-performance-memory-checkbox.png}
-	\caption{Włączanie zbierania informacji na temat wykorzystania pamięci}
+  \caption{Włączanie zbierania informacji na temat wykorzystania pamięci}
+  \label{fig:chrome-devtools-performance-memory-checkbox}
 \end{figure}
 
 \subsubsection{Widok wykorzystania pamięci}
 
-Widok przedstawia jak w czasie zmienia się ilość pamięci zajętej przez stertę. Dodatkowo przedstawia on najmniejszą i najwięszką liczbę elementów w następujących kategoriach:
+Widok wykorzystania pamięci przedstawiony na rysunku \ref{fig:chrome-devtools-performance-memory-view} pokazuje jak w czasie zmienia się ilość pamięci zajętej przez stertę. Dodatkowo wyświetla on najmniejszą i najwięszką liczbę elementów w następujących kategoriach:
 
 \begin{enumerate}
   \item Dokumenty (ang. \emph{Documents}).
@@ -753,7 +775,8 @@ Widok przedstawia jak w czasie zmienia się ilość pamięci zajętej przez ster
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{chrome-devtools-performance-memory-view.png}
-	\caption{Przykładowy wygenerowany widok wykorzystania pamięci}
+  \caption{Przykładowy wygenerowany widok wykorzystania pamięci}
+  \label{fig:chrome-devtools-performance-memory-view}
 \end{figure}
 
 \subsubsection{Zakładka \emph{Pamięć}}
@@ -761,26 +784,29 @@ Widok przedstawia jak w czasie zmienia się ilość pamięci zajętej przez ster
 \emph{Chrome DevTools} udostępnia specjalnie dedykowaną zakładkę o nazwie \emph{Pamięc}, która oferuje dodatkowe funkcjonalności przydatne przy np. debugowaniu aplikacji w celu znalezienia fragmentów kodu odpowiedzialnych za wyciek pamięci. Dostępne opcje to:
 
 \begin{enumerate}
-  \item migawka zawartości sterty - pozwala utrwalić aktualny stan sterty, a następnie dokonać przeglądu jej zawartości za pomocą wbudowanej przeglądarki
-  \item nagranie profilu alokacji pamięci - pozwala zbierać dane na temat alokacji pamięci z poziomu kodu napisanego w języku \emph{JavaScript}
-  \item alokacja pamięci przedstawiona na wykresie czasowym - pozwala zbierać dane na temat alokacji pamięci oraz automatycznie przedstawia je na osi czasowej
+  \item migawka zawartości sterty - przedstawiona na rysunku \ref{fig:chrome-devtools-performance-heap-snapshot} pozwala utrwalić aktualny stan sterty, a następnie dokonać przeglądu jej zawartości za pomocą wbudowanej przeglądarki
+  \item nagranie profilu alokacji pamięci - przedstawiona na rysunku \ref{fig:chrome-devtools-performance-allocation-profile} pozwala zbierać dane na temat alokacji pamięci z poziomu kodu napisanego w języku \emph{JavaScript}
+  \item alokacja pamięci przedstawiona na wykresie czasowym - przedstawiona na rysunku \ref{fig:chrome-devtools-performance-allocation-timeline} pozwala zbierać dane na temat alokacji pamięci oraz automatycznie przedstawia je na osi czasowej
 \end{enumerate}
 
 Wszystkie opcje umożliwiają opcjonalne zapisanie zebranych danych do pliku na dysku.
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{chrome-devtools-performance-heap-snapshot.png}
-	\caption{Przeglądarka zawartości utworzonej migawki sterty}
+  \caption{Przeglądarka zawartości utworzonej migawki sterty}
+  \label{fig:chrome-devtools-performance-heap-snapshot}
 \end{figure}
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{chrome-devtools-performance-allocation-profile.png}
-	\caption{Wykres wygenerowany na podstawie profilu alokacji pamięci}
+  \caption{Wykres wygenerowany na podstawie profilu alokacji pamięci}
+  \label{fig:chrome-devtools-performance-allocation-profile}
 \end{figure}
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{chrome-devtools-performance-allocation-timeline.png}
-	\caption{Wykres czasowy alokacji pamięci}
+  \caption{Wykres czasowy alokacji pamięci}
+  \label{fig:chrome-devtools-performance-allocation-timeline}
 \end{figure}
 
 \section{Aplikacje wspomagające badania}
@@ -791,11 +817,12 @@ W celu poprawnego przeprowadzenia badań zostały stworzone trzy małe aplikacje
 
 \subsubsection{Opis}
 
-\emph{javascript-frameworks-benchmark} to aplikacja, która przechowuje kod źródłowy wszystkich implementacji opartych na opisanych w pracy magisterskiej bibliotekach programistycznych. Po jej uruchomieniu pod lokalnym adresem \emph{http://localhost} i domyślnym porcie \emph{8080} dostępna jest strona za pomocą, której w łatwy sposób można przejść do wybranej przez siebie implementacji.
+\emph{javascript-frameworks-benchmark} to aplikacja, która przechowuje kod źródłowy wszystkich implementacji opartych na opisanych w pracy magisterskiej bibliotekach programistycznych. Po jej uruchomieniu pod lokalnym adresem \emph{http://localhost} i domyślnym porcie \emph{8080} dostępna jest strona za pomocą, której w łatwy sposób można przejść do wybranej przez siebie implementacji, co zostało przedstawione na rysunku \ref{fig:javascript-frameworks-benchmark}.
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{javascript-frameworks-benchmark.png}
-	\caption{Widok strony wyboru implementacji}
+  \caption{Widok strony wyboru implementacji}
+  \label{fig:javascript-frameworks-benchmark}
 \end{figure}
 
 \subsubsection{Specyfikacja wewnętrzna}
@@ -933,7 +960,7 @@ Obiekt przechowujący wyliczone statystyki posiada następujace właściwości:
 
 \section{Platformy programistyczne do tworzenia aplikacji internetowych}
 
-Aktualny wybór platform programistycznych do tworzenia aplikacji internetowych w języku \emph{JavaScript} jest bardzo szeroki. Zdecydowana większość bibliotek tworzona i utrzymywana jest zgodnie z zasadami wolnego oprogramowania \emph{Open Source}. Im większa popularność biblioteki tym większa szansa na wkład użytkowników w postaci nowych funkcjonalności, poprawiania błędów (w tym tych związanych z bezpieczeństwem), czy też optymalizacji. Podjęcie decyzji jakiej biblioteki użyć może być bardzo trudne zwłaszcza, że dosłownie z miesiąca na miesiąc może powstać nowa biblioteka zaskarbiająca sobie dużą sympatię programistów i tym samem pociągnać za sobą przepływ społeczeństwa zaangażowanego w tworzenie oprogramowania. 
+Aktualny wybór platform programistycznych do tworzenia aplikacji internetowych w języku \emph{JavaScript} jest bardzo szeroki. Zdecydowana większość bibliotek tworzona i utrzymywana jest zgodnie z zasadami wolnego oprogramowania \emph{Open Source}. Im większa popularność biblioteki tym większa szansa na wkład użytkowników w postaci nowych funkcjonalności, poprawiania błędów (w tym tych związanych z bezpieczeństwem), czy też optymalizacji. Podjęcie decyzji jakiej biblioteki użyć może być bardzo trudne zwłaszcza, że dosłownie z miesiąca na miesiąc może powstać nowa biblioteka zaskarbiająca sobie dużą sympatię programistów i tym samem pociągnać za sobą przepływ społeczeństwa zaangażowanego w tworzenie oprogramowania. Podstawowe porównanie bibliotek wraz z oferowanymi funkcjonalnościami przedstawione zostało w tabeli \ref{tab:frameworks-comparison}.
 
 \subsection{Charakterystyczne funkcjonalności}
 
@@ -985,6 +1012,7 @@ Biblioteki mogą mieć wbudowany mechanizm wstrzykiwania zależności, lecz nie 
     Wielkość po minifikacji & 171,7kB & 567,7kB & 20,7kB & 57,1kB & 22,5kB \\ \hline
     Wielkość po minifikacji i kompresji gzip & 59,6kB & 141,7kB & 6,9kB & 20,2kB & 8,1kB \\ \hline
     \caption{Porównanie bibliotek}
+    \label{tab:frameworks-comparison}
   \end{tabularx}
 \end{center}
 
@@ -996,9 +1024,9 @@ AngularJS \cite{angularjs} jest ciągle bardzo popularnym środowiskiem programi
 
 \subsubsection{Implementacja}
 
-Inicjalizaca aplikacji napisanej za pomocą AngularJS polega na wywołaniu metody \emph{module} dostarczanej za pomocą globalnego obiektu \emph{angular}. Następnie za pomocą metody \emph{component} rejestrowane są poszczególne komponenty.
+Listing \ref{lst:angularjs-init} przedstawia inicjalizację aplikacji napisanej za pomocą AngularJS. Polega ona na wywołaniu metody \emph{module} dostarczanej za pomocą globalnego obiektu \emph{angular}. Następnie za pomocą metody \emph{component} rejestrowane są poszczególne komponenty.
 
-\begin{lstlisting}[caption=Inicjalizacja głównego modułu oraz rejestracja komponentów]
+\begin{lstlisting}[caption=Inicjalizacja głównego modułu oraz rejestracja komponentów, label={lst:angularjs-init}]
 import angular from 'angular';
 
 import PerformanceTest from
@@ -1018,9 +1046,9 @@ application.component(
 );
 \end{lstlisting}
 
-Definicja głównego komponentu składa się z trzech plików odpowiednio: komponentu, kontrolera oraz widoku. Plik zawierający definicję komponentu łączy kontroler z konkretnym widokiem.
+Listing \ref{lst:angularjs-main} przedstawia definicję głównego komponentu, która składa się z trzech plików odpowiednio: komponentu, kontrolera oraz widoku. Plik zawierający definicję komponentu łączy kontroler z konkretnym widokiem.
 
-\begin{lstlisting}[caption=Główny komponent]
+\begin{lstlisting}[caption=Główny komponent, label={lst:angularjs-main}]
 // performance-test.component.js
 import PerformanceTestController from
     './performance-test.controller';
@@ -1055,9 +1083,9 @@ virtual-machines-table(
 )
 \end{lstlisting}
 
-Komponent tabeli posiada zdefiniowaną tablicę wirtualnych maszyn za pomocą właściwości \emph{bindings}. Tablica ta zostanie przekazana automatycznie do kontrolera komponentu. Poszczególne wiersze tabeli zostaną wygenerowane za pomocą atrybutu \emph{ng-repeat}, który to powieli określony fragment dla każdego elementu tabeli.
+Komponent tabeli przedstawiony w listingu \ref{lst:angularjs-table} posiada zdefiniowaną tablicę wirtualnych maszyn za pomocą właściwości \emph{bindings}. Tablica ta zostanie przekazana automatycznie do kontrolera komponentu. Poszczególne wiersze tabeli zostaną wygenerowane za pomocą atrybutu \emph{ng-repeat}, który to powieli określony fragment dla każdego elementu tabeli.
 
-\begin{lstlisting}[caption=Komponent tabeli]
+\begin{lstlisting}[caption=Komponent tabeli, label={lst:angularjs-table}]
 // virtual-machines-table.component.js
 import VirtualMachinesTableController from
     './virtual-machines-table.controller';
