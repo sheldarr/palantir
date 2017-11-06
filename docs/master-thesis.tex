@@ -55,45 +55,26 @@ Czasom, w których aplikacje internetowe pisane były od podstaw z wykorzystanie
 
 Podjęcie decyzji, którą platformę użyć może być bardzo trudne, a fakt jej wybrania może mieć poważne konsekwencje w przyszłości z powodu kilku potencjalnych problemów. Jednym z takich problemów może sytuacja, w której popularna i szeroko rekomendowana przez społeczność programistów biblioteka traci na popularności z powodu nowego konkurenta. Konkurent ten oferuje wszystkie najbardziej lubiane cechy wcześniejszej biblioteki, przy okazji pozbywa się pewnych wad, a dodatkowo wprowadza swoje własne pomysły, czy też usprawnienia. Aktualnie wykorzystywana biblioteka przestaje być utrzymywana, w przypadku ujawnienia się luki związanej z bezpieczeństwem nie pojawia się tzw. łatka (ang. \emph{patch}). Programiści są wtedy zmuszeni do migracji do nowej biblioteki, bądź też do samodzielnego utrzymywania powoli wymierającej bilioteki.
 
-Migracja może posiadać różny stopień skomplikowania. W idealnej sytuacji programiści podmieniają jedynie bibliotekę na inną, która zachowuje w pełni kompatybilny interfejs. Do takiej sytuacji możemy porównać wejście biblioteki \emph{React} \cite{react} w wersję \emph{16.0}, w której to implementacja głównego rdzenia została przepisana od podstaw, przy okazji nie wprowadzając zmian w interfejsie. Z drugiej strony można przytoczyć przykład bibliteki \emph{AngularJS} \cite{angularjs} oraz swojego następny o podobnej nazwie \emph{Angular} \cite{angular}. Pomimo podobieństwa w nazwie różnice są bardzo drastyczne i bibliotekę \emph{Angular} należy analizować jako zupełnie osobny byt.
+Migracja może posiadać różny stopień skomplikowania. W idealnej sytuacji programiści podmieniają jedynie bibliotekę na inną, która zachowuje w pełni kompatybilny interfejs. Do takiej sytuacji możemy porównać wejście biblioteki \emph{React} \cite{react} w wersji \emph{16.0}, w której to implementacja głównego rdzenia została przepisana od podstaw, przy okazji nie wprowadzając zmian w interfejsie. Z drugiej strony można przytoczyć przykład bibliteki \emph{AngularJS} \cite{angularjs} oraz swojego następny o podobnej nazwie \emph{Angular} \cite{angular}. Pomimo podobieństwa w nazwie różnice są bardzo drastyczne i bibliotekę \emph{Angular} należy analizować jako zupełnie osobny byt.
 
 Pomiędzy bibliotekami z rodziny \emph{Angular}, a \emph{React} aktualnie głównym konkurentem jest platforma \emph{Vue.js}, która czerpie garściami z lubianych oraz sprawdzonych funkcjonalności swoich konkurentów.
 
 Jedną z mniej popularnych bibliotek jest \emph{mithril.js}. Chwali się on bardzo małą objętością oraz wysoką wydajnością w porównaniu do swoich konkurentów.
 
-\subsection{Cel pracy}
-
 Celem pracy jest porównanie pięciu platform programistycznych służących do tworzenia aplikacji internetowych. Są to \emph{Angular}, \emph{AngularJS},
 \emph{mithril.js}, \emph{React} oraz \emph{Vue.js}. Porównanie zostanie przeprowadzone pod kątem wydajności czasowej oraz pamięciowej. Uzyskane wyniki pomóc mogą programistom zadecydować z jakiej biblioteki skorzystać jeśli ważnym elementem jest ich wydajność.
 
-\subsection{Układ pracy}
-
-Praca składa się z następujcych rozdziałów:
-
-\begin{enumerate}
-  \item \emph{Wstęp}
-  \item \emph{Specyfikacja problemu}
-  \item \emph{Środowisko przeglądarki internetowa} - zawiera opis działania przeglądarki internetowej oraz technologii jakie są wykorzystywane w środowisku przeglądarki internetowej do wyświetlenia aplikacji internetowej. W ramach tego rozdziału opisane zostały poszczególne kroki wyświetlania strony internetowej
-  \item \emph{Trace Event Format} - w tym rozdziale opisany został format \emph{Trace Event Format}, w którym udostępniane są informacje przeglądarki \emph{Chrome}na temat wydajności.
-  \item \emph{Chrome DevTools} - opis potężnego zbioru narzędzi przeglądarki \emph{Chrome}, który między innymi pozwala zapisać informacje na temat wydajności
-  \item \emph{Aplikacje wspomagające badania} - w ramach pisania pracy magisterskiej stworzone zostały małe aplikacje, które w znaczący sposób usprawniły proces zbierania danych. Rozdział zawiera ich dokumentację.
-  \item \emph{Platformy programistyczne do tworzenia aplikacji internetowych} - opis poszczególnych platform programistycznych oraz implementacji stworzonych za ich pomocą
-  \item \emph{Badania wydajnościowe} - zawiera przeprowadzone badania oraz osiągniete wyniki
-  \item \emph{Porównanie wyników i wnioski}
-  \item \emph{Podsumowanie}
-\end{enumerate}
+Praca składa się z dziesięciu rozdziałów. Rozdział pierwszy stanowi wstęp. W rodziale drugim przedstawiono sformułowanie problemu. Rozdział trzeci zawiera opis środowiska przeglądarki internetowej, sposób jej działania oraz wykorzystywane technologie. W rozdziale czwartym opisano format danych o nazwie \emph{Trace Event Fomat}. Rozdział piąty zawiera opis zbioru narzędzi o nazwie \emph{Chrone DevTools}. Rozdział szósty przedstawia specyfikacje aplikacji pomagających przy badaniach przeprowadzonych w ramach pracy magisterskiej. W rozdziale siódmym znajduje się opis poszczególnych plaform programistycznych oraz implementacji stworzonych za ich pomocą. Rozdział ósmy zawiera przeprowadzone badania oraz osiągniete wyniki. W rozdziale dziewiątym zawarto porównanie wyników i wysunięte wnioski. Ostatni, dzięsiaty rozdział stanowi podsumowanie.
 
 \section{Specyfikacja problemu}
 
 Aby w trakcie badań wydajnościowych uzyskać wyniki, które będzie można ze sobą porównywać wszystkie biblioteki będą implementowały taki sam schemat aplikacji.
 
-\subsection{Schemat aplikacji testowej}
-
 Aplikacja będzie składać się z nastepujących elementów dla każdej implementacji niezależnie od biblioteki:
 
 \begin{enumerate}
   \item Inicjalizacja głównego komponentu/modułu - każda z bibliotek musi zostać zainicjalizowana, dzięki czemu zostanie wyrenderowany pierwszy komponent lub zostanie uruchomiony główny moduł odpowiedzialny za dalsze renderowanie
-  \item Główny komponent - korzystając z biblioteki zaimplementowany zostać musi główny komponent, który odpowiedzialny będzie za pobranie listy elementów potrzebnych do wyrenderowania oraz zgłoszenia potrzeby aktualizacji tej listy. Główny komponent przekazywać będzie listę elementów do komponentu odpowiedzialnego za wyświetlenie elementów w tablicy
+  \item Główny komponent - korzystając z biblioteki musi być zaimplementowany główny komponent, który odpowiedzialny będzie za pobranie listy elementów potrzebnych do wyrenderowania oraz zgłoszenia potrzeby aktualizacji tej listy. Główny komponent przekazywać będzie listę elementów do komponentu odpowiedzialnego za wyświetlenie elementów w tablicy
   \item Komponent tablicy elementów - komponent ten odpowiedzialny będzie za wyświetlenie stuktury tabeli, w której poszczególne wiersze odpowiadać będą elementom tablicy. Komponent musi reagować na zmiany elementów w tablicy i wyświetlać różnice najszybciej jak tylko jest w stanie to zrobić
 \end{enumerate}
 
@@ -103,7 +84,7 @@ Kod odpowiedzialny za generowanie tablicy oraz aktualizowanie ich elementów jes
 
 \section{Środowisko przeglądarki internetowej}
 
-Przeglądarka internetowa (ang. \emph{web browser}) to program komputerowy służący do pobierania i wyświetlania stron internetowych udostępnianych przez serwery \emph{WWW} (ang. \emph{World Wide Web}). Komunikacja z serwerem odbywa się najczęściej za pomocą protokołu \emph{HTTP} (ang. \emph{Hypertext Transfer Protocol})lub odpowiednika w wersji szyfrowanej \emph{HTTPS} (ang. \emph{Hypertext Transfer Protocol Secure}). Nierzadko przeglądarki internetowe są w stanie obsługiwać inne protokoły takie jak np. \emph{FTP} (ang. \emph{File Transfer Protocol}) wykorzystywany do serwerów plików, czy też protokoły \emph{POP3} (ang. \emph{Post Office Protocol}), \emph{IMAP} (ang. \emph{Internet Message Access Protocol}) i \emph{SMTP} (ang. \emph{Simple Mail Transfer Protocol}) wykorzystywane do poczty elektronicznej. 
+Przeglądarka internetowa (ang. \emph{web browser}) to program komputerowy służący do pobierania i wyświetlania stron internetowych udostępnianych przez serwery \emph{WWW} (ang. \emph{World Wide Web}). Komunikacja z serwerem odbywa się najczęściej za pomocą protokołu \emph{HTTP} (ang. \emph{Hypertext Transfer Protocol}) lub odpowiednika w wersji szyfrowanej \emph{HTTPS} (ang. \emph{Hypertext Transfer Protocol Secure}). Nierzadko przeglądarki internetowe są w stanie obsługiwać inne protokoły takie jak np. \emph{FTP} (ang. \emph{File Transfer Protocol}) wykorzystywany do serwerów plików, czy też protokoły \emph{POP3} (ang. \emph{Post Office Protocol}), \emph{IMAP} (ang. \emph{Internet Message Access Protocol}) i \emph{SMTP} (ang. \emph{Simple Mail Transfer Protocol}) wykorzystywane do poczty elektronicznej. 
 
 \subsection{Technologie}
 
@@ -113,13 +94,14 @@ Współczesne strony internetowe to produkty, które powstały z połączenia wi
 
 Hipertekstowy język znaczników (ang. \emph{HyperText Markup Language}) to język służący do określenia struktury strony internetowej. Definicję \emph{HTML 5.1} stanowi \emph{W3C REC-HTML51} \cite{w3c-rec-html51}. Oprócz głównego tekstu \emph{HTML} zawiera tak zwane znaczniki, które zawierają dodatkowe informacje pozwalające przeglądarce internetowej odpowiednio zinterpretować określony fragment strony interetowej. Za pomocą znaczników możemy formować fragmenty strony w takie struktury takie jak hiperłącza, akapity, listy, nagłówki, czy też formularze. Znaczniki najczęściej występują w parach (jako znacznik otwierając oraz zamykający) definiując zakres swojego działania.
 
-\lstinputlisting[language=HTML, caption=Przykładowa prosta strona internetowa z formularzem]{../examples/html.html}
+\lstinputlisting[language=HTML, caption=Przykładowa prosta strona internetowa z formularzem, label={lst:example-page}]{../examples/html.html}
 
-Strona internetowa zaczyna się od \emph{<!DOCTYPE html>}. Jest to specjalny znacznik, który musi być umieszczony jako pierwszy. Informuje on przeglądarkę o tym, że tekst jest w formacie \emph{HTML}. Kolejnym znacznikiem jest \emph{html} z atrybutem \emph{lang}, jest to główny znacznik, będacy korzeniem całej zagnieżdzonej struktury. Atrybut \emph{lang} informuje przeglądarkę internetową o języku, dla którego strona jest dedykowana. Kolejnym znacznikiem jest znacznik \emph{head} zawierający infomację o systemie kodowania (w tym wypadku jest to  kodowanie \emph{UTF-8}) oraz tytuł strony. Może on zawierać dodatkowe metadane opisujące stronę internetową. Z punktu widzenia użytkownika najważniejszym fragmentem jest znacznik \emph{body}, który zawiera właściwą treść, czyli w tym wypadku jest to głównie formularz \emph{form}. Dwa najważniejsze atrybuty opisujące formularz to \emph{action} informujący przeglądarkę gdzie wysłać dane wpisane przez użytkownika oraz \emph{method} na podstawie, którego przeglądarka wie jaką metodę protokołu HTTP zastosować. Przykładowy formularz zawiera jedno pole tekstowe \emph{input type="text"} oraz jedno pole do wpisywania haseł \emph{input type="password"}. Hasło wpisane w tego typu pole jest domyślnie ukryte przez przeglądarkę dla celów bezpieczeństwa. Oba pola dodatkowo opisane są etykietami \emph{label}. Ostatnim nieopisanym jeszcze znacznikiem jest \emph{button type="submit"}, który wyświetlany jest jako przycisk służący do wysłania formularza. Każda przeglądarka posiada wbudowany zestaw styli, który definiuje wygląd każdego znacznika przewidzianego w dokumentacji \emph{HTML 5}.
+W listingu \ref{lst:example-page} przedstawiono bardzo krótką, przykładową, lecz w pełni poprawną i funkcjonalną stronę internetową. Strona internetowa zaczyna się od \emph{<!DOCTYPE html>}. Jest to specjalny znacznik, który musi być umieszczony jako pierwszy. Informuje on przeglądarkę o tym, że tekst jest w formacie \emph{HTML}. Kolejnym znacznikiem jest \emph{html} z atrybutem \emph{lang}, jest to główny znacznik, będacy korzeniem całej zagnieżdzonej struktury. Atrybut \emph{lang} informuje przeglądarkę internetową o języku, dla którego strona jest dedykowana. Kolejnym znacznikiem jest znacznik \emph{head} zawierający infomację o systemie kodowania (w tym wypadku jest to  kodowanie \emph{UTF-8}) oraz tytuł strony. Może on zawierać dodatkowe metadane opisujące stronę internetową. Z punktu widzenia użytkownika najważniejszym fragmentem jest znacznik \emph{body}, który zawiera właściwą treść, czyli w tym przypadku jest to głównie formularz \emph{form}. Dwa najważniejsze atrybuty opisujące formularz to \emph{action} informujący przeglądarkę gdzie wysłać dane wpisane przez użytkownika oraz \emph{method} na podstawie, którego przeglądarka wie jaką metodę protokołu HTTP zastosować. Przykładowy formularz zawiera jedno pole tekstowe \emph{input type="text"} oraz jedno pole do wpisywania haseł \emph{input type="password"}. Hasło wpisane w tego typu pole jest domyślnie ukryte przez przeglądarkę dla celów bezpieczeństwa. Oba pola dodatkowo opisane są etykietami \emph{label}. Ostatnim nieopisanym jeszcze znacznikiem jest \emph{button type="{}submit"}, który wyświetlany jest jako przycisk służący do wysłania formularza. Każda przeglądarka posiada wbudowany zestaw styli, który definiuje wygląd każdego znacznika przewidzianego w dokumentacji \emph{HTML 5}. Rysunek \ref{fig:example-page-chrome} przedstawia przykładową stronę wyrenderowaną w przeglądarce internetowej \emph{Chrome}.
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{html-chrome.png}
-	\caption{Przykład wyrenderowany w przeglądarce Chrome}
+  \caption{Przykład wyrenderowany w przeglądarce Chrome}
+  \label{fig:example-page-chrome}
 \end{figure}
 
 \subsubsection{CSS 3}
@@ -166,11 +148,11 @@ selektor, selektor2 {
 Selektory mogą poszukiwać elementy na podstawie wielu różnych wartośći, jedne z nich to:
 
 \begin{itemize}
-  \item nazwa elementu np. \emph{h1}
-  \item atrybut \emph{class} elementu np. \emph{.my-class}
-  \item identyfikator elementu, czyli atrybut \emph{id} np. \emph{\#element-id}
-  \item połączenie wcześniejszych selektorów operatorem logicznym \emph{OR} np. \emph{h1.my-class}
-  \item połączenie wcześniejszych selektorów operatorem logicznym \emph{AND} np. \emph{\#element-id .my-class}
+  \item nazwa elementu np. \emph{h1},
+  \item atrybut \emph{class} elementu np. \emph{.my-class},
+  \item identyfikator elementu, czyli atrybut \emph{id} np. \emph{\#element-id},
+  \item połączenie wcześniejszych selektorów operatorem logicznym \emph{OR} np. \emph{h1.my-class},
+  \item połączenie wcześniejszych selektorów operatorem logicznym \emph{AND} np. \emph{\#element-id .my-class}.
 \end{itemize}
 
 Dobrą praktyką jest definiowanie selektorów na podstawie atrubutu \emph{class}, natomiast identyfikator, czyli atrybut \emph{id} powinien służyć do jednoznacznej identyfikacji elementu w strukturze \emph{HTML}. Zgodnie z dokumentacją wiele znaczników może posiadać taką samą klasę, natomiast identyfikator aby spełniał swoje zadanie musi być unikalny.
