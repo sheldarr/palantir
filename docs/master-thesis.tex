@@ -1139,9 +1139,9 @@ tbody
 
 \subsubsection{Implementacja}
 
-Inicjalizacja głównego modułu jest prosta i polega na wywołaniu funkcji \emph{platformBrowserDynamic} dostarczanej w paczce \emph{@angular/platform-browser-dynamic}. Jako parametr należy przekazać zdefiniowany główny moduł aplikacji.
+Inicjalizacja głównego modułu przedstawiona w listingu \ref{lst:angular-init} jest prosta i polega na wywołaniu funkcji \emph{platformBrowserDynamic} dostarczanej w paczce \emph{@angular/platform-browser-dynamic}. Jako parametr należy przekazać zdefiniowany główny moduł aplikacji.
 
-\begin{lstlisting}[caption=Inicjalizacja głównego modułu]
+\begin{lstlisting}[caption=Inicjalizacja głównego modułu, label={lst:angular-init}]
 import { platformBrowserDynamic } from
     '@angular/platform-browser-dynamic';
 
@@ -1151,9 +1151,9 @@ import { PerformanceTestModule } from
 platformBrowserDynamic().bootstrapModule(PerformanceTestModule);
 \end{lstlisting}
 
-Definicja głównego komponentu polega na zdefiniowaniu klasy udekorowanej dekoratorem \emph{@NgModule}. Wewnątrz tego modułu deklarujemy wszystkie komponenty dostępne wewnątrz aplikacji.
+Definicja głównego komponentu przedstawiona w listingu \ref{lst:angular-main-module} polega na zdefiniowaniu klasy udekorowanej dekoratorem \emph{@NgModule}. Wewnątrz tego modułu deklarujemy wszystkie komponenty dostępne wewnątrz aplikacji.
 
-\begin{lstlisting}[caption=Główny moduł]
+\begin{lstlisting}[caption=Główny moduł, label={lst:angular-main-module}]
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -1174,9 +1174,9 @@ import { VirtualMachinesTableComponent } from
 export class PerformanceTestModule {}
 \end{lstlisting}
 
-Główny komponent to klasa udekorowana dekoratorem \emph{@Component}. Dekorator ten odpowiedzialny jest za powiązanie klasy będącej odpowiednikiem kontrolera znanego z \emph{AngularJS} z odpowiednim widokiem.
+Główny komponent przedstawiony w listingu \ref{lst:angular-main-component} to klasa udekorowana dekoratorem \emph{@Component}. Dekorator ten odpowiedzialny jest za powiązanie klasy będącej odpowiednikiem kontrolera znanego z \emph{AngularJS} z odpowiednim widokiem.
 
-\begin{lstlisting}[caption=Główny komponent]
+\begin{lstlisting}[caption=Główny komponent, label={lst:angular-main-component}]
 // performance-test.component.ts
 import { Component, OnInit } from '@angular/core';
 
@@ -1216,9 +1216,9 @@ virtual-machines-table(
 )
 \end{lstlisting}
 
-Komponent tabeli wykorzystuje ponownie dekorator \emph{@Component}. Komponent tabeli posiada zdefiniowaną tablicę wirtualnych maszyn za pomocą dekoratora \emph{@Input} użytego wewnątrz ciała klasy. Poszególne wiersze tabeli zostaną wygenerowane za pomocą atrybutu \emph{*ngFor}, który to powieli określony fragment dla każdego elementu tabeli.
+Komponent tabeli przedstawiony w listingu \ref{lst:angular-table} wykorzystuje ponownie dekorator \emph{@Component}. Komponent tabeli posiada zdefiniowaną tablicę wirtualnych maszyn za pomocą dekoratora \emph{@Input} użytego wewnątrz ciała klasy. Poszególne wiersze tabeli zostaną wygenerowane za pomocą atrybutu \emph{*ngFor}, który to powieli określony fragment dla każdego elementu tabeli.
 
-\begin{lstlisting}[caption=Komponent tabeli]
+\begin{lstlisting}[caption=Komponent tabeli, label={lst:angular-table}]
 // virtual-machines-table.component.ts
 import { Component, Input } from '@angular/core';
 
@@ -1272,9 +1272,9 @@ tbody
 
 \subsubsection{Implementacja}
 
-Inicjalizacja głównego komponentu jest bardzo prosta i sprowadza się do wywołania metody \emph{mount} udostępnianej przez obiekt \emph{m} dostarczany przez bibliotekę. Jako parametry przekazać należy obiekt z \emph{DOM} wewnątrz którego ma zostać zamontowany komponent przekazany jako drugi parametr.
+Inicjalizacja głównego komponentu przedstawiona w listingu \ref{lst:mithril-init} jest bardzo prosta i sprowadza się do wywołania metody \emph{mount} udostępnianej przez obiekt \emph{m} dostarczany przez bibliotekę. Jako parametry przekazać należy obiekt z \emph{DOM} wewnątrz którego ma zostać zamontowany komponent przekazany jako drugi parametr.
 
-\begin{lstlisting}[caption=Inicjalizacja głównego komponentu]
+\begin{lstlisting}[caption=Inicjalizacja głównego komponentu, label={lst:mithril-init}]
 import m from 'mithril';
 
 import PerformanceTestComponent from
@@ -1285,9 +1285,9 @@ const root = document.getElementById('root');
 m.mount(root, PerformanceTestComponent)
 \end{lstlisting}
 
-Definicja głównego komponentu mieści się w jednym pliku i sprowadza się do zdefiniowania obiektu z odpowiednimi właściwościami.
+Definicja głównego komponentu przedstawiona w listingu \ref{lst:mithril-main} mieści się w jednym pliku i sprowadza się do zdefiniowania obiektu z odpowiednimi właściwościami.
 
-\begin{lstlisting}[caption=Główny komponent]
+\begin{lstlisting}[caption=Główny komponent, label={lst:mithril-main}]
 import m from 'mithril';
 
 import VirtualMachinesProvider from
@@ -1319,9 +1319,9 @@ const PerformanceComponent = {
 export default PerformanceComponent;
 \end{lstlisting}
 
-Komponent tabeli jest obiektem, który definiuje swój widok za pomocą odpowiednio zagnieżdżonych wywołań funkcji \emph{m} zwracającej instancje klasy \emph{VNode} będących wirtualną reprezentacją obiektów w \emph{DOM}. Przekazana tablica wirtualnych maszyn dostępna jest pod właściwością \emph{attrs}. Powielenie fragmentu dla każdego elementu tablicy odbywa się z wykorzystaniem standardowej funkcji \emph{map}.
+Komponent tabeli przedstawiony w listingu \ref{lst:mithril-table} jest obiektem, który definiuje swój widok za pomocą odpowiednio zagnieżdżonych wywołań funkcji \emph{m} zwracającej instancje klasy \emph{VNode} będących wirtualną reprezentacją obiektów w \emph{DOM}. Przekazana tablica wirtualnych maszyn dostępna jest pod właściwością \emph{attrs}. Powielenie fragmentu dla każdego elementu tablicy odbywa się z wykorzystaniem standardowej funkcji \emph{map}.
 
-\begin{lstlisting}[caption=Komponent tabeli]
+\begin{lstlisting}[caption=Komponent tabeli, label={lst:mithril-table}]
 import m from 'mithril';
 
 const VirtualMachinesTableComponent = {
@@ -1372,9 +1372,9 @@ export default VirtualMachinesTableComponent;
 
 \subsubsection{Implementacja}
 
-Implementacja główngo komponentu przebiega bardzo podobnie jak w przypadku biblioteki \emph{mithril.js}. Tym razem wykorzystać jednak nalezy metodę \emph{render} obiektu \emph{ReactDOM}.
+Implementacja główngo komponentu przedstawiona w listingu \ref{lst:react-init} przebiega bardzo podobnie jak w przypadku biblioteki \emph{mithril.js}. Tym razem wykorzystać jednak nalezy metodę \emph{render} obiektu \emph{ReactDOM}.
 
-\begin{lstlisting}[caption=Inicjalizacja głównego komponentu]
+\begin{lstlisting}[caption=Inicjalizacja głównego komponentu, label={lst:react-init}]
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -1387,9 +1387,9 @@ ReactDOM.render(
 );
 \end{lstlisting}
 
-Główny komponent jest klasą rozszerzającą klasę \emph{React.Component} za pomocą słowa kluczowego \emph{extends}.
+Główny komponent przedstawiony w listingu \ref{lst:react-main} jest klasą rozszerzającą klasę \emph{React.Component} za pomocą słowa kluczowego \emph{extends}.
 
-\begin{lstlisting}[caption=Główny komponent]
+\begin{lstlisting}[caption=Główny komponent, label={lst:react-main}]
 import React from 'react';
 
 import VirtualMachinesProvider from
@@ -1431,10 +1431,10 @@ class PerformanceTest extends React.Component {
 export default PerformanceTest;
 \end{lstlisting}
 
-Komponent tabeli jest klasą, która definiuje swój widok za pomocą metody \emph{render}. Metoda ta wykorzystuje format \emph{jsx} będący pomieszaniem języka \emph{JavaScript} z językiem \emph{HTML}
+Komponent tabeli przedstawiony w listingu \ref{lst:react-table} jest klasą, która definiuje swój widok za pomocą metody \emph{render}. Metoda ta wykorzystuje format \emph{jsx} będący pomieszaniem języka \emph{JavaScript} z językiem \emph{HTML}
 Przekazana tablica wirtualnych maszyn dostępna jest pod właściwością \emph{props}. Powielenie fragmentu dla każdego elementu tablicy odbywa się z wykorzystaniem standardowej funkcji \emph{map}.
 
-\begin{lstlisting}[caption=Komponent tabeli]
+\begin{lstlisting}[caption=Komponent tabeli, label={lst:react-table}]
 import PropTypes from 'prop-types'; 
 import React from 'react';
 
@@ -1515,9 +1515,9 @@ Posiada te same cechy co \emph{mithril.js} oraz \emph{React}, czyli komponenty, 
 
 \subsubsection{Implementacja}
 
-Inicjalizacja aplikacji polega na stworzeniu nowej instancji klasy \emph{Vue} przekazując jako parametr główny komponent aplikacji. Rejestracja pozostałych komponentów wymaga wykorzystania statycznej metody \emph{component} klasy \emph{Vue}.
+Inicjalizacja aplikacji przedstawiona w listingu \ref{lst:vue-init} polega na stworzeniu nowej instancji klasy \emph{Vue} przekazując jako parametr główny komponent aplikacji. Rejestracja pozostałych komponentów wymaga wykorzystania statycznej metody \emph{component} klasy \emph{Vue}.
 
-\begin{lstlisting}[caption=Inicjalizacja głównego komponentu]
+\begin{lstlisting}[caption=Inicjalizacja głównego komponentu, label={lst:vue-init}]
 import Vue from 'vue';
 
 import PerformanceTestComponent from
@@ -1533,9 +1533,9 @@ Vue.component(
 new Vue(PerformanceTestComponent);
 \end{lstlisting}
 
-Definicja głównego komponentu wykorzystuje jeden plik o specyficznej konstrukcji. Część odpowiedzialna za widok przechowywana jest wewnątrz znacznika \emph{template}, natomiast część odpowiedzialna za logikę komponentu wewnątrz znacznika \emph{script}. Definicja logiki sprowadza sie do stworzenia obiektu z odpowiednimi właściwościami.
+Definicja głównego komponentu przedstawiona w listingu \ref{lst:vue-main} wykorzystuje jeden plik o specyficznej konstrukcji. Część odpowiedzialna za widok przechowywana jest wewnątrz znacznika \emph{template}, natomiast część odpowiedzialna za logikę komponentu wewnątrz znacznika \emph{script}. Definicja logiki sprowadza sie do stworzenia obiektu z odpowiednimi właściwościami.
 
-\begin{lstlisting}[caption=Główny komponent]
+\begin{lstlisting}[caption=Główny komponent, label={lst:vue-main}]
 <template lang="pug">
   virtual-machines-table(
       v-bind:virtual-machines="virtualMachines"
@@ -1566,9 +1566,9 @@ Definicja głównego komponentu wykorzystuje jeden plik o specyficznej konstrukc
 </script>
 \end{lstlisting}
 
-Komponent tabeli również wykorzystuje specyficzny plik, który jest charakterystyczny dla biblioteki \emph{Vue.js}. Przekazana tablica wirtualnych maszyn dostępna jest pod właściwością \emph{props}. Powielenie fragmentu dla każdego elementu tablicy odbywa się z wykorzystaniem atrybutu \emph{v-for} bardzo podobnego do atybutów znanych z bibliotek z rodziny \emph{Angular}.
+Komponent tabeli przedstawiony w listingu \ref{lst:vue-table} również wykorzystuje specyficzny plik, który jest charakterystyczny dla biblioteki \emph{Vue.js}. Przekazana tablica wirtualnych maszyn dostępna jest pod właściwością \emph{props}. Powielenie fragmentu dla każdego elementu tablicy odbywa się z wykorzystaniem atrybutu \emph{v-for} bardzo podobnego do atybutów znanych z bibliotek z rodziny \emph{Angular}.
 
-\begin{lstlisting}[caption=Komponent tabeli]
+\begin{lstlisting}[caption=Komponent tabeli, label={lst:vue-table}]
 <template lang="pug">
   table
       thead
