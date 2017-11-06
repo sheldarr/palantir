@@ -566,7 +566,7 @@ Podstawowymi obiektami, które można poddać analizie są zdarzenia. Przykłado
 \begin{enumerate}
   \item name - nazwa zdarzenia.
   \item cat - kolekcja oddzielonych przecinkiem kategorii powiązanych ze zdarzeniem.
-  \item ph - pojedynczy znak określający typ zdarzenia. Tabela \ref{tab:event-types} zawiera wszystkie prawidłowe wartości.
+  \item ph - pojedynczy znak określający typ zdarzenia. Tablica \ref{tab:event-types} zawiera wszystkie prawidłowe wartości.
   \item ts - znacznik czasowy zdarzenia podany z dokładnością do milisekundy.
   \item tts - opcjonalny znacznik czasowy wątku zdarzenia podany z dokładnością do milisekundy.
   \item pid - identyfikator procesu, który spowodował zaistnienie zdarzenia.
@@ -1646,6 +1646,10 @@ Każda platforma programistyczna była testowana przez godzinę czasu dla liczby
 
 Rzeczywista liczba klatek na sekundę mierzona została na podstawie zdarzenia natychmiastowego o nazwie \emph{DrawFrame}. Zdarzenie to powstaje w momencie rysowania kolejnej klatki.
 
+Tablice \ref{tab:angular-fps}, \ref{tab:angularjs-fps}, \ref{tab:mithril-fps}, \ref{tab:react-fps}, \ref{tab:vue-fps} przedstawiają średnią liczbę klatek na sekundę w zależności od liczby wirtualnych maszyn dla poszczególnych bibliotek.
+
+Rysunki \ref{fig:angular-fps}, \ref{fig:angularjs-fps}, \ref{fig:mithril-fps}, \ref{fig:react-fps}, \ref{fig:vue-fps} wizualizują za pomocą wykresu dane przedstawione w poszczególnych tablicach.
+
 \begin{table}[]
   \centering
   \resizebox{\textwidth}{!}{%
@@ -1667,11 +1671,13 @@ Rzeczywista liczba klatek na sekundę mierzona została na podstawie zdarzenia n
   \end{tabular}%
   }
   \caption{Angular - klatki na sekundę (FPS)}
+  \label{tab:angular-fps}
 \end{table}
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{angular-fps.jpg}
-	\caption{Angular - klatki na sekundę (FPS)}
+  \caption{Angular - klatki na sekundę (FPS)}
+  \label{fig:angular-fps}
 \end{figure}
 
 \begin{table}[]
@@ -1696,11 +1702,13 @@ Rzeczywista liczba klatek na sekundę mierzona została na podstawie zdarzenia n
   \end{tabular}%
   }
   \caption{AngularJS - klatki na sekundę (FPS)}
+  \label{tab:angularjs-fps}
 \end{table}
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{angularjs-fps.jpg}
-	\caption{AngularJS - klatki na sekundę (FPS)}
+  \caption{AngularJS - klatki na sekundę (FPS)}
+  \label{fig:angularjs-fps}
 \end{figure}
 
 \begin{table}[]
@@ -1725,11 +1733,13 @@ Rzeczywista liczba klatek na sekundę mierzona została na podstawie zdarzenia n
   \end{tabular}%
   }
   \caption{mithril.js - klatki na sekundę (FPS)}
+  \label{tab:mithril-fps}
 \end{table}
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{mithril-fps.jpg}
-	\caption{mithril.js - klatki na sekundę (FPS)}
+  \caption{mithril.js - klatki na sekundę (FPS)}
+  \label{fig:mithril-fps}
 \end{figure}
 
 \begin{table}[]
@@ -1754,11 +1764,13 @@ Rzeczywista liczba klatek na sekundę mierzona została na podstawie zdarzenia n
   \end{tabular}%
   }
   \caption{React - klatki na sekundę (FPS)}
+  \label{tab:react-fps}
 \end{table}
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{react-fps.jpg}
-	\caption{React - klatki na sekundę (FPS)}
+  \caption{React - klatki na sekundę (FPS)}
+  \label{fig:react-fps}
 \end{figure}
 
 \begin{table}[]
@@ -1783,16 +1795,20 @@ Rzeczywista liczba klatek na sekundę mierzona została na podstawie zdarzenia n
   \end{tabular}%
   }
   \caption{Vue.js - klatki na sekundę (FPS)}
+  \label{tab:vue-fps}
 \end{table}
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{vue-fps.jpg}
-	\caption{Vue.js - klatki na sekundę (FPS)}
+  \caption{Vue.js - klatki na sekundę (FPS)}
+  \label{fig:vue-fps}
 \end{figure}
 
 \subsection{Badania wydajności pamięciowej}
 
 Wydajność pamięciowa mierzona została na podstawie minimalnej wielkości pamięci zaalokowanej na stercie (ang. \emph{heap}), przy której aplikacja była w stanie poprawnie funkcjonować.
+
+Tablice \ref{tab:angular-heap}, \ref{tab:angularjs-heap}, \ref{tab:mithril-heap}, \ref{tab:react-heap}, \ref{tab:vue-heap} przedstawiają minimalny rozmiar sterty w zależności od liczby wirtualnych maszyn dla poszczególnych bibliotek.
 
 \begin{table}[]
   \centering
@@ -1804,6 +1820,7 @@ Wydajność pamięciowa mierzona została na podstawie minimalnej wielkości pam
   \end{tabular}%
   }
   \caption{Angular - minimalny rozmiar sterty}
+  \label{tab:angular-heap}
 \end{table}
 
 \begin{table}[]
@@ -1816,6 +1833,7 @@ Wydajność pamięciowa mierzona została na podstawie minimalnej wielkości pam
   \end{tabular}%
   }
   \caption{AngularJS - minimalny rozmiar sterty}
+  \label{tab:angularjs-heap}
 \end{table}
 
 \begin{table}[]
@@ -1828,6 +1846,7 @@ Wydajność pamięciowa mierzona została na podstawie minimalnej wielkości pam
   \end{tabular}%
   }
   \caption{mithril.js - minimalny rozmiar sterty}
+  \label{tab:mithril-heap}
 \end{table}
 
 \begin{table}[]
@@ -1840,6 +1859,7 @@ Wydajność pamięciowa mierzona została na podstawie minimalnej wielkości pam
   \end{tabular}%
   }
   \caption{React - minimalny rozmiar sterty}
+  \label{tab:react-heap}
 \end{table}
 
 \begin{table}[]
@@ -1852,6 +1872,7 @@ Wydajność pamięciowa mierzona została na podstawie minimalnej wielkości pam
   \end{tabular}%
   }
   \caption{Vue.js - minimalny rozmiar sterty}
+  \label{tab:vue-heap}
 \end{table}
 
 \section{Porównanie wyników i wnioski}
@@ -1860,10 +1881,11 @@ Wydajność pamięciowa mierzona została na podstawie minimalnej wielkości pam
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{frameworks-fps.jpg}
-	\caption{Platformy programistyczne - klatki na sekundę (FPS)}
+  \caption{Platformy programistyczne - klatki na sekundę (FPS)}
+  \label{fig:frameworks-fps}
 \end{figure}
 
-Analizując zbiorczy wykres przedstawiający porównanie ilości klatek na sekundę (im więcej tym lepiej) w zależności od wirtualnych maszyn jednoznacznie najlepiej wypada platforma programistyczna \emph{mithril.js}. Na kolejnych miejscach plasują się platformy \emph{AngularJS} oraz \emph{Angular}. Co ciekawe następca \emph{AngularJS} wypadł gorzej od swojego poprzednika. Na przedostatnim miejscu uplasował się \emph{Vue.js} odbiegający od triumfatora średnio o kilka klatek na sekundę. Zdecydowanie najgorzej wypadł \emph{React} zdecydowanie odbiegając od reszty. Może to być przyczyną nieoptymalnej implementacji dla danego scenariusza testowego, była ona jednak oparta na oficjalnej dokumentacji biblioteki \emph{React} z uwzględnieniem wszelkich informacji o potencjalnych, popularnych błędach implementacyjnych. 
+Analizując rysunek \ref{fig:frameworks-fps} przedstawiający porównanie ilości klatek na sekundę (im więcej tym lepiej) w zależności od wirtualnych maszyn jednoznacznie najlepiej wypada platforma programistyczna \emph{mithril.js}. Na kolejnych miejscach plasują się platformy \emph{AngularJS} oraz \emph{Angular}. Co ciekawe następca \emph{AngularJS} wypadł gorzej od swojego poprzednika. Na przedostatnim miejscu uplasował się \emph{Vue.js} odbiegający od triumfatora średnio o kilka klatek na sekundę. Zdecydowanie najgorzej wypadł \emph{React} zdecydowanie odbiegając od reszty. Może to być przyczyną nieoptymalnej implementacji dla danego scenariusza testowego, była ona jednak oparta na oficjalnej dokumentacji biblioteki \emph{React} z uwzględnieniem wszelkich informacji o potencjalnych, popularnych błędach implementacyjnych. 
 
 Biblioteki implementujące mechanizm wirtualnego obiektowego modelu dokumentu nie osiągnęły zdecydowanie lepszych wyników od bibliotek pozbawionych tego mechanizmu. Co prawda zwycięzcą został \emph{mithril.js}, lecz odpowiednio na drugim i trzecim miejscu uplasowały się biblioteki bez tego mechanizmu czyli \emph{AngularJS} oraz \emph{Angular}.
 
@@ -1871,12 +1893,15 @@ Biblioteki implementujące mechanizm wirtualnego obiektowego modelu dokumentu ni
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{frameworks-heap.jpg}
-	\caption{Platformy programistyczne - minimalny rozmiar sterty}
+  \caption{Platformy programistyczne - minimalny rozmiar sterty}
+  \label{fig:frameworks-heap}
 \end{figure}
 
-Dokonując analizy zbiorczego wykresu przestawiającego minimalny rozmiar sterty zarezerwowanej przez platformy programistyczne w zależności od liczby wirtualnych maszyn wyraźnie zauważyć można, iż najgorzej wypadły platformy z rodziny \emph{Angular} zdecydowanie odbiegając od swoich konkurentów. Pośrodku uplasowała się biblioteka \emph{mithril.js}, która osiągneła najlepsze wyniki przy badaniu wydajności czasowej. \emph{React} zajął drugie miejsce, natomiast najmniejsze zużycie pamięci wykazała biblioteka \emph{Vue.js}.
+Dokonując analizy rysunku \ref{fig:frameworks-heap} przestawiającego minimalny rozmiar sterty zarezerwowanej przez platformy programistyczne w zależności od liczby wirtualnych maszyn wyraźnie zauważyć można, iż najgorzej wypadły platformy z rodziny \emph{Angular} zdecydowanie odbiegając od swoich konkurentów. Pośrodku uplasowała się biblioteka \emph{mithril.js}, która osiągneła najlepsze wyniki przy badaniu wydajności czasowej. \emph{React} zajął drugie miejsce, natomiast najmniejsze zużycie pamięci wykazała biblioteka \emph{Vue.js}.
 
 \section{Podsumowanie}
+
+Celem pracy było porównanie pięciu platform programistycznych służących do tworzenia aplikacji internetowych. Porównanie zostało przeprowadzone zostało pod kątem wydajności czasowej oraz pamięciowej. Uzyskane wyniki mogą pomoć programistom zadecydować z jakiej biblioteki skorzystać jeśli ważnym kryterium wyboru jest wydajność.
 
 Wyniki badań pokazały, że bardzo ciekawą propozycją jest platforma programistyczna \emph{mithril.js}, która pomimo tego, że nie jest najpopularniejszą biblioteką to uzyskała bardzo dobre wyniki w przeprowadzonych badaniach. 
 
