@@ -1811,99 +1811,34 @@ Rysunki \ref{fig:angular-fps}, \ref{fig:angularjs-fps}, \ref{fig:mithril-fps}, \
 
 Wydajność pamięciowa mierzona została na podstawie minimalnej wielkości pamięci zaalokowanej na stercie (ang. \emph{heap}), przy której aplikacja była w stanie poprawnie funkcjonować.
 
-Tablice \ref{tab:angular-heap}, \ref{tab:angularjs-heap}, \ref{tab:mithril-heap}, \ref{tab:react-heap}, \ref{tab:vue-heap} przedstawiają minimalny rozmiar sterty w zależności od liczby wirtualnych maszyn dla poszczególnych bibliotek.
-
-%\begin{table}[]
-%  \centering
-%  \resizebox{\textwidth}{!}{%
-%  \begin{tabular}{@{}llllllllllllllllll@{}}
-%  \toprule
-%  Wirtualne maszyny                 & 16         & 32         & 48         & 64         & 80         & 96         & 112        & 128        & 144        & 160        & 176        & 192        & 208        & 224        & 240        & 256        &  \\ \midrule
-%  Minimalny rozmiar sterty {[}KB{]} & 27616.4135 & 27904.7750 & 28837.2877 & 29145.9789 & 29842.1646 & 30206.0723 & 29421.7389 & 31079.5915 & 30698.3522 & 31871.6344 & 32047.2940 & 32548.6094 & 33361.6876 & 33537.3595 & 34001.3173 & 35563.6187 &  \\ \bottomrule
-%  \end{tabular}%
-%  }
-%  \caption{Angular - minimalny rozmiar sterty}
-%  \label{tab:angular-heap}
-%\end{table}
-
-\begin{table}[]
-  \centering
-  %\resizebox{\textwidth}{!}{%
-  \begin{tabular}{@{}lll@{}}
-  \toprule
-  Wirtualne maszyny                 & Minimalny rozmiar sterty {[}KB{]} & \\ \midrule
-  16 & 27616.4135 & \\
-  32 & 27904.7750 & \\
-  48 & 28837.2877 & \\
-  64 & 29145.9789 & \\
-  80 & 29842.1646 & \\
-  96 & 30206.0723 & \\
-  112 & 29421.7389 & \\
-  128 & 31079.5915 & \\
-  144 & 30698.3522 & \\
-  160 & 31871.6344 & \\
-  176 & 32047.2940 & \\
-  192 & 32548.6094 & \\
-  208 & 33361.6876 & \\
-  224 & 33537.3595 & \\
-  240 & 34001.3173 & \\
-  256 & 35563.6187 & \\ \bottomrule
-  \end{tabular}%
-  %}
-  \caption{Angular - minimalny rozmiar sterty}
-  \label{tab:angular-heap}
-\end{table}
+Tablica \ref{tab:frameworks-heap} przedstawia minimalny rozmiar sterty dla poszczególnych platform programistycznych w zależności od liczby wirtualnych maszyn.
 
 \begin{table}[]
   \centering
   \resizebox{\textwidth}{!}{%
-  \begin{tabular}{@{}lllllllllllllllll@{}}
+  \begin{tabular}{@{}llllll@{}}
   \toprule
-  Wirtualne maszyny        & 16         & 32         & 48         & 64         & 80         & 96         & 112        & 128        & 144        & 160        & 176        & 192        & 208        & 224        & 240        & 256        \\ \midrule
-  Minimalny rozmiar sterty [KB] & 24673.3543 & 22853.7092 & 25179.1871 & 26652.4256 & 26647.9803 & 26334.2587 & 26549.8688 & 27819.5247 & 27761.2876 & 28738.2432 & 29175.9008 & 29520.0147 & 30713.3663 & 30983.3087 & 32922.8489 & 31867.9627 \\ \bottomrule
+  Wirtualne maszyny & Angular    & AngularJS  & mithril.js & React      & Vue.js     \\ \midrule
+  16                & 27616.4135 & 24673.3543 & 18669.9500 & 16593.4993 & 13623.7795 \\
+  32                & 27904.7750 & 22853.7092 & 19538.4679 & 16373.5054 & 14438.9178 \\
+  48                & 28837.2877 & 25179.1871 & 20058.1274 & 17214.0475 & 15281.2367 \\
+  64                & 29145.9789 & 26652.4256 & 20743.9502 & 18794.2027 & 15453.4944 \\
+  80                & 29842.1646 & 26647.9803 & 20146.2873 & 18682.6790 & 17270.8171 \\
+  96                & 30206.0723 & 26334.2587 & 21003.1107 & 20964.7949 & 18658.5004 \\
+  112               & 29421.7389 & 26549.8688 & 22878.2463 & 22769.6739 & 19278.2128 \\
+  128               & 31079.5915 & 27819.5247 & 24677.9818 & 22693.9105 & 19529.2375 \\
+  144               & 30698.3522 & 27761.2876 & 23188.6286 & 22893.5562 & 19932.1830 \\
+  160               & 31871.6344 & 28738.2432 & 26401.9418 & 24570.8424 & 21786.8748 \\
+  176               & 32047.2940 & 29175.9008 & 26450.3174 & 24548.7582 & 22258.4797 \\
+  192               & 32548.6094 & 29520.0147 & 27740.6897 & 26200.6102 & 22251.7257 \\
+  208               & 33361.6876 & 30713.3663 & 27301.4939 & 26304.3926 & 23164.2905 \\
+  224               & 33537.3595 & 30983.3087 & 27975.4485 & 26482.7452 & 25416.1206 \\
+  240               & 34001.3173 & 32922.8489 & 29538.7823 & 27468.6351 & 24377.4772 \\
+  256               & 35563.6187 & 31867.9627 & 29005.0794 & 28057.6440 & 25230.7092 \\ \bottomrule
   \end{tabular}%
   }
-  \caption{AngularJS - minimalny rozmiar sterty}
-  \label{tab:angularjs-heap}
-\end{table}
-
-\begin{table}[]
-  \centering
-  \resizebox{\textwidth}{!}{%
-  \begin{tabular}{@{}llllllllllllllllll@{}}
-  \toprule
-  Wirtualne maszyny                 & 16         & 32         & 48         & 64         & 80         & 96         & 112        & 128        & 144        & 160        & 176        & 192        & 208        & 224        & 240        & 256        &  \\ \midrule
-  Minimalny rozmiar sterty {[}KB{]} & 18669.9500 & 19538.4679 & 20058.1274 & 20743.9502 & 20146.2873 & 21003.1107 & 22878.2463 & 24677.9818 & 23188.6286 & 26401.9418 & 26450.3174 & 27740.6897 & 27301.4939 & 27975.4485 & 29538.7823 & 29005.0794 &  \\ \bottomrule
-  \end{tabular}%
-  }
-  \caption{mithril.js - minimalny rozmiar sterty}
-  \label{tab:mithril-heap}
-\end{table}
-
-\begin{table}[]
-  \centering
-  \resizebox{\textwidth}{!}{%
-  \begin{tabular}{@{}llllllllllllllllll@{}}
-  \toprule
-  Wirtualne maszyny                 & 16         & 32         & 48         & 64         & 80         & 96         & 112        & 128        & 144        & 160        & 176        & 192        & 208        & 224        & 240        & 256        &  \\ \midrule
-  Minimalny rozmiar sterty {[}KB{]} & 16593.4993 & 16373.5054 & 17214.0475 & 18794.2027 & 18682.6790 & 20964.7949 & 22769.6739 & 22693.9105 & 22893.5562 & 24570.8424 & 24548.7582 & 26200.6102 & 26304.3926 & 26482.7452 & 27468.6351 & 28057.6440 &  \\ \bottomrule
-  \end{tabular}%
-  }
-  \caption{React - minimalny rozmiar sterty}
-  \label{tab:react-heap}
-\end{table}
-
-\begin{table}[]
-  \centering
-  \resizebox{\textwidth}{!}{%
-  \begin{tabular}{@{}llllllllllllllllll@{}}
-  \toprule
-  Wirtualne maszyny                 & 16         & 32         & 48         & 64         & 80         & 96         & 112        & 128        & 144        & 160        & 176        & 192        & 208        & 224        & 240        & 256        &  \\ \midrule
-  Minimalny rozmiar sterty {[}KB{]} & 13623.7795 & 14438.9178 & 15281.2367 & 15453.4944 & 17270.8171 & 18658.5004 & 19278.2128 & 19529.2375 & 19932.1830 & 21786.8748 & 22258.4797 & 22251.7257 & 23164.2905 & 25416.1206 & 24377.4772 & 25230.7092 &  \\ \bottomrule
-  \end{tabular}%
-  }
-  \caption{Vue.js - minimalny rozmiar sterty}
-  \label{tab:vue-heap}
+  \caption{Minimalny rozmiar sterty [KB] dla poszczególnych platform programistycznych w zależności od liczby wirtualnych maszyn}
+  \label{tab:frameworks-heap}
 \end{table}
 
 \section{Porównanie wyników i wnioski}
