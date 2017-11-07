@@ -7,6 +7,8 @@
 \usepackage{booktabs}
 \usepackage{lscape}
 
+\usepackage{rotating}
+
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
@@ -36,7 +38,7 @@
 \begin{document}
 
 \includepdf{../templates/title-page}
- 
+  
 \newpage
 
 \tableofcontents
@@ -44,7 +46,7 @@
 \newpage
 
 \listoffigures
- 
+  
 \listoftables
 
 \newpage
@@ -132,7 +134,7 @@ Arkusz stylów składa się z reguł określających styl dla wybranych element�
 
 \begin{lstlisting}
 selektor { 
-	wlasciwosc: wartosc; 
+  wlasciwosc: wartosc; 
 }
 \end{lstlisting}
 
@@ -140,8 +142,8 @@ Selektory oraz deklaracje można grupować. Zgrupowane selektory rozdziela się 
 
 \begin{lstlisting}
 selektor, selektor2 { 
-	wlasciwosc1: wartosc1;
-	wlasciwosc2: wartosc2;
+  wlasciwosc1: wartosc1;
+  wlasciwosc2: wartosc2;
 }
 \end{lstlisting}
 
@@ -782,9 +784,9 @@ Widok wykorzystania pamięci przedstawiony na rysunku \ref{fig:chrome-devtools-p
 \emph{Chrome DevTools} udostępnia specjalnie dedykowaną zakładkę o nazwie \emph{Pamięc}, która oferuje dodatkowe funkcjonalności przydatne przy np. debugowaniu aplikacji w celu znalezienia fragmentów kodu odpowiedzialnych za wyciek pamięci. Dostępne opcje to:
 
 \begin{enumerate}
-  \item migawka zawartości sterty - przedstawiona na rysunku \ref{fig:chrome-devtools-performance-heap-snapshot} pozwala utrwalić aktualny stan sterty, a następnie dokonać przeglądu jej zawartości za pomocą wbudowanej przeglądarki
-  \item nagranie profilu alokacji pamięci - przedstawiona na rysunku \ref{fig:chrome-devtools-performance-allocation-profile} pozwala zbierać dane na temat alokacji pamięci z poziomu kodu napisanego w języku \emph{JavaScript}
-  \item alokacja pamięci przedstawiona na wykresie czasowym - przedstawiona na rysunku \ref{fig:chrome-devtools-performance-allocation-timeline} pozwala zbierać dane na temat alokacji pamięci oraz automatycznie przedstawia je na osi czasowej
+  \item migawka zawartości sterty - przedstawiona na rysunku \ref{fig:chrome-devtools-performance-heap-snapshot} pozwala utrwalić aktualny stan sterty, a następnie dokonać przeglądu jej zawartości za pomocą wbudowanej przeglądarki,
+  \item nagranie profilu alokacji pamięci - przedstawiona na rysunku \ref{fig:chrome-devtools-performance-allocation-profile} pozwala zbierać dane na temat alokacji pamięci z poziomu kodu napisanego w języku \emph{JavaScript},
+  \item alokacja pamięci przedstawiona na wykresie czasowym - przedstawiona na rysunku \ref{fig:chrome-devtools-performance-allocation-timeline} pozwala zbierać dane na temat alokacji pamięci oraz automatycznie przedstawia je na osi czasowej.
 \end{enumerate}
 
 Wszystkie opcje umożliwiają opcjonalne zapisanie zebranych danych do pliku na dysku.
@@ -1650,7 +1652,7 @@ Tablice \ref{tab:angular-fps}, \ref{tab:angularjs-fps}, \ref{tab:mithril-fps}, \
 
 Rysunki \ref{fig:angular-fps}, \ref{fig:angularjs-fps}, \ref{fig:mithril-fps}, \ref{fig:react-fps}, \ref{fig:vue-fps} wizualizują za pomocą wykresu dane przedstawione w poszczególnych tablicach.
 
-\begin{table}[]
+\begin{sidewaystable}[]
   \centering
   \resizebox{\textwidth}{!}{%
   \begin{tabular}{@{}lllllllllllllllll@{}}
@@ -1673,7 +1675,7 @@ Rysunki \ref{fig:angular-fps}, \ref{fig:angularjs-fps}, \ref{fig:mithril-fps}, \
   }
   \caption{Angular - klatki na sekundę (FPS)}
   \label{tab:angular-fps}
-\end{table}
+\end{sidewaystable}
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{angular-fps.jpg}
@@ -1681,7 +1683,7 @@ Rysunki \ref{fig:angular-fps}, \ref{fig:angularjs-fps}, \ref{fig:mithril-fps}, \
   \label{fig:angular-fps}
 \end{figure}
 
-\begin{table}[]
+\begin{sidewaystable}[]
   \centering
   \resizebox{\textwidth}{!}{%
   \begin{tabular}{@{}lllllllllllllllll@{}}
@@ -1704,7 +1706,7 @@ Rysunki \ref{fig:angular-fps}, \ref{fig:angularjs-fps}, \ref{fig:mithril-fps}, \
   }
   \caption{AngularJS - klatki na sekundę (FPS)}
   \label{tab:angularjs-fps}
-\end{table}
+\end{sidewaystable}
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{angularjs-fps.jpg}
@@ -1712,7 +1714,7 @@ Rysunki \ref{fig:angular-fps}, \ref{fig:angularjs-fps}, \ref{fig:mithril-fps}, \
   \label{fig:angularjs-fps}
 \end{figure}
 
-\begin{table}[]
+\begin{sidewaystable}[]
   \centering
   \resizebox{\textwidth}{!}{%
   \begin{tabular}{@{}lllllllllllllllll@{}}
@@ -1735,7 +1737,7 @@ Rysunki \ref{fig:angular-fps}, \ref{fig:angularjs-fps}, \ref{fig:mithril-fps}, \
   }
   \caption{mithril.js - klatki na sekundę (FPS)}
   \label{tab:mithril-fps}
-\end{table}
+\end{sidewaystable}
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{mithril-fps.jpg}
@@ -1743,7 +1745,7 @@ Rysunki \ref{fig:angular-fps}, \ref{fig:angularjs-fps}, \ref{fig:mithril-fps}, \
   \label{fig:mithril-fps}
 \end{figure}
 
-\begin{table}[]
+\begin{sidewaystable}[]
   \centering
   \resizebox{\textwidth}{!}{%
   \begin{tabular}{@{}lllllllllllllllll@{}}
@@ -1766,7 +1768,7 @@ Rysunki \ref{fig:angular-fps}, \ref{fig:angularjs-fps}, \ref{fig:mithril-fps}, \
   }
   \caption{React - klatki na sekundę (FPS)}
   \label{tab:react-fps}
-\end{table}
+\end{sidewaystable}
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{react-fps.jpg}
@@ -1774,7 +1776,7 @@ Rysunki \ref{fig:angular-fps}, \ref{fig:angularjs-fps}, \ref{fig:mithril-fps}, \
   \label{fig:react-fps}
 \end{figure}
 
-\begin{table}[]
+\begin{sidewaystable}[]
   \centering
   \resizebox{\textwidth}{!}{%
   \begin{tabular}{@{}lllllllllllllllll@{}}
@@ -1797,7 +1799,7 @@ Rysunki \ref{fig:angular-fps}, \ref{fig:angularjs-fps}, \ref{fig:mithril-fps}, \
   }
   \caption{Vue.js - klatki na sekundę (FPS)}
   \label{tab:vue-fps}
-\end{table}
+\end{sidewaystable}
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{vue-fps.jpg}
@@ -1811,15 +1813,43 @@ Wydajność pamięciowa mierzona została na podstawie minimalnej wielkości pam
 
 Tablice \ref{tab:angular-heap}, \ref{tab:angularjs-heap}, \ref{tab:mithril-heap}, \ref{tab:react-heap}, \ref{tab:vue-heap} przedstawiają minimalny rozmiar sterty w zależności od liczby wirtualnych maszyn dla poszczególnych bibliotek.
 
+%\begin{table}[]
+%  \centering
+%  \resizebox{\textwidth}{!}{%
+%  \begin{tabular}{@{}llllllllllllllllll@{}}
+%  \toprule
+%  Wirtualne maszyny                 & 16         & 32         & 48         & 64         & 80         & 96         & 112        & 128        & 144        & 160        & 176        & 192        & 208        & 224        & 240        & 256        &  \\ \midrule
+%  Minimalny rozmiar sterty {[}KB{]} & 27616.4135 & 27904.7750 & 28837.2877 & 29145.9789 & 29842.1646 & 30206.0723 & 29421.7389 & 31079.5915 & 30698.3522 & 31871.6344 & 32047.2940 & 32548.6094 & 33361.6876 & 33537.3595 & 34001.3173 & 35563.6187 &  \\ \bottomrule
+%  \end{tabular}%
+%  }
+%  \caption{Angular - minimalny rozmiar sterty}
+%  \label{tab:angular-heap}
+%\end{table}
+
 \begin{table}[]
   \centering
-  \resizebox{\textwidth}{!}{%
-  \begin{tabular}{@{}llllllllllllllllll@{}}
+  %\resizebox{\textwidth}{!}{%
+  \begin{tabular}{@{}lll@{}}
   \toprule
-  Wirtualne maszyny                 & 16         & 32         & 48         & 64         & 80         & 96         & 112        & 128        & 144        & 160        & 176        & 192        & 208        & 224        & 240        & 256        &  \\ \midrule
-  Minimalny rozmiar sterty {[}KB{]} & 27616.4135 & 27904.7750 & 28837.2877 & 29145.9789 & 29842.1646 & 30206.0723 & 29421.7389 & 31079.5915 & 30698.3522 & 31871.6344 & 32047.2940 & 32548.6094 & 33361.6876 & 33537.3595 & 34001.3173 & 35563.6187 &  \\ \bottomrule
+  Wirtualne maszyny                 & Minimalny rozmiar sterty {[}KB{]} & \\ \midrule
+  16 & 27616.4135 & \\
+  32 & 27904.7750 & \\
+  48 & 28837.2877 & \\
+  64 & 29145.9789 & \\
+  80 & 29842.1646 & \\
+  96 & 30206.0723 & \\
+  112 & 29421.7389 & \\
+  128 & 31079.5915 & \\
+  144 & 30698.3522 & \\
+  160 & 31871.6344 & \\
+  176 & 32047.2940 & \\
+  192 & 32548.6094 & \\
+  208 & 33361.6876 & \\
+  224 & 33537.3595 & \\
+  240 & 34001.3173 & \\
+  256 & 35563.6187 & \\ \bottomrule
   \end{tabular}%
-  }
+  %}
   \caption{Angular - minimalny rozmiar sterty}
   \label{tab:angular-heap}
 \end{table}
@@ -1902,7 +1932,7 @@ Dokonując analizy rysunku \ref{fig:frameworks-heap} przestawiającego minimalny
 
 \section{Podsumowanie}
 
-Celem pracy było porównanie pięciu platform programistycznych służących do tworzenia aplikacji internetowych. Porównanie zostało przeprowadzone zostało pod kątem wydajności czasowej oraz pamięciowej. Uzyskane wyniki mogą pomoć programistom zadecydować z jakiej biblioteki skorzystać jeśli ważnym kryterium wyboru jest wydajność.
+Celem pracy było porównanie pięciu platform programistycznych służących do tworzenia aplikacji internetowych. Porównanie zostało przeprowadzone pod kątem wydajności czasowej oraz pamięciowej. Uzyskane wyniki mogą pomoć programistom zadecydować z jakiej biblioteki skorzystać jeśli ważnym kryterium wyboru jest wydajność.
 
 Wyniki badań pokazały, że bardzo ciekawą propozycją jest platforma programistyczna \emph{mithril.js}, która pomimo tego, że nie jest najpopularniejszą biblioteką to uzyskała bardzo dobre wyniki w przeprowadzonych badaniach. 
 
